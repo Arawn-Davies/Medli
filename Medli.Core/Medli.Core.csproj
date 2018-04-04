@@ -25,4 +25,19 @@
       <ProjectReference Include="..\Medli.Common\Medli.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Spruce">
+        <HintPath>..\XS\Spruce.dll</HintPath>
+      </Reference>
+      <Reference Include="XSharp">
+        <HintPath>..\XS\XSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="XSharp.Assembler">
+        <HintPath>..\XS\XSharp.Assembler.dll</HintPath>
+      </Reference>
+      <Reference Include="XSharp.x86">
+        <HintPath>..\XS\XSharp.x86.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
