@@ -16,9 +16,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Build" Version="*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="*" NoWarn="NU1604" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Medli.Common\Medli.Common.csproj" />
+      <ProjectReference Include="..\Medli.Hardware\Medli.Hardware.csproj" />
     </ItemGroup>
 
 </Project>

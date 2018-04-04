@@ -2,34 +2,34 @@
 using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
+using Medli.Common;
+using Medli.System;
 
 namespace Medli
 {
     public class Kernel: Sys.Kernel
     {
-		public const string logo = @"
-   ▄▄▄▄███▄▄▄▄      ▄████████ ████████▄   ▄█        ▄█  
- ▄██▀▀▀███▀▀▀██▄   ███    ███ ███   ▀███ ███       ███  
- ███   ███   ███   ███    █▀  ███    ███ ███       ███▌ 
- ███   ███   ███  ▄███▄▄▄     ███    ███ ███       ███▌ 
- ███   ███   ███ ▀▀███▀▀▀     ███    ███ ███       ███▌ 
- ███   ███   ███   ███    █▄  ███    ███ ███       ███  
- ███   ███   ███   ███    ███ ███   ▄███ ███▌    ▄ ███  
-  ▀█   ███   █▀    ██████████ ████████▀  █████▄▄██ █▀   
-                                         ▀             
+		public string logo = $@"                                    
+    /|    //| |                              
+   //|   // | |     ___      ___   / // ( )  Welcome to Bourne-Again Medli version { KernelProperties.KernelVersion } 
+  // |  //  | |   //___) ) //   ) / // / /   Developed by Siaranite Solutions and Arawn Davies
+ //  | //   | |  //       //   / / // / /    Copyright © Siaranite Solutions 2018, All Rights Reserved
+//   |//    | | ((____   ((___/ / // / /     Released under the BSD-3 Clause Clear licence
 ";
         protected override void BeforeRun()
         {
+			SYSPBE.Init();
+			KernelProperties.Running = true;
 			Console.Write(logo);
-            Console.WriteLine("Cosmos booted successfully. Type a line of text to get it echoed back.");
         }
         
         protected override void Run()
         {
-            Console.Write("Input: ");
-            var input = Console.ReadLine();
-            Console.Write("Text typed: ");
-            Console.WriteLine(input);
+			CoreInfo.PrintInfo();
+			while (KernelProperties.Running == true)
+			{
+				Shell.prompt(Console.ReadLine());
+			}
         }
-    }
+	}
 }

@@ -2,6 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.0</TargetFramework>
+        <BinFormat>ELF</BinFormat>
+        <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
+        <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
+        <Deployment>ISO</Deployment>
+        <DebugEnabled>True</DebugEnabled>
+        <DebugMode>Source</DebugMode>
+        <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -15,10 +22,19 @@
         <PxeInterface>192.168.0.8</PxeInterface>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugEnabled>False</DebugEnabled>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="*" NoWarn="NU1604" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Medli.Common\Medli.Common.csproj" />
+      <ProjectReference Include="..\Medli.System\Medli.System.csproj" />
     </ItemGroup>
 
 </Project>

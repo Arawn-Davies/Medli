@@ -16,13 +16,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Core" Version="2018.3.31" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="2018.3.31" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.System2" Version="2018.3.31" NoWarn="NU1604" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Medli.Common\Medli.Common.csproj" />
+        <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.System2" Version="*" NoWarn="NU1604" />
     </ItemGroup>
 
 </Project>

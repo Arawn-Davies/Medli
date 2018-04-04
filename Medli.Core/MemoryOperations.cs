@@ -7,5 +7,6 @@ namespace Medli.Core
 {
     class MemoryOperations
     {
+
     }
 }
