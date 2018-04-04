@@ -57,14 +57,24 @@ namespace Medli.Hardware
 
 		public static deviceArea dArea;
 		public static List<PCIDevice> PCIDevices;
+		/// <summary>
+		/// LSPCI listing all PCI devices attached
+		/// </summary>
 		public static void ListPCIDevices()
 		{
 			dArea = deviceArea.PCI;
 			Setup();
 			Console.WriteLine("[" + dArea + "]" + "\tDetecting PCI Devices...");
+			int count = 0;
 			foreach (PCIDevice device in PCIDevices)
 			{
-				Console.WriteLine("\tV-ID: " + device.VendorID + ", D-ID:"+ device.DeviceID);
+				Console.WriteLine(device.bus + ":" + device.slot + ":" + device.function + " " + PCIDevice.DeviceClass.GetTypeString(device) + ": " + PCIDevice.DeviceClass.GetDeviceString(device));
+				count++;
+				if (count == 19)
+				{
+					Console.ReadKey();
+					count = 0;
+				}
 			}
 		}
 	}
@@ -97,14 +107,17 @@ namespace Medli.Hardware
 			Console.ForegroundColor = ConsoleColor.White;
 			PCIDevice Virtualisor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
 			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
+			KernelProperties.Host = PCIDevicesExtended.DeviceIDStr(PCIDevicesExtended.DeviceID.VirtualBox);
 			if (Virtualisor == null)
 			{
 				Virtualisor = PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter);
 				KernelProperties.VM = KernelProperties.Hypervisor.VMWare;
+				KernelProperties.Host = PCIDevicesExtended.VendorIDStr(PCIDevicesExtended.VendorID.VMWare);
 				if (Virtualisor == null)
 				{
 					KernelProperties.IsVirtualised = false;
 					KernelProperties.VM = KernelProperties.Hypervisor.RealShit;
+					KernelProperties.Host = "Non-virtualised hardware";
 				}
 			}
 		}

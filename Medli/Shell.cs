@@ -174,7 +174,23 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			*/
 			else if (command == "meminfo")
 			{
-				CoreInfo.PrintInfo();
+				//CoreInfo.PrintInfo();
+			}
+			else if (command == "licence")
+			{
+				Console.WriteLine("");
+			}
+			else if (command == "time")
+			{
+				MedliTime.printTime();
+			}
+			else if (command == "date")
+			{
+				MedliTime.printDate();
+			}
+			else if (command == "host")
+			{
+				Console.WriteLine(KernelProperties.Host);
 			}
 			else if (command == "")
 			{

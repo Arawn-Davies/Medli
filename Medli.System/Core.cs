@@ -12,5 +12,9 @@ namespace Medli.System
 		{
 			memoryManager.PrintInfo();
 		}
+		public static void PrintTotalRAM()
+		{
+			Console.WriteLine(memoryManager.TotalMemory);
+		}
     }
 }

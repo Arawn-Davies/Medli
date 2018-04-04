@@ -9,20 +9,16 @@ namespace Medli
 {
     public class Kernel: Sys.Kernel
     {
-		public string logo = $@"                                    
-    /|    //| |                              
-   //|   // | |     ___      ___   / // ( )  Welcome to Medli version: { KernelProperties.KernelVersion } 
-  // |  //  | |   //___) ) //   ) / // / /   Developed by Siaranite Solutions and Arawn Davies
- //  | //   | |  //       //   / / // / /    Copyright © Siaranite Solutions 2018, All Rights Reserved
-//   |//    | | ((____   ((___/ / // / /     Released under the BSD-3 Clause Clear licence
-";
         protected override void BeforeRun()
         {
+			// Sys.Graphics.VGAScreen.SetTextMode(Sys.Graphics.VGAScreen.TextSize.Size80x50);
 			try
 			{
 				SYSPBE.Init();
 				KernelProperties.Running = true;
-				Console.Write(logo);
+				Console.Clear();
+				Console.Write(KernelVariables.logo);
+				Console.WriteLine(KernelVariables.welcome);
 			}
 			catch (Exception ex)
 			{
@@ -36,7 +32,9 @@ namespace Medli
 			{
 				while (KernelProperties.Running == true)
 				{
-					Shell.prompt(Console.ReadLine());
+					Console.Write("Prompt >");
+					string cmd = Console.ReadLine();
+					Shell.prompt(cmd);
 				}
 			}
 			catch(Exception ex)

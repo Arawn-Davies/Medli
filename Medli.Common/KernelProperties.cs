@@ -35,6 +35,7 @@ namespace Medli.Common
 			VirtualPC,
 			RealShit
 		}
+		public static string Host;
 		public static Hypervisor VM;
 		public static bool Running;
 		public static string KernelVersion = "0.0.1";
@@ -51,7 +52,7 @@ namespace Medli.Common
 		public string areaName;
 		public void WriteAreaPrefix(ConsoleColor fgcolor = ConsoleColor.White)
 		{
-			Console.WriteLine("[");
+			Console.Write("[");
 			Console.ForegroundColor = this.areaColor;
 			Console.Write(this.areaName);
 			Console.ForegroundColor = fgcolor;
