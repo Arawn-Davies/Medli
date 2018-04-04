@@ -8,7 +8,7 @@ namespace Medli.Core
 {
     public class PrebootEnvironment
     {
-		private static KernelAreaInfo CoreAreaInfo = new KernelAreaInfo(ConsoleColor.Cyan, "Core");
+		private static KernelAreaInfo CoreAreaInfo = new KernelAreaInfo(ConsoleColor.Red, "Core");
 		public static PIC pic;
 		public static readonly CPU cpu = new CPU();
 		public static void Init()

@@ -89,7 +89,7 @@ namespace Medli.Hardware
 	}
     public class HALPBE
     {
-		private static KernelAreaInfo HALinfo = new KernelAreaInfo(ConsoleColor.Cyan, "HAL");
+		private static KernelAreaInfo HALinfo = new KernelAreaInfo(ConsoleColor.Green, "HAL");
 
 		public static void Init()
 		{
