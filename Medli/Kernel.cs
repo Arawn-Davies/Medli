@@ -11,24 +11,37 @@ namespace Medli
     {
 		public string logo = $@"                                    
     /|    //| |                              
-   //|   // | |     ___      ___   / // ( )  Welcome to Bourne-Again Medli version { KernelProperties.KernelVersion } 
+   //|   // | |     ___      ___   / // ( )  Welcome to Medli version: { KernelProperties.KernelVersion } 
   // |  //  | |   //___) ) //   ) / // / /   Developed by Siaranite Solutions and Arawn Davies
  //  | //   | |  //       //   / / // / /    Copyright © Siaranite Solutions 2018, All Rights Reserved
 //   |//    | | ((____   ((___/ / // / /     Released under the BSD-3 Clause Clear licence
 ";
         protected override void BeforeRun()
         {
-			SYSPBE.Init();
-			KernelProperties.Running = true;
-			Console.Write(logo);
+			try
+			{
+				SYSPBE.Init();
+				KernelProperties.Running = true;
+				Console.Write(logo);
+			}
+			catch (Exception ex)
+			{
+				FatalError.Crash(ex);
+			}
         }
         
         protected override void Run()
         {
-			CoreInfo.PrintInfo();
-			while (KernelProperties.Running == true)
+			try
 			{
-				Shell.prompt(Console.ReadLine());
+				while (KernelProperties.Running == true)
+				{
+					Shell.prompt(Console.ReadLine());
+				}
+			}
+			catch(Exception ex)
+			{
+				FatalError.Crash(ex);
 			}
         }
 	}

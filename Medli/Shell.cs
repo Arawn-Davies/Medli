@@ -4,6 +4,8 @@ using System.Text;
 using System.IO;
 using Sys = Cosmos.System;
 using Cosmos.System.FileSystem.VFS;
+using Medli.Common;
+using Medli.System;
 
 namespace Medli
 {
@@ -21,22 +23,13 @@ namespace Medli
 			}
 			else if (command.StartsWith("echo $"))
 			{
-				Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
+				//Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
 			}
 			else if (cmdline.StartsWith("echo "))
 			{
-				//if (cmd_args[1].StartsWith("$"))
-				//{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				//usr_vars.readVars();
-				//Console.WriteLine(usr_vars.retrieve(cmd_args[1].Remove(0, 1)));
-				//}
-				//else
-				//{
 				Console.WriteLine(cmdCI_args[1]);
-				//}
 			}
-			else if (command.StartsWith("mv"))
+			/*else if (command.StartsWith("mv"))
 			{
 				fsfunc.mv(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
 			}
@@ -177,6 +170,11 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 				{
 					fsfunc.del(cmdCI.Remove(0, 3), false);
 				}
+			}
+			*/
+			else if (command == "meminfo")
+			{
+				CoreInfo.PrintInfo();
 			}
 			else if (command == "")
 			{

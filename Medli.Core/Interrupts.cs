@@ -37,7 +37,7 @@ namespace Medli.Core
 
 			}
 
-			FatalError.Crash(eName, eDescription, LKA, contextinterrupt);
+			Common.FatalError.Crash(eName, eDescription, LKA, contextinterrupt);
 		}
     }
 }

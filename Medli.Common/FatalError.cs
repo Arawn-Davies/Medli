@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Medli.Common;
 
-namespace Medli.Core
+namespace Medli.Common
 {
-    class FatalError
+    public class FatalError
     {
 		public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
 		{
