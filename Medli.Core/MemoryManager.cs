@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Medli.Core
 {
-    public class MemoryManager
-    {
+	public class MemoryManager
+	{
 		public static uint id = 0;
 		public static uint GetUsedMemory = 0;
 		public static uint TotalMemory = 0;
@@ -23,7 +23,7 @@ namespace Medli.Core
 			uint UsedRAM = Cosmos.Core.CPU.GetEndOfKernel() + 2048;
 			//UsedMemory = Cosmos.Core.
 			//UsedMemory = Cosmos.Core.Heap.GetUsedMemory();//Get Used Memory
-			GetUsedMemory = GetUsedMemory / div;//Convert to MB
+			GetUsedMemory = UsedRAM / div;//Convert to MB
 		}
 		public static void GetTotalMemory()
 		{

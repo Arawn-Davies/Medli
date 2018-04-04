@@ -94,7 +94,7 @@ namespace Medli.Hardware
 		{
 			Console.ForegroundColor = HALinfo.areaColor;
 			Console.WriteLine("[" + HAL.dArea + "]");
-			Console.ForegroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
 			PCIDevice Virtualisor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
 			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
 			if (Virtualisor == null)
@@ -114,7 +114,7 @@ namespace Medli.Hardware
 			HAL.dArea = deviceArea.GFX;
 			Console.ForegroundColor = HALinfo.areaColor;
 			Console.WriteLine("[" + HAL.dArea + "]");
-			Console.ForegroundColor = ConsoleColor.Black;
+			Console.ForegroundColor = ConsoleColor.White;
 			Console.WriteLine("\tDetecting Graphics hardware...");
 			foreach (PCIDevice pciDevice in HAL.PCIDevices)
 			{
