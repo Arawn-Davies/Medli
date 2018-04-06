@@ -16,28 +16,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Cosmos.Core" Version="2018.3.31" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="2018.3.31" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.System2" Version="2018.3.31" NoWarn="NU1604" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\XSharp\source\XSharp.Assembler\XSharp.Assembler.csproj" />
+      <ProjectReference Include="..\..\..\..\XSharp\source\XSharp.x86\XSharp.x86.csproj" />
+      <ProjectReference Include="..\..\..\..\XSharp\source\XSharp\XSharp.csproj" />
+      <ProjectReference Include="..\..\Cosmos.Core\Cosmos.Core.csproj" />
+      <ProjectReference Include="..\..\Cosmos.Debug.Kernel\Cosmos.Debug.Kernel.csproj" />
+      <ProjectReference Include="..\..\Cosmos.System2\Cosmos.System2.csproj" />
       <ProjectReference Include="..\Medli.Common\Medli.Common.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Spruce">
-        <HintPath>..\XS\Spruce.dll</HintPath>
-      </Reference>
-      <Reference Include="XSharp">
-        <HintPath>..\XS\XSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="XSharp.Assembler">
-        <HintPath>..\XS\XSharp.Assembler.dll</HintPath>
-      </Reference>
-      <Reference Include="XSharp.x86">
-        <HintPath>..\XS\XSharp.x86.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
