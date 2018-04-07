@@ -7,17 +7,17 @@ namespace Medli.Common
     public class KernelVariables
     {
 		public static string logo = $@"
-    /|    //| |                              
-   //|   // | |     ___      ___   / // ( )   
-  // |  //  | |   //___) ) //   ) / // / /   
- //  | //   | |  //       //   / / // / /    
-//   |//    | | ((____   ((___/ / // / /    
+    /||    //||                              
+   //||   // ||     ___      ___  / //  ()   
+  // ||  //  ||   //___))  //   )/ //  //   
+ //  || //   ||  //       //   // //  //    
+//   ||//    || ((____   ((___// //  //    
                                             
 The C# free and open source Operating System
 ";
 		public static string welcome = $@"
 Welcome to Medli version: { KernelProperties.KernelVersion }
-Developed by Siaranite Solutions and Arawn Davies
+Developed by Siaranite Solutions
 Copyright (C) Siaranite Solutions 2018, All Rights Reserved
 Released under the BSD-3 Clause Clear licence
 ";
