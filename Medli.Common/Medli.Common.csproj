@@ -16,7 +16,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
       <ProjectReference Include="..\..\Cosmos.System2\Cosmos.System2.csproj" />
     </ItemGroup>
 
