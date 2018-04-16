@@ -43,10 +43,8 @@ namespace Medli.Common
 			VirtualPC,
 			RealShit
 		}
-		public static string Hostname;
 		public static string Host;
 		public static Hypervisor VM;
-		public static bool Running;
 		public static string KernelVersion = "0.0.3";
 		public static bool IsVirtualised;
     }

@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Sys = Cosmos.System;
+using Cosmos.System.FileSystem;
 
 namespace Medli.Common
 {
     public class KernelVariables
     {
+		public static bool IsLive;
+		public static bool Running;
+		public static string Hostname;
+
+		public static CosmosVFS vFS = new CosmosVFS();
 		public static string logo = $@"
     /||    //||                              
    //||   // ||     ___      ___  / //  ()   

@@ -23,13 +23,13 @@ namespace Medli.Kernel
 			try
 			{
 			
-				KernelProperties.Hostname = "M_INIT";
+				KernelVariables.Hostname = "M_INIT";
 				SYSPBE.Init();
 
 				//SetKeyboardScanMap(new Sys.ScanMaps.US_Standard());
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
-				KernelProperties.Running = true;
+				KernelVariables.Running = true;
 				Console.Clear();
 
 				Console.Write(KernelVariables.logo);
@@ -93,9 +93,9 @@ namespace Medli.Kernel
 			try
 			{
 				//Apps.Applications.Init();
-				while (KernelProperties.Running == true)
+				while (KernelVariables.Running == true)
 				{
-					Console.Write(KernelProperties.Hostname + " Prompt >");
+					Console.Write(KernelVariables.Hostname + " Prompt >");
 					string cmd = Console.ReadLine();
 					Shell.prompt(cmd);
 				}
