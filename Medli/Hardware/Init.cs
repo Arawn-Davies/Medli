@@ -11,19 +11,19 @@ namespace Medli.Hardware
 	
     public class HALPBE
     {
-		private static KernelAreaInfo HALinfo = new KernelAreaInfo(ConsoleColor.Green, "HAL");
+		
 
 		public static void Init()
 		{
 			PrebootEnvironment.Init();
-			HALinfo.WriteAreaPrefix(); Console.WriteLine(" Hardware setup under way...");
-			HALinfo.WriteAreaPrefix(); Console.WriteLine(" PCI Setup...");
+			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" Hardware setup under way...");
+			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" PCI Setup...");
 			PCISetup();
 			Thread.Sleep(500);
-			HALinfo.WriteAreaPrefix(); Console.WriteLine(" Detecting host...");
+			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" Detecting host...");
 			DetectHyperVisor();
 			Thread.Sleep(500);
-			HALinfo.WriteAreaPrefix(); Console.WriteLine(" Detecting graphics hardware...");
+			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" Detecting graphics hardware...");
 			GraphicsHardwareSetup();
 			Thread.Sleep(500);
 		}
@@ -31,9 +31,7 @@ namespace Medli.Hardware
 		public static void PCISetup()
 		{
 			HAL.dArea = deviceArea.PCI;
-			Console.ForegroundColor = HALinfo.areaColor;
-			Console.Write("[" + HAL.dArea + "]");
-			Console.ForegroundColor = ConsoleColor.White;
+			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI");
 			Console.WriteLine("\tDetecting PCI Devices...");
 			HAL.PCIDevices = new List<PCIDevice>();
 			if ((PCIDevice.GetHeaderType(0x0, 0x0, 0x0) & 0x80) == 0)
@@ -53,9 +51,7 @@ namespace Medli.Hardware
 		public static void DetectHyperVisor()
 		{
 			HAL.dArea = deviceArea.VIRT;
-			Console.ForegroundColor = HALinfo.areaColor;
-			Console.Write("[" + HAL.dArea + "]");
-			Console.ForegroundColor = ConsoleColor.White;
+			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT");
 			Console.WriteLine("\tDetecting host platform...");
 			PCIDevice Virtualizor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
 			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
@@ -77,9 +73,7 @@ namespace Medli.Hardware
 		private static void GraphicsHardwareSetup()
 		{
 			HAL.dArea = deviceArea.GFX;
-			Console.ForegroundColor = HALinfo.areaColor;
-			Console.WriteLine("[" + HAL.dArea + "]");
-			Console.ForegroundColor = ConsoleColor.White;
+			AreaInfo.HALDevInfo.WriteDevicePrefix("GFX");
 			Console.WriteLine("\tDetecting Graphics hardware...");
 			foreach (PCIDevice pciDevice in HAL.PCIDevices)
 			{
@@ -149,7 +143,7 @@ namespace Medli.Hardware
 		public static void ListPCIDevices()
 		{
 			dArea = deviceArea.PCI;
-			Console.WriteLine("[" + dArea + "]" + "\tRetrieving PCI Devices...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI");
 			int count = 0;
 			foreach (PCIDevice device in PCIDevices)
 			{
