@@ -9,6 +9,14 @@ namespace Medli.Kernel
 {
     public class Kernel: Sys.Kernel
     {
+		/*
+		public override void Start()
+		{
+			SYSPBE.Init();
+			Sys.Global.Init(GetTextScreen());
+			Sys.KeyboardManager.AddKeyboard(new Cosmos.HAL.PS2Keyboard());
+		}
+		*/
         protected override void BeforeRun()
         {
 			// Sys.Graphics.VGAScreen.SetTextMode(Sys.Graphics.VGAScreen.TextSize.Size80x50);
