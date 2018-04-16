@@ -5,7 +5,7 @@ using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
 
-namespace Medli
+namespace Medli.Kernel
 {
     public class Kernel: Sys.Kernel
     {
@@ -15,6 +15,8 @@ namespace Medli
 			try
 			{
 				SYSPBE.Init();
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.BackgroundColor = ConsoleColor.Blue;
 				KernelProperties.Running = true;
 				Console.Clear();
 				Console.Write(KernelVariables.logo);

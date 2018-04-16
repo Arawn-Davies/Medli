@@ -6,6 +6,25 @@ namespace Medli.Common
 {
     public class FatalError
     {
+		public static void Crash(string error = "Something went wrong!", string description = "Unknown exception", bool critical = false)
+		{
+			Console.BackgroundColor = ConsoleColor.DarkMagenta;
+			Console.Clear();
+			Console.CursorTop += 1;
+			Console.WriteLine("A fatal processor exception occurred and Medli was shutdown to protect your computer from further damage.");
+			Console.WriteLine("If this is the first time you have seen this error, press any key to restart your computer.");
+			Console.WriteLine("This error may have occurred due to newly installed or older failing hardware. Error information can be found below:");
+			Console.CursorTop += 1;
+			// Print exception information
+			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Errpr: " + error);
+			Console.WriteLine("Description: " + description);
+			Console.WriteLine("Exception description: " + description);
+			Console.CursorTop = 24;
+			Console.WriteLine("Press any key to restart...");
+			Console.ReadKey(true);
+			KernelProperties.Running = false;
+		}
 		public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
 		{
 			Console.BackgroundColor = ConsoleColor.DarkMagenta;

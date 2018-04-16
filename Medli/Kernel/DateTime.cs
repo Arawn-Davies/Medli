@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Medli.System;
 
-namespace Medli
+namespace Medli.Kernel
 {
 	public class MedliTime
 	{

@@ -13,6 +13,7 @@ namespace Medli.Core
 
 		public virtual void WriteBlock(uint LBA, UInt16[] Data)
 		{
+
 		}
 	}
 }

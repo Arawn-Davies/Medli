@@ -7,7 +7,7 @@ using Cosmos.System.FileSystem.VFS;
 using Medli.Common;
 using Medli.System;
 
-namespace Medli
+namespace Medli.Kernel
 {
     class Shell
     {
@@ -28,6 +28,12 @@ namespace Medli
 			else if (cmdline.StartsWith("echo "))
 			{
 				Console.WriteLine(cmdCI_args[1]);
+			}
+			else if (command == "panic")
+			{
+				int a = 10 / 2;
+				int b = a / 0;
+				Console.WriteLine("This shouldn't print!");
 			}
 			/*else if (command.StartsWith("mv"))
 			{

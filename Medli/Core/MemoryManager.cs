@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Cosmos.Core;
 
 namespace Medli.Core
 {
@@ -20,14 +21,14 @@ namespace Medli.Core
 		}
 		public static void CheckUsedMemory()
 		{
-			uint UsedRAM = Cosmos.Core.CPU.GetEndOfKernel() + 2048;
+			uint UsedRAM = CPU.GetEndOfKernel() + 2048;
 			//UsedMemory = Cosmos.Core.
 			//UsedMemory = Cosmos.Core.Heap.GetUsedMemory();//Get Used Memory
 			GetUsedMemory = UsedRAM / div;//Convert to MB
 		}
 		public static void GetTotalMemory()
 		{
-			TotalMemory = Cosmos.Core.CPU.GetAmountOfRAM() + 1;
+			TotalMemory = CPU.GetAmountOfRAM() + 1;
 		}
 		public void Monitor()
 		{
