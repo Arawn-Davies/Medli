@@ -5,38 +5,62 @@ using Medli.Hardware;
 using Medli.Common;
 using Sys = Cosmos.System;
 using System.IO;
+using System.Threading;
 
 namespace Medli.System
 {
     public class SYSPBE
     {
-		public static KernelAreaInfo SystemKernelInfo = new KernelAreaInfo(ConsoleColor.Blue, "System");
+		
+
+		/// <summary>
+		/// System ring init method - ran once at boot
+		/// </summary>
 		public static void Init()
 		{
 			HALPBE.Init();
+			Thread.Sleep(500);
 			Sys.FileSystem.VFS.VFSManager.RegisterVFS(KernelVariables.vFS);
 			if (CheckVolumes() == false)
 			{
 				Console.WriteLine("Running Medli in Live User mode.");
 				Console.WriteLine("FS operations are disabled!");
 				KernelVariables.IsLive = true;
+				Thread.Sleep(500);
 			}
 			else
 			{
 				if (File.Exists(Paths.System + @"live.user"))
 				{
+					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
 					KernelVariables.IsLive = true;
 				}
 				else
 				{
 					KernelVariables.IsLive = false;
-				}
-
-				foreach (string dir in Paths.OSDirectories)
-				{
-					FS.mkdir(dir, true);
+					/*
+					foreach (string dir in Paths.OSDirectories)
+					{
+						Console.WriteLine("Creating " + dir + "...");
+						FS.mkdir(dir, true);
+						Thread.Sleep(500);
+					}
+					*/
+					Thread.Sleep(50); FS.mkdir(Paths.System, true);
+					Thread.Sleep(50); FS.mkdir(Paths.SystemData, true);
+					Thread.Sleep(50); FS.mkdir(Paths.Libraries, true);
+					Thread.Sleep(50); FS.mkdir(Paths.Modules, true);
+					Thread.Sleep(50); FS.mkdir(Paths.Apps, true);
+					Thread.Sleep(50); FS.mkdir(Paths.x86Apps, true);
+					Thread.Sleep(50); FS.mkdir(Paths.AppTemp, true);
+					Thread.Sleep(50); FS.mkdir(Paths.Users, true);
+					Thread.Sleep(50); FS.mkdir(Paths.RootUser, true);
+					Thread.Sleep(50); FS.mkdir(Paths.Guest, true);
+					Thread.Sleep(50); FS.mkdir(Paths.Temp, true);
 				}
 			}
+			Console.WriteLine("Press any key to continue...");
+			Console.ReadKey(true);
 		}
 
 		/// <summary>

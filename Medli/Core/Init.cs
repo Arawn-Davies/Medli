@@ -23,17 +23,17 @@ namespace Medli.Core
 		public static readonly CPU cpu = new CPU();
 		public static void Init()
 		{
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising CPU...");
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising Interrupt Descriptor Table...");
+			AreaInfo.CoreInfo.WriteAreaPrefix("Initialising CPU...");
+			AreaInfo.CoreInfo.WriteAreaPrefix("Initialising Interrupt Descriptor Table...");
 			Cosmos.Core.INTs.Dummy();
 			pic = new PIC();
 			cpu.UpdateIDT(true);
 			Interrupt.OverrideHandlers();
 			Thread.Sleep(500);
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising SSE extensions...");
+			AreaInfo.CoreInfo.WriteAreaPrefix("Initialising SSE extensions...");
 			cpu.InitSSE();
 			Thread.Sleep(500);
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising math processor extensions...");
+			AreaInfo.CoreInfo.WriteAreaPrefix("Initialising math processor extensions...");
 			cpu.InitFloat();
 			Thread.Sleep(500);
 		}

@@ -85,6 +85,48 @@ namespace Medli.Kernel
 			{
 				Hardware.HAL.ListPCIDevices();
 			}
+			else if (command == "cd ..")
+			{
+				FS.CDP();
+			}
+			else if (command.StartsWith("cd "))
+			{
+				FS.cd(cmdCI.Remove(0, 3));
+			}
+			else if (command == "dir")
+			{
+				FS.dir();
+			}
+			else if (command.StartsWith("dir "))
+			{
+				FS.dir(cmdCI_args[1]);
+			}
+			else if (command.StartsWith("copy "))
+			{
+				if (File.Exists(cmdCI_args[1]))
+				{
+					File.Copy(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
+				}
+				else
+				{
+					Console.WriteLine("File does not exist");
+				}
+			}
+			else if (command.StartsWith("mv"))
+			{
+				FS.mv(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
+			}
+			else if (command.StartsWith("rm "))
+			{
+				if (cmd_args[1] == "-r")
+				{
+					FS.del(cmdCI.Remove(0, 6), true);
+				}
+				else
+				{
+					FS.del(cmdCI.Remove(0, 3), false);
+				}
+			}
 			else if (command == "")
 			{
 
@@ -93,10 +135,7 @@ namespace Medli.Kernel
 			{
 				Console.WriteLine("Invalid command: " + cmdCI);
 			}
-			/*else if (command.StartsWith("mv"))
-			{
-				fsfunc.mv(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
-			}
+			/*
 			else if (command == "tui")
 			{
 				TUI.TUI.Run();
@@ -163,33 +202,6 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			{
 				Apps.MIV.Run(cmdCI.Remove(0, 4));
 			}
-			else if (command.StartsWith("copy "))
-			{
-				if (File.Exists(cmdCI_args[1]))
-				{
-					File.Copy(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
-				}
-				else
-				{
-					Console.WriteLine("File does not exist");
-				}
-			}
-			else if (command == "cd ..")
-			{
-				fsfunc.CDP();
-			}
-			else if (command.StartsWith("cd "))
-			{
-				fsfunc.cd(cmdCI.Remove(0, 3));
-			}
-			else if (command == "dir")
-			{
-				fsfunc.dir();
-			}
-			else if (command.StartsWith("dir "))
-			{
-				fsfunc.dir(cmdCI_args[1]);
-			}
 			else if (command == "help")
 			{
 				Apps.Help.Run();
@@ -213,17 +225,6 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			else if (command == "pause")
 			{
 				Environment_variables.PressAnyKey();
-			}
-			else if (command.StartsWith("rm "))
-			{
-				if (cmd_args[1] == "-r")
-				{
-					fsfunc.del(cmdCI.Remove(0, 6), true);
-				}
-				else
-				{
-					fsfunc.del(cmdCI.Remove(0, 3), false);
-				}
 			}
 			*/
 
