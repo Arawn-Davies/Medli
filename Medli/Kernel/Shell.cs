@@ -6,6 +6,7 @@ using Sys = Cosmos.System;
 using Cosmos.System.FileSystem.VFS;
 using Medli.Common;
 using Medli.System;
+using Medli.Apps;
 
 namespace Medli.Kernel
 {
@@ -13,10 +14,14 @@ namespace Medli.Kernel
     {
 		public static void prompt(string cmdline)
 		{
+			// String variables of the parameters for shell loop:
 			var command = cmdline.ToLower();
 			var cmdCI = cmdline;
-			string[] cmdCI_args = cmdline.Split(' ');
+
+			// String arrays from the splitting of the shell loop parameter:
+			string[] cmdCI_args = cmdCI.Split(' ');
 			string[] cmd_args = command.Split(' ');
+
 			if (command == "clear")
 			{
 				Console.Clear();
@@ -27,15 +32,66 @@ namespace Medli.Kernel
 			}
 			else if (cmdline.StartsWith("echo "))
 			{
+				//Applications.echo.Main(args);
 				Console.WriteLine(cmdCI_args[1]);
 			}
 			else if (command == "panic")
 			{
+				// Manually initiates a kernel panic
 				var xCtx = new Cosmos.Core.INTs.IRQContext();
 				Core.INTs.HandleInterrupt_00(ref xCtx);
 				//int a = 10 / 2;
 				//int b = a / 0;
 				Console.WriteLine("This shouldn't print!");
+			}
+			else if (command == "help help")
+			{
+				Applications.help.RunHelp();
+			}
+			else if (command == "shutdown")
+			{
+				//Console.WriteLine("Dictionaries not yet implemented!");
+				//usr_vars.SaveVars();
+				Sys.Power.Shutdown();
+			}
+
+			else if (command == "reboot")
+			{
+				//Console.WriteLine("Dictionaries not yet implemented!");
+				//usr_vars.SaveVars();
+				Sys.Power.Reboot();
+			}
+			else if (command == "meminfo")
+			{
+				CoreInfo.PrintTotalRAM();
+			}
+			else if (command == "licence")
+			{
+				Console.WriteLine("");
+			}
+			else if (command == "time")
+			{
+				MedliTime.printTime();
+			}
+			else if (command == "date")
+			{
+				MedliTime.printDate();
+			}
+			else if (command == "host")
+			{
+				Console.WriteLine(KernelProperties.Host);
+			}
+			else if (command == "lspci")
+			{
+				Hardware.HAL.ListPCIDevices();
+			}
+			else if (command == "")
+			{
+
+			}
+			else
+			{
+				Console.WriteLine("Invalid command: " + cmdCI);
 			}
 			/*else if (command.StartsWith("mv"))
 			{
@@ -139,19 +195,6 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 				Apps.Help.Run();
 			}
 			*/
-			else if (command == "shutdown")
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				//usr_vars.SaveVars();
-				Sys.Power.Shutdown();
-			}
-			
-			else if (command == "reboot")
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				//usr_vars.SaveVars();
-				Sys.Power.Reboot();
-			}
 			/*
 			else if (command == "savevars")
 			{
@@ -183,34 +226,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 				}
 			}
 			*/
-			else if (command == "meminfo")
-			{
-				CoreInfo.PrintTotalRAM();
-			}
-			else if (command == "licence")
-			{
-				Console.WriteLine("");
-			}
-			else if (command == "time")
-			{
-				MedliTime.printTime();
-			}
-			else if (command == "date")
-			{
-				MedliTime.printDate();
-			}
-			else if (command == "host")
-			{
-				Console.WriteLine(KernelProperties.Host);
-			}
-			else if (command == "")
-			{
 
-			}
-			else
-			{
-				Console.WriteLine("Invalid command: " + cmdCI);
-			}
 		}
 	}
 }
