@@ -14,13 +14,19 @@ namespace Medli.Kernel
 			// Sys.Graphics.VGAScreen.SetTextMode(Sys.Graphics.VGAScreen.TextSize.Size80x50);
 			try
 			{
+				KernelProperties.Hostname = "M_INIT";
 				SYSPBE.Init();
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
 				KernelProperties.Running = true;
 				Console.Clear();
+
 				Console.Write(KernelVariables.logo);
 				Console.WriteLine(KernelVariables.welcome);
+				Console.WriteLine(" ");
+				Console.WriteLine("Current system date and time:");
+				MedliTime.printDate();
+				MedliTime.printTime();
 			}
 			catch (Exception ex)
 			{
@@ -34,7 +40,7 @@ namespace Medli.Kernel
 			{
 				while (KernelProperties.Running == true)
 				{
-					Console.Write("Prompt >");
+					Console.Write(KernelProperties.Hostname + " Prompt >");
 					string cmd = Console.ReadLine();
 					Shell.prompt(cmd);
 				}

@@ -35,6 +35,7 @@ namespace Medli.Common
 			VirtualPC,
 			RealShit
 		}
+		public static string Hostname;
 		public static string Host;
 		public static Hypervisor VM;
 		public static bool Running;

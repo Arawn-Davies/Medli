@@ -35,5 +35,9 @@ namespace Medli.System
 		{
 			return Clock.DayOfTheMonth();
 		}
+		public static int Century()
+		{
+			return Clock.Century();
+		}
 	}
 }

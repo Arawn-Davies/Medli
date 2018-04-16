@@ -29,6 +29,8 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
 			KernelProperties.Running = false;
+			Console.ReadKey(true);
+			Cosmos.System.Power.Reboot();
 		}
 		public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
 		{
@@ -51,6 +53,8 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
 			KernelProperties.Running = false;
+			Console.ReadKey(true);
+			Cosmos.System.Power.Reboot();
 		}
 		public static void Crash(Exception ex)
 		{
@@ -76,6 +80,8 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
 			KernelProperties.Running = false;
+			Console.ReadKey(true);
+			Cosmos.System.Power.Reboot();
 		}
     }
 }

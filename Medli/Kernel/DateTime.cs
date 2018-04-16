@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Medli.System;
+using Medli.Hardware;
 
 namespace Medli.Kernel
 {
@@ -106,35 +107,39 @@ namespace Medli.Kernel
 		}
 		public static void printDate()
 		{
-			Console.WriteLine("The current date is " + GetDay() + " " + SysClock.DayOfTheMonth().ToString() + ", of " + GetMonth() + ", " + SysClock.Year().ToString());
+			Console.WriteLine("The current date is " + GetDay() + " " + SysClock.DayOfTheMonth().ToString() + " of " + GetMonth() + ", " + SysClock.Century().ToString() + SysClock.Year().ToString());
 		}
 		public static int Second()
 		{
-			return SysClock.Second();
+			return Clock.Second();
 		}
 		public static int Minute()
 		{
-			return SysClock.Minute();
+			return Clock.Minute();
 		}
 		public static int Hour()
 		{
-			return SysClock.Hour();
+			return Clock.Hour();
 		}
 		public static int DayOfTheWeek()
 		{
-			return SysClock.DayOfTheWeek();
+			return Clock.DayOfTheWeek();
 		}
 		public static int Month()
 		{
-			return SysClock.Month();
+			return Clock.Month();
 		}
 		public static int Year()
 		{
-			return SysClock.Year();
+			return Clock.Year();
 		}
 		public static int DayOfTheMonth()
 		{
-			return SysClock.DayOfTheMonth();
+			return Clock.DayOfTheMonth();
+		}
+		public static int Century()
+		{
+			return Clock.Century();
 		}
 	}
 }

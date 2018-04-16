@@ -35,5 +35,9 @@ namespace Medli.Hardware
 		{
 			return RTC.DayOfTheMonth;
 		}
+		public static int Century()
+		{
+			return RTC.Century;
+		}
 	}
 }

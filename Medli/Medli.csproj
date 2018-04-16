@@ -61,6 +61,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="System\Console\**" />
+      <EmbeddedResource Remove="System\Console\**" />
+      <None Remove="System\Console\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Core" Version="*" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
