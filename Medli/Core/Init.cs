@@ -29,6 +29,7 @@ namespace Medli.Core
 			Cosmos.Core.INTs.Dummy();
 			pic = new PIC();
 			cpu.UpdateIDT(true);
+			Interrupt.OverrideHandlers();
 			Thread.Sleep(500);
 			caInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising SSE extensions...");
 			cpu.InitSSE();
@@ -37,5 +38,5 @@ namespace Medli.Core
 			cpu.InitFloat();
 			Thread.Sleep(500);
 		}
-    }
+	}
 }

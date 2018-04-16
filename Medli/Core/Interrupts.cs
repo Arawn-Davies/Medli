@@ -8,6 +8,33 @@ using IRQContext = Cosmos.Core.INTs.IRQContext;
 
 namespace Medli.Core
 {
+	public class Interrupt
+	{
+		public static void OverrideHandlers()
+		{
+			SetIntHandler(0x00, INTs.HandleInterrupt_00);
+			SetIntHandler(0x01, INTs.HandleInterrupt_01);
+			SetIntHandler(0x02, INTs.HandleInterrupt_02);
+			SetIntHandler(0x03, INTs.HandleInterrupt_03);
+			SetIntHandler(0x04, INTs.HandleInterrupt_04);
+			SetIntHandler(0x05, INTs.HandleInterrupt_05);
+			SetIntHandler(0x06, INTs.HandleInterrupt_06);
+			SetIntHandler(0x07, INTs.HandleInterrupt_07);
+			SetIntHandler(0x08, INTs.HandleInterrupt_08);
+			SetIntHandler(0x09, INTs.HandleInterrupt_09);
+			SetIntHandler(0x0A, INTs.HandleInterrupt_0A);
+			SetIntHandler(0x0B, INTs.HandleInterrupt_0B);
+			SetIntHandler(0x0C, INTs.HandleInterrupt_0C);
+			SetIntHandler(0x0D, INTs.HandleInterrupt_0D);
+			SetIntHandler(0x0E, INTs.HandleInterrupt_0E);
+			SetIntHandler(0x0F, INTs.HandleInterrupt_0F);
+			SetIntHandler(0x10, INTs.HandleInterrupt_10);
+			SetIntHandler(0x11, INTs.HandleInterrupt_11);
+			SetIntHandler(0x12, INTs.HandleInterrupt_12);
+			SetIntHandler(0x13, INTs.HandleInterrupt_13);
+		}
+	}
+
 	[Plug(Target = typeof(Cosmos.Core.INTs))]
 	public class INTs
 	{
@@ -70,11 +97,24 @@ namespace Medli.Core
 		/// <summary>
 		/// Handles kernel exceptions (DIVIDE BY ZERO etc.)
 		/// </summary>
+		/// <param name="aEIP"></param>
+		/// <param name="aDescription"></param>
+		/// <param name="aName"></param>
+		/// <param name="ctx"></param>
+		/// <param name="lastKnownAddressValue"></param>
+		public static void HandleException(uint aEIP, string aDescription, string aName, ref IRQContext ctx, uint lastKnownAddressValue = 0)
+		{
+			HandleException(aDescription, aName, ref ctx, lastKnownAddressValue);
+		}
+
+		/// <summary>
+		/// Handles kernel exceptions (DIVIDE BY ZERO etc.)
+		/// </summary>
 		/// <param name="eDescription">Exception description</param>
 		/// <param name="eName">Name of the exception</param>
 		/// <param name="context">Cause of the exception</param>
 		/// <param name="LastKnownAddressValue">Last known address in memory (Where in RAM the exception occurred)</param>
-		private static void HandleException(string eDescription, string eName, ref IRQContext context, uint LastKnownAddressValue = 0)
+		public static void HandleException(string eDescription, string eName, ref IRQContext context, uint LastKnownAddressValue = 0)
 		{
 			const string hexadecimal = "0123456789ABCDEF";
 			string contextinterrupt = "";

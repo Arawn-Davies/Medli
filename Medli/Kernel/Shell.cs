@@ -31,8 +31,10 @@ namespace Medli.Kernel
 			}
 			else if (command == "panic")
 			{
-				int a = 10 / 2;
-				int b = a / 0;
+				var xCtx = new Cosmos.Core.INTs.IRQContext();
+				Core.INTs.HandleInterrupt_00(ref xCtx);
+				//int a = 10 / 2;
+				//int b = a / 0;
 				Console.WriteLine("This shouldn't print!");
 			}
 			/*else if (command.StartsWith("mv"))
@@ -136,18 +138,21 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			{
 				Apps.Help.Run();
 			}
+			*/
 			else if (command == "shutdown")
 			{
 				//Console.WriteLine("Dictionaries not yet implemented!");
-				usr_vars.SaveVars();
-				userACPI.Shutdown();
+				//usr_vars.SaveVars();
+				Sys.Power.Shutdown();
 			}
+			
 			else if (command == "reboot")
 			{
 				//Console.WriteLine("Dictionaries not yet implemented!");
-				usr_vars.SaveVars();
-				userACPI.Reboot();
+				//usr_vars.SaveVars();
+				Sys.Power.Reboot();
 			}
+			/*
 			else if (command == "savevars")
 			{
 				//Console.WriteLine("Dictionaries not yet implemented!");
@@ -180,7 +185,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			*/
 			else if (command == "meminfo")
 			{
-				//CoreInfo.PrintInfo();
+				CoreInfo.PrintTotalRAM();
 			}
 			else if (command == "licence")
 			{
