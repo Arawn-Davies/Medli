@@ -34,7 +34,8 @@ namespace Medli.System
                 {
                     if (!Directory.Exists(dirname))
                     {
-                        Directory.CreateDirectory(dirname);
+						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + dirname + "...");
+						Directory.CreateDirectory(dirname);
                     }
                 }
                 else

@@ -28,7 +28,7 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelProperties.Running = false;
+			KernelVariables.Running = false;
 			Console.ReadKey(true);
 			Cosmos.System.Power.Reboot();
 		}
@@ -52,7 +52,7 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelProperties.Running = false;
+			KernelVariables.Running = false;
 			Console.ReadKey(true);
 			Cosmos.System.Power.Reboot();
 		}
@@ -79,7 +79,7 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelProperties.Running = false;
+			KernelVariables.Running = false;
 			Console.ReadKey(true);
 			Cosmos.System.Power.Reboot();
 		}
