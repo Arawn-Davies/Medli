@@ -31,10 +31,10 @@ namespace Medli.Kernel
 			}
 			else if (command == "panic")
 			{
-				var xCtx = new Cosmos.Core.INTs.IRQContext();
-				Core.INTs.HandleInterrupt_00(ref xCtx);
-				//int a = 10 / 2;
-				//int b = a / 0;
+				//var xCtx = new Cosmos.Core.INTs.IRQContext();
+				//Core.INTs.HandleInterrupt_00(ref xCtx);
+				int a = 10 / 2;
+				int b = a / 0;
 				Console.WriteLine("This shouldn't print!");
 			}
 			/*else if (command.StartsWith("mv"))
