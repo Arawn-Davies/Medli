@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Cosmos.System.FileSystem;
 
 namespace Medli.Common
 {
     class Paths
     {
+		public static Cosmos.System.FileSystem.Listing.DirectoryEntry vol = KernelVariables.vFS.GetVolume(CurrentDirectory);
+		
 		public static List<string> OSDirectories = new List<string>()
 		{
 			Users,

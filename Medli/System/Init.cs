@@ -11,8 +11,6 @@ namespace Medli.System
 {
     public class SYSPBE
     {
-		
-
 		/// <summary>
 		/// System ring init method - ran once at boot
 		/// </summary>
@@ -34,6 +32,7 @@ namespace Medli.System
 				{
 					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
 					KernelVariables.IsLive = true;
+					Paths.CurrentDirectory = "LIVE";
 				}
 				else
 				{
@@ -57,6 +56,7 @@ namespace Medli.System
 					Thread.Sleep(50); FS.mkdir(Paths.RootUser, true);
 					Thread.Sleep(50); FS.mkdir(Paths.Guest, true);
 					Thread.Sleep(50); FS.mkdir(Paths.Temp, true);
+					ReadHostname();
 				}
 			}
 			Console.WriteLine("Press any key to continue...");
@@ -75,6 +75,24 @@ namespace Medli.System
 				return true;
 			}
 			return false;
+		}
+		public static void ReadHostname()
+		{
+			try
+			{
+				KernelVariables.Hostname = File.ReadAllText(SysFiles.HostnameFile);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+				Console.WriteLine("There was an error while reading the Medli hostname.");
+				Console.WriteLine("Please enter a new hostname:");
+				Console.Write("Hostname:");
+				string hostname = Console.ReadLine();
+				KernelVariables.Hostname = hostname;
+				//FS.del(SysFiles.HostnameFile, false);
+				//File.WriteAllText(SysFiles.HostnameFile, hostname);
+			}
 		}
     }
 }

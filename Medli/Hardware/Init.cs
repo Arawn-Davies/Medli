@@ -8,11 +8,9 @@ using System.Threading;
 
 namespace Medli.Hardware
 {
-	
-    public class HALPBE
-    {
-		
 
+	public class HALPBE
+	{
 		public static void Init()
 		{
 			PrebootEnvironment.Init();
@@ -26,6 +24,7 @@ namespace Medli.Hardware
 			AreaInfo.HALinfo.WriteAreaPrefix("Detecting graphics hardware...");
 			GraphicsHardwareSetup();
 			Thread.Sleep(500);
+			//DetectRAM();
 		}
 
 		public static void PCISetup()
@@ -50,7 +49,7 @@ namespace Medli.Hardware
 		public static void DetectHyperVisor()
 		{
 			HAL.dArea = deviceArea.VIRT;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT", "Detecting host platform...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("VIR", "Detecting host platform...");
 			PCIDevice Virtualizor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
 			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
 			KernelProperties.Host = PCIDevicesExtended.DeviceIDStr(PCIDevicesExtended.DeviceID.VirtualBox);
@@ -97,7 +96,7 @@ namespace Medli.Hardware
 		}
 
 
-		
+
 
 		private static void CheckBus(ushort xBus)
 		{
@@ -128,35 +127,5 @@ namespace Medli.Hardware
 			}
 		}
 
-	}
-	public class HAL
-	{
-
-		public static deviceArea dArea;
-		public static List<PCIDevice> PCIDevices;
-		/// <summary>
-		/// LSPCI listing all PCI devices attached
-		/// </summary>
-		public static void ListPCIDevices()
-		{
-			dArea = deviceArea.PCI;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI", "Listing PCI Devices...");
-			int count = 0;
-			foreach (PCIDevice device in PCIDevices)
-			{
-				Console.WriteLine(device.bus + ":" + device.slot + ":" + device.function + " " + PCIDevice.DeviceClass.GetTypeString(device) + ": " + PCIDevice.DeviceClass.GetDeviceString(device));
-				count++;
-			}
-		}
-	}
-	public enum deviceArea
-	{
-		PCI,
-		USB,
-		IO,
-		GFX,
-		Network,
-		RTC,
-		VIRT
 	}
 }

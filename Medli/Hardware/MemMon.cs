@@ -5,27 +5,31 @@ using Medli.Core;
 
 namespace Medli.Hardware
 {
-    public class MemMon
-    {
-		public MemMon()
-		{
-			MemoryManager.GetTotalMemory();
-			MemoryManager.Original = MemoryManager.GetUsedMemory;
-		}
-		public void PrintInfo()
-		{
-			Console.WriteLine("Total memory: " + TotalMemory.ToString());
-			Console.WriteLine("Used memory: " + UsedMemory.ToString() + " ");
-			Console.Write(UsedPercentage + "%");
-			Console.WriteLine("Free memory: " + FreeMemory.ToString() + " ");
-			Console.Write(FreePercentage + "%");
-		}
+	public class MemoryMonitoring
+	{
 
-		public uint OriginalMemoryUsage = MemoryManager.Original;
-		public uint UsedPercentage = (MemoryManager.GetUsedMemory * 100) / MemoryManager.TotalMemory;
-		public uint FreePercentage = (MemoryManager.FreeMemory * 100) / MemoryManager.TotalMemory;
-		public uint FreeMemory = MemoryManager.FreeMemory;
-		public uint UsedMemory = MemoryManager.GetUsedMemory;
-		public uint TotalMemory = MemoryManager.TotalMemory;
-    }
+		public static void PrintTotal()
+		{
+			CoreDevices.MemMon.Monitor();
+			Console.WriteLine("Total memory: " + MemoryManager.TotalMemory + " MBs");
+		}
+		public static void PrintUsed()
+		{
+			CoreDevices.MemMon.Monitor();
+			Console.Write("Used memory: " + MemoryManager.GetUsedMemory() + " MBs, ");
+			Console.WriteLine(CoreDevices.MemMon.UsedPercentage + "%");
+		}
+		public static void PrintFree()
+		{
+			CoreDevices.MemMon.Monitor();
+			Console.Write("Free memory: " + CoreDevices.MemMon.FreeMemory + " MBs, ");
+			Console.WriteLine(CoreDevices.MemMon.FreePercentage + "%");
+		}
+		public static void PrintInfo()
+		{
+			PrintTotal();
+			PrintUsed();
+			PrintFree();
+		}
+	}
 }

@@ -112,6 +112,14 @@ namespace Medli.Kernel
 					Console.WriteLine("File does not exist");
 				}
 			}
+			else if (command == "list_vols")
+			{
+				FS.ListVols();
+			}
+			else if (command == "list_vol")
+			{
+				FS.ListVol();
+			}
 			else if (command.StartsWith("mv"))
 			{
 				FS.mv(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
@@ -126,6 +134,22 @@ namespace Medli.Kernel
 				{
 					FS.del(cmdCI.Remove(0, 3), false);
 				}
+			}
+			else if (command == "ram_info")
+			{
+				CoreInfo.PrintInfo();
+			}
+			else if (command == "ram_used")
+			{
+				CoreInfo.PrintUsedRAM();
+			}
+			else if (command == "ram_free")
+			{
+				CoreInfo.PrintFreeRAM();
+			}
+			else if (command == "ram_total")
+			{
+				CoreInfo.PrintTotalRAM();
 			}
 			else if (command == "")
 			{

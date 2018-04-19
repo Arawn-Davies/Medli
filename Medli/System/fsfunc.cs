@@ -37,6 +37,10 @@ namespace Medli.System
 						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + dirname + "...");
 						Directory.CreateDirectory(dirname);
                     }
+					else
+					{
+						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Directory " + dirname + " already exists!");
+					}
                 }
                 else
                 {
@@ -44,7 +48,11 @@ namespace Medli.System
                     {
                         Directory.CreateDirectory(Paths.CurrentDirectory + @"\" + dirname);
                     }
-                }
+					else
+					{
+						Console.WriteLine("Directory " + dirname + " already exists!");
+					}
+				}
             }
             catch (Exception ex)
             {
@@ -232,6 +240,27 @@ namespace Medli.System
 			{
 				Console.WriteLine(ex.Message);
 			}
+		}
+		public static void ListVol()
+		{
+			throw new NotImplementedException();
+			//Console.WriteLine("Name: " + Paths.vol.mName + ", Size: " + Paths.vol.mSize);
+		}
+
+		public static void ListVols()
+		{
+			throw new NotImplementedException();
+			/*
+			var volumes = KernelVariables.vFS.GetVolumes();
+			foreach (var volume in volumes)
+			{
+				if (volume == Paths.vol)
+				{
+					Console.WriteLine("* Name: " + volume.mName + ", Size: " + volume.mSize);
+				}
+				Console.WriteLine("Name: " + volume.mName + ", Size: " + volume.mSize);
+			}
+			*/
 		}
     }
 }

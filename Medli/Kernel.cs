@@ -38,6 +38,7 @@ namespace Medli.Kernel
 				Console.WriteLine("Current system date and time:");
 				MedliTime.printDate();
 				MedliTime.printTime();
+				CoreInfo.PrintInfo();
 			}
 			catch (Exception ex)
 			{
