@@ -41,6 +41,10 @@ namespace Medli.Kernel
 				//Applications.echo.Main(args);
 				Console.WriteLine(cmdCI_args[1]);
 			}
+			else if (command == "test_serial")
+			{
+				Hardware.HAL.COM2.WriteLine("Hello, World!");
+			}
 			else if (command == "panic")
 			{
 				// Manually initiates a kernel panic

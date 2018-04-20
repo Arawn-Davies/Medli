@@ -24,6 +24,11 @@ namespace Medli.Hardware
 			AreaInfo.HALinfo.WriteAreaPrefix("Detecting graphics hardware...");
 			GraphicsHardwareSetup();
 			Thread.Sleep(500);
+			AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
+			HAL.COM1 = new Drivers.SerialPort1();
+			HAL.COM2 = new Drivers.SerialPort2();
+			HAL.COM2.Initialize();
+			Thread.Sleep(500);
 			//DetectRAM();
 		}
 
