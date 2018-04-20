@@ -9,14 +9,8 @@ namespace Medli.Hardware.Drivers
     {
 		void Initialize();
 		void Write(char c);
-		int SerialReceived();
-		byte Received();
-		byte[] ReceivedBytes();
-		char ReadChar();
-		string Read();
-		string ReadLine();
-		int SerialEmpty();
-		void WriteLine(string text);
-		void Write(string text);
+		int serial_received();
+		char read_serial();
+		int serial_empty();
 	}
 }
