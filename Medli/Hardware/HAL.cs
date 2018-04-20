@@ -5,11 +5,16 @@ using Medli.Core;
 using Cosmos.HAL;
 using Medli.Common;
 using System.Threading;
+using Medli.Hardware.Drivers;
 
 namespace Medli.Hardware
 {
 	public class HAL
 	{
+		public static SerialPort1 COM1;
+		public static SerialPort2 COM2;
+		public static SerialPort3 COM3;
+		public static SerialPort4 COM4;
 
 		public static deviceArea dArea;
 		public static List<PCIDevice> PCIDevices;
