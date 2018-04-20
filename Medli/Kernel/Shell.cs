@@ -22,9 +22,15 @@ namespace Medli.Kernel
 			string[] cmdCI_args = cmdCI.Split(' ');
 			string[] cmd_args = command.Split(' ');
 
-			if (command == "clear")
+			if (command == "cls")
 			{
 				Console.Clear();
+			}
+			else if (command == "newshell")
+			{
+				CommandConsole newConsole = new CommandConsole();
+				Console.Clear();
+				newConsole.Initialize();
 			}
 			else if (command.StartsWith("echo $"))
 			{
@@ -46,7 +52,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "help help")
 			{
-				Applications.help.RunHelp();
+				//Applications.help.RunHelp();
 			}
 			else if (command == "shutdown")
 			{
