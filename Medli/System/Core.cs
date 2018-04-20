@@ -23,5 +23,9 @@ namespace Medli.System
 		{
 			MemoryMonitoring.PrintInfo();
 		}
+		public static void lspci()
+		{
+			HAL.ListPCIDevices();
+		}
 	}
 }

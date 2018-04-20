@@ -24,7 +24,7 @@ namespace Medli.Apps
 		public virtual void Help()
 		{
 			Console.WriteLine(Name);
-			Console.WriteLine(" " + Summary);
+			Console.WriteLine("\t" + Summary);
 		}
 
 	}

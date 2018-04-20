@@ -21,7 +21,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
 			Console.WriteLine("Errpr: " + error);
 			Console.WriteLine("Description: " + description);
 			Console.WriteLine("Exception description: " + description);
@@ -41,7 +41,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
 			Console.WriteLine("CPU Exception: " + ctxinterrupt);
 			Console.WriteLine("Exception: " + exception);
 			Console.WriteLine("Exception description: " + description);
@@ -68,7 +68,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
 			Console.WriteLine("Exception: " + ex);
 			Console.WriteLine("Exception message: " + exMsg);
 			if (ex.InnerException.Message != null)

@@ -89,7 +89,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "lspci")
 			{
-				Hardware.HAL.ListPCIDevices();
+				CoreInfo.lspci();
 			}
 			else if (command == "cd ..")
 			{

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Medli.Common;
 
 namespace Medli.Apps
 {
@@ -35,7 +36,7 @@ namespace Medli.Apps
 			Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.Write("Medli v");
-			Console.WriteLine(Common.KernelProperties.KernelVersion);
+			Console.WriteLine(Common.KernelVariables.KernelVersion);
 			Console.WriteLine();
 		}
 

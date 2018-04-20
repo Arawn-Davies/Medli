@@ -48,7 +48,6 @@ namespace Medli.Common
 		public static Hypervisor VM;
 
 		public static string Host;
-		public static string KernelVersion = "0.0.3";
 		public static bool IsVirtualised;
     }
 
