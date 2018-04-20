@@ -21,14 +21,14 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
 			Console.WriteLine("Errpr: " + error);
 			Console.WriteLine("Description: " + description);
 			Console.WriteLine("Exception description: " + description);
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelProperties.Running = false;
+			KernelVariables.Running = false;
 			Console.ReadKey(true);
 			Cosmos.System.Power.Reboot();
 		}
@@ -41,7 +41,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
 			Console.WriteLine("CPU Exception: " + ctxinterrupt);
 			Console.WriteLine("Exception: " + exception);
 			Console.WriteLine("Exception description: " + description);
@@ -52,7 +52,7 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelProperties.Running = false;
+			KernelVariables.Running = false;
 			Console.ReadKey(true);
 			Cosmos.System.Power.Reboot();
 		}
@@ -68,7 +68,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelProperties.KernelVersion);
+			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
 			Console.WriteLine("Exception: " + ex);
 			Console.WriteLine("Exception message: " + exMsg);
 			if (ex.InnerException.Message != null)
@@ -79,7 +79,7 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelProperties.Running = false;
+			KernelVariables.Running = false;
 			Console.ReadKey(true);
 			Cosmos.System.Power.Reboot();
 		}

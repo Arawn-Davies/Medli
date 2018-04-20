@@ -5,16 +5,27 @@ using Medli.Hardware;
 
 namespace Medli.System
 {
-    public class CoreInfo
-    {
-		public static MemMon memoryManager = new MemMon();
-		public static void PrintInfo()
+	public class CoreInfo
+	{
+		public static void PrintUsedRAM()
 		{
-			memoryManager.PrintInfo();
+			MemoryMonitoring.PrintUsed();
 		}
 		public static void PrintTotalRAM()
 		{
-			Console.WriteLine(memoryManager.TotalMemory);
+			MemoryMonitoring.PrintTotal();
 		}
-    }
+		public static void PrintFreeRAM()
+		{
+			MemoryMonitoring.PrintFree();
+		}
+		public static void PrintInfo()
+		{
+			MemoryMonitoring.PrintInfo();
+		}
+		public static void lspci()
+		{
+			HAL.ListPCIDevices();
+		}
+	}
 }

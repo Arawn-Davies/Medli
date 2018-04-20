@@ -11,6 +11,8 @@ namespace Medli.Common
 		public static DeviceAreaInfo HALDevInfo = new DeviceAreaInfo(HALinfo);
 		public static KernelAreaInfo CoreInfo = new KernelAreaInfo(ConsoleColor.Red, "Core");
 		public static DeviceAreaInfo CoreDevInfo = new DeviceAreaInfo(CoreInfo);
+		public static KernelAreaInfo SystemInfo = new KernelAreaInfo(ConsoleColor.Blue, "System");
+		public static DeviceAreaInfo SystemDevInfo = new DeviceAreaInfo(SystemInfo);
 	}
 
 	public enum KernelArea
@@ -43,11 +45,9 @@ namespace Medli.Common
 			VirtualPC,
 			RealShit
 		}
-		public static string Hostname;
-		public static string Host;
 		public static Hypervisor VM;
-		public static bool Running;
-		public static string KernelVersion = "0.0.3";
+
+		public static string Host;
 		public static bool IsVirtualised;
     }
 
@@ -58,11 +58,13 @@ namespace Medli.Common
 		{
 			kernelArea = kArea;
 		}
-		public void WriteDevicePrefix(string device)
+		public void WriteDevicePrefix(string device, string task, ConsoleColor fgcolor = ConsoleColor.White)
 		{
+			Console.Write("[");
 			Console.ForegroundColor = kernelArea.areaColor;
-			Console.WriteLine("[ "  + device + " ]");
-			Console.ForegroundColor = ConsoleColor.White;
+			Console.Write(device);
+			Console.ForegroundColor = fgcolor;
+			Console.Write("] " + task + "\n");
 		}
 	}
 
@@ -76,13 +78,13 @@ namespace Medli.Common
 		}
 		public ConsoleColor areaColor;
 		public string areaName;
-		public void WriteAreaPrefix(ConsoleColor fgcolor = ConsoleColor.White)
+		public void WriteAreaPrefix(string task, ConsoleColor fgcolor = ConsoleColor.White)
 		{
 			Console.Write("[");
 			Console.ForegroundColor = this.areaColor;
 			Console.Write(this.areaName);
 			Console.ForegroundColor = fgcolor;
-			Console.Write("]");
+			Console.Write("] " + task + "\n");
 		}
 	}
 }

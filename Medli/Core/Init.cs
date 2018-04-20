@@ -23,19 +23,21 @@ namespace Medli.Core
 		public static readonly CPU cpu = new CPU();
 		public static void Init()
 		{
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising CPU...");
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising Interrupt Descriptor Table...");
+			AreaInfo.CoreDevInfo.WriteDevicePrefix("CPU", "Initialising CPU...");
+			AreaInfo.CoreDevInfo.WriteDevicePrefix("IDT", "Initialising Interrupt Descriptor Table...");
 			Cosmos.Core.INTs.Dummy();
 			pic = new PIC();
 			cpu.UpdateIDT(true);
 			Interrupt.OverrideHandlers();
 			Thread.Sleep(500);
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising SSE extensions...");
+			AreaInfo.CoreDevInfo.WriteDevicePrefix("SSE", "Initialising SSE extensions...");
 			cpu.InitSSE();
 			Thread.Sleep(500);
-			AreaInfo.CoreInfo.WriteAreaPrefix(); Console.WriteLine(" Initialising math processor extensions...");
+			AreaInfo.CoreDevInfo.WriteDevicePrefix("FPU", "Initialising math processor extensions...");
 			cpu.InitFloat();
 			Thread.Sleep(500);
+			AreaInfo.CoreDevInfo.WriteDevicePrefix("RAM", "Detecting RAM properties and status...");
+			CoreDevices.MemMon = new MemoryManager();
 		}
 	}
 }
