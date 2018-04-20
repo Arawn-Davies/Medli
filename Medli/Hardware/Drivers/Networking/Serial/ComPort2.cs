@@ -19,82 +19,29 @@ namespace Medli.Hardware.Drivers
 			Write8(COM2 + 2, 0xC7);    // Enable FIFO, clear them, with 14-byte threshold
 			Write8(COM2 + 4, 0x0B);
 		}
-		public byte Received()
-		{
-			while (SerialReceived() == 0) ;
-			return Read8(COM2);
-		}
 
-		public byte[] ReceivedBytes()
+		public char read_serial()
 		{
-			byte[] serialbytes = new byte[] { 0x00 };
-			while (SerialReceived() == 0)
-			{
-				serialbytes = Common.Extensions.AddToArray(serialbytes, Received());
-			}
-			return serialbytes;
-		}
-		public char ReadChar()
-		{
-			while (SerialReceived() == 0) ;
+			while (serial_received() == 0) ;
 
 			return (char)Read8(COM2);
 		}
-		public string Read()
-		{
-			while (SerialReceived() == 0) ;
-			string text = "";
-			text += ReadChar();
-			return text;
-		}
 
-		public string ReadLine()
-		{
-			return Read() + Environment.NewLine;
-		}
-
-		public int SerialEmpty()
+		public int serial_empty()
 		{
 			return Read8(COM2 + 5) & 0x20;
 		}
 
-		public int SerialReceived()
+		public int serial_received()
 		{
 			return Read8(COM2 + 5) & 1;
 		}
 
-		public void Send(byte b)
-		{
-			while (SerialEmpty() == 0);
-			Write8(COM2, b);
-		}
-
-		public void Send(byte[] bytes)
-		{
-			foreach (byte b in bytes)
-			{
-				Send(b);
-			}
-		}
-
 		public void Write(char c)
 		{
-			while (SerialEmpty() == 0) ;
+			while (serial_empty() == 0) ;
 
 			Write8(COM2, (byte)c);
-		}
-
-		public void Write(string text)
-		{
-			foreach (char c in text)
-			{
-				Write(c);
-			}
-		}
-
-		public void WriteLine(string text)
-		{
-			Write(text + Environment.NewLine);
 		}
 	}
 }
