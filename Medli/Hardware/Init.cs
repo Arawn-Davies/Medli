@@ -11,14 +11,15 @@ namespace Medli.Hardware
 
 	public class HALPBE
 	{
-		public static void Init()
+		public static TextScreenBase TextScreen = new TextScreen();
+		public static void Init(TextScreenBase textScreen)
 		{
-			PrebootEnvironment.Init();
+			PrebootEnvironment.Init(textScreen);
 			AreaInfo.HALinfo.WriteAreaPrefix("Hardware setup under way...");
 			AreaInfo.HALinfo.WriteAreaPrefix("PCI Setup...");
 			PCISetup();
 			Thread.Sleep(500);
-			AreaInfo.HALinfo.WriteAreaPrefix("Detecting host...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("Host", "Detecting host...");
 			DetectHyperVisor();
 			Thread.Sleep(500);
 			AreaInfo.HALinfo.WriteAreaPrefix("Detecting graphics hardware...");
@@ -29,6 +30,12 @@ namespace Medli.Hardware
 			HAL.COM2 = new Drivers.SerialPort2();
 			HAL.COM2.Initialize();
 			Thread.Sleep(500);
+			AreaInfo.HALDevInfo.WriteDevicePrefix("IDE", "Initializing IDE driver...");
+			Drivers.BlockDevice.IDE.InitDriver();
+			AreaInfo.HALDevInfo.WriteDevicePrefix("AHCI", "Initializing AHCI driver...");
+			Drivers.BlockDevice.AHCI.InitDriver();
+			AreaInfo.HALDevInfo.WriteDevicePrefix("PS2", "Initializing PS2 controller...");
+			HAL.PS2Controller.Initialize();
 			//DetectRAM();
 		}
 

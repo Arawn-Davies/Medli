@@ -6,6 +6,7 @@ using Medli.Common;
 using Sys = Cosmos.System;
 using System.IO;
 using System.Threading;
+using Medli.Hardware;
 
 namespace Medli.System
 {
@@ -14,15 +15,15 @@ namespace Medli.System
 		/// <summary>
 		/// System ring init method - ran once at boot
 		/// </summary>
-		public static void Init()
+		public static void Init(TextScreenBase textScreen)
 		{
-			HALPBE.Init();
+			HALPBE.Init(textScreen);
 			Thread.Sleep(500);
 			Sys.FileSystem.VFS.VFSManager.RegisterVFS(KernelVariables.vFS);
 			if (CheckVolumes() == false)
 			{
-				Console.WriteLine("Running Medli in Live User mode.");
-				Console.WriteLine("FS operations are disabled!");
+				SysConsole.WriteLine("Running Medli in Live User mode.");
+				SysConsole.WriteLine("FS operations are disabled!");
 				KernelVariables.IsLive = true;
 				Thread.Sleep(500);
 			}
@@ -30,7 +31,7 @@ namespace Medli.System
 			{
 				if (File.Exists(Paths.System + @"live.user"))
 				{
-					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
+					SysConsole.WriteLine("OS in recovery mode! Live User mode enabled...");
 					KernelVariables.IsLive = true;
 					Paths.CurrentDirectory = "LIVE";
 				}
@@ -59,8 +60,8 @@ namespace Medli.System
 					ReadHostname();
 				}
 			}
-			Console.WriteLine("Press any key to continue...");
-			Console.ReadKey(true);
+			SysConsole.WriteLine("Press any key to continue...");
+			SysConsole.ReadKey(true);
 		}
 
 		/// <summary>
@@ -84,11 +85,11 @@ namespace Medli.System
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex.Message);
-				Console.WriteLine("There was an error while reading the Medli hostname.");
-				Console.WriteLine("Please enter a new hostname:");
-				Console.Write("Hostname:");
-				string hostname = Console.ReadLine();
+				SysConsole.WriteLine(ex.Message);
+				SysConsole.WriteLine("There was an error while reading the Medli hostname.");
+				SysConsole.WriteLine("Please enter a new hostname:");
+				SysConsole.Write("Hostname:");
+				string hostname = SysConsole.ReadLine();
 				KernelVariables.Hostname = hostname;
 				//FS.del(SysFiles.HostnameFile, false);
 				//File.WriteAllText(SysFiles.HostnameFile, hostname);
