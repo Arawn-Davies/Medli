@@ -11,6 +11,9 @@ namespace Medli.Hardware
 {
 	public class HAL
 	{
+		public static PS2Controller PS2Controller = new PS2Controller();
+		public static PIT pit = new PIT();
+
 		public static SerialPort1 COM1;
 		public static SerialPort2 COM2;
 		public static SerialPort3 COM3;

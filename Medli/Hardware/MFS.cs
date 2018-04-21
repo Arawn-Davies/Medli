@@ -7,7 +7,7 @@ namespace Medli.Hardware
 {
     public class MFS
     {
-		protected static Device Disk;
+		protected static Core.Device Disk;
 		public enum FileType
 		{
 			Executable,
