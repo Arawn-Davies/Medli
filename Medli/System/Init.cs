@@ -6,7 +6,6 @@ using Medli.Common;
 using Sys = Cosmos.System;
 using System.IO;
 using System.Threading;
-using Medli.Hardware;
 
 namespace Medli.System
 {

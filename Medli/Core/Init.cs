@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Cosmos.Core;
 using Medli.Common;
+using Medli.System;
 using System.Threading;
 
 namespace Medli.Core
@@ -30,13 +31,14 @@ namespace Medli.Core
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("CPU", "Initialising CPU...");
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("IDT", "Initialising Interrupt Descriptor Table...");
 			//Thread.Sleep(1000);
-			//cpu.UpdateIDT(true);
+			cpu.UpdateIDT(true);
 			//Interrupt.OverrideHandlers();
 			//Thread.Sleep(1000);
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("SSE", "Initialising SSE extensions...");
 			cpu.InitSSE();
-			Thread.Sleep(1000);
+			//Thread.Sleep(1000);
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("FPU", "Initialising math processor extensions...");
+			Extensions.PAKTC();
 			/*
              * We liked to use SSE for all floating point operation and end to mix SSE / x87 in Cosmos code
              * but sadly in x86 this resulte impossible as Intel not implemented some needed instruction (for example conversion
@@ -44,14 +46,16 @@ namespace Medli.Core
              * definively this problem.
              */
 			cpu.InitFloat();
-			Thread.Sleep(1000);
+			//Thread.Sleep(1000);
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("PWR", "Starting ACPI Services...");
 			ACPI.Start();
-			Thread.Sleep(1000);
+			//Thread.Sleep(1000);
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("RAM", "Initializing Memory Monitor...");
-			Thread.Sleep(1000);
+			Extensions.PAKTC();
+			//Thread.Sleep(1000);
 			CoreDevices.MemMon = new MemoryManager();
-			Thread.Sleep(1000);
+			//Thread.Sleep(1000);
+			
 		}
 	}
 }

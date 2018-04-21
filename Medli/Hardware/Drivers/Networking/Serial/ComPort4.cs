@@ -5,8 +5,8 @@ using Medli.Core;
 
 namespace Medli.Hardware.Drivers
 {
-    public class SerialPort4 : BusIO, SerialPort
-    {
+	public class SerialPort4 : BusIO, SerialPort
+	{
 		public const ushort COM4 = 0x3F8;
 
 		public void Initialize()
@@ -19,29 +19,81 @@ namespace Medli.Hardware.Drivers
 			Write8(COM4 + 2, 0xC7);    // Enable FIFO, clear them, with 14-byte threshold
 			Write8(COM4 + 4, 0x0B);
 		}
-
-		public char read_serial()
+		public byte Received()
 		{
-			while (serial_received() == 0) ;
+			while (SerialReceived() == 0) ;
+			return Read8(COM4);
+		}
+
+		public byte[] ReceivedBytes()
+		{
+			byte[] serialbytes = new byte[] { 0x00 };
+			while (SerialReceived() == 0)
+			{
+				serialbytes = Common.Extensions.AddToArray(serialbytes, Received());
+			}
+			return serialbytes;
+		}
+		public char ReadChar()
+		{
+			while (SerialReceived() == 0) ;
 
 			return (char)Read8(COM4);
 		}
+		public string Read()
+		{
+			while (SerialReceived() == 0) ;
+			string text = "";
+			text += ReadChar();
+			return text;
+		}
 
-		public int serial_empty()
+		public string ReadLine()
+		{
+			return Read() + Environment.NewLine;
+		}
+		public int SerialEmpty()
 		{
 			return Read8(COM4 + 5) & 0x20;
 		}
 
-		public int serial_received()
+		public int SerialReceived()
 		{
 			return Read8(COM4 + 5) & 1;
 		}
 
 		public void Write(char c)
 		{
-			while (serial_empty() == 0) ;
+			while (SerialEmpty() == 0) ;
 
-			Write8(COM4, (byte) c);
+			Write8(COM4, (byte)c);
+		}
+
+		public void Write(string text)
+		{
+			foreach (char c in text)
+			{
+				Write(c);
+			}
+		}
+
+		public void WriteLine(string text)
+		{
+			Write(text + Environment.NewLine);
+		}
+
+		public void Send(byte b)
+		{
+			while (SerialEmpty() == 0) ;
+			Write8(COM4, b);
+		}
+
+		public void Send(byte[] bytes)
+		{
+			foreach (byte b in bytes)
+			{
+				Send(b);
+			}
 		}
 	}
 }

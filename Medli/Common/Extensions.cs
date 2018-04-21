@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Medli.System;
 
 namespace Medli.Common
 {
     public class Extensions
     {
+		public static void PAKTC()
+		{
+			SysConsole.WriteLine("Press any key to continue...");
+			SysConsole.ReadKey(true);
+		}
 		public static Hardware.TextScreenBase GetTextScreen()
 		{
 			// null means use default
