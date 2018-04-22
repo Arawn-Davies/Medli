@@ -5,16 +5,56 @@ using Medli.Hardware;
 
 namespace Medli.System
 {
-    public class CoreInfo
-    {
-		public static MemMon memoryManager = new MemMon();
-		public static void PrintInfo()
+	public class CoreInfo
+	{
+		public static int CurrentScreen = 1;
+		public static void ChangeScreen(int screen)
 		{
-			memoryManager.PrintInfo();
+			//MultiScreen.PushContents();
+			Console.Clear();
+			//Console.WriteLine("Test, this is a test...");
+			//Common.Extensions.PAKTC();
+			//Console.Clear();
+			//MultiScreen.PopContents();
+			if (MultiScreen.SetContent(CurrentScreen) == true)
+			{
+				if (MultiScreen.RetContent(screen) == true)
+				{
+					Console.WriteLine("successfully restored screen");
+					CurrentScreen = screen;
+				}
+				else
+				{
+					Console.WriteLine("Saved screen, failed to restore specified screen");
+				}
+			}
+			else
+			{
+				Console.WriteLine("Failed to save screen!");
+			}
+			//Console.Clear();
+			//new Kernel.CommandConsole();
+		}
+
+		public static void PrintUsedRAM()
+		{
+			MemoryMonitoring.PrintUsed();
 		}
 		public static void PrintTotalRAM()
 		{
-			Console.WriteLine(memoryManager.TotalMemory);
+			MemoryMonitoring.PrintTotal();
 		}
-    }
+		public static void PrintFreeRAM()
+		{
+			MemoryMonitoring.PrintFree();
+		}
+		public static void PrintInfo()
+		{
+			MemoryMonitoring.PrintInfo();
+		}
+		public static void lspci()
+		{
+			HAL.ListPCIDevices();
+		}
+	}
 }

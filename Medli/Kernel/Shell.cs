@@ -6,6 +6,7 @@ using Sys = Cosmos.System;
 using Cosmos.System.FileSystem.VFS;
 using Medli.Common;
 using Medli.System;
+using Medli.Apps;
 
 namespace Medli.Kernel
 {
@@ -13,13 +14,22 @@ namespace Medli.Kernel
     {
 		public static void prompt(string cmdline)
 		{
+			// String variables of the parameters for shell loop:
 			var command = cmdline.ToLower();
 			var cmdCI = cmdline;
-			string[] cmdCI_args = cmdline.Split(' ');
+			// String arrays from the splitting of the shell loop parameter:
+			string[] cmdCI_args = cmdCI.Split(' ');
 			string[] cmd_args = command.Split(' ');
-			if (command == "clear")
+
+			if (command == "cls")
 			{
 				Console.Clear();
+			}
+			else if (command == "newshell")
+			{
+				Console.Clear();
+				CommandConsole newConsole = new CommandConsole();
+				newConsole.Initialize();
 			}
 			else if (command.StartsWith("echo $"))
 			{
@@ -27,20 +37,144 @@ namespace Medli.Kernel
 			}
 			else if (cmdline.StartsWith("echo "))
 			{
+				//Applications.echo.Main(args);
 				Console.WriteLine(cmdCI_args[1]);
+			}
+			else if (command == "test_serial")
+			{
+				//Hardware.HAL.COM2.WriteLine("Hello, World!");
 			}
 			else if (command == "panic")
 			{
+/*   
+The following should cause a kernel panic to occur       
+Use with caution - this is only for testing the error handler and will be removed in future
+*/
+        int a = 10 / 2;
+				int b = a / 0;
+        // As for this, this works, so it's not an issue with calling the interrupt handler,
+        // It's handling the interrupts when they happen.
+        // This is uncommented and swapped with the above in master
 				//var xCtx = new Cosmos.Core.INTs.IRQContext();
 				//Core.INTs.HandleInterrupt_00(ref xCtx);
-				int a = 10 / 2;
-				int b = a / 0;
 				Console.WriteLine("This shouldn't print!");
 			}
-			/*else if (command.StartsWith("mv"))
+			else if (command == "help help")
 			{
-				fsfunc.mv(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
+				//Applications.help.RunHelp();
 			}
+			else if (command == "shutdown")
+			{
+				//Console.WriteLine("Dictionaries not yet implemented!");
+				//usr_vars.SaveVars();
+				Sys.Power.Shutdown();
+			}
+
+			else if (command == "reboot")
+			{
+				//Console.WriteLine("Dictionaries not yet implemented!");
+				//usr_vars.SaveVars();
+				Sys.Power.Reboot();
+			}
+			else if (command == "meminfo")
+			{
+				CoreInfo.PrintTotalRAM();
+			}
+			else if (command == "licence")
+			{
+				Console.WriteLine("");
+			}
+			else if (command == "time")
+			{
+				MedliTime.printTime();
+			}
+			else if (command == "date")
+			{
+				MedliTime.printDate();
+			}
+			else if (command == "host")
+			{
+				Console.WriteLine(KernelProperties.Host);
+			}
+			else if (command == "lspci")
+			{
+				CoreInfo.lspci();
+			}
+			else if (command == "cd ..")
+			{
+				FS.CDP();
+			}
+			else if (command.StartsWith("cd "))
+			{
+				FS.cd(cmdCI.Remove(0, 3));
+			}
+			else if (command == "dir")
+			{
+				FS.Dir();
+			}
+			else if (command.StartsWith("dir "))
+			{
+				FS.Dir(cmdCI_args[1]);
+			}
+			else if (command.StartsWith("copy "))
+			{
+				if (File.Exists(cmdCI_args[1]))
+				{
+					File.Copy(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
+				}
+				else
+				{
+					Console.WriteLine("File does not exist");
+				}
+			}
+			else if (command == "list_vols")
+			{
+				FS.ListVols();
+			}
+			else if (command == "list_vol")
+			{
+				FS.ListVol();
+			}
+			else if (command.StartsWith("mv"))
+			{
+				FS.mv(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
+			}
+			else if (command.StartsWith("rm "))
+			{
+				if (cmd_args[1] == "-r")
+				{
+					FS.del(cmdCI.Remove(0, 6), true);
+				}
+				else
+				{
+					FS.del(cmdCI.Remove(0, 3), false);
+				}
+			}
+			else if (command == "ram_info")
+			{
+				CoreInfo.PrintInfo();
+			}
+			else if (command == "ram_used")
+			{
+				CoreInfo.PrintUsedRAM();
+			}
+			else if (command == "ram_free")
+			{
+				CoreInfo.PrintFreeRAM();
+			}
+			else if (command == "ram_total")
+			{
+				CoreInfo.PrintTotalRAM();
+			}
+			else if (command == "")
+			{
+
+			}
+			else
+			{
+				Console.WriteLine("Invalid command: " + cmdCI);
+			}
+			/*
 			else if (command == "tui")
 			{
 				TUI.TUI.Run();
@@ -107,51 +241,11 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			{
 				Apps.MIV.Run(cmdCI.Remove(0, 4));
 			}
-			else if (command.StartsWith("copy "))
-			{
-				if (File.Exists(cmdCI_args[1]))
-				{
-					File.Copy(KernelVariables.currentdir + cmdCI_args[1], cmdCI_args[2]);
-				}
-				else
-				{
-					Console.WriteLine("File does not exist");
-				}
-			}
-			else if (command == "cd ..")
-			{
-				fsfunc.CDP();
-			}
-			else if (command.StartsWith("cd "))
-			{
-				fsfunc.cd(cmdCI.Remove(0, 3));
-			}
-			else if (command == "dir")
-			{
-				fsfunc.dir();
-			}
-			else if (command.StartsWith("dir "))
-			{
-				fsfunc.dir(cmdCI_args[1]);
-			}
 			else if (command == "help")
 			{
 				Apps.Help.Run();
 			}
 			*/
-			else if (command == "shutdown")
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				//usr_vars.SaveVars();
-				Sys.Power.Shutdown();
-			}
-			
-			else if (command == "reboot")
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				//usr_vars.SaveVars();
-				Sys.Power.Reboot();
-			}
 			/*
 			else if (command == "savevars")
 			{
@@ -171,46 +265,8 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			{
 				Environment_variables.PressAnyKey();
 			}
-			else if (command.StartsWith("rm "))
-			{
-				if (cmd_args[1] == "-r")
-				{
-					fsfunc.del(cmdCI.Remove(0, 6), true);
-				}
-				else
-				{
-					fsfunc.del(cmdCI.Remove(0, 3), false);
-				}
-			}
 			*/
-			else if (command == "meminfo")
-			{
-				CoreInfo.PrintTotalRAM();
-			}
-			else if (command == "licence")
-			{
-				Console.WriteLine("");
-			}
-			else if (command == "time")
-			{
-				MedliTime.printTime();
-			}
-			else if (command == "date")
-			{
-				MedliTime.printDate();
-			}
-			else if (command == "host")
-			{
-				Console.WriteLine(KernelProperties.Host);
-			}
-			else if (command == "")
-			{
 
-			}
-			else
-			{
-				Console.WriteLine("Invalid command: " + cmdCI);
-			}
 		}
 	}
 }

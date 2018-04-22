@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Sys = Cosmos.System;
+using Cosmos.System.FileSystem;
 
 namespace Medli.Common
 {
     public class KernelVariables
     {
+		public static string KernelVersion = "0.0.3";
+		public static bool IsLive;
+		public static bool Running;
+		public static string Hostname;
+
+		public static CosmosVFS vFS = new CosmosVFS();
 		public static string logo = $@"
     /||    //||                              
    //||   // ||     ___      ___  / //  ()   
@@ -16,7 +24,7 @@ namespace Medli.Common
 The C# free and open source Operating System
 ";
 		public static string welcome = $@"
-Welcome to Medli version: { KernelProperties.KernelVersion }
+Welcome to Medli version: { KernelVersion }
 Developed by Siaranite Solutions
 Copyright (C) Siaranite Solutions 2018, All Rights Reserved
 Released under the BSD-3 Clause Clear licence

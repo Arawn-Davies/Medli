@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
@@ -9,24 +8,16 @@ namespace Medli.Kernel
 {
     public class Kernel: Sys.Kernel
     {
-		/*
-		public override void Start()
-		{
-			SYSPBE.Init();
-			Sys.Global.Init(GetTextScreen());
-			Sys.KeyboardManager.AddKeyboard(new Cosmos.HAL.PS2Keyboard());
-		}
-		*/
-        protected override void BeforeRun()
+		protected override void BeforeRun()
         {
 			// Sys.Graphics.VGAScreen.SetTextMode(Sys.Graphics.VGAScreen.TextSize.Size80x50);
 			try
 			{
-				KernelProperties.Hostname = "M_INIT";
 				SYSPBE.Init();
+				KernelVariables.Hostname = "M_INIT";
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
-				KernelProperties.Running = true;
+				KernelVariables.Running = true;
 				Console.Clear();
 
 				Console.Write(KernelVariables.logo);
@@ -35,20 +26,23 @@ namespace Medli.Kernel
 				Console.WriteLine("Current system date and time:");
 				MedliTime.printDate();
 				MedliTime.printTime();
+				CoreInfo.PrintInfo();
 			}
-			catch (Exception ex)
+			catch (global::System.Exception ex)
 			{
 				FatalError.Crash(ex);
 			}
         }
-        
-        protected override void Run()
+
+		protected override void Run()
         {
 			try
 			{
-				while (KernelProperties.Running == true)
+				//Apps.Applications.Init();
+				while (KernelVariables.Running == true)
 				{
-					Console.Write(KernelProperties.Hostname + " Prompt >");
+					Console.Write("Prompt >");
+					//KernelVariables.Hostname
 					string cmd = Console.ReadLine();
 					Shell.prompt(cmd);
 				}

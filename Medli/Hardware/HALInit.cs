@@ -8,31 +8,29 @@ using System.Threading;
 
 namespace Medli.Hardware
 {
-	
-    public class HALPBE
-    {
-		
 
+	public class HALPBE
+	{
 		public static void Init()
 		{
 			PrebootEnvironment.Init();
-			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" Hardware setup under way...");
-			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" PCI Setup...");
+			AreaInfo.HALinfo.WriteAreaPrefix("Hardware setup under way...");
 			PCISetup();
-			Thread.Sleep(500);
-			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" Detecting host...");
 			DetectHyperVisor();
-			Thread.Sleep(500);
-			AreaInfo.HALinfo.WriteAreaPrefix(); Console.WriteLine(" Detecting graphics hardware...");
 			GraphicsHardwareSetup();
-			Thread.Sleep(500);
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
+			//HAL.COM1 = new Drivers.SerialPort1();
+			//HAL.COM2 = new Drivers.SerialPort2();
+			//HAL.COM2.Initialize();
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("IDE", "Initializing IDE driver...");
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("AHCI", "Initializing AHCI driver...");
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("PS2", "Initializing PS2 controller...");
 		}
 
 		public static void PCISetup()
 		{
 			HAL.dArea = deviceArea.PCI;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI");
-			Console.WriteLine("\tDetecting PCI Devices...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI", "Detecting PCI Devices...");
 			HAL.PCIDevices = new List<PCIDevice>();
 			if ((PCIDevice.GetHeaderType(0x0, 0x0, 0x0) & 0x80) == 0)
 			{
@@ -50,9 +48,7 @@ namespace Medli.Hardware
 
 		public static void DetectHyperVisor()
 		{
-			HAL.dArea = deviceArea.VIRT;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT");
-			Console.WriteLine("\tDetecting host platform...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT", "Detecting host platform...");
 			PCIDevice Virtualizor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
 			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
 			KernelProperties.Host = PCIDevicesExtended.DeviceIDStr(PCIDevicesExtended.DeviceID.VirtualBox);
@@ -73,8 +69,7 @@ namespace Medli.Hardware
 		private static void GraphicsHardwareSetup()
 		{
 			HAL.dArea = deviceArea.GFX;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("GFX");
-			Console.WriteLine("\tDetecting Graphics hardware...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("GFX", "Detecting Graphics hardware...");
 			foreach (PCIDevice pciDevice in HAL.PCIDevices)
 			{
 				if ((pciDevice.VendorID == (ushort)VendorID.VMWare))
@@ -100,7 +95,7 @@ namespace Medli.Hardware
 		}
 
 
-		
+
 
 		private static void CheckBus(ushort xBus)
 		{
@@ -131,35 +126,5 @@ namespace Medli.Hardware
 			}
 		}
 
-	}
-	public class HAL
-	{
-
-		public static deviceArea dArea;
-		public static List<PCIDevice> PCIDevices;
-		/// <summary>
-		/// LSPCI listing all PCI devices attached
-		/// </summary>
-		public static void ListPCIDevices()
-		{
-			dArea = deviceArea.PCI;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI");
-			int count = 0;
-			foreach (PCIDevice device in PCIDevices)
-			{
-				Console.WriteLine(device.bus + ":" + device.slot + ":" + device.function + " " + PCIDevice.DeviceClass.GetTypeString(device) + ": " + PCIDevice.DeviceClass.GetDeviceString(device));
-				count++;
-			}
-		}
-	}
-	public enum deviceArea
-	{
-		PCI,
-		USB,
-		IO,
-		GFX,
-		Network,
-		RTC,
-		VIRT
 	}
 }
