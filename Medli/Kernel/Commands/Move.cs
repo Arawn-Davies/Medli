@@ -5,13 +5,13 @@ using MedliSystem = Medli.System;
 
 namespace Medli.Apps
 {
-	public class Dir : Command
+	public class Move : Command
 	{
 		public override string Name
 		{
 			get
 			{
-				return "dir";
+				return "move";
 			}
 		}
 
@@ -19,13 +19,14 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "Lists the files in the current directory.";
+				return "Moves the specified file to the specified directory\nmove [src] [dest]";
 			}
 		}
 
 		public override void Execute(string param)
 		{
-			MedliSystem.FS.Dir();
+			string[] args = param.Split(' ');
+			MedliSystem.FS.mv(args[0], args[1]);
 		}
 
 	}

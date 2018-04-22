@@ -8,6 +8,11 @@ namespace Medli.Kernel
 {
     class CommandConsole
     {
+		public CommandConsole()
+		{
+			Initialize();
+		}
+
 		private static List<Command> _commands = new List<Command>();
 
 		private bool running = true;
@@ -32,10 +37,16 @@ namespace Medli.Kernel
 			//_commands.Add(new Cosmos.Shell.Console.Commands.TypeCommand());
 			_commands.Add(new Apps.Version());
 			_commands.Add(new LSPCI());
+			_commands.Add(new Multiscreen());
+			_commands.Add(new Copy());
+			_commands.Add(new Move());
+
+			Console.Clear();
+			Console.WriteLine("");
 
 			while (running)
 			{
-				Console.Write(Paths.CurrentDirectory + "/> ");
+				Console.Write(System.CoreInfo.CurrentScreen + " /> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }
 				Parse(line);

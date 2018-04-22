@@ -9,20 +9,20 @@ using System.Threading;
 
 namespace Medli.System
 {
-    public class SYSPBE
-    {
+	public class SYSPBE
+	{
 		/// <summary>
 		/// System ring init method - ran once at boot
 		/// </summary>
-		public static void Init(TextScreenBase textScreen)
+		public static void Init()
 		{
-			HALPBE.Init(textScreen);
-			Thread.Sleep(500);
+			HALPBE.Init();
+			//Thread.Sleep(500);
 			Sys.FileSystem.VFS.VFSManager.RegisterVFS(KernelVariables.vFS);
 			if (CheckVolumes() == false)
 			{
-				SysConsole.WriteLine("Running Medli in Live User mode.");
-				SysConsole.WriteLine("FS operations are disabled!");
+				Console.WriteLine("Running Medli in Live User mode.");
+				Console.WriteLine("FS operations are disabled!");
 				KernelVariables.IsLive = true;
 				Thread.Sleep(500);
 			}
@@ -30,7 +30,7 @@ namespace Medli.System
 			{
 				if (File.Exists(Paths.System + @"live.user"))
 				{
-					SysConsole.WriteLine("OS in recovery mode! Live User mode enabled...");
+					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
 					KernelVariables.IsLive = true;
 					Paths.CurrentDirectory = "LIVE";
 				}
@@ -44,7 +44,8 @@ namespace Medli.System
 						FS.mkdir(dir, true);
 						Thread.Sleep(500);
 					}
-					*/
+					
+					
 					Thread.Sleep(50); FS.mkdir(Paths.System, true);
 					Thread.Sleep(50); FS.mkdir(Paths.SystemData, true);
 					Thread.Sleep(50); FS.mkdir(Paths.Libraries, true);
@@ -57,12 +58,12 @@ namespace Medli.System
 					Thread.Sleep(50); FS.mkdir(Paths.Guest, true);
 					Thread.Sleep(50); FS.mkdir(Paths.Temp, true);
 					ReadHostname();
+					*/
 				}
 			}
-			SysConsole.WriteLine("Press any key to continue...");
-			SysConsole.ReadKey(true);
+			Console.WriteLine("Press any key to continue...");
+			Console.ReadKey(true);
 		}
-
 		/// <summary>
 		/// Checks the Virtual File System to see if there are any usable disks
 		/// </summary>
@@ -84,15 +85,16 @@ namespace Medli.System
 			}
 			catch (Exception ex)
 			{
-				SysConsole.WriteLine(ex.Message);
-				SysConsole.WriteLine("There was an error while reading the Medli hostname.");
-				SysConsole.WriteLine("Please enter a new hostname:");
-				SysConsole.Write("Hostname:");
-				string hostname = SysConsole.ReadLine();
+				Console.WriteLine(ex.Message);
+				Console.WriteLine("There was an error while reading the Medli hostname.");
+				Console.WriteLine("Please enter a new hostname:");
+				Console.Write("Hostname:");
+				string hostname = Console.ReadLine();
 				KernelVariables.Hostname = hostname;
 				//FS.del(SysFiles.HostnameFile, false);
 				//File.WriteAllText(SysFiles.HostnameFile, hostname);
 			}
 		}
-    }
+	}
+
 }

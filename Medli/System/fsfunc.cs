@@ -8,6 +8,20 @@ namespace Medli.System
 {
     public class FS
     {
+		public static void Copy(string src, string dest)
+		{
+			try
+			{
+				IsLiveSystem();
+				File.Copy(src, dest);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			
+		}
+
 		private static void IsLiveSystem()
 		{
 			if (KernelVariables.IsLive == true)
@@ -194,51 +208,26 @@ namespace Medli.System
 				Console.WriteLine(ex.Message);
 			}
         }
-        public static void dir()
+        public static void Dir()
         {
-            dir(Paths.CurrentDirectory);
+            Dir(Paths.CurrentDirectory);
         }
-        public static void dir(string path)
+        public static void Dir(string path)
         {
 			try
 			{
 				IsLiveSystem();
-				string[] directories = Directory.GetDirectories(path);
-				string[] files = Directory.GetFiles(path);
+				DirectoryInfo DI = new DirectoryInfo(path);
+				FileInfo[] files = DI.GetFiles();
 				//Array.Sort(directories);
 				//Array.Sort(files);
-				try
-				{
-
-					Console.WriteLine("-: Directories :-");
-					foreach (string dir in directories)
-					{
-						Console.WriteLine("<Directory>\t" + dir);
-					}
-				}
-				catch
-				{
-					Console.WriteLine("Failed to retrieve directories");
-				}
-				try
-				{
-					Console.WriteLine("-: Files :-");
-					foreach (string file in files)
-					{
-						Console.ForegroundColor = ConsoleColor.Yellow;
-						string[] sp = file.Split(new[] { "." }, StringSplitOptions.RemoveEmptyEntries);
-						Console.WriteLine(sp[sp.Length - 1] + "\t" + file);
-						Console.ForegroundColor = ConsoleColor.White;
-					}
-				}
-				catch
-				{
-					Console.WriteLine("Failed to retrieve files");
-				}
+				DirectoryInformation.ShowDirectories(path);
+				DirectoryInformation.ShowFiles(path);
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.Message);
+				Console.WriteLine("Failed to retrieve files/directories");
 			}
 		}
 		public static void ListVol()

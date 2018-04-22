@@ -18,7 +18,7 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			Common.Extensions.MConsole.Clear();
+			Console.Clear();
 		}
 
 	}

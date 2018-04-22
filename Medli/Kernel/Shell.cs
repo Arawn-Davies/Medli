@@ -17,7 +17,8 @@ namespace Medli.Kernel
 			// String variables of the parameters for shell loop:
 			var command = cmdline.ToLower();
 			var cmdCI = cmdline;
-
+			CommandConsole newConsole = new CommandConsole();
+			newConsole.Initialize();
 			// String arrays from the splitting of the shell loop parameter:
 			string[] cmdCI_args = cmdCI.Split(' ');
 			string[] cmd_args = command.Split(' ');
@@ -28,7 +29,6 @@ namespace Medli.Kernel
 			}
 			else if (command == "newshell")
 			{
-				CommandConsole newConsole = new CommandConsole();
 				Console.Clear();
 				newConsole.Initialize();
 			}
@@ -43,7 +43,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "test_serial")
 			{
-				Hardware.HAL.COM2.WriteLine("Hello, World!");
+				//Hardware.HAL.COM2.WriteLine("Hello, World!");
 			}
 			else if (command == "panic")
 			{
@@ -105,11 +105,11 @@ namespace Medli.Kernel
 			}
 			else if (command == "dir")
 			{
-				FS.dir();
+				FS.Dir();
 			}
 			else if (command.StartsWith("dir "))
 			{
-				FS.dir(cmdCI_args[1]);
+				FS.Dir(cmdCI_args[1]);
 			}
 			else if (command.StartsWith("copy "))
 			{

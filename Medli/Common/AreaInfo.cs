@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Medli.System;
 
 namespace Medli.Common
 {
 	public class AreaInfo
 	{
-		public static SysConsole CommonConsole = new SysConsole(null);
 		public static KernelAreaInfo HALinfo = new KernelAreaInfo(ConsoleColor.Green, "HAL");
 		public static DeviceAreaInfo HALDevInfo = new DeviceAreaInfo(HALinfo);
 		public static KernelAreaInfo CoreInfo = new KernelAreaInfo(ConsoleColor.Red, "Core");
@@ -37,11 +35,11 @@ namespace Medli.Common
 		}
 		public void WriteDevicePrefix(string device, string task, ConsoleColor fgcolor = ConsoleColor.White)
 		{
-			SysConsole.Write("[");
-			SysConsole.set_ForegroundColor(kernelArea.areaColor);
-			SysConsole.Write(device);
-			SysConsole.set_ForegroundColor(fgcolor);
-			SysConsole.Write("] " + task + "\n");
+			Console.Write("[");
+			Console.ForegroundColor = kernelArea.areaColor;
+			Console.Write(device);
+			Console.ForegroundColor = fgcolor;
+			Console.Write("] " + task + "\n");
 		}
 	}
 
@@ -52,15 +50,15 @@ namespace Medli.Common
 			areaColor = aC;
 			areaName = aName;
 		}
-		public ConsoleColor areaColor;
+		public global::System.ConsoleColor areaColor;
 		public string areaName;
 		public void WriteAreaPrefix(string task, ConsoleColor fgcolor = ConsoleColor.White)
 		{
-			SysConsole.Write("[");
-			SysConsole.set_ForegroundColor(this.areaColor);
-			SysConsole.Write(this.areaName);
-			SysConsole.set_ForegroundColor(fgcolor);
-			SysConsole.Write("] " + task + "\n");
+			Console.Write("[");
+			Console.ForegroundColor = areaColor;
+			Console.Write(areaName);
+			Console.ForegroundColor = fgcolor;
+			Console.Write("] " + task + "\n");
 		}
 	}
 }

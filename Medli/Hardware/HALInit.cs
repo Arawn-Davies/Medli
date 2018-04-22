@@ -11,32 +11,20 @@ namespace Medli.Hardware
 
 	public class HALPBE
 	{
-		public static TextScreenBase TextScreen = new TextScreen();
-		public static void Init(TextScreenBase textScreen)
+		public static void Init()
 		{
-			PrebootEnvironment.Init(textScreen);
+			PrebootEnvironment.Init();
 			AreaInfo.HALinfo.WriteAreaPrefix("Hardware setup under way...");
-			AreaInfo.HALinfo.WriteAreaPrefix("PCI Setup...");
 			PCISetup();
-			Thread.Sleep(500);
-			AreaInfo.HALDevInfo.WriteDevicePrefix("Host", "Detecting host...");
 			DetectHyperVisor();
-			Thread.Sleep(500);
-			AreaInfo.HALinfo.WriteAreaPrefix("Detecting graphics hardware...");
 			GraphicsHardwareSetup();
-			Thread.Sleep(500);
-			AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
-			HAL.COM1 = new Drivers.SerialPort1();
-			HAL.COM2 = new Drivers.SerialPort2();
-			HAL.COM2.Initialize();
-			Thread.Sleep(500);
-			AreaInfo.HALDevInfo.WriteDevicePrefix("IDE", "Initializing IDE driver...");
-			Drivers.BlockDevice.IDE.InitDriver();
-			AreaInfo.HALDevInfo.WriteDevicePrefix("AHCI", "Initializing AHCI driver...");
-			Drivers.BlockDevice.AHCI.InitDriver();
-			AreaInfo.HALDevInfo.WriteDevicePrefix("PS2", "Initializing PS2 controller...");
-			HAL.PS2Controller.Initialize();
-			//DetectRAM();
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
+			//HAL.COM1 = new Drivers.SerialPort1();
+			//HAL.COM2 = new Drivers.SerialPort2();
+			//HAL.COM2.Initialize();
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("IDE", "Initializing IDE driver...");
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("AHCI", "Initializing AHCI driver...");
+			//AreaInfo.HALDevInfo.WriteDevicePrefix("PS2", "Initializing PS2 controller...");
 		}
 
 		public static void PCISetup()
@@ -60,8 +48,7 @@ namespace Medli.Hardware
 
 		public static void DetectHyperVisor()
 		{
-			HAL.dArea = deviceArea.VIRT;
-			AreaInfo.HALDevInfo.WriteDevicePrefix("VIR", "Detecting host platform...");
+			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT", "Detecting host platform...");
 			PCIDevice Virtualizor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
 			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
 			KernelProperties.Host = PCIDevicesExtended.DeviceIDStr(PCIDevicesExtended.DeviceID.VirtualBox);
