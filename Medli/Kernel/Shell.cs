@@ -31,6 +31,10 @@ namespace Medli.Kernel
 				CommandConsole newConsole = new CommandConsole();
 				newConsole.Initialize();
 			}
+			else if (command == "mdisk")
+			{
+				new FDISK().Execute();
+			}
 			else if (command.StartsWith("echo $"))
 			{
 				//Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
