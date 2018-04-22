@@ -61,8 +61,6 @@ namespace Medli.System
 					*/
 				}
 			}
-			Console.WriteLine("Press any key to continue...");
-			Console.ReadKey(true);
 		}
 		/// <summary>
 		/// Checks the Virtual File System to see if there are any usable disks

@@ -33,9 +33,10 @@ namespace Medli.System
 				Char dot = '.';
 				string[] exts = file.Split(dot);
 				string lastext = exts[exts.Length - 1];
-				FileInfo info = new FileInfo(file);
+				//FileInfo info = new FileInfo(file);
 				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine("<" + lastext + ">\t" + file + " " + ((info.Length / 1024) / 1024) + "MBs");
+				Console.WriteLine("<" + lastext + ">\t" + file);
+				//((file.Length / 1024) / 1024) + "MBs")
 				Console.ForegroundColor = ConsoleColor.White;
 			}
 		}

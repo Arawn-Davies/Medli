@@ -17,8 +17,6 @@ namespace Medli.Kernel
 			// String variables of the parameters for shell loop:
 			var command = cmdline.ToLower();
 			var cmdCI = cmdline;
-			CommandConsole newConsole = new CommandConsole();
-			newConsole.Initialize();
 			// String arrays from the splitting of the shell loop parameter:
 			string[] cmdCI_args = cmdCI.Split(' ');
 			string[] cmd_args = command.Split(' ');
@@ -30,6 +28,7 @@ namespace Medli.Kernel
 			else if (command == "newshell")
 			{
 				Console.Clear();
+				CommandConsole newConsole = new CommandConsole();
 				newConsole.Initialize();
 			}
 			else if (command.StartsWith("echo $"))
