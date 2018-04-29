@@ -47,11 +47,11 @@ namespace Medli.Kernel
 			else if (command == "panic")
 			{
 				// Manually initiates a kernel panic
-				var xCtx = new Cosmos.Core.INTs.IRQContext();
-				Core.INTs.HandleInterrupt_00(ref xCtx);
-				//int a = 10 / 2;
-				//int b = a / 0;
-				Console.WriteLine("This shouldn't print!");
+				//var xCtx = new Cosmos.Core.INTs.IRQContext();
+				//Core.INTs.HandleInterrupt_00(ref xCtx);
+				int a = 10;
+				int b = 0;
+				Console.WriteLine((a / b).ToString());
 			}
 			else if (command == "help help")
 			{
