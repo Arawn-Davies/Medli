@@ -249,18 +249,25 @@ namespace Medli.Hardware
 		/// <param name="Device"></param>
 		public static void ListPartitions(IDE Device)
 		{
-			MBR mbr = Device.MBR;
-			PartitionInfo[] partitions = mbr.Partitions;
-			if ((partitions.Length > 0) && (partitions.Length <= 4))
+			if (Device == null)
 			{
-				foreach (PartitionInfo part in partitions)
-				{
-					Console.WriteLine(part.SystemID);
-				}
+				Console.WriteLine("No disk selected!");
 			}
 			else
 			{
-				Console.WriteLine("No partitions detected!");
+				MBR mbr = Device.MBR;
+				PartitionInfo[] partitions = mbr.Partitions;
+				if ((partitions.Length > 0) && (partitions.Length <= 4))
+				{
+					foreach (PartitionInfo part in partitions)
+					{
+						Console.WriteLine(part.SystemID);
+					}
+				}
+				else
+				{
+					Console.WriteLine("No partitions detected!");
+				}
 			}
 		}
 

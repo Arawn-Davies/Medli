@@ -61,6 +61,7 @@ namespace Medli.System
 		}
 		public static void FDISKRun()
 		{
+			IDEs = IDE.Devices.ToArray();
 			Hardware.DiskUtil.Main(IDEs);
 		}
 	}
