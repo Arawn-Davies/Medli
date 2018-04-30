@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Sys = Cosmos.System;
 
 namespace Medli.Common
 {
@@ -28,9 +29,8 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelVariables.Running = false;
-			Console.ReadKey(true);
-			Cosmos.System.Power.Reboot();
+            Sys.Power.Reboot();
+            KernelVariables.Running = false;
 		}
 		public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
 		{
@@ -52,9 +52,8 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelVariables.Running = false;
-			Console.ReadKey(true);
-			Cosmos.System.Power.Reboot();
+            Sys.Power.Reboot();
+            KernelVariables.Running = false;
 		}
 		public static void Crash(Exception ex)
 		{
@@ -79,9 +78,8 @@ Error information can be found below:";
 			Console.CursorTop = 24;
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
-			KernelVariables.Running = false;
-			Console.ReadKey(true);
-			Cosmos.System.Power.Reboot();
+            Sys.Power.Reboot();
+            KernelVariables.Running = false;
 		}
     }
 }
