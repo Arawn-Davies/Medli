@@ -15,6 +15,20 @@ namespace Medli.System
 {
     class CPUInfo
     {
+		/*
+		public static void ListFlags()
+		{
+			int j = 1;
+			foreach (Processor processor in Processors)
+			{
+				if (j == 1)
+				{
+					lsflags(processor);
+				}
+			}
+		}
+		*/
+
 		public static List<Processor> Processors = new List<Processor>();
 		public static int CPUCount()
 		{
@@ -53,7 +67,7 @@ namespace Medli.System
 			{
 				if (j == 1)
 				{
-					lsflags(processor);
+					//lsflags(processor);
 				}
 				Console.WriteLine("[" + j + "] : " + processor.GetBrandName() + (int)processor.Frequency + " Mhz");
 				j++;
@@ -61,6 +75,7 @@ namespace Medli.System
 			}
 			Processors.Clear();
 		}
+		/*
 		public static void lsflags(Processor proc)
 		{
 			foreach (ProcessorFlags flag in proc.Flags)
@@ -73,5 +88,6 @@ namespace Medli.System
 			}
 			_procflags.Clear();
 		}
+		*/
 	}
 }

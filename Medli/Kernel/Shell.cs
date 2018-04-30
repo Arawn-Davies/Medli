@@ -63,7 +63,14 @@ namespace Medli.Kernel
 				//usr_vars.SaveVars();
 				Sys.Power.Shutdown();
 			}
-
+			else if (command == "cpu_flags")
+			{
+				//CPUInfo.ListFlags();
+			}
+			else if (command == "cpu_info")
+			{
+				CPUInfo.LSCPU();
+			}
 			else if (command == "reboot")
 			{
 				//Console.WriteLine("Dictionaries not yet implemented!");

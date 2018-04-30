@@ -29,7 +29,7 @@ namespace Medli.Kernel
 				MedliTime.printTime();
 				CoreInfo.PrintInfo();
 			}
-			catch (global::System.Exception ex)
+			catch (Exception ex)
 			{
 				FatalError.Crash(ex);
 			}
