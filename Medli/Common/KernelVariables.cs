@@ -8,7 +8,7 @@ namespace Medli.Common
 {
     public class KernelVariables
     {
-		public static string KernelVersion = "0.0.3";
+		public static string KernelVersion = "0.0.5";
 		public static bool IsLive;
 		public static bool Running;
 		public static string Hostname;
