@@ -33,7 +33,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "mdisk")
 			{
-				new FDISK().Execute();
+				SystemFunctions.FDISKRun();
 			}
 			else if (command.StartsWith("echo $"))
 			{
@@ -76,7 +76,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "meminfo")
 			{
-				CoreInfo.PrintTotalRAM();
+				SystemFunctions.PrintTotalRAM();
 			}
 			else if (command == "licence")
 			{
@@ -96,7 +96,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "lspci")
 			{
-				CoreInfo.lspci();
+				SystemFunctions.lspci();
 			}
 			else if (command == "cd ..")
 			{
@@ -150,19 +150,19 @@ namespace Medli.Kernel
 			}
 			else if (command == "ram_info")
 			{
-				CoreInfo.PrintInfo();
+				SystemFunctions.PrintInfo();
 			}
 			else if (command == "ram_used")
 			{
-				CoreInfo.PrintUsedRAM();
+				SystemFunctions.PrintUsedRAM();
 			}
 			else if (command == "ram_free")
 			{
-				CoreInfo.PrintFreeRAM();
+				SystemFunctions.PrintFreeRAM();
 			}
 			else if (command == "ram_total")
 			{
-				CoreInfo.PrintTotalRAM();
+				SystemFunctions.PrintTotalRAM();
 			}
 			else if (command == "")
 			{

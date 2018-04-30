@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Medli.Hardware;
+using MDFS;
+using MDFS.Physical;
 
 namespace Medli.System
 {
-	public class CoreInfo
+	public class SystemFunctions
 	{
+		private static IDE[] IDEs = IDE.Devices.ToArray();
 		public static int CurrentScreen = 1;
 		public static void ChangeScreen(int screen)
 		{
@@ -55,6 +58,10 @@ namespace Medli.System
 		public static void lspci()
 		{
 			HAL.ListPCIDevices();
+		}
+		public static void FDISKRun()
+		{
+			Hardware.DiskUtil.Main(IDEs);
 		}
 	}
 }

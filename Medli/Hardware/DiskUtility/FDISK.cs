@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Cosmos.HAL.BlockDevice;
+//using Cosmos.HAL.BlockDevice;
+using MDFS.Physical;
+using MDFS;
 
-namespace Medli.System
+namespace Medli.Hardware
 {
 	public class Old
 	{
+		/*
 		/// <summary>
 		/// Partitioning function for devices that present a choise of the device to partition.
 		/// </summary>
@@ -78,7 +81,7 @@ namespace Medli.System
 				MDFSConsole.WriteLine("Partition N. " + (i + 1) + " Start: " + (StartBlock[i]).ToString() + " BlockCount: " + (BlockNum[i]).ToString());
 			}
 			Device.WriteBlock(0, 1, data);
-		}
+		}*/
 	}
 
 
@@ -174,7 +177,7 @@ namespace Medli.System
 				Console.WriteLine("3) List Partitions");
 				Console.WriteLine("4) Create Partitions");
 				Console.WriteLine("");
-				string option = Console.ReadLine();
+				string option = Console.ReadLine().ToLower();
 				if (option == "1")
 				{
 					ListDisks();
@@ -191,7 +194,7 @@ namespace Medli.System
 				{
 					CreatePartitions();
 				}
-				else if (option == "quit")
+				else if (option == "quit" || option == "exit")
 				{
 					running = false;
 				}
@@ -200,6 +203,7 @@ namespace Medli.System
 					Console.WriteLine(option + ": Invalid option!");
 				}
 			}
+			Console.Clear();
 		}
 		/// <summary>
 		/// Selects a DiskListing from the list

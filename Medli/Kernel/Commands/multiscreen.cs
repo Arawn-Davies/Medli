@@ -24,9 +24,9 @@ namespace Medli.Apps
 
 		public void Switch(int screen)
 		{
-			if (screen != System.CoreInfo.CurrentScreen)
+			if (screen != System.SystemFunctions.CurrentScreen)
 			{
-				System.CoreInfo.ChangeScreen(screen);
+				System.SystemFunctions.ChangeScreen(screen);
 			}
 			else
 			{
@@ -38,7 +38,7 @@ namespace Medli.Apps
 		{
 			if (param == "get")
 			{
-				Console.WriteLine(System.CoreInfo.CurrentScreen);
+				Console.WriteLine(System.SystemFunctions.CurrentScreen);
 			}
 			else
 			{

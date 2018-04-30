@@ -46,7 +46,7 @@ namespace Medli.Kernel
 
 			while (running)
 			{
-				Console.Write(System.CoreInfo.CurrentScreen + " /> ");
+				Console.Write(System.SystemFunctions.CurrentScreen + " /> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }
 				Parse(line);
