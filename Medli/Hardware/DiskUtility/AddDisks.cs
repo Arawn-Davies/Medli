@@ -18,7 +18,7 @@ namespace Medli.Hardware
 			{
 				if (BlockDevice.Devices[index] is AtaPio)
 				{
-					AtaPio device = (AtaPio)Cosmos.HAL.BlockDevice.BlockDevice.Devices[index];
+					AtaPio device = (AtaPio)BlockDevice.Devices[index];
 					device.ReadBlock(0UL, 2U, a.Data);
 					Devices.dev.Add(new Devices.device()
 					{
