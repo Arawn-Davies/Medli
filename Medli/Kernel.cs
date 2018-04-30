@@ -23,12 +23,13 @@ namespace Medli.Kernel
 				Console.Write(KernelVariables.logo);
 				Console.WriteLine(KernelVariables.welcome);
 				Console.WriteLine(" ");
+				CPUInfo.LSCPU();
 				Console.WriteLine("Current system date and time:");
 				MedliTime.printDate();
 				MedliTime.printTime();
 				CoreInfo.PrintInfo();
 			}
-			catch (global::System.Exception ex)
+			catch (Exception ex)
 			{
 				FatalError.Crash(ex);
 			}
