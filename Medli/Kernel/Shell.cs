@@ -46,12 +46,23 @@ namespace Medli.Kernel
 			}
 			else if (command == "panic")
 			{
-				// Manually initiates a kernel panic
-				var xCtx = new Cosmos.Core.INTs.IRQContext();
-				Core.INTs.HandleInterrupt_00(ref xCtx);
-				//int a = 10 / 2;
-				//int b = a / 0;
-				Console.WriteLine("This shouldn't print!");
+				/*
+					The following should cause a kernel panic to occur       
+					Use with caution - this is only for testing the error handler and will be removed in future
+				*/
+
+				int a = 10;
+				int b = 0;
+                
+				/*
+					As for this, this works, so it's not an issue with calling the interrupt handler,
+					It's handling the interrupts when they happen.
+					This is uncommented and swapped with the above in master
+				*/
+
+				//var xCtx = new Cosmos.Core.INTs.IRQContext();
+				//Core.INTs.HandleInterrupt_00(ref xCtx);
+				Console.WriteLine((a / b).ToString());
 			}
 			else if (command == "help help")
 			{
