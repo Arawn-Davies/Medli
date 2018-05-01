@@ -42,8 +42,7 @@ namespace Medli.Kernel
 				//Apps.Applications.Init();
 				while (KernelVariables.Running == true)
 				{
-					Console.Write("Prompt >");
-					//KernelVariables.Hostname
+					Console.Write(KernelVariables.Hostname + " Prompt >");
 					string cmd = Console.ReadLine();
 					Shell.prompt(cmd);
 				}
