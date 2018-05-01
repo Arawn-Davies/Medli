@@ -15,11 +15,11 @@ namespace Medli.Common
 
 		public static CosmosVFS vFS = new CosmosVFS();
 		public static string logo = $@"
-    /||    //||                              
-   //||   // ||     ___      ___  / //  ()   
-  // ||  //  ||   //___))  //   )/ //  //   
- //  || //   ||  //       //   // //  //    
-//   ||//    || ((____   ((___// //  //    
+ __________                              
+||   ||   ||            || ||  ()   
+||   ||   ||  ___    ___|| ||  ||   
+||   ||   || |___)  |   || ||  ||    
+||   ||   || \___   |___|| ||  ||    
                                             
 The C# free and open source Operating System
 ";
