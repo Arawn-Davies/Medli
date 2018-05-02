@@ -5,7 +5,7 @@ using Sys = Cosmos.System;
 
 namespace MDFS
 {
-    class MDFSConsole
+    class MDUtils
     {
 		/// <summary>
 		/// Writes a character on the screen
@@ -203,13 +203,14 @@ namespace MDFS
 		/// </summary>
 		public static bool Continue()
 		{
-			MDFSConsole.Write("Continue? Y/N (yes/no): ");
+			Write("Continue? Y/N (yes/no): ");
 			ConsoleKeyInfo inf;
 			do
 			{
-				inf = MDFSConsole.ReadAKey();
-			} while (inf.Key != ConsoleKey.N && inf.Key != ConsoleKey.Y);
-			MDFSConsole.WriteLine(inf.KeyChar.ToString());
+				inf = ReadAKey();
+			}
+			while (inf.Key != ConsoleKey.N && inf.Key != ConsoleKey.Y);
+			WriteLine(inf.KeyChar.ToString());
 			if (inf.Key == ConsoleKey.N)
 			{
 				return false;

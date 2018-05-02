@@ -38,16 +38,5 @@ namespace Medli.Hardware
 				}
 			}
 		}
-
-		private class Alpha
-		{
-			public byte a;
-			public byte b;
-			public byte c;
-			public ushort d;
-			public byte e;
-			public byte f;
-			public byte g;
-		}
 	}
 }

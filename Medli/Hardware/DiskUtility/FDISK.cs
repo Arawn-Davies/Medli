@@ -9,9 +9,10 @@ namespace Medli.Hardware
 {
 	public class Old
 	{
-		/*
+		
 		/// <summary>
-		/// Partitioning function for devices that present a choise of the device to partition.
+		/// Partitioning function for devices that presents a 
+		/// list of the devices to choose from to be partitioned.
 		/// </summary>
 		/// <param name="list">The list of the devices to choose from</param>
 		public static void CreatePartitions(IDE[] list)
@@ -19,15 +20,15 @@ namespace Medli.Hardware
 			IDE Device = null;
 			int partnum = 0;
 			ulong DispCount = 0;
-			MDFSConsole.WriteLine("Welcome to the MedliOS Partitioning Tool");
+			MDUtils.WriteLine("Welcome to the MedliOS Partitioning Tool");
 			do
 			{
-				MDFSConsole.WriteLine("Which device do you want to use?");
+				MDUtils.WriteLine("Which device do you want to use?");
 				for (int i = 0; i < list.Length; i++)
 				{
-					MDFSConsole.WriteLine(" --- Device N." + (i + 1) + " Size: approximately " + (uint)((((list[i].BlockSize * list[i].BlockCount) / 1024) / 1024) + 1) + " MB");
+					MDUtils.WriteLine(" --- Device N." + (i + 1) + " Size: approximately " + (uint)((((list[i].BlockSize * list[i].BlockCount) / 1024) / 1024) + 1) + " MB");
 				}
-				String nums = MDFSConsole.ReadLine("Insert Number: ");
+				String nums = MDUtils.ReadLine("Insert Number: ");
 				int num = int.Parse(nums) - 1;
 				if (num >= 0 && num < list.Length)
 				{
@@ -35,10 +36,10 @@ namespace Medli.Hardware
 					DispCount = list[num].BlockCount - 1;
 				}
 			} while (Device == null);
-			MDFSConsole.WriteLine("How many primary partitions do you want to have? (Max. 4)");
+			MDUtils.WriteLine("How many primary partitions do you want to have? (Max. 4)");
 			do
 			{
-				String nums = MDFSConsole.ReadLine("Insert Number: ");
+				String nums = MDUtils.ReadLine("Insert Number: ");
 				partnum = int.Parse(nums);
 			} while (partnum == 0 || partnum > 4);
 			uint mbrpos = 446;
@@ -48,7 +49,7 @@ namespace Medli.Hardware
 			for (int i = 0; i < partnum; i++)
 			{
 				type[i] = 0xFA;
-				String nums = MDFSConsole.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DispCount - (uint)(partnum - (i + 1)))).ToString() + "): ");
+				String nums = MDUtils.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DispCount - (uint)(partnum - (i + 1)))).ToString() + "): ");
 				uint num = (uint)int.Parse(nums);
 				if (num >= 0 && num <= DispCount - (uint)(partnum - (i + 1)))
 				{
@@ -78,10 +79,10 @@ namespace Medli.Hardware
 				MDFSUtils.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
 				mbrpos += 4;
 				Device.WriteBlock(StartBlock[i], 1, Device.NewBlockArray(1));
-				MDFSConsole.WriteLine("Partition N. " + (i + 1) + " Start: " + (StartBlock[i]).ToString() + " BlockCount: " + (BlockNum[i]).ToString());
+				MDUtils.WriteLine("Partition N. " + (i + 1) + " Start: " + (StartBlock[i]).ToString() + " BlockCount: " + (BlockNum[i]).ToString());
 			}
 			Device.WriteBlock(0, 1, data);
-		}*/
+		}
 	}
 
 

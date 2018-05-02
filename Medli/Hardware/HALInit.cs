@@ -4,6 +4,7 @@ using System.Text;
 using Medli.Core;
 using Cosmos.HAL;
 using Medli.Common;
+using Medli.Hardware.Drivers.Storage;
 using System.Threading;
 
 namespace Medli.Hardware
@@ -18,6 +19,17 @@ namespace Medli.Hardware
 			PCISetup();
 			DetectHyperVisor();
 			GraphicsHardwareSetup();
+
+			/* These tests are only to be uncommented if testing 
+			   on a pre-setup virtual machine or on real hardware 
+
+			// Tests the floppy controller if a disk is inserted:
+			FDD_Test();
+
+			// Tests the CD Drive if a disk is inserted:
+			ATAPI_Test();
+			
+			*/
 			//AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
 			//HAL.COM1 = new Drivers.SerialPort1();
 			//HAL.COM2 = new Drivers.SerialPort2();
@@ -95,8 +107,25 @@ namespace Medli.Hardware
 		}
 
 
+		public static void FDD_Test()
+		{
+			Console.WriteLine("Press any key to begin floppy test...");
+			Console.ReadKey(true);
+			FDD.Init(true);
+			FDD.ReadBlock(0, 0, 1, 1);
+			FDD.PrintBuffer();
+			Console.ReadKey(true);
+		}
 
-
+		public static void ATAPI_Test()
+		{
+			Console.WriteLine("Press any key to begin CD test...");
+			Console.ReadKey(true);
+			ATAPI.Init();
+			ATAPI.ReadBlock(1);
+			ATAPI.PrintBuffer();
+			Console.ReadKey(true);
+		}
 		private static void CheckBus(ushort xBus)
 		{
 			for (ushort device = 0; device < 32; device++)

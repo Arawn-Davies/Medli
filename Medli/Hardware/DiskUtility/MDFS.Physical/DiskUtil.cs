@@ -16,15 +16,15 @@ namespace MDFS.Physical
 			IDE Device = null;
 			int partnum = 0;
 			ulong DispCount = 0;
-			MDFSConsole.WriteLine("Welcome to the NoobOS Partitioning Tool");
+			MDUtils.WriteLine("Welcome to the NoobOS Partitioning Tool");
 			do
 			{
-				MDFSConsole.WriteLine("Which device do you want to use?");
+				MDUtils.WriteLine("Which device do you want to use?");
 				for (int i = 0; i < list.Length; i++)
 				{
-					MDFSConsole.WriteLine(" --- Device N." + (i + 1) + " Size: approximately " + (uint)((((list[i].BlockSize * list[i].BlockCount) / 1024) / 1024) + 1) + " MB");
+					MDUtils.WriteLine(" --- Device N." + (i + 1) + " Size: approximately " + (uint)((((list[i].BlockSize * list[i].BlockCount) / 1024) / 1024) + 1) + " MB");
 				}
-				String nums = MDFSConsole.ReadLine("Insert Number: ");
+				String nums = MDUtils.ReadLine("Insert Number: ");
 				int num = int.Parse(nums) - 1;
 				if (num >= 0 && num < list.Length)
 				{
@@ -32,10 +32,10 @@ namespace MDFS.Physical
 					DispCount = list[num].BlockCount - 1;
 				}
 			} while (Device == null);
-			MDFSConsole.WriteLine("How many primary partitions do you want to have? (Max. 4)");
+			MDUtils.WriteLine("How many primary partitions do you want to have? (Max. 4)");
 			do
 			{
-				String nums = MDFSConsole.ReadLine("Insert Number: ");
+				String nums = MDUtils.ReadLine("Insert Number: ");
 				partnum = int.Parse(nums);
 			} while (partnum == 0 || partnum > 4);
 			uint mbrpos = 446;
@@ -45,7 +45,7 @@ namespace MDFS.Physical
 			for (int i = 0; i < partnum; i++)
 			{
 				type[i] = 0xFA;
-				String nums = MDFSConsole.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DispCount - (uint)(partnum - (i + 1)))).ToString() + "): ");
+				String nums = MDUtils.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DispCount - (uint)(partnum - (i + 1)))).ToString() + "): ");
 				uint num = (uint)int.Parse(nums);
 				if (num >= 0 && num <= DispCount - (uint)(partnum - (i + 1)))
 				{
@@ -75,7 +75,7 @@ namespace MDFS.Physical
 				MDFSUtils.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
 				mbrpos += 4;
 				Device.WriteBlock(StartBlock[i], 1, Device.NewBlockArray(1));
-				MDFSConsole.WriteLine("Partition N. " + (i + 1) + " Start: " + (StartBlock[i]).ToString() + " BlockCount: " + (BlockNum[i]).ToString());
+				MDUtils.WriteLine("Partition N. " + (i + 1) + " Start: " + (StartBlock[i]).ToString() + " BlockCount: " + (BlockNum[i]).ToString());
 			}
 			Device.WriteBlock(0, 1, data);
 		}
