@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Medli.Common;
+using Medli.Common.Services;
 
 namespace Medli.System
 {
     public class FS
     {
+		public static FSService FSService = new FSService();
 		public static void Copy(string src, string dest)
 		{
 			try
@@ -24,13 +26,9 @@ namespace Medli.System
 
 		private static void IsLiveSystem()
 		{
-			if (KernelVariables.IsLive == true)
+			if (FSService.Active == false)
 			{
 				throw new Exception("Medli is currently running in live mode!\nFilesystem IO is disabled.");
-			}
-			else
-			{
-
 			}
 		}
 
@@ -48,12 +46,11 @@ namespace Medli.System
                 {
                     if (!Directory.Exists(dirname))
                     {
-						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + dirname + "...");
 						Directory.CreateDirectory(dirname);
                     }
 					else
 					{
-						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Directory " + dirname + " already exists!");
+						//AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Directory " + dirname + " already exists!");
 					}
                 }
                 else
@@ -116,7 +113,7 @@ namespace Medli.System
                         //Paths.CurrentDirectory = Paths.CurrentDirectory.Substring(0, pos) + @"\";
                     //}
                                             
-                    var dir = KernelVariables.vFS.GetDirectory(Paths.CurrentDirectory);
+                    var dir = FSService.vFS.GetDirectory(Paths.CurrentDirectory);
                     string p = dir.mParent.mName;
                     if (!string.IsNullOrEmpty(p))
                     {

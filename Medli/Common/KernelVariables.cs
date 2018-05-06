@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
-using Cosmos.System.FileSystem;
 
 namespace Medli.Common
 {
@@ -13,7 +12,6 @@ namespace Medli.Common
 		public static bool Running;
 		public static string Hostname;
 
-		public static CosmosVFS vFS = new CosmosVFS();
 		public static string logo = $@"
  __________                              
 ||   ||   ||            || ||  ()   

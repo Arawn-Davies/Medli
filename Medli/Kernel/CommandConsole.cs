@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Medli.Apps;
-using Medli.Common;
+using Medli.System;
 
 namespace Medli.Kernel
 {
@@ -46,7 +46,7 @@ namespace Medli.Kernel
 
 			while (running)
 			{
-				Console.Write(System.CoreInfo.CurrentScreen + " /> ");
+				Console.Write(SystemFunctions.CurrentScreen + " /> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }
 				Parse(line);

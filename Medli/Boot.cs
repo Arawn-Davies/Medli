@@ -5,6 +5,7 @@ using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
 using Medli.Kernel;
+using System.IO;
 
 namespace Medli
 {
@@ -20,7 +21,7 @@ namespace Medli
 				Console.BackgroundColor = ConsoleColor.Blue;
 				KernelVariables.Running = true;
 				Console.Clear();
-				Hardware.AddDisks.Detect();
+				//Hardware.AddDisks.Detect();
 				Console.Write(KernelVariables.logo);
 				Console.WriteLine(KernelVariables.welcome);
 				Console.WriteLine(" ");
