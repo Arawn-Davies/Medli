@@ -69,7 +69,7 @@ namespace Medli.Kernel
 			}
 			else if (command == "cpu_info")
 			{
-				CPUInfo.LSCPU();
+				//CPUInfo.LSCPU();
 			}
 			else if (command == "reboot")
 			{

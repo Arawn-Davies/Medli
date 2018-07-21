@@ -9,7 +9,6 @@ namespace Medli.System
 {
     public class FS
     {
-		public static FSService FSService = new FSService();
 		public static void Copy(string src, string dest)
 		{
 			try
@@ -37,11 +36,10 @@ namespace Medli.System
 		/// </summary>
 		/// <param name="dirname"></param>
 		/// <param name="issys"></param>
-		public static void mkdir(string dirname, bool issys)
+		public static void Makedir(string dirname, bool issys)
         {
             try
             {
-				IsLiveSystem();
 				if (issys == true)
                 {
                     if (!Directory.Exists(dirname))
@@ -55,7 +53,8 @@ namespace Medli.System
                 }
                 else
                 {
-                    if (!Directory.Exists(dirname))
+					IsLiveSystem();
+					if (!Directory.Exists(dirname))
                     {
                         Directory.CreateDirectory(Paths.CurrentDirectory + @"\" + dirname);
                     }

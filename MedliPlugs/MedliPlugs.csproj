@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Medli\Medli.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="IL2CPU.API">
+      <HintPath>$(AppData)\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

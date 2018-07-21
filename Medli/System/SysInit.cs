@@ -6,10 +6,11 @@ using Medli.Common;
 using Sys = Cosmos.System;
 using System.IO;
 using System.Threading;
+using Medli.Common.Services;
 
 namespace Medli.System
 {
-	public class SYSPBE
+	public class SystemBootEnvironment
 	{
 		/// <summary>
 		/// System ring init method - ran once at boot
@@ -19,8 +20,8 @@ namespace Medli.System
 			HALPBE.Init();
 			//Thread.Sleep(500);
 			Console.WriteLine("FileSystem service...");
-			FS.FSService.Init();
-			Console.WriteLine("Filesystem: " + FS.FSService.Active);
+			FSService.Init();
+			Console.WriteLine("Filesystem: " + FSService.Active);
 		}
 		/// <summary>
 		/// Checks the Virtual File System to see if there are any usable disks

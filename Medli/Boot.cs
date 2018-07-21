@@ -15,7 +15,7 @@ namespace Medli
 		{
 			try
 			{
-				SYSPBE.Init();
+				SystemBootEnvironment.Init();
 				KernelVariables.Hostname = "M_INIT";
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
@@ -24,7 +24,7 @@ namespace Medli
 				//Hardware.AddDisks.Detect();
 				Console.Write(KernelVariables.logo);
 				Console.WriteLine(KernelVariables.welcome);
-				Console.WriteLine(" ");
+				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
 				MedliTime.printDate();
 				MedliTime.printTime();
@@ -32,7 +32,9 @@ namespace Medli
 			}
 			catch (Exception ex)
 			{
+				KernelVariables.Running = false;
 				FatalError.Crash(ex);
+				Console.ReadKey(true);
 			}
 		}
 

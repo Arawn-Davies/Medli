@@ -68,7 +68,6 @@ Error information can be found below:";
 			Console.CursorTop += 1;
 			// Print exception information
 			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
-			Console.WriteLine("Exception: " + ex);
 			Console.WriteLine("Exception message: " + exMsg);
 			if (ex.InnerException.Message != null)
 			{

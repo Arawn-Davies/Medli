@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CCore = Cosmos.Core;
-using IL2CPU.API.Attribs;
+﻿using IL2CPU.API.Attribs;
 using Medli.Common;
-using IRQContext = Cosmos.Core.INTs.IRQContext;
+using static Cosmos.Core.INTs;
 
-namespace Medli.Core
+namespace MedliPlugs
 {
     [Plug(Target = typeof(Cosmos.Core.INTs))]
     public class INTs

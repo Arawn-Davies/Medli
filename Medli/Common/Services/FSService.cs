@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sys = Cosmos.System;
+using Cosmos.System.FileSystem;
 using System.IO;
 
 namespace Medli.Common.Services
 {
-	public class FSService : Service
+	public class FSService
 	{
-		public static Sys.FileSystem.CosmosVFS vFS;
-		public FSService()
-		{
-			ServiceName = "FSSRV";
-			Priority = AccessPriority.MID;
-			Active = false;
-		}
+		public static CosmosVFS vFS = new CosmosVFS();
 
-		public bool CheckVolumes()
+		public static string ServiceName = "FSSRV";
+
+		public static AccessPriority Priority = AccessPriority.MID;
+
+		public static bool Active = false;
+
+		public static bool CheckVolumes()
 		{
 			var volumes = vFS.GetVolumes();
 			foreach (var vol in volumes)
@@ -26,11 +26,13 @@ namespace Medli.Common.Services
 			return false;
 		}
 
-		public override bool Init()
+		public static string ServicePath;
+
+		public static LoggingService ServiceLogger;
+
+		public static bool Init()
 		{
-			base.Init();
-			vFS = new Sys.FileSystem.CosmosVFS();
-			Sys.FileSystem.VFS.VFSManager.RegisterVFS(vFS);
+			Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(vFS);
 			if (CheckVolumes() == false) {
 				Console.WriteLine("Running Medli in Live User mode.");
 				Console.WriteLine("FS operations are disabled!");
@@ -49,15 +51,21 @@ namespace Medli.Common.Services
 				}
 				else
 				{
-					KernelVariables.IsLive = false;
-					foreach (string dir in Paths.OSDirectories) {
-						if (!Directory.Exists(dir))
+					/*
+					int i = 0;
+					for (i = 0; i < Paths.OSDirectories.Length; i++)
+					{
+						if (!Directory.Exists(Paths.OSDirectories[i]))
 						{
-							AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + dir + "...");
-							System.FS.mkdir(dir, true);
+							AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Paths.OSDirectories[i] + "...");
+							System.FS.Makedir(Paths.OSDirectories[i], true);
 						}
-					}
-					System.SYSPBE.ReadHostname();
+					}*/
+					Paths.CreateDirectories();
+					ServiceLogger.Init();
+					ServiceLogger.Record("FS Service logger initialized.");
+					KernelVariables.IsLive = false;
+					System.SystemBootEnvironment.ReadHostname();
 					Active = true;
 					return true;
 				}
