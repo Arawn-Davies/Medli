@@ -28,10 +28,10 @@ namespace MedliPlugs.HAL
 			PCI.Setup();
 			AreaInfo.HALDevInfo.WriteDevicePrefix("PCI", "PCI Devices Scan");
 
-			Cosmos.HAL.BlockDevice.IDE.InitDriver();
+			//Cosmos.HAL.BlockDevice.IDE.InitDriver();
 			AreaInfo.HALDevInfo.WriteDevicePrefix("STR", "IDE Driver Initialization");
 
-			Cosmos.HAL.BlockDevice.AHCI.InitDriver();
+			//Cosmos.HAL.BlockDevice.AHCI.InitDriver();
 			AreaInfo.HALDevInfo.WriteDevicePrefix("STR", "AHCI Driver Initialization");
 
 			Cosmos.HAL.Global.PS2Controller.Initialize();
