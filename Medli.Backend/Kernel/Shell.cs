@@ -56,7 +56,6 @@ namespace Medli
             }
             else if (command == "shutdown")
             {
-                //Console.WriteLine("Dictionaries not yet implemented!");
                 //usr_vars.SaveVars();
                 Sys.Power.Shutdown();
             }
@@ -70,7 +69,6 @@ namespace Medli
             }
             else if (command == "reboot")
             {
-                //Console.WriteLine("Dictionaries not yet implemented!");
                 //usr_vars.SaveVars();
                 Sys.Power.Reboot();
             }
@@ -166,7 +164,7 @@ namespace Medli
             }
             else if (command.StartsWith("mkdir"))
             {
-                FS.Makedir(Directory.GetCurrentDirectory() + cmdCI_args[1], false);
+                FS.Makedir(Directory.GetCurrentDirectory() + cmdCI_args[1]);
             }
             else if (command == "")
             {

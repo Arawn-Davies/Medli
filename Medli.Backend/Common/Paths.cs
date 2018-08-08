@@ -10,29 +10,29 @@ namespace Medli.Common
 		public static void CreateDirectories()
 		{
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Users + "...");
-			FS.Makedir(@"0:\Users", true);
+			FS.Makedir(Users, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + RootUser + "...");
-			FS.Makedir(@"0:\Root", true);
+			FS.Makedir(Root, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Guest + "...");
-			FS.Makedir(@"0:\Users\Guest", true);
+			FS.Makedir(Guest, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Apps + "...");
-			FS.Makedir(@"0:\Apps", true);
+			FS.Makedir(Apps, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + x86Apps + "...");
-			FS.Makedir(@"0:\Apps\x86", true);
+			FS.Makedir(x86Apps, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + AppTemp + "...");
-			FS.Makedir(@"0:\Apps\Temp" + AppTemp, true);
+			FS.Makedir(AppTemp, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + System + "...");
-			FS.Makedir(@"0\System", true);
+			FS.Makedir(System, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemData + "...");
-			FS.Makedir(@"0:\System\Data", true);
+			FS.Makedir(SystemData, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemLogs + "...");
-			FS.Makedir(@"0:\System\Logs", true);
+			FS.Makedir(SystemLogs, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Libraries + "...");
-			FS.Makedir(@"0:\System\Libraries", true);
+			FS.Makedir(Libraries, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Modules + "...");
-			FS.Makedir(@"0:\System\Modules\", true);
+			FS.Makedir(Modules, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Temp + "...");
-			FS.Makedir(@"0:\Temp", true);
+			FS.Makedir(Temp, true);
 		}
 
 

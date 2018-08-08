@@ -33,10 +33,9 @@ namespace Medli
 			}
 			catch (Exception ex)
 			{
-                Console.WriteLine(ex.Message);
-				//KernelVariables.Running = false;
-				//FatalError.Crash(ex);
-				//Console.ReadKey(true);
+				KernelVariables.Running = false;
+				FatalError.Crash(ex);
+				Console.ReadKey(true);
 			}
 		}
 
