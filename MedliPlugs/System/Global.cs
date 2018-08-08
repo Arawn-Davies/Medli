@@ -7,15 +7,16 @@ using IL2CPU.API.Attribs;
 
 namespace MedliPlugs.System
 {
+	/*
 	[Plug(Target = typeof(Cosmos.System.Global))]
     public static class Global
     {
 		public static void Init(TextScreenBase textScreen)
 		{
-			HAL.Global.Init(textScreen);
+			//HAL.Global.Init(textScreen);
 			Sys.Global.NumLock = false;
 			Sys.Global.CapsLock = false;
 			Sys.Global.ScrollLock = false;
 		}
-    }
+    }*/
 }

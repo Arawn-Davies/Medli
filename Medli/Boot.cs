@@ -4,7 +4,7 @@ using System.Text;
 using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
-using Medli.Kernel;
+using Medli;
 using System.IO;
 
 namespace Medli
@@ -26,8 +26,8 @@ namespace Medli
 				Console.WriteLine(KernelVariables.welcome);
 				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
-				MedliTime.printDate();
-				MedliTime.printTime();
+				Time.printDate();
+				Time.printTime();
 				SystemFunctions.PrintInfo();
 			}
 			catch (Exception ex)
@@ -48,7 +48,7 @@ namespace Medli
 					Console.Write("Prompt >");
 					//KernelVariables.Hostname
 					string cmd = Console.ReadLine();
-					Shell.prompt(cmd);
+					Medli.Shell.prompt(cmd);
 				}
 			}
 			catch (Exception ex)

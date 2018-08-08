@@ -36,7 +36,7 @@ namespace Medli.System
 		/// </summary>
 		/// <param name="dirname"></param>
 		/// <param name="issys"></param>
-		public static void Makedir(string dirname, bool issys)
+		public static void Makedir(string dirname, bool issys = false)
         {
             try
             {

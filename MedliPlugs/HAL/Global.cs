@@ -8,6 +8,7 @@ using Medli.Common;
 
 namespace MedliPlugs.HAL
 {
+	/*
 	[Plug(Target = typeof(Cosmos.HAL.Global))]
 	public static class Global
 	{
@@ -40,5 +41,5 @@ namespace MedliPlugs.HAL
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("SYS", "Kernel successfully initialized!");
 
 		}
-	}
+	}*/
 }

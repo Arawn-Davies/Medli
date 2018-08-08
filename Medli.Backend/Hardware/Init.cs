@@ -94,9 +94,6 @@ namespace Medli.Hardware
 			}
 		}
 
-
-
-
 		private static void CheckBus(ushort xBus)
 		{
 			for (ushort device = 0; device < 32; device++)

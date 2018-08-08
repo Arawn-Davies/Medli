@@ -10,29 +10,29 @@ namespace Medli.Common
 		public static void CreateDirectories()
 		{
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Users + "...");
-			Directory.CreateDirectory(Users);
+			FS.Makedir(Users, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + RootUser + "...");
-			Directory.CreateDirectory(RootUser);
+			FS.Makedir(RootUser, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Guest + "...");
-			Directory.CreateDirectory(Guest);
+			FS.Makedir(Guest, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Apps + "...");
-			Directory.CreateDirectory(Apps);
+			FS.Makedir(Apps, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + x86Apps + "...");
-			Directory.CreateDirectory(x86Apps);
+			FS.Makedir(x86Apps, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + AppTemp + "...");
-			Directory.CreateDirectory(AppTemp);
+			FS.Makedir(AppTemp, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + System + "...");
-			Directory.CreateDirectory(System);
+			FS.Makedir(System, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemData + "...");
-			Directory.CreateDirectory(SystemData);
+			FS.Makedir(SystemData, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemLogs + "...");
-			Directory.CreateDirectory(SystemLogs);
+			FS.Makedir(SystemLogs, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Libraries + "...");
-			Directory.CreateDirectory(Libraries);
+			FS.Makedir(Libraries, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Modules + "...");
-			Directory.CreateDirectory(Modules);
+			FS.Makedir(Modules, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Temp + "...");
-			Directory.CreateDirectory(Temp);
+			FS.Makedir(Temp, true);
 		}
 
 
@@ -54,21 +54,21 @@ namespace Medli.Common
 
 		public static string Root = @"0:\";
 
-		public static string Users = Root + @"\Users";
-		public static string RootUser = Root + @"\root";
+		public static string Users = Root + @"Users";
+		public static string RootUser = Root + @"root";
 		public static string Guest = Users + @"\Guest";
 
-		public static string Apps = Root + @"\Apps";
+		public static string Apps = Root + @"Apps";
 		public static string AppTemp = Apps + @"\Temp";
 		public static string x86Apps = Apps + @"\x86";
 
-		public static string System = Root + @"\System";
+		public static string System = Root + @"System";
 		public static string SystemData = System + @"\Data";
 		public static string SystemLogs = System + @"\Logs";
 		public static string Libraries = System + @"\Libraries";
 		public static string Modules = System + @"\Modules";
 
-		public static string Temp = Root + @"\Temp";
+		public static string Temp = Root + @"Temp";
 
 		public static string CurrentDirectory = Root;
 

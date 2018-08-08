@@ -8,7 +8,7 @@ namespace Medli.Common.Services
 {
 	public class FSService
 	{
-		public static CosmosVFS vFS = new CosmosVFS();
+		public static CosmosVFS vFS;
 
 		public static string ServiceName = "FSSRV";
 
@@ -32,6 +32,7 @@ namespace Medli.Common.Services
 
 		public static bool Init()
 		{
+            vFS = new CosmosVFS();
 			Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(vFS);
 			if (CheckVolumes() == false) {
 				Console.WriteLine("Running Medli in Live User mode.");

@@ -4,7 +4,7 @@ using System.Text;
 using Medli.Apps;
 using Medli.System;
 
-namespace Medli.Kernel
+namespace Medli
 {
     class CommandConsole
     {
@@ -31,7 +31,7 @@ namespace Medli.Kernel
 			_commands.Add(new Exit(Stop));
 			_commands.Add(new Panic());
 			_commands.Add(new HelpCommand(_commands));
-			_commands.Add(new Time());
+			_commands.Add(new Apps.Time());
 			_commands.Add(new Date());
 			_commands.Add(new Script());
 			//_commands.Add(new Cosmos.Shell.Console.Commands.TypeCommand());

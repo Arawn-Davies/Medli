@@ -8,9 +8,9 @@ using Medli.Common;
 using Medli.System;
 using Medli.Apps;
 
-namespace Medli.Kernel
+namespace Medli
 {
-    class Shell
+    public class Shell
     {
 		public static void prompt(string cmdline)
 		{
@@ -46,9 +46,6 @@ namespace Medli.Kernel
 			}
 			else if (command == "panic")
 			{
-				// Manually initiates a kernel panic
-				//var xCtx = new Cosmos.Core.INTs.IRQContext();
-				//Core.INTs.HandleInterrupt_00(ref xCtx);
 				int a = 10;
 				int b = 0;
 				Console.WriteLine((a / b).ToString());
@@ -87,11 +84,11 @@ namespace Medli.Kernel
 			}
 			else if (command == "time")
 			{
-				MedliTime.printTime();
+				Time.printTime();
 			}
 			else if (command == "date")
 			{
-				MedliTime.printDate();
+				Time.printDate();
 			}
 			else if (command == "host")
 			{
