@@ -43,7 +43,8 @@ namespace Medli.Common.Services
 			}
 			else
 			{
-				if (File.Exists(Paths.System + @"live.user")) {
+				if ((File.Exists(Paths.System + @"live.user")) || KernelVariables.IsLive == true)
+                {
 					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
 					KernelVariables.IsLive = true;
 					Paths.CurrentDirectory = "LIVE";
@@ -63,10 +64,11 @@ namespace Medli.Common.Services
 						}
 					}*/
 					Paths.CreateDirectories();
-					ServiceLogger.Init();
+                    ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
 					ServiceLogger.Record("FS Service logger initialized.");
 					KernelVariables.IsLive = false;
 					System.SystemBootEnvironment.ReadHostname();
+                    Directory.SetCurrentDirectory(Paths.Root);
 					Active = true;
 					return true;
 				}

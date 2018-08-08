@@ -7,6 +7,7 @@ namespace Medli.Common
     public class TextLog
     {
 		public string stream;
+
 		public TextLog()
 		{
 

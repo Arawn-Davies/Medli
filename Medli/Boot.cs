@@ -15,7 +15,8 @@ namespace Medli
 		{
 			try
 			{
-				SystemBootEnvironment.Init();
+                //KernelVariables.IsLive = true;
+                SystemBootEnvironment.Init();
 				KernelVariables.Hostname = "M_INIT";
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
@@ -32,9 +33,10 @@ namespace Medli
 			}
 			catch (Exception ex)
 			{
-				KernelVariables.Running = false;
-				FatalError.Crash(ex);
-				Console.ReadKey(true);
+                Console.WriteLine(ex.Message);
+				//KernelVariables.Running = false;
+				//FatalError.Crash(ex);
+				//Console.ReadKey(true);
 			}
 		}
 
@@ -45,10 +47,10 @@ namespace Medli
 				//Apps.Applications.Init();
 				while (KernelVariables.Running == true)
 				{
-					Console.Write("Prompt >");
+					Console.Write(Directory.GetCurrentDirectory() + " >");
 					//KernelVariables.Hostname
 					string cmd = Console.ReadLine();
-					Medli.Shell.prompt(cmd);
+					Shell.Prompt(cmd);
 				}
 			}
 			catch (Exception ex)

@@ -10,29 +10,29 @@ namespace Medli.Common
 		public static void CreateDirectories()
 		{
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Users + "...");
-			FS.Makedir(Users, true);
+			FS.Makedir(@"0:\Users", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + RootUser + "...");
-			FS.Makedir(RootUser, true);
+			FS.Makedir(@"0:\Root", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Guest + "...");
-			FS.Makedir(Guest, true);
+			FS.Makedir(@"0:\Users\Guest", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Apps + "...");
-			FS.Makedir(Apps, true);
+			FS.Makedir(@"0:\Apps", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + x86Apps + "...");
-			FS.Makedir(x86Apps, true);
+			FS.Makedir(@"0:\Apps\x86", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + AppTemp + "...");
-			FS.Makedir(AppTemp, true);
+			FS.Makedir(@"0:\Apps\Temp" + AppTemp, true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + System + "...");
-			FS.Makedir(System, true);
+			FS.Makedir(@"0\System", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemData + "...");
-			FS.Makedir(SystemData, true);
+			FS.Makedir(@"0:\System\Data", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemLogs + "...");
-			FS.Makedir(SystemLogs, true);
+			FS.Makedir(@"0:\System\Logs", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Libraries + "...");
-			FS.Makedir(Libraries, true);
+			FS.Makedir(@"0:\System\Libraries", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Modules + "...");
-			FS.Makedir(Modules, true);
+			FS.Makedir(@"0:\System\Modules\", true);
 			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Temp + "...");
-			FS.Makedir(Temp, true);
+			FS.Makedir(@"0:\Temp", true);
 		}
 
 
