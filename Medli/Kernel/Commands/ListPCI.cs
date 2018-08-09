@@ -20,7 +20,7 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			CoreInfo.lspci();
+			SystemFunctions.lspci();
 		}
 	}
 }

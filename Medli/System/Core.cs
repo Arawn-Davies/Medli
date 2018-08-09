@@ -5,7 +5,7 @@ using Medli.Hardware;
 
 namespace Medli.System
 {
-	public class CoreInfo
+	public class SystemFunctions
 	{
 		public static int CurrentScreen = 1;
 		public static void ChangeScreen(int screen)

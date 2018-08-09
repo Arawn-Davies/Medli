@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Medli.Common;
+using Medli.Common.Services;
 
 namespace Medli.System
 {
@@ -24,13 +25,9 @@ namespace Medli.System
 
 		private static void IsLiveSystem()
 		{
-			if (KernelVariables.IsLive == true)
+			if (FSService.Active == false)
 			{
 				throw new Exception("Medli is currently running in live mode!\nFilesystem IO is disabled.");
-			}
-			else
-			{
-
 			}
 		}
 
@@ -39,26 +36,25 @@ namespace Medli.System
 		/// </summary>
 		/// <param name="dirname"></param>
 		/// <param name="issys"></param>
-		public static void mkdir(string dirname, bool issys)
+		public static void Makedir(string dirname, bool issys = false)
         {
             try
             {
-				IsLiveSystem();
 				if (issys == true)
                 {
                     if (!Directory.Exists(dirname))
                     {
-						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + dirname + "...");
 						Directory.CreateDirectory(dirname);
                     }
 					else
 					{
-						AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Directory " + dirname + " already exists!");
+						//AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Directory " + dirname + " already exists!");
 					}
                 }
                 else
                 {
-                    if (!Directory.Exists(dirname))
+					IsLiveSystem();
+					if (!Directory.Exists(dirname))
                     {
                         Directory.CreateDirectory(Paths.CurrentDirectory + @"\" + dirname);
                     }
@@ -116,7 +112,7 @@ namespace Medli.System
                         //Paths.CurrentDirectory = Paths.CurrentDirectory.Substring(0, pos) + @"\";
                     //}
                                             
-                    var dir = KernelVariables.vFS.GetDirectory(Paths.CurrentDirectory);
+                    var dir = FSService.vFS.GetDirectory(Paths.CurrentDirectory);
                     string p = dir.mParent.mName;
                     if (!string.IsNullOrEmpty(p))
                     {

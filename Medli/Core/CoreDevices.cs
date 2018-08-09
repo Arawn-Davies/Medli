@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Medli.Core
+﻿namespace Medli.Core
 {
     public class CoreDevices
     {

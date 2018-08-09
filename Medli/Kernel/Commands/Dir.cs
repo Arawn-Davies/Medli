@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MedliSystem = Medli.System;
+﻿using Medli.System;
 
 namespace Medli.Apps
 {
@@ -25,7 +22,7 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			MedliSystem.FS.Dir();
+			FS.Dir();
 		}
 
 	}

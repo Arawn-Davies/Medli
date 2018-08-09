@@ -9,14 +9,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Cosmos.HAL.PCInformation;
+//using Cosmos.HAL.PCInformation;
 
 namespace Medli.System
 {
     class CPUInfo
     {
-		/*
-		public static void ListFlags()
+		
+		/*public static void ListFlags()
 		{
 			int j = 1;
 			foreach (Processor processor in Processors)
@@ -27,7 +27,7 @@ namespace Medli.System
 				}
 			}
 		}
-		*/
+		
 
 		public static List<Processor> Processors = new List<Processor>();
 		public static int CPUCount()
@@ -75,7 +75,7 @@ namespace Medli.System
 			}
 			Processors.Clear();
 		}
-		/*
+		
 		public static void lsflags(Processor proc)
 		{
 			foreach (ProcessorFlags flag in proc.Flags)
@@ -87,7 +87,7 @@ namespace Medli.System
 				Console.Write(procflag + " ");
 			}
 			_procflags.Clear();
-		}
-		*/
+		}*/
+		
 	}
 }
