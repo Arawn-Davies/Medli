@@ -4,7 +4,7 @@ using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
 
-namespace Medli.Kernel
+namespace Medli
 {
     public static partial class Kernel
     {

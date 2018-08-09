@@ -62,18 +62,18 @@ namespace Medli.Hardware
 		{
 			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT", "Detecting host platform...");
 			PCIDevice Virtualizor = PCI.GetDevice((VendorID)PCIDevicesExtended.VendorID.Virtualbox, (DeviceID)PCIDevicesExtended.DeviceID.VirtualBox);
-			KernelProperties.VM = KernelProperties.Hypervisor.VirtualBox;
-			KernelProperties.Host = PCIDevicesExtended.DeviceIDStr(PCIDevicesExtended.DeviceID.VirtualBox);
+			Kernel.VM = Kernel.Hypervisor.VirtualBox;
+			Kernel.Host = PCIDevicesExtended.DeviceIDStr(PCIDevicesExtended.DeviceID.VirtualBox);
 			if (Virtualizor == null)
 			{
 				Virtualizor = PCI.GetDevice(VendorID.VMWare, DeviceID.SVGAIIAdapter);
-				KernelProperties.VM = KernelProperties.Hypervisor.VMWare;
-				KernelProperties.Host = PCIDevicesExtended.VendorIDStr(PCIDevicesExtended.VendorID.VMWare);
+				Kernel.VM = Kernel.Hypervisor.VMWare;
+				Kernel.Host = PCIDevicesExtended.VendorIDStr(PCIDevicesExtended.VendorID.VMWare);
 				if (Virtualizor == null)
 				{
-					KernelProperties.IsVirtualised = false;
-					KernelProperties.VM = KernelProperties.Hypervisor.RealShit;
-					KernelProperties.Host = "Non-virtualised hardware or unrecognised host";
+					Kernel.IsVirtualised = false;
+					Kernel.VM = Kernel.Hypervisor.RealShit;
+					Kernel.Host = "Non-virtualised hardware or unrecognised host";
 				}
 			}
 		}
@@ -88,24 +88,23 @@ namespace Medli.Hardware
 				{
 					if (pciDevice.DeviceID == (ushort)DeviceID.SVGAIIAdapter)
 					{
-						KernelProperties.graphicsDriver = KernelProperties.GFXDriver.VMWareSVGA;
+						Kernel.graphicsDriver = Kernel.GFXDriver.VMWareSVGA;
 						break;
 					}
 					continue;
 				}
 				else if (pciDevice.ClassCode == 0x03)
 				{
-					KernelProperties.graphicsDriver = KernelProperties.GFXDriver.VGA;
+					Kernel.graphicsDriver = Kernel.GFXDriver.VGA;
 					break;
 				}
 				else
 				{
-					KernelProperties.graphicsDriver = KernelProperties.GFXDriver.VBE;
+					Kernel.graphicsDriver = Kernel.GFXDriver.VBE;
 					break;
 				}
 			}
 		}
-
 
 		public static void FDD_Test()
 		{

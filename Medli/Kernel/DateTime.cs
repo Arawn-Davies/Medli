@@ -4,9 +4,9 @@ using System.Text;
 using Medli.System;
 using Medli.Hardware;
 
-namespace Medli.Kernel
+namespace Medli
 {
-	public class MedliTime
+	public class Time
 	{
 		public static string GetDay()
 		{

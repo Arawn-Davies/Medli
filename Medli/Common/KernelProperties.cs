@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
 
-namespace Medli.Common
+namespace Medli
 {
-    public class KernelProperties
+    public partial class Kernel
     {
 		public enum GFXDriver
 		{

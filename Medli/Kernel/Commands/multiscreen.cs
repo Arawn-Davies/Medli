@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Medli.System;
 
 namespace Medli.Apps
 {
@@ -24,9 +25,9 @@ namespace Medli.Apps
 
 		public void Switch(int screen)
 		{
-			if (screen != System.SystemFunctions.CurrentScreen)
+			if (screen != SystemFunctions.CurrentScreen)
 			{
-				System.SystemFunctions.ChangeScreen(screen);
+				SystemFunctions.ChangeScreen(screen);
 			}
 			else
 			{
@@ -38,7 +39,7 @@ namespace Medli.Apps
 		{
 			if (param == "get")
 			{
-				Console.WriteLine(System.SystemFunctions.CurrentScreen);
+				Console.WriteLine(SystemFunctions.CurrentScreen);
 			}
 			else
 			{

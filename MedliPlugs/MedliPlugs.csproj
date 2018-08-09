@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cosmos.Core" Version="2018.8.7" />
+    <PackageReference Include="Cosmos.HAL2" Version="2018.8.7" />
+    <PackageReference Include="Cosmos.System2" Version="2018.8.7" />
+    <PackageReference Include="IL2CPU.API" Version="2018.8.7" />
+  </ItemGroup>
+
+</Project>

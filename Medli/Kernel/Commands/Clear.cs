@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Medli.System;
-
 namespace Medli.Apps
 {
 	public class Clear : Command

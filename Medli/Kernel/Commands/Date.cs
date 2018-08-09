@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Medli;
 
 namespace Medli.Apps
 {
@@ -18,7 +19,7 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			Kernel.MedliTime.printDate();
+			Medli.Time.printDate();
 		}
 	}
 }

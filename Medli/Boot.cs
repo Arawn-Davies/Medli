@@ -4,7 +4,7 @@ using System.Text;
 using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
-using Medli.Kernel;
+using System.IO;
 
 namespace Medli
 {
@@ -14,19 +14,20 @@ namespace Medli
 		{
 			try
 			{
-				SYSPBE.Init();
-				KernelVariables.Hostname = "M_INIT";
+                //KernelVariables.IsLive = true;
+                SystemBootEnvironment.Init();
+                Kernel.Hostname = "M_INIT";
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
-				KernelVariables.Running = true;
+                Kernel.Running = true;
 				Console.Clear();
-				Hardware.AddDisks.Detect();
-				Console.Write(KernelVariables.logo);
-				Console.WriteLine(KernelVariables.welcome);
-				Console.WriteLine(" ");
+                //Hardware.AddDisks.Detect();
+                Console.Write(Kernel.logo);
+                Console.WriteLine(Kernel.welcome);
+				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
-				MedliTime.printDate();
-				MedliTime.printTime();
+				Time.printDate();
+				Time.printTime();
 				SystemFunctions.PrintInfo();
 			}
 			catch (Exception ex)
@@ -40,12 +41,12 @@ namespace Medli
 			try
 			{
 				//Apps.Applications.Init();
-				while (KernelVariables.Running == true)
+				while (Kernel.Running == true)
 				{
-					Console.Write("Prompt >");
+                    Console.Write(Directory.GetCurrentDirectory() + " >");
 					//KernelVariables.Hostname
 					string cmd = Console.ReadLine();
-					Shell.prompt(cmd);
+                    Shell.Prompt(cmd);
 				}
 			}
 			catch (Exception ex)

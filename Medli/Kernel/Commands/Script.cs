@@ -26,7 +26,7 @@ namespace Medli.Apps
 					string[] lines = File.ReadAllLines(param);
 					foreach (string line in lines)
 					{
-						Kernel.CommandConsole.Parse(line);
+						CommandConsole.Parse(line);
 					}
 					Console.WriteLine("");
 				}
