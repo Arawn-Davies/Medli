@@ -37,16 +37,16 @@ namespace Medli.Common.Services
 			if (CheckVolumes() == false) {
 				Console.WriteLine("Running Medli in Live User mode.");
 				Console.WriteLine("FS operations are disabled!");
-				KernelVariables.IsLive = true;
+				Kernel.IsLive = true;
 				Active = false;
 				return false;
 			}
 			else
 			{
-				if ((File.Exists(Paths.System + @"live.user")) || KernelVariables.IsLive == true)
+				if ((File.Exists(Paths.System + @"live.user")) || Kernel.IsLive == true)
                 {
 					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
-					KernelVariables.IsLive = true;
+					Kernel.IsLive = true;
 					Paths.CurrentDirectory = "LIVE";
 					Active = false;
 					return false;
@@ -66,7 +66,7 @@ namespace Medli.Common.Services
 					Paths.CreateDirectories();
                     ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
 					ServiceLogger.Record("FS Service logger initialized.");
-					KernelVariables.IsLive = false;
+					Kernel.IsLive = false;
 					System.SystemBootEnvironment.ReadHostname();
                     Directory.SetCurrentDirectory(Paths.Root);
 					Active = true;

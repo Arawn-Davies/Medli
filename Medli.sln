@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medli", "Medli\Medli.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedliPlugs", "MedliPlugs\MedliPlugs.csproj", "{7F604BA1-BCB5-4212-A13C-071E25EF1C06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medli.Backend", "Medli.Backend\Medli.Backend.csproj", "{48BC8FD6-E50E-46CA-AD7D-08891DA55EA8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{7F604BA1-BCB5-4212-A13C-071E25EF1C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F604BA1-BCB5-4212-A13C-071E25EF1C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F604BA1-BCB5-4212-A13C-071E25EF1C06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48BC8FD6-E50E-46CA-AD7D-08891DA55EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48BC8FD6-E50E-46CA-AD7D-08891DA55EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48BC8FD6-E50E-46CA-AD7D-08891DA55EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48BC8FD6-E50E-46CA-AD7D-08891DA55EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,7 +22,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
+			Console.WriteLine("Kernel version: " + Kernel.KernelVersion);
 			Console.WriteLine("Errpr: " + error);
 			Console.WriteLine("Description: " + description);
 			Console.WriteLine("Exception description: " + description);
@@ -30,7 +30,7 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
             Sys.Power.Reboot();
-            KernelVariables.Running = false;
+            Kernel.Running = false;
 		}
 		public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
 		{
@@ -41,7 +41,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
+			Console.WriteLine("Kernel version: " + Kernel.KernelVersion);
 			Console.WriteLine("CPU Exception: " + ctxinterrupt);
 			Console.WriteLine("Exception: " + exception);
 			Console.WriteLine("Exception description: " + description);
@@ -53,7 +53,7 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
             Sys.Power.Reboot();
-            KernelVariables.Running = false;
+            Kernel.Running = false;
 		}
 		public static void Crash(Exception ex)
 		{
@@ -67,7 +67,7 @@ Error information can be found below:";
 			Console.WriteLine(ErrorSplash);
 			Console.CursorTop += 1;
 			// Print exception information
-			Console.WriteLine("Kernel version: " + KernelVariables.KernelVersion);
+			Console.WriteLine("Kernel version: " + Kernel.KernelVersion);
 			Console.WriteLine("Exception message: " + exMsg);
 			if (ex.InnerException.Message != null)
 			{
@@ -78,7 +78,7 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
             Sys.Power.Reboot();
-            KernelVariables.Running = false;
+            Kernel.Running = false;
 		}
     }
 }

@@ -36,7 +36,7 @@ namespace Medli.Apps
 			Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.Write("Medli v");
-			Console.WriteLine(Common.KernelVariables.KernelVersion);
+			Console.WriteLine(Kernel.KernelVersion);
 			Console.WriteLine();
 		}
 

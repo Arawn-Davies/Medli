@@ -90,7 +90,7 @@ namespace Medli
             }
             else if (command == "host")
             {
-                Console.WriteLine(KernelProperties.Host);
+                Console.WriteLine(Kernel.Host);
             }
             else if (command == "lspci")
             {

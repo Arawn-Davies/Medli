@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
 
-namespace Medli.Common
+namespace Medli
 {
-    public class KernelVariables
+    public partial class Kernel
     {
 		public static string KernelVersion = "0.0.5";
 		public static bool IsLive;
@@ -13,11 +13,11 @@ namespace Medli.Common
 		public static string Hostname;
 
 		public static string logo = $@"
- __________                              
-||   ||   ||            || ||  ()   
-||   ||   ||  ___    ___|| ||  ||   
-||   ||   || |___)  |   || ||  ||    
-||   ||   || \___   |___|| ||  ||    
+ _________                              
+|   ||    |            |  |  ()   
+|   ||    |  ___    ___|  |  ||   
+|   ||    | |___)  |   |  |  ||    
+|   ||    | \___   |___|  |  ||    
                                             
 The C# free and open source Operating System
 ";

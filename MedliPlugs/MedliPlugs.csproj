@@ -11,8 +11,4 @@
     <PackageReference Include="IL2CPU.API" Version="2018.8.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Medli.Backend\Medli.Backend.csproj" />
-  </ItemGroup>
-
 </Project>

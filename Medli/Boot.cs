@@ -17,14 +17,14 @@ namespace Medli
 			{
                 //KernelVariables.IsLive = true;
                 SystemBootEnvironment.Init();
-				KernelVariables.Hostname = "M_INIT";
+                Kernel.Hostname = "M_INIT";
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;
-				KernelVariables.Running = true;
+                Kernel.Running = true;
 				Console.Clear();
-				//Hardware.AddDisks.Detect();
-				Console.Write(KernelVariables.logo);
-				Console.WriteLine(KernelVariables.welcome);
+                //Hardware.AddDisks.Detect();
+                Console.Write(Kernel.logo);
+                Console.WriteLine(Kernel.welcome);
 				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
 				Time.printDate();
@@ -33,7 +33,7 @@ namespace Medli
 			}
 			catch (Exception ex)
 			{
-				KernelVariables.Running = false;
+                Kernel.Running = false;
 				FatalError.Crash(ex);
 				Console.ReadKey(true);
 			}
@@ -44,12 +44,12 @@ namespace Medli
 			try
 			{
 				//Apps.Applications.Init();
-				while (KernelVariables.Running == true)
+				while (Kernel.Running == true)
 				{
-					Console.Write(Directory.GetCurrentDirectory() + " >");
+                    Console.Write(Directory.GetCurrentDirectory() + " >");
 					//KernelVariables.Hostname
 					string cmd = Console.ReadLine();
-					Shell.Prompt(cmd);
+                    Shell.Prompt(cmd);
 				}
 			}
 			catch (Exception ex)

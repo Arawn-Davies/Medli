@@ -33,7 +33,7 @@ namespace Medli.System
 			try
 			{
 				if (File.Exists(SysFiles.HostnameFile))
-					KernelVariables.Hostname = File.ReadAllText(SysFiles.HostnameFile);
+                    Kernel.Hostname = File.ReadAllText(SysFiles.HostnameFile);
 			}
 			catch (Exception ex)
 			{
@@ -42,7 +42,7 @@ namespace Medli.System
 				Console.WriteLine("Please enter a new hostname:");
 				Console.Write("Hostname:");
 				string hostname = Console.ReadLine();
-				KernelVariables.Hostname = hostname;
+                Kernel.Hostname = hostname;
 				FS.del(SysFiles.HostnameFile, false);
 				File.WriteAllText(SysFiles.HostnameFile, hostname);
 			}
