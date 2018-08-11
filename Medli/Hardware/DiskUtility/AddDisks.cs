@@ -19,13 +19,19 @@ namespace Medli.Hardware
 				if (BlockDevice.Devices[index] is AtaPio)
 				{
 					AtaPio device = (AtaPio)BlockDevice.Devices[index];
-					device.ReadBlock(0UL, 2U, a.Data);
-					Devices.dev.Add(new Devices.device()
-					{
-						name = "/dev/sd" + b.ToString(),
-						dev = (BlockDevice)device
-					});
-					++b;
+                    if (device.DriveType == AtaPio.SpecLevel.ATA)
+                    {
+                        Console.WriteLine("Size: " + ((device.BlockSize * device.BlockCount)));
+                        Console.ReadKey(true);
+                        device.ReadBlock(0UL, 2U, a.Data);
+                        Devices.dev.Add(new Devices.device()
+                        {
+                            name = "/dev/sd" + b.ToString(),
+                            dev = (BlockDevice)device
+                        });
+                        ++b;
+                    }
+
 				}
 				else if (BlockDevice.Devices[index] is Partition)
 				{

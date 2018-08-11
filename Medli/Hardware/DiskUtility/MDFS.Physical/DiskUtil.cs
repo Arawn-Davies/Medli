@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Cosmos.HAL.BlockDevice;
 
-namespace MDFS.Physical
+namespace MDFS.Physical.OldUtil
 {
 	public class Old
 	{
@@ -16,7 +16,7 @@ namespace MDFS.Physical
 			IDE Device = null;
 			int partnum = 0;
 			ulong DispCount = 0;
-			MDUtils.WriteLine("Welcome to the NoobOS Partitioning Tool");
+			MDUtils.WriteLine("Welcome to the MFS Partitioning Tool");
 			do
 			{
 				MDUtils.WriteLine("Which device do you want to use?");

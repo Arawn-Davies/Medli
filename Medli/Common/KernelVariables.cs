@@ -7,7 +7,7 @@ namespace Medli
 {
     public partial class Kernel
     {
-		public static string KernelVersion = "0.0.5";
+		public static string KernelVersion = "0.0.7";
 		public static bool IsLive;
 		public static bool Running;
 		public static string Hostname;

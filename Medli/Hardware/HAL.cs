@@ -6,6 +6,7 @@ using Cosmos.HAL;
 using Medli.Common;
 using System.Threading;
 using Medli.Hardware.Drivers;
+using Cosmos.Core;
 
 namespace Medli.Hardware
 {
@@ -41,13 +42,41 @@ namespace Medli.Hardware
 			}
 		}
 	}
+
+    public class IO
+    {
+        public static byte inb (ushort port)
+        {
+            IOPort io = new IOPort(port);
+            return io.Byte;
+        }
+
+        public static ushort inw (ushort port)
+        {
+            IOPort io = new IOPort(port);
+            return io.Word;
+        }
+
+        public static void outb (ushort port, byte data)
+        {
+            IOPort io = new IOPort(port);
+            io.Byte = data;
+        }
+
+        public static void outw (ushort port, ushort data)
+        {
+            IOPort io = new IOPort(port);
+            io.Word = data;
+        }
+    }
+
 	public enum deviceArea
 	{
 		PCI,
 		USB,
 		IO,
 		GFX,
-		Network,
+		NET,
 		RTC,
 		VIRT
 	}

@@ -28,10 +28,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Common\FatalError.cs~RFf12a693.TMP" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Cosmos.Build" Version="*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.Core" Version="*" />
         <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
@@ -41,6 +37,12 @@
 	
 	<ItemGroup>
 		<PlugsReference Include="$(MSBuildProjectDirectory)\..\MedliPlugs\bin\Debug\netcoreapp2.0\MedliPlugs.dll" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Reference Include="XSharp.Assembler">
+	    <HintPath>..\..\..\..\..\Developer Stuff\Siaranite-Solutions\XSharp\source\XSharp\bin\Debug\netstandard2.0\XSharp.Assembler.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

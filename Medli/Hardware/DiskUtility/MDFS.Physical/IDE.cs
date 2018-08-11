@@ -7,6 +7,9 @@ namespace MDFS.Physical
 {
     public class IDE
     {
+        /// <summary>
+        /// Returns the size of the IDE device (with spec level of ATA)
+        /// </summary>
 		public UInt32 Size
 		{
 			get

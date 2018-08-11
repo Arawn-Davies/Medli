@@ -17,15 +17,15 @@ namespace MDFS
 			for (int i = 0; i < inp.Length; i++)
 			{
 				ret += "0x";
-				ch = (byte)(inp[i] & 0xF0); // Strip off high nibble
-				ch = (byte)(ch >> 4); // shift the bits down
-				ch = (byte)(ch & 0x0F); // must do this is high order bit is
-										// on!
-				ret += pseudo[(int)ch].ToString(); // convert the nibble to a
-												   // String Character
-				ch = (byte)(inp[i] & 0x0F); // Strip off low nibble
-				ret += pseudo[(int)ch].ToString(); // convert the nibble to a
-												   // String Character
+				ch = (byte)(inp[i] & 0xF0);
+				ch = (byte)(ch >> 4);
+				ch = (byte)(ch & 0x0F); 
+										
+				ret += pseudo[(int)ch].ToString(); 
+												   
+				ch = (byte)(inp[i] & 0x0F); 
+				ret += pseudo[(int)ch].ToString(); 
+												   
 				ret += " ";
 			}
 			return ret;

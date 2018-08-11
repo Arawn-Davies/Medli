@@ -5,7 +5,7 @@ using System.Text;
 using MDFS.Physical;
 using MDFS;
 
-namespace Medli.Hardware
+namespace MDFS.Physical
 {
 	public class Old
 	{
@@ -89,12 +89,12 @@ namespace Medli.Hardware
 	/// <summary>
 	/// Defines a disk listing
 	/// </summary>
-	public class DiskListing
+	public class MDFSUtil
 	{
 		/// <summary>
 		/// Static List of DiskListings
 		/// </summary>
-		public static List<DiskListing> DiskListings = new List<DiskListing>();
+		public static List<MDFSUtil> DiskListings = new List<MDFSUtil>();
 		/// <summary>
 		/// The DiskListing's BlockDevice
 		/// </summary>
@@ -108,11 +108,11 @@ namespace Medli.Hardware
 		/// </summary>
 		/// <param name="num"></param>
 		/// <param name="disk"></param>
-		public DiskListing(int num, IDE disk)
+		public MDFSUtil(int num, IDE disk)
 		{
 			DiskNumber = num;
 			Disk = disk;
-			//DiskListings.Add(this);
+			DiskListings.Add(this);
 		}
 		/// <summary>
 		/// String containing information about the Disk Listing
@@ -156,7 +156,7 @@ namespace Medli.Hardware
 		/// <summary>
 		/// Defines the selected DiskListing
 		/// </summary>
-		public static DiskListing SelectedDisk;
+		public static MDFSUtil SelectedDisk;
 
 		/// <summary>
 		/// Main Disk Utility method, with the list of IDE devices passed as the parameter
@@ -164,6 +164,7 @@ namespace Medli.Hardware
 		/// <param name="List"></param>
 		public static void Main(IDE[] List)
 		{
+            
 			bool running = true;
 			Console.BackgroundColor = ConsoleColor.Blue;
 			Console.Clear();
@@ -177,8 +178,10 @@ namespace Medli.Hardware
 				Console.WriteLine("2) Select Disks");
 				Console.WriteLine("3) List Partitions");
 				Console.WriteLine("4) Create Partitions");
-				Console.WriteLine("");
-				string option = Console.ReadLine().ToLower();
+				Console.WriteLine("5) Exit disk utility");
+                Console.WriteLine("");
+                Console.Write(">");
+                string option = Console.ReadLine().ToLower();
 				if (option == "1")
 				{
 					ListDisks();
@@ -195,7 +198,7 @@ namespace Medli.Hardware
 				{
 					CreatePartitions();
 				}
-				else if (option == "quit" || option == "exit")
+				else if (option == "quit" || option == "exit" || option == "5")
 				{
 					running = false;
 				}
@@ -218,9 +221,9 @@ namespace Medli.Hardware
 				ListDisks();
 				string nums = Console.ReadLine();
 				int num = int.Parse(nums) - 1;
-				if (num >= 0 && num < DiskListing.DiskListings.Count)
+				if (num >= 0 && num < MDFSUtil.DiskListings.Count)
 				{
-					SelectedDisk = DiskListing.DiskListings[num];
+					SelectedDisk = MDFSUtil.DiskListings[num];
 				}
 			}
 			while (SelectedDisk == null);
@@ -231,7 +234,7 @@ namespace Medli.Hardware
 		/// </summary>
 		public static void ListDisks()
 		{
-			foreach (DiskListing disklist in DiskListing.DiskListings)
+			foreach (MDFSUtil disklist in MDFSUtil.DiskListings)
 			{
 				if (disklist == SelectedDisk)
 				{

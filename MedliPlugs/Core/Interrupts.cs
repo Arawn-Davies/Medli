@@ -16,6 +16,7 @@ namespace MedliPlugs
         /// <param name="LastKnownAddressValue">Last known address in memory (Where in RAM the exception occurred)</param>
         public static void HandleException(uint aEIP, string aDescription, string aName, ref IRQContext ctx, uint LastKnownAddressValue = 0)
         {
+            string error = ctx.Interrupt.ToString();
             const string xHex = "0123456789ABCDEF";
 
             string ctxinterrupt = "";

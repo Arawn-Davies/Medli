@@ -9,7 +9,7 @@ namespace Medli.System
 {
 	public class SystemFunctions
 	{
-		private static IDE[] IDEs = IDE.Devices.ToArray();
+		public static IDE[] IDEs = IDE.Devices.ToArray();
 		public static int CurrentScreen = 1;
 		public static void ChangeScreen(int screen)
 		{
@@ -61,8 +61,7 @@ namespace Medli.System
 		}
 		public static void FDISKRun()
 		{
-			IDEs = IDE.Devices.ToArray();
-			MDFS.Physical.DiskUtil.Main(IDEs);
+            Hardware.DiskUtil.Main(IDEs);
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace Medli
 		{
 			try
 			{
+                SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
                 //KernelVariables.IsLive = true;
                 SystemBootEnvironment.Init();
                 Kernel.Hostname = "M_INIT";
@@ -21,7 +22,7 @@ namespace Medli
 				Console.BackgroundColor = ConsoleColor.Blue;
                 Kernel.Running = true;
 				Console.Clear();
-                //Hardware.AddDisks.Detect();
+                Hardware.AddDisks.Detect();
                 Console.Write(Kernel.logo);
                 Console.WriteLine(Kernel.welcome);
 				Console.WriteLine("");
