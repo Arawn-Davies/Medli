@@ -4,25 +4,13 @@ using System.Text;
 using System.IO;
 using Medli.Common;
 using Medli.Common.Services;
+using MDFS;
+using Medli.System;
 
 namespace Medli.System
 {
     public class FS
     {
-		public static void Copy(string src, string dest)
-		{
-			try
-			{
-				IsLiveSystem();
-				File.Copy(src, dest);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-			
-		}
-
 		private static void IsLiveSystem()
 		{
 			if (FSService.Active == false)
@@ -31,12 +19,44 @@ namespace Medli.System
 			}
 		}
 
-		/// <summary>
-		/// Creates a directory, checking if the specified parameter is a Medli system directory
-		/// </summary>
-		/// <param name="dirname"></param>
-		/// <param name="issys"></param>
-		public static void Makedir(string dirname, bool issys = false)
+        public static void MFSU()
+        {
+            try
+            {
+                IsLiveSystem();
+                MFSUtility.Main(SystemFunctions.IDEs);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        
+        /// <summary>
+        /// Copies the specified file from the source to the destination
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dest"></param>
+        public static void Copy(string src, string dest)
+        {
+            try
+            {
+                IsLiveSystem();
+                File.Copy(src, dest);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Creates a directory, checking if the specified parameter is a Medli system directory
+        /// </summary>
+        /// <param name="dirname"></param>
+        /// <param name="issys"></param>
+        public static void Makedir(string dirname, bool issys = false)
         {
             try
             {

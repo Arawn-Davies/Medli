@@ -1,87 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Cosmos.HAL.BlockDevice;
+using MDFS.Physical;
 
-namespace MDFS.Physical.OldUtil
+namespace MDFS
 {
-	public class Old
-	{
-		/// <summary>
-		/// Partitioning function for devices that present a choise of the device to partition.
-		/// </summary>
-		/// <param name="list">The list of the devices to choose from</param>
-		public static void CreatePartitions(IDE[] list)
-		{
-			IDE Device = null;
-			int partnum = 0;
-			ulong DispCount = 0;
-			MDUtils.WriteLine("Welcome to the MFS Partitioning Tool");
-			do
-			{
-				MDUtils.WriteLine("Which device do you want to use?");
-				for (int i = 0; i < list.Length; i++)
-				{
-					MDUtils.WriteLine(" --- Device N." + (i + 1) + " Size: approximately " + (uint)((((list[i].BlockSize * list[i].BlockCount) / 1024) / 1024) + 1) + " MB");
-				}
-				String nums = MDUtils.ReadLine("Insert Number: ");
-				int num = int.Parse(nums) - 1;
-				if (num >= 0 && num < list.Length)
-				{
-					Device = list[num];
-					DispCount = list[num].BlockCount - 1;
-				}
-			} while (Device == null);
-			MDUtils.WriteLine("How many primary partitions do you want to have? (Max. 4)");
-			do
-			{
-				String nums = MDUtils.ReadLine("Insert Number: ");
-				partnum = int.Parse(nums);
-			} while (partnum == 0 || partnum > 4);
-			uint mbrpos = 446;
-			Byte[] type = new Byte[] { 0x00, 0x00, 0x00, 0x00 };
-			uint[] StartBlock = new uint[] { 1, 0, 0, 0 };
-			uint[] BlockNum = new uint[] { 0, 0, 0, 0 };
-			for (int i = 0; i < partnum; i++)
-			{
-				type[i] = 0xFA;
-				String nums = MDUtils.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DispCount - (uint)(partnum - (i + 1)))).ToString() + "): ");
-				uint num = (uint)int.Parse(nums);
-				if (num >= 0 && num <= DispCount - (uint)(partnum - (i + 1)))
-				{
-					BlockNum[i] = num;
-					if (i < partnum - 1)
-					{
-						StartBlock[i + 1] = (num) + StartBlock[i];
-					}
-					DispCount = DispCount - (num);
-				}
-				else
-				{
-					i--;
-				}
-			}
-			Byte[] data = Device.NewBlockArray(1);
-			Device.ReadBlock(0, 1, data);
-			for (int i = 0; i < 4; i++)
-			{
-				mbrpos += 4;
-				data[mbrpos] = type[i];
-				mbrpos += 4;
-				Byte[] b = BitConverter.GetBytes(StartBlock[i]);
-				MDFSUtils.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
-				mbrpos += 4;
-				b = BitConverter.GetBytes(BlockNum[i]);
-				MDFSUtils.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
-				mbrpos += 4;
-				Device.WriteBlock(StartBlock[i], 1, Device.NewBlockArray(1));
-				MDUtils.WriteLine("Partition N. " + (i + 1) + " Start: " + (StartBlock[i]).ToString() + " BlockCount: " + (BlockNum[i]).ToString());
-			}
-			Device.WriteBlock(0, 1, data);
-		}
-	}
-
-
 	/// <summary>
 	/// Defines a disk listing
 	/// </summary>
@@ -108,7 +30,7 @@ namespace MDFS.Physical.OldUtil
 		{
 			DiskNumber = num;
 			Disk = disk;
-			//DiskListings.Add(this);
+			DiskListings.Add(this);
 		}
 		/// <summary>
 		/// String containing information about the Disk Listing
@@ -132,7 +54,7 @@ namespace MDFS.Physical.OldUtil
 	/// <summary>
 	/// The Disk Utility class, containing methods and properties
 	/// </summary>
-	public class DiskUtil
+	public class MFSUtility
 	{
 		/// <summary>
 		/// Prints information about the currently selected disk, if any is selected
@@ -141,7 +63,7 @@ namespace MDFS.Physical.OldUtil
 		{
 			if (SelectedDisk != null)
 			{
-				
+
 				SelectedDisk.PrintInfo();
 			}
 			else
@@ -154,16 +76,18 @@ namespace MDFS.Physical.OldUtil
 		/// </summary>
 		public static DiskListing SelectedDisk;
 
-		/// <summary>
-		/// Main Disk Utility method, with the list of IDE devices passed as the parameter
-		/// </summary>
-		/// <param name="List"></param>
-		public static void Main(IDE[] List)
+        /// <summary>
+        /// Main Disk Utility method, with the list of IDE devices passed as the parameter
+        /// TODO - Remove the requirement for the IDE array to be passed as array - or move detection to INIT1
+        /// </summary>
+        /// <param name="List"></param>
+        public static void Main(IDE[] List)
 		{
+            
 			bool running = true;
 			Console.BackgroundColor = ConsoleColor.Blue;
 			Console.Clear();
-			Console.WriteLine("Welcome to the Medli Disk FileSystem Utility [MDFS]");
+			Console.WriteLine("Welcome to the Medli File System Utility [MFSU]");
 			Console.WriteLine("");
 			while (running == true)
 			{
@@ -173,8 +97,10 @@ namespace MDFS.Physical.OldUtil
 				Console.WriteLine("2) Select Disks");
 				Console.WriteLine("3) List Partitions");
 				Console.WriteLine("4) Create Partitions");
-				Console.WriteLine("");
-				string option = Console.ReadLine();
+				Console.WriteLine("5) Exit disk utility");
+                Console.WriteLine("");
+                Console.Write(">");
+                string option = Console.ReadLine().ToLower();
 				if (option == "1")
 				{
 					ListDisks();
@@ -191,7 +117,7 @@ namespace MDFS.Physical.OldUtil
 				{
 					CreatePartitions();
 				}
-				else if (option == "quit")
+				else if (option == "quit" || option == "exit" || option == "5")
 				{
 					running = false;
 				}
@@ -200,6 +126,7 @@ namespace MDFS.Physical.OldUtil
 					Console.WriteLine(option + ": Invalid option!");
 				}
 			}
+			Console.Clear();
 		}
 		/// <summary>
 		/// Selects a DiskListing from the list
@@ -245,18 +172,25 @@ namespace MDFS.Physical.OldUtil
 		/// <param name="Device"></param>
 		public static void ListPartitions(IDE Device)
 		{
-			MBR mbr = Device.MBR;
-			PartitionInfo[] partitions = mbr.Partitions;
-			if ((partitions.Length > 0) && (partitions.Length <= 4))
+			if (Device == null)
 			{
-				foreach (PartitionInfo part in partitions)
-				{
-					Console.WriteLine(part.SystemID);
-				}
+				Console.WriteLine("No disk selected!");
 			}
 			else
 			{
-				Console.WriteLine("No partitions detected!");
+				MBR mbr = Device.MBR;
+				PartitionInfo[] partitions = mbr.Partitions;
+				if ((partitions.Length > 0) && (partitions.Length <= 4))
+				{
+					foreach (PartitionInfo part in partitions)
+					{
+						Console.WriteLine(part.SystemID);
+					}
+				}
+				else
+				{
+					Console.WriteLine("No partitions detected!");
+				}
 			}
 		}
 
@@ -314,10 +248,10 @@ namespace MDFS.Physical.OldUtil
 					data[mbrpos] = type[i];
 					mbrpos += 4;
 					Byte[] b = BitConverter.GetBytes(StartBlock[i]);
-					MDFSUtils.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
+					Utilities.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
 					mbrpos += 4;
 					b = BitConverter.GetBytes(BlockNum[i]);
-					MDFSUtils.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
+					Utilities.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
 					mbrpos += 4;
 					SelectedDisk.Disk.WriteBlock(StartBlock[i], 1, SelectedDisk.Disk.NewBlockArray(1));
 				}

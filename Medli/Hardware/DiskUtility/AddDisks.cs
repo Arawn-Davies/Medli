@@ -21,8 +21,6 @@ namespace Medli.Hardware
 					AtaPio device = (AtaPio)BlockDevice.Devices[index];
                     if (device.DriveType == AtaPio.SpecLevel.ATA)
                     {
-                        Console.WriteLine("Size: " + ((device.BlockSize * device.BlockCount)));
-                        Console.ReadKey(true);
                         device.ReadBlock(0UL, 2U, a.Data);
                         Devices.dev.Add(new Devices.device()
                         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MDFS
 {
-    public class MDFSUtils
+    public class Utilities
     {
 		public static String byteArrayToByteString(Byte[] inp)
 		{

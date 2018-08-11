@@ -39,7 +39,7 @@ namespace MDFS.Physical
 		public MBR(byte[] aMBR, BlockDevice device)
 		{
 			this.blockDevice = device;
-			MDFSUtils.CopyByteToByte(aMBR, 0, Bootable, 0, 440);
+			Utilities.CopyByteToByte(aMBR, 0, Bootable, 0, 440);
 			Signature = BitConverter.ToUInt32(aMBR, 440);
 			ParsePartition(aMBR, 446);
 			ParsePartition(aMBR, 462);

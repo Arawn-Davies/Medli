@@ -41,7 +41,7 @@ namespace Medli
             }
             else if (command == "fdisk")
             {
-                System.SystemFunctions.FDISKRun();
+                FS.MFSU();                
             }
             else if (command == "test_serial")
             {

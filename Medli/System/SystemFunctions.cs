@@ -59,9 +59,5 @@ namespace Medli.System
 		{
 			HAL.ListPCIDevices();
 		}
-		public static void FDISKRun()
-		{
-            Hardware.DiskUtil.Main(IDEs);
-		}
 	}
 }

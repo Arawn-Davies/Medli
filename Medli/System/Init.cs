@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Medli.Hardware;
 using Medli.Common;
-using Sys = Cosmos.System;
 using System.IO;
-using System.Threading;
 using Medli.Common.Services;
+using MDFS;
 
 namespace Medli.System
 {
@@ -22,6 +19,13 @@ namespace Medli.System
 			Console.WriteLine("FileSystem service...");
 			FSService.Init();
 			Console.WriteLine("Filesystem: " + FSService.Active);
+            if (FSService.Active == true)
+            {
+                for (int i = 1; i < SystemFunctions.IDEs.Length; i++)
+                {
+                    new DiskListing(i, SystemFunctions.IDEs[i]);
+                }
+            }
 		}
 		/// <summary>
 		/// Checks the Virtual File System to see if there are any usable disks
