@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Medli\Medli.csproj" />
+    <ProjectReference Include="..\AIC-Framework\AIC Framework\AIC Framework.csproj" />
   </ItemGroup>
 
 </Project>

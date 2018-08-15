@@ -2,11 +2,88 @@
 
     <PropertyGroup>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
-        <BinFormat>ELF</BinFormat>
+        <BinFormat>Elf</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
         <Deployment>ISO</Deployment>
         <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
+        <VMware_StackCorruptionDetectionEnabled>True</VMware_StackCorruptionDetectionEnabled>
+        <VMware_StackCorruptionDetectionLevel>MethodFooters</VMware_StackCorruptionDetectionLevel>
+        <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
+        <VMware_Deployment>ISO</VMware_Deployment>
+        <VMware_Launch>VMware</VMware_Launch>
+        <VMware_DebugEnabled>False</VMware_DebugEnabled>
+        <VMware_DebugMode>Source</VMware_DebugMode>
+        <VMware_IgnoreDebugStubAttribute>False</VMware_IgnoreDebugStubAttribute>
+        <VMware_CosmosDebugPort>Serial: COM1</VMware_CosmosDebugPort>
+        <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
+        <VMware_PxeInterface>192.168.0.8</VMware_PxeInterface>
+        <VMware_EnableGDB>False</VMware_EnableGDB>
+        <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
+        <EnableBochsDebug>True</EnableBochsDebug>
+        <StartBochsDebugGui>True</StartBochsDebugGui>
+        <Bochs_StackCorruptionDetectionEnabled>True</Bochs_StackCorruptionDetectionEnabled>
+        <Bochs_StackCorruptionDetectionLevel>MethodFooters</Bochs_StackCorruptionDetectionLevel>
+        <Bochs_Description>Use Bochs emulator to deploy and debug.</Bochs_Description>
+        <Bochs_Deployment>ISO</Bochs_Deployment>
+        <Bochs_Launch>Bochs</Bochs_Launch>
+        <Bochs_DebugEnabled>False</Bochs_DebugEnabled>
+        <Bochs_DebugMode>Source</Bochs_DebugMode>
+        <Bochs_IgnoreDebugStubAttribute>False</Bochs_IgnoreDebugStubAttribute>
+        <Bochs_CosmosDebugPort>Serial: COM1</Bochs_CosmosDebugPort>
+        <Bochs_VisualStudioDebugPort>Pipe: Cosmos\Serial</Bochs_VisualStudioDebugPort>
+        <Bochs_PxeInterface>192.168.0.8</Bochs_PxeInterface>
+        <Bochs_EnableGDB>False</Bochs_EnableGDB>
+        <Bochs_StartCosmosGDB>False</Bochs_StartCosmosGDB>
+        <Bochs_EnableBochsDebug>True</Bochs_EnableBochsDebug>
+        <Bochs_StartBochsDebugGui>True</Bochs_StartBochsDebugGui>
+        <USB_StackCorruptionDetectionEnabled>True</USB_StackCorruptionDetectionEnabled>
+        <USB_StackCorruptionDetectionLevel>MethodFooters</USB_StackCorruptionDetectionLevel>
+        <USB_Description>Makes a USB device such as a flash drive or external hard disk bootable.</USB_Description>
+        <USB_Deployment>USB</USB_Deployment>
+        <USB_Launch>None</USB_Launch>
+        <USB_DebugEnabled>False</USB_DebugEnabled>
+        <USB_DebugMode>Source</USB_DebugMode>
+        <USB_IgnoreDebugStubAttribute>False</USB_IgnoreDebugStubAttribute>
+        <USB_CosmosDebugPort>Serial: COM1</USB_CosmosDebugPort>
+        <USB_VisualStudioDebugPort>Pipe: Cosmos\Serial</USB_VisualStudioDebugPort>
+        <USB_PxeInterface>192.168.0.8</USB_PxeInterface>
+        <USB_EnableGDB>False</USB_EnableGDB>
+        <USB_StartCosmosGDB>False</USB_StartCosmosGDB>
+        <USB_EnableBochsDebug>True</USB_EnableBochsDebug>
+        <USB_StartBochsDebugGui>True</USB_StartBochsDebugGui>
+        <HyperV_StackCorruptionDetectionEnabled>True</HyperV_StackCorruptionDetectionEnabled>
+        <HyperV_StackCorruptionDetectionLevel>MethodFooters</HyperV_StackCorruptionDetectionLevel>
+        <HyperV_Description>Use Hyper-V to deploy and debug.</HyperV_Description>
+        <HyperV_Deployment>ISO</HyperV_Deployment>
+        <HyperV_Launch>HyperV</HyperV_Launch>
+        <HyperV_DebugEnabled>False</HyperV_DebugEnabled>
+        <HyperV_DebugMode>Source</HyperV_DebugMode>
+        <HyperV_IgnoreDebugStubAttribute>False</HyperV_IgnoreDebugStubAttribute>
+        <HyperV_CosmosDebugPort>Serial: COM1</HyperV_CosmosDebugPort>
+        <HyperV_VisualStudioDebugPort>Pipe: CosmosSerial</HyperV_VisualStudioDebugPort>
+        <HyperV_PxeInterface>192.168.0.8</HyperV_PxeInterface>
+        <HyperV_EnableGDB>False</HyperV_EnableGDB>
+        <HyperV_StartCosmosGDB>False</HyperV_StartCosmosGDB>
+        <HyperV_EnableBochsDebug>True</HyperV_EnableBochsDebug>
+        <HyperV_StartBochsDebugGui>True</HyperV_StartBochsDebugGui>
+        <IntelEdison_StackCorruptionDetectionEnabled>True</IntelEdison_StackCorruptionDetectionEnabled>
+        <IntelEdison_StackCorruptionDetectionLevel>MethodFooters</IntelEdison_StackCorruptionDetectionLevel>
+        <IntelEdison_Description>Connect to Intel Edison device to deploy and debug.</IntelEdison_Description>
+        <IntelEdison_Deployment>BinaryImage</IntelEdison_Deployment>
+        <IntelEdison_Launch>IntelEdison</IntelEdison_Launch>
+        <IntelEdison_DebugEnabled>False</IntelEdison_DebugEnabled>
+        <IntelEdison_DebugMode>Source</IntelEdison_DebugMode>
+        <IntelEdison_IgnoreDebugStubAttribute>False</IntelEdison_IgnoreDebugStubAttribute>
+        <IntelEdison_CosmosDebugPort>Serial: COM1</IntelEdison_CosmosDebugPort>
+        <IntelEdison_VisualStudioDebugPort>Pipe: CosmosSerial</IntelEdison_VisualStudioDebugPort>
+        <IntelEdison_PxeInterface>192.168.0.8</IntelEdison_PxeInterface>
+        <IntelEdison_EnableGDB>False</IntelEdison_EnableGDB>
+        <IntelEdison_StartCosmosGDB>False</IntelEdison_StartCosmosGDB>
+        <IntelEdison_EnableBochsDebug>True</IntelEdison_EnableBochsDebug>
+        <IntelEdison_StartBochsDebugGui>True</IntelEdison_StartBochsDebugGui>
+        <VMware_EnableBochsDebug>True</VMware_EnableBochsDebug>
+        <VMware_StartBochsDebugGui>True</VMware_StartBochsDebugGui>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -37,6 +114,10 @@
 	
 	<ItemGroup>
 		<PlugsReference Include="$(MSBuildProjectDirectory)\..\MedliPlugs\bin\Debug\netcoreapp2.0\MedliPlugs.dll" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\AIC-Framework\AIC Framework\AIC Framework.csproj" />
 	</ItemGroup>
 	
 	<ItemGroup>

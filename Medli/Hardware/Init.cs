@@ -20,16 +20,18 @@ namespace Medli.Hardware
 			DetectHyperVisor();
 			GraphicsHardwareSetup();
 
-			/* These tests are only to be uncommented if testing 
-			   on a pre-setup virtual machine or on real hardware 
+            /* These tests are only to be uncommented if testing 
+			   on a pre-setup virtual machine or on real hardware */
 
 			// Tests the floppy controller if a disk is inserted:
-			FDD_Test();
+			//FDD_Test();
 
 			// Tests the CD Drive if a disk is inserted:
-			ATAPI_Test();
 			
-			*/
+
+            //ATAPI_Test();
+			
+			
 			//AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
 			//HAL.COM1 = new Drivers.SerialPort1();
 			//HAL.COM2 = new Drivers.SerialPort2();
@@ -121,6 +123,7 @@ namespace Medli.Hardware
 			Console.WriteLine("Press any key to begin CD test...");
 			Console.ReadKey(true);
 			ATAPI.Init();
+            //ATAPI.Eject();
 			ATAPI.ReadBlock(1);
 			ATAPI.PrintBuffer();
 			Console.ReadKey(true);

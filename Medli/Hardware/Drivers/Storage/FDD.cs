@@ -74,7 +74,7 @@ namespace Medli.Hardware.Drivers.Storage
 
 		public static void HandleIRQ(ref Cosmos.Core.INTs.IRQContext aContext)
 		{
-			Console.WriteLine("IRQ6");
+			Console.WriteLine("IRQ6 Floppy controller");
 			IRQReceived = true;
 		}
 
@@ -87,9 +87,10 @@ namespace Medli.Hardware.Drivers.Storage
 		private static void ResetFloppyEx()
 		{
 			IRQReceived = false;
-			// Enter, then exit reset mode.
-			Write8((ushort)Controller.DSR, 0x02);
-			Write8((ushort)Controller.DOR, 0x08);//No IRQs
+            // Enter, then exit reset mode.
+            Write8((ushort)Controller.DOR, 0x00);
+			Write8((ushort)Controller.DOR, 0x0C);//No IRQs
+
 			for (int i = 0; i < 500; i++)
 			{
 				status = Read8((ushort)Controller.MSR);

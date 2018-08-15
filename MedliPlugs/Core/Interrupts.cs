@@ -1,5 +1,4 @@
 ﻿using IL2CPU.API.Attribs;
-using Medli.Common;
 using static Cosmos.Core.INTs;
 
 namespace MedliPlugs
@@ -36,8 +35,7 @@ namespace MedliPlugs
                 LastKnownAddress = LastKnownAddress + xHex[(int)((LastKnownAddressValue >> 4) & 0xF)];
                 LastKnownAddress = LastKnownAddress + xHex[(int)(LastKnownAddressValue & 0xF)];
             }
-
-            FatalError.Crash(aName, aDescription, LastKnownAddress, ctxinterrupt);
+            AIC_Framework.Bluescreen.Panic(aName, aDescription, LastKnownAddress, ref ctx);
         }
     }
 }

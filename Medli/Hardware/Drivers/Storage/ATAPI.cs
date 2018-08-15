@@ -7,7 +7,35 @@ namespace Medli.Hardware.Drivers.Storage
 {
 	public class ATAPI : BusIO
 	{
-		/*1F0 (Read and Write): Data Register
+        public enum Cmd : byte
+        {
+            // Test Unit Ready
+            TUR = 0x00,
+            // Enable Write Cache
+            EnableWC = 0x02,
+            Inquiry = 0x12,
+            // 28-bit verify
+            V28 = 0x40,
+            ReadPio = 0x20,
+            ReadPioExt = 0x24,
+            ReadDma = 0xC8,
+            ReadDmaExt = 0x25,
+            WritePio = 0x30,
+            WritePioExt = 0x34,
+            WriteDma = 0xCA,
+            WriteDmaExt = 0x35,
+            CacheFlush = 0xE7,
+            CacheFlushExt = 0xEA,
+            Packet = 0xA0,
+            IdentifyPacket = 0xA1,
+            Identify = 0xEC,
+            Read = 0xA8,
+            Eject = 0x1B,
+            ReadTOC = 0x43
+        }
+
+
+        /*1F0 (Read and Write): Data Register
           1F1 (Read): Error Register
           1F1 (Write): Features Register
           1F2 (Read and Write): Sector Count Register
@@ -19,10 +47,10 @@ namespace Medli.Hardware.Drivers.Storage
           1F7 (Write): Command Register
           3F6 (Read): Alternate Status Register
           3F6 (Write): Device Control Register*/
-		//Interrupt not working
-		// private const byte[] ReadToc = { 0x43 , 0, 1, 0, 0, 0, 0, 0, 12, 0x40, 0, 0 };
+        //Interrupt not working
+        // private const byte[] ReadToc = { 0x43 , 0, 1, 0, 0, 0, 0, 0, 12, 0x40, 0, 0 };
 
-		private const UInt16 SectorSize = 2048;
+        private const UInt16 SectorSize = 2048;
 		private const UInt32 LBA = 0;
 		public static UInt16[] DataBuffer = new UInt16[256];
 		public static bool IRQReceived = false;
@@ -45,14 +73,29 @@ namespace Medli.Hardware.Drivers.Storage
 			{
 				if (p != 255)
 				{
-					Console.Write(DataBuffer[p].ToString() + ",");
+					Console.Write(DataBuffer[p] + ",");
 				}
 				else
 				{
-					Console.WriteLine(DataBuffer[p].ToString());
+					Console.WriteLine(DataBuffer[p]);
 				}
 			}
 		}
+
+        public static void Eject()
+        {
+            IRQReceived = false;
+            Write8(0x1F7, (byte) Cmd.Packet);
+            byte[] eject = new byte[12]
+            {
+                0x1B, 0, 0, 0, 0x02, 0, 0, 0, 0, 0, 0, 0
+            };
+            for (int i = 0; i < eject.Length; i++)
+            {
+                Write8(0x1F0, eject[i]);
+            }
+
+        }
 
 		public static void ReadBlock(uint lba)
 		{
@@ -99,8 +142,9 @@ namespace Medli.Hardware.Drivers.Storage
 			Write8(0x1F0, 0);
 			Write8(0x1F0, 0);
 
-
-			while (IRQReceived == false) { }
+            Console.WriteLine("Sent ATAPI package");
+            Console.WriteLine(IRQReceived);
+            while (IRQReceived == true) ;
 
 			for (int i = 0; i < 256; i++)
 			{
