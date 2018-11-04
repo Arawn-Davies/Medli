@@ -1,5 +1,5 @@
 ﻿using IL2CPU.API.Attribs;
-using Medli.Common;
+using System;
 using static Cosmos.Core.INTs;
 
 namespace MedliPlugs
@@ -37,6 +37,38 @@ namespace MedliPlugs
             }
 
             FatalError.Crash(aName, aDescription, LastKnownAddress, ctxinterrupt);
+        }
+    }
+    class FatalError
+    {
+        public const string ErrorSplash = @"A fatal error has occurred and Medli was shutdown to protect your computer
+from further damage. If this is the first time you have seen this error, press
+any key to restart your computer. This error may have occurred due to newly
+installed or older failing hardware. 
+
+Error information can be found below:";
+
+        public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
+        {
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            Console.Clear();
+
+            Console.CursorTop += 1;
+            Console.WriteLine(ErrorSplash);
+            Console.CursorTop += 1;
+            // Print exception information
+            //Console.WriteLine("Kernel version: " + Kernel.KernelVersion);
+            Console.WriteLine("CPU Exception: " + ctxinterrupt);
+            Console.WriteLine("Exception: " + exception);
+            Console.WriteLine("Exception description: " + description);
+            if (lastknownaddress != "")
+            {
+                Console.WriteLine("Last known address: " + lastknownaddress);
+            }
+            Console.CursorTop = 24;
+            Console.WriteLine("Press any key to restart...");
+            Console.ReadKey(true);
+            Cosmos.System.Power.Reboot();
         }
     }
 }

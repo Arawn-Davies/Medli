@@ -46,9 +46,8 @@ namespace Medli
             }
             else if (command == "panic")
             {
-                int a = 10;
-                int b = 0;
-                Console.WriteLine((a / b).ToString());
+                
+                new Medli.Apps.Panic().Execute("");
             }
             else if (command == "help help")
             {

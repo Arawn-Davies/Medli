@@ -19,11 +19,8 @@ namespace Medli.Apps
 		public override void Execute(string param)
 		{
             // Manually initiates a kernel panic
-            //var xCtx = new Cosmos.Core.INTs.IRQContext();
-            //Core.INTs.HandleInterrupt_00(ref xCtx);
-            int a = 10;
-            int b = 0;
-			Console.WriteLine((a / b).ToString());
+            var xCtx = new Cosmos.Core.INTs.IRQContext();
+            Cosmos.Core.INTs.HandleInterrupt_00(ref xCtx);
 			//Console.WriteLine("This shouldn't print!");
 		}
 	}
