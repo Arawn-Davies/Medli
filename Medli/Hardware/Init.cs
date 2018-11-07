@@ -122,10 +122,10 @@ namespace Medli.Hardware
 		{
 			Console.WriteLine("Press any key to begin CD test...");
 			Console.ReadKey(true);
-			ATAPI.Init();
+			//ATAPI.Init();
             //ATAPI.Eject();
-			ATAPI.ReadBlock(1);
-			ATAPI.PrintBuffer();
+			//ATAPI.ReadBlock(1);
+			//ATAPI.PrintBuffer();
 			Console.ReadKey(true);
 		}
 		private static void CheckBus(ushort xBus)

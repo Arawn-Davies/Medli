@@ -13,14 +13,22 @@ namespace MDFS
 		/// Static List of DiskListings
 		/// </summary>
 		public static List<DiskListing> DiskListings = new List<DiskListing>();
+        
+        /// <summary>
+        /// Static List of PartitionListings
+        /// </summary>
+        public List<PartitionListing> PartitionListings = new List<PartitionListing>();
+
 		/// <summary>
 		/// The DiskListing's BlockDevice
 		/// </summary>
 		public IDE Disk;
+
 		/// <summary>
 		/// The DiskListing's Disk Number
 		/// </summary>
 		public int DiskNumber;
+
 		/// <summary>
 		/// Constructor for a Disk Listing
 		/// </summary>
@@ -28,10 +36,17 @@ namespace MDFS
 		/// <param name="disk"></param>
 		public DiskListing(int num, IDE disk)
 		{
-			DiskNumber = num;
+			DiskNumber = num + 1;
 			Disk = disk;
 			DiskListings.Add(this);
+            int pnum = 0;
+            foreach (PrimaryPartition Partition in disk.PrimaryPartitions)
+            {
+                pnum += 1;
+                PartitionListings.Add(new PartitionListing(pnum, this, Partition.Infos));
+            }
 		}
+
 		/// <summary>
 		/// String containing information about the Disk Listing
 		/// </summary>
@@ -39,9 +54,18 @@ namespace MDFS
 		{
 			get
 			{
-				return ("disk: " + DiskNumber + " Size: " + Disk.Size + " MBs");
+				return ("Disk: " + DiskNumber + " Size: " + Disk.Size + " MBs");
 			}
 		}
+
+        public void PartInfo()
+        {
+            foreach (PartitionListing partition in PartitionListings)
+            {
+                Console.WriteLine(partition.Info);
+            }
+        }
+
 		/// <summary>
 		/// Prints information about the DiskListing
 		/// </summary>
@@ -50,6 +74,32 @@ namespace MDFS
 			Console.WriteLine(Info);
 		}
 	}
+
+    public class PartitionListing
+    {
+        public DiskListing Disk;
+        public int PartNum;
+        public PartitionInfo Partition;
+        public uint Size;
+        public byte ID;
+
+        public PartitionListing(int num, DiskListing disk, PartitionInfo part)
+        {
+            this.Disk = disk;
+            this.PartNum = num;
+            this.Partition = part;
+            this.Size = part.TotalSize;
+            this.ID = part.SystemID;
+        }
+
+        public string Info
+        {
+            get
+            {
+                return ("Disk: " + this.Disk.DiskNumber + ", Partition: " + this.PartNum + ", Type: " + this.ID + ", Size: " + this.Size + "MBs");
+            }
+        }
+    }
 
 	/// <summary>
 	/// The Disk Utility class, containing methods and properties
@@ -74,7 +124,7 @@ namespace MDFS
 		/// <summary>
 		/// Defines the selected DiskListing
 		/// </summary>
-		public static DiskListing SelectedDisk;
+		public static DiskListing SelectedDisk = null;
 
         /// <summary>
         /// Main Disk Utility method, with the list of IDE devices passed as the parameter
@@ -91,13 +141,8 @@ namespace MDFS
 			Console.WriteLine("");
 			while (running == true)
 			{
-				PrintSelectedDisk();
 				Console.WriteLine("");
-				Console.WriteLine("1) List Disks");
-				Console.WriteLine("2) Select Disks");
-				Console.WriteLine("3) List Partitions");
-				Console.WriteLine("4) Create Partitions");
-				Console.WriteLine("5) Exit disk utility");
+				Console.WriteLine("1) List Disks 2) Select Disks 3) List Partitions\n4) Create Partitions 5) Exit disk utility");
                 Console.WriteLine("");
                 Console.Write(">");
                 string option = Console.ReadLine().ToLower();
@@ -111,7 +156,7 @@ namespace MDFS
 				}
 				else if (option == "3")
 				{
-					ListPartitions(SelectedDisk.Disk);
+                    DiskPartInfo();
 				}
 				else if (option == "4")
 				{
@@ -136,7 +181,7 @@ namespace MDFS
 			SelectedDisk = null;
 			do
 			{
-				Console.WriteLine("Which disk do you wish to use?");
+				Console.WriteLine("Which disk do you wish to use?\n");
 				ListDisks();
 				string nums = Console.ReadLine();
 				int num = int.Parse(nums) - 1;
@@ -170,34 +215,47 @@ namespace MDFS
 		/// Lists the partitions in the specified disk
 		/// </summary>
 		/// <param name="Device"></param>
-		public static void ListPartitions(IDE Device)
-		{
-			if (Device == null)
-			{
-				Console.WriteLine("No disk selected!");
-			}
-			else
-			{
-				MBR mbr = Device.MBR;
-				PartitionInfo[] partitions = mbr.Partitions;
-				if ((partitions.Length > 0) && (partitions.Length <= 4))
-				{
-					foreach (PartitionInfo part in partitions)
-					{
-						Console.WriteLine(part.SystemID);
-					}
-				}
-				else
-				{
-					Console.WriteLine("No partitions detected!");
-				}
-			}
-		}
+        public static void DiskPartInfo()
+        {
+            if (SelectedDisk != null)
+            {
+                SelectedDisk.PartInfo();
+            }
+            else
+            {
+                Console.WriteLine("No disk selected!\n");
+            }
+        }
 
-		/// <summary>
-		/// Creates partitions on the selected DiskListing
-		/// </summary>
-		public static void CreatePartitions()
+        //public static void ListPartitions(IDE Device)
+        //{
+        //	if (Device == null)
+        //	{
+        //		Console.WriteLine("No disk selected!\n");
+        //	}
+        //	else
+        //	{
+        //		MBR mbr = Device.MBR;
+        //		PartitionInfo[] partitions = mbr.Partitions;
+        //		if ((partitions.Length > 0) && (partitions.Length <= 4))
+        //		{
+        //			foreach (PartitionInfo part in partitions)
+        //			{
+        //				Console.WriteLine("Partition ID: " + part.SystemID + "  Size: " + part.TotalSize + " MBs");
+        //			}
+        //		}
+        //		else
+        //		{
+        //			Console.WriteLine("No partitions detected!\n");
+        //		}
+        //	}
+        //}
+
+
+        /// <summary>
+        /// Creates partitions on the selected disk
+        /// </summary>
+        public static void CreatePartitions()
 		{
 			if (SelectedDisk == null)
 			{
@@ -256,7 +314,7 @@ namespace MDFS
 					SelectedDisk.Disk.WriteBlock(StartBlock[i], 1, SelectedDisk.Disk.NewBlockArray(1));
 				}
 				SelectedDisk.Disk.WriteBlock(0, 1, data);
-				ListPartitions(SelectedDisk.Disk);
+                DiskPartInfo();
 			}
 		}
 	}

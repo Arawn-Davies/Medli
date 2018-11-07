@@ -15,6 +15,10 @@ namespace Medli
 			try
 			{
                 SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
+                for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
+                {
+                    new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
+                }
                 //KernelVariables.IsLive = true;
                 SystemBootEnvironment.Init();
                 Kernel.Hostname = "M_INIT";

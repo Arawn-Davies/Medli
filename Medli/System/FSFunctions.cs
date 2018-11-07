@@ -23,7 +23,7 @@ namespace Medli.System
         {
             try
             {
-                IsLiveSystem();
+                //IsLiveSystem();
                 MFSUtility.Main(SystemFunctions.IDEs);
             }
             catch (Exception ex)
