@@ -43,14 +43,14 @@ namespace Medli.Hardware
 		public static File[] Files;
 
 		public static Folder[] Folders;
-		public void InitFileSystem()
+		public void InitFileSystem(Core.Device aDevice)
 		{
-
+			Disk = aDevice;
 		}
 
-		public void ChangeDisk()
+		public void ChangeDisk(Core.Device aDevice)
 		{
-
+			Disk = aDevice;
 		}
 
 		public static void ReadFile(string Name)

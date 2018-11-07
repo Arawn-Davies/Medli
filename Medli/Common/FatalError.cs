@@ -30,7 +30,6 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
             Sys.Power.Reboot();
-            Kernel.Running = false;
 		}
 		public static void Crash(string exception, string description, string lastknownaddress, string ctxinterrupt)
 		{
@@ -53,7 +52,6 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
             Sys.Power.Reboot();
-            Kernel.Running = false;
 		}
 		public static void Crash(Exception ex)
 		{
@@ -78,7 +76,12 @@ Error information can be found below:";
 			Console.WriteLine("Press any key to restart...");
 			Console.ReadKey(true);
             Sys.Power.Reboot();
-            Kernel.Running = false;
 		}
+
+        public static void Panic (Cosmos.Core.INTs.IRQContext aContext)
+        {
+
+        }
+
     }
 }

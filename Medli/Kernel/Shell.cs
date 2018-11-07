@@ -20,7 +20,6 @@ namespace Medli
             // String arrays from the splitting of the shell loop parameter:
             string[] cmdCI_args = cmdCI.Split(' ');
             string[] cmd_args = command.Split(' ');
-
             if (command == "cls")
             {
                 Console.Clear();
@@ -39,6 +38,10 @@ namespace Medli
             {
                 //Applications.echo.Main(args);
                 Console.WriteLine(cmdCI_args[1]);
+            }
+            else if (command == "fdisk")
+            {
+                FS.MFSU();                
             }
             else if (command == "test_serial")
             {

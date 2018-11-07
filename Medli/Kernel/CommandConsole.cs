@@ -46,6 +46,7 @@ namespace Medli
 
 			while (running)
 			{
+
 				Console.Write(SystemFunctions.CurrentScreen + " /> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }

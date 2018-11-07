@@ -4,7 +4,6 @@ using System.Text;
 using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
-using Medli;
 using System.IO;
 
 namespace Medli
@@ -15,6 +14,11 @@ namespace Medli
 		{
 			try
 			{
+                SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
+                for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
+                {
+                    new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
+                }
                 //KernelVariables.IsLive = true;
                 SystemBootEnvironment.Init();
                 Kernel.Hostname = "M_INIT";
@@ -22,7 +26,7 @@ namespace Medli
 				Console.BackgroundColor = ConsoleColor.Blue;
                 Kernel.Running = true;
 				Console.Clear();
-                //Hardware.AddDisks.Detect();
+                Hardware.AddDisks.Detect();
                 Console.Write(Kernel.logo);
                 Console.WriteLine(Kernel.welcome);
 				Console.WriteLine("");
@@ -33,9 +37,7 @@ namespace Medli
 			}
 			catch (Exception ex)
 			{
-                Kernel.Running = false;
 				FatalError.Crash(ex);
-				Console.ReadKey(true);
 			}
 		}
 
