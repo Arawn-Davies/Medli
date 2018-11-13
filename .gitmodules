@@ -1,0 +1,3 @@
+[submodule "AIC-Framework"]
+	path = AIC-Framework
+	url = git://github.com/Siaranite-Solutions/AIC-Framework.git
