@@ -79,7 +79,7 @@ namespace Medli.System.MDFS
         /// The filesystem path of the entry
         /// </summary>
         protected String _path;
-
+        
         /// <summary>
         /// The partition upon which the entry resides
         /// </summary>
@@ -90,6 +90,9 @@ namespace Medli.System.MDFS
         /// </summary>
         private static int MaxFNL = 255;
 
+        /// <summary>
+        /// Path of the FS entry
+        /// </summary>
         public String Path
         {
             get
@@ -134,6 +137,48 @@ namespace Medli.System.MDFS
             {
                 Utilities.CopyByteToByte(BitConverter.GetBytes(value), 0, sBlock.Content, MaxFNL + (int)Attrib, 1, false);
             }
+        }
+
+        /// <summary>
+        /// Creates a new FS entry at the specified partititon block
+        /// </summary>
+        /// <param name="_part"></param>
+        /// <param name="block"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected static MDBlock CreateEntry(Partition _part, MDBlock block, String name)
+        {
+            if (block != null && ((!Utilities.StringContains(name, UnacceptableChars)) || block.BlockNumber == 0))
+            {
+                block.Used = true;
+                block.NextBlock = 0;
+                block.TotalSize = 0;
+                char[] nm = name.ToCharArray();
+                for (int i = 0; i < nm.Length; i++)
+                {
+                    block.Content[i] = (byte)nm[i];
+                }
+                if (block.BlockNumber != 0)
+                {
+                    Utilities.CopyByteToByte(BitConverter.GetBytes(DateTime.Now.UNIXTimeStamp), 0, block.Content, MaxFNL + (int)EntryAttribute.DtC, 8, false);
+                }
+                block.Content[nm.Length] = 0;
+                block.ContentSize = (uint)nm.Length;
+                MDBlock.Write(_part, block);
+                return block;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Creates a new FS entry at the next available partition block
+        /// </summary>
+        /// <param name="_part"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        protected static MDBlock CreateEntry(Partition _part, String name)
+        {
+            return CreateEntry(_part, MDBlock.GetFreeBlock(_part), name);
         }
     }
 }
