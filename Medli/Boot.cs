@@ -27,12 +27,13 @@ namespace Medli
                 Kernel.Running = true;
 				Console.Clear();
                 Hardware.AddDisks.Detect();
+                Kernel.FileSystemINIT();
                 Console.Write(Kernel.logo);
                 Console.WriteLine(Kernel.welcome);
 				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
-				Time.printDate();
-				Time.printTime();
+				DateTime.printDate();
+				DateTime.printTime();
 				SystemFunctions.PrintInfo();
 			}
 			catch (Exception ex)

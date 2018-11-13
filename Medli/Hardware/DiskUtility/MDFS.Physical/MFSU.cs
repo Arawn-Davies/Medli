@@ -321,5 +321,59 @@ namespace MDFS
                 DiskPartInfo();
             }
         }
+
+        public static void CreatePartitions(IDE[] IDEs)
+        {
+            int PartitionNumber = 0;
+            ulong DisplayCount = SelectedDisk.Disk.BlockCount - 1;
+            MDUtils.WriteLine("How many primary partitions do you want to have? (Max. 4)");
+            do
+            {
+                String nums = MDUtils.ReadLine("Insert number:");
+                PartitionNumber = int.Parse(nums);
+            }
+            while (PartitionNumber == 0 || PartitionNumber > 4);
+
+            uint mbrpos = 446;
+            Byte[] type = new Byte[] { 0x00, 0x00, 0x00, 0x00 };
+            uint[] StartBlock = new uint[] { 1, 0, 0, 0 };
+            uint[] BlockNum = new uint[] { 0, 0, 0, 0 };
+            for (int i = 0; i < PartitionNumber; i++)
+            {
+                type[i] = 0xFA;
+                String nums = MDUtils.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DisplayCount - (uint)(PartitionNumber - (i + 1)))).ToString() + "): ");
+                uint num = (uint)int.Parse(nums);
+                if (num >= 0 && num <= DisplayCount - (uint)(PartitionNumber - (i + 1)))
+                {
+                    BlockNum[i] = num;
+                    if (i < PartitionNumber - 1)
+                    {
+                        StartBlock[i + 1] = (num) + StartBlock[i];
+                    }
+                    DisplayCount = DisplayCount - (num);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            Byte[] data = SelectedDisk.Disk.NewBlockArray(1);
+            SelectedDisk.Disk.ReadBlock(0, 1, data);
+            for (int i = 0; i < 4; i++)
+            {
+                mbrpos += 4;
+                data[mbrpos] = type[i];
+                mbrpos += 4;
+                Byte[] b = BitConverter.GetBytes(StartBlock[i]);
+                Utilities.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
+                mbrpos += 4;
+                b = BitConverter.GetBytes(BlockNum[i]);
+                Utilities.CopyByteToByte(b, 0, data, (int)mbrpos, b.Length);
+                mbrpos += 4;
+                SelectedDisk.Disk.WriteBlock(StartBlock[i], 1, SelectedDisk.Disk.NewBlockArray(1));
+            }
+            SelectedDisk.Disk.WriteBlock(0, 1, data);
+            DiskPartInfo();
+        }
     }
 }

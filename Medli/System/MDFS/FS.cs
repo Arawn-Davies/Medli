@@ -9,15 +9,9 @@ namespace Medli.System.MDFS
 {
     public class MDFileSystem
     {
-        public static List<MDFileSystem> fileSystems = new List<MDFileSystem>();
-
-#warning NotImplemented Property - MDFS ID
-        // The following property is kept private until a working implementation is finished
         /// <summary>
-        /// The filesystem's ID
+        /// The separator char that is used to separate files and directories from their parent
         /// </summary>
-        private int ID;
-
         public static String separator = "/";
 
         /// <summary>
@@ -64,24 +58,22 @@ namespace Medli.System.MDFS
             }
         }
 
-
-#warning NotImplemented Method - MapFS(MDFileSystem)
-        // The following method is kept private until a working implementation is finished.
         /// <summary>
         /// Map a filesystem based on it's ID to the specified path
         /// </summary>
         /// <param name="fsPath"></param>
         /// <param name="fileSystem"></param>
-        private static void MapFS(string fsPath, int id, MDFileSystem fileSystem)
+        public static void MapFS(string fsPath, MDFileSystem fileSystem)
         {
-            foreach (MDFileSystem mDFS in fileSystems)
-            {
-                if (id == mDFS.ID)
-                {
-
-                }
-            }
             cFS = fileSystem;
+        }
+
+        public MDDirectory Root
+        {
+            get
+            {
+                return new MDDirectory(_partition, 1, separator);
+            }
         }
 
         /// <summary>
@@ -153,15 +145,8 @@ namespace Medli.System.MDFS
                 if (!GenerateFS())
                 {
                     // Error - unable to create a new filesystem on specified partition
+                    throw new Exception("Unable to create a new filesystem on the specified partition");
                 }
-                else
-                {
-                    fileSystems.Add(this);
-                }
-            }
-            else
-            {
-                fileSystems.Add(this);
             }
         }
 
