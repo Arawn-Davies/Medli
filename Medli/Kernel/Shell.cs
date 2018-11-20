@@ -20,37 +20,13 @@ namespace Medli
             // String arrays from the splitting of the shell loop parameter:
             string[] cmd_args = cmd.Split(' ');
             string[] cmdCI_args = cmdCI.Split(' ');
-            
+
             if (cmd == "")
             {
 
             }
 
-            #region Shell Specifics
-            else if (cmd.StartsWith("echo "))
-            {
-                //Applications.echo.Main(args);
-                Console.WriteLine(cmdCI_args[1]);
-            }
-            else if (cmd == "pause")
-            {
-                Extensions.PressAnyKey();
-            }
-            else if (cmd.StartsWith("pause"))
-            {
-                Extensions.PressAnyKey(cmdCI_args[1]);
-            }
-            else if (cmd == "cls")
-            {
-                Console.Clear();
-            }
-            else if (cmd == "newshell")
-            {
-                Console.Clear();
-                CommandConsole newConsole = new CommandConsole();
-                newConsole.Initialize();
-            }
-            #endregion
+            
 
             #region Filesystem
             else if (cmd == "cd ..")
@@ -127,7 +103,7 @@ namespace Medli
             else if (cmd.StartsWith("$"))
             {
                 //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
+                usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI.Remove(cmdCI_args[0].Length + 1));
             }
 
             #endregion
@@ -285,6 +261,31 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             else if (cmd == "miv")
             {
                 MIV.StartMIV();
+            }
+            #endregion
+
+            #region Shell Specifics
+            else if (cmd.StartsWith("echo "))
+            {
+                Console.WriteLine(cmdCI.Remove(0, 5));
+            }
+            else if (cmd == "pause")
+            {
+                Extensions.PressAnyKey();
+            }
+            else if (cmd.StartsWith("pause"))
+            {
+                Extensions.PressAnyKey(cmdCI_args[1]);
+            }
+            else if (cmd == "cls")
+            {
+                Console.Clear();
+            }
+            else if (cmd == "newshell")
+            {
+                Console.Clear();
+                CommandConsole newConsole = new CommandConsole();
+                newConsole.Initialize();
             }
             #endregion
 

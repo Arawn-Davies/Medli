@@ -69,21 +69,35 @@ namespace Medli
         }
         public static void SaveVars()
         {
-            if (File.Exists(varsfile))
+            try
             {
-                using (StreamWriter file = new StreamWriter(File.OpenWrite(varsfile)))
+                if (File.Exists(varsfile))
                 {
+                    StreamWriter file = new StreamWriter(File.OpenWrite(varsfile));
                     foreach (var entry in usr_var)
                     {
                         file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
                     }
+                    file.Close();
+                }
+                else
+                {
+                    Console.WriteLine("Cannot find the file that stores the variable file.");
+                    Console.WriteLine("The system will now save the variables to the default file.");
+                    StreamWriter file = new StreamWriter(File.OpenWrite(varsfile));
+                    foreach (var entry in usr_var)
+                    {
+                        file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
+                    }
+                    file.Close();
+
                 }
             }
-            else
+            catch
             {
-                Console.WriteLine("Cannot find the file that stores the variable file...");
-                Console.WriteLine("The system will now ");
+
             }
+
 
         }
     }
