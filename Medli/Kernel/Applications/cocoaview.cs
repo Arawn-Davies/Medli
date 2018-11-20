@@ -42,7 +42,7 @@ namespace Medli.Applications
             {
                 Console.WriteLine(ex.Message);
             }
-            MEnvironment.PressAnyKey();
+            Extensions.PressAnyKey();
         }
     }
 }

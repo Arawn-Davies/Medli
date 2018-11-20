@@ -70,7 +70,9 @@ namespace Medli.Common
 
 		public static string Temp = Root + @"Temp";
 
-		public static string CurrentDirectory = Root;
+        public static string Separator = @"\";
+
+        public static string CurrentDirectory = Root;
 
 	}
 }

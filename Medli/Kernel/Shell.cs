@@ -15,106 +15,69 @@ namespace Medli
         public static void Prompt(string cmdline)
         {
             // String variables of the parameters for shell loop:
-            var command = cmdline.ToLower();
+            var cmd = cmdline.ToLower();
             var cmdCI = cmdline;
             // String arrays from the splitting of the shell loop parameter:
+            string[] cmd_args = cmd.Split(' ');
             string[] cmdCI_args = cmdCI.Split(' ');
-            string[] cmd_args = command.Split(' ');
-            if (command == "cls")
+            
+            if (cmd == "")
+            {
+
+            }
+
+            #region Shell Specifics
+            else if (cmd.StartsWith("echo "))
+            {
+                //Applications.echo.Main(args);
+                Console.WriteLine(cmdCI_args[1]);
+            }
+            else if (cmd == "pause")
+            {
+                Extensions.PressAnyKey();
+            }
+            else if (cmd.StartsWith("pause"))
+            {
+                Extensions.PressAnyKey(cmdCI_args[1]);
+            }
+            else if (cmd == "cls")
             {
                 Console.Clear();
             }
-            else if (command == "newshell")
+            else if (cmd == "newshell")
             {
                 Console.Clear();
                 CommandConsole newConsole = new CommandConsole();
                 newConsole.Initialize();
             }
-            else if (command.StartsWith("echo $"))
-            {
-                //Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
-            }
-            else if (cmdline.StartsWith("echo "))
-            {
-                //Applications.echo.Main(args);
-                Console.WriteLine(cmdCI_args[1]);
-            }
-            else if (command == "fdisk")
-            {
-                FS.MFSU();                
-            }
-            else if (command == "test_serial")
-            {
-                //Hardware.HAL.COM2.WriteLine("Hello, World!");
-            }
-            else if (command == "panic")
-            {
-                
-                new Medli.Apps.Panic().Execute("");
-            }
-            else if (command == "help help")
-            {
-                //Applications.help.RunHelp();
-            }
-            else if (command == "shutdown")
-            {
-                //usr_vars.SaveVars();
-                Sys.Power.Shutdown();
-            }
-            else if (command == "cpu_flags")
-            {
-                //CPUInfo.ListFlags();
-            }
-            else if (command == "cpu_info")
-            {
-                //CPUInfo.LSCPU();
-            }
-            else if (command == "reboot")
-            {
-                //usr_vars.SaveVars();
-                Sys.Power.Reboot();
-            }
-            else if (command == "meminfo")
-            {
-                SystemFunctions.PrintTotalRAM();
-            }
-            else if (command == "licence")
-            {
-                Console.WriteLine("");
-            }
-            else if (command == "time")
-            {
-                Time.printTime();
-            }
-            else if (command == "date")
-            {
-                Time.printDate();
-            }
-            else if (command == "host")
-            {
-                Console.WriteLine(Kernel.Host);
-            }
-            else if (command == "lspci")
-            {
-                SystemFunctions.lspci();
-            }
-            else if (command == "cd ..")
+            #endregion
+
+            #region Filesystem
+            else if (cmd == "cd ..")
             {
                 FS.CDP();
             }
-            else if (command.StartsWith("cd "))
+            else if (cmd == "list_vols")
+            {
+                FS.ListVols();
+            }
+            else if (cmd == "list_vol")
+            {
+                FS.ListVol();
+            }
+            else if (cmd.StartsWith("cd "))
             {
                 FS.cd(cmdCI.Remove(0, 3));
             }
-            else if (command == "dir")
+            else if (cmd == "dir")
             {
                 FS.Dir();
             }
-            else if (command.StartsWith("dir "))
+            else if (cmd.StartsWith("dir "))
             {
                 FS.Dir(cmdCI_args[1]);
             }
-            else if (command.StartsWith("copy "))
+            else if (cmd.StartsWith("copy "))
             {
                 if (File.Exists(cmdCI_args[1]))
                 {
@@ -125,19 +88,11 @@ namespace Medli
                     Console.WriteLine("File does not exist");
                 }
             }
-            else if (command == "list_vols")
-            {
-                FS.ListVols();
-            }
-            else if (command == "list_vol")
-            {
-                FS.ListVol();
-            }
-            else if (command.StartsWith("mv"))
+            else if (cmd.StartsWith("mv"))
             {
                 FS.mv(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
             }
-            else if (command.StartsWith("rm "))
+            else if (cmd.StartsWith("rm "))
             {
                 if (cmd_args[1] == "-r")
                 {
@@ -148,61 +103,149 @@ namespace Medli
                     FS.del(cmdCI.Remove(0, 3), false);
                 }
             }
-            else if (command == "ram_info")
-            {
-                SystemFunctions.PrintInfo();
-            }
-            else if (command == "ram_used")
-            {
-                SystemFunctions.PrintUsedRAM();
-            }
-            else if (command == "ram_free")
-            {
-                SystemFunctions.PrintFreeRAM();
-            }
-            else if (command == "ram_total")
-            {
-                SystemFunctions.PrintTotalRAM();
-            }
-            else if (command.StartsWith("mkdir"))
+            else if (cmd.StartsWith("mkdir"))
             {
                 FS.Makedir(Directory.GetCurrentDirectory() + cmdCI_args[1]);
             }
-            else if (command == "cowsay")
+            #endregion
+
+            #region User Variables
+            else if (cmd.StartsWith("echo $"))
+            {
+                Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
+            }
+            else if (cmd == "savevars")
+            {
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.SaveVars();
+            }
+            else if (cmd == "loadvars")
+            {
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.ReadVars();
+            }
+            else if (cmd.StartsWith("$"))
+            {
+                //Console.WriteLine("Dictionaries not yet implemented!");
+                usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
+            }
+
+            #endregion
+
+            #region System Utilities
+            else if (cmd == "fdisk")
+            {
+                FS.MFSU();
+            }
+            else if (cmd == "test_serial")
+            {
+                //Hardware.HAL.COM2.WriteLine("Hello, World!");
+            }
+            else if (cmd == "panic")
+            {
+
+                new Medli.Apps.Panic().Execute("");
+            }
+            else if (cmd == "shutdown")
+            {
+                usr_vars.SaveVars();
+                Sys.Power.Shutdown();
+            }
+            else if (cmd == "cpu_flags")
+            {
+                //CPUInfo.ListFlags();
+            }
+            else if (cmd == "cpu_info")
+            {
+                //CPUInfo.LSCPU();
+            }
+            else if (cmd == "reboot")
+            {
+                usr_vars.SaveVars();
+                Sys.Power.Reboot();
+            }
+            else if (cmd == "meminfo")
+            {
+                SystemFunctions.PrintTotalRAM();
+            }
+            else if (cmd == "licence")
+            {
+                Console.WriteLine("");
+            }
+            else if (cmd == "time")
+            {
+                Time.printTime();
+            }
+            else if (cmd == "date")
+            {
+                Time.printDate();
+            }
+            else if (cmd == "host")
+            {
+                Console.WriteLine(Kernel.Host);
+            }
+            else if (cmd == "lspci")
+            {
+                SystemFunctions.lspci();
+            }
+            else if (cmd == "ram_info")
+            {
+                SystemFunctions.PrintInfo();
+            }
+            else if (cmd == "ram_used")
+            {
+                SystemFunctions.PrintUsedRAM();
+            }
+            else if (cmd == "ram_free")
+            {
+                SystemFunctions.PrintFreeRAM();
+            }
+            else if (cmd == "ram_total")
+            {
+                SystemFunctions.PrintTotalRAM();
+            }
+            #endregion
+
+            #region User Utilities
+            else if (cmd == "help help")
+            {
+                //Applications.help.RunHelp();
+            }
+            else if (cmd == "cowsay")
             {
                 Cowsay.Cow("Say something using 'Cowsay <message>'");
                 Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
 sodomized-sheep for, you guessed it, a sodomized-sheep");
             }
-            else if (command.StartsWith("cowsay"))
+            else if (cmd.StartsWith("cowsay"))
             {
                 if (cmd_args[1] == "-f")
                 {
                     if (cmd_args[2] == "cow")
                     {
-                        Cowsay.Cow(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                        Cowsay.Cow(cmd.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
                     }
                     else if (cmd_args[2] == "tux")
                     {
-                        Cowsay.Tux(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                        Cowsay.Tux(cmd.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
                     }
                     else if (cmd_args[2] == "sodomized-sheep")
                     {
-                        Cowsay.SodomizedSheep(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                        Cowsay.SodomizedSheep(cmd.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
                     }
                 }
                 else
                 {
-                    Cowsay.Cow(command.Substring(7));
+                    Cowsay.Cow(cmd.Substring(7));
                 }
             }
-            else if (command.StartsWith("cedit "))
+            else if (cmd.StartsWith("cedit "))
             {
                 Cpedit.Run(cmd_args[1]);
             }
-            else if (command.StartsWith("devenv "))
+            else if (cmd.StartsWith("devenv "))
             {
-                if (command.EndsWith(".ma"))
+                if (cmd.EndsWith(".ma"))
                 {
                     MIDE.Run(cmd_args[1]);
                 }
@@ -211,46 +254,45 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                     Console.WriteLine("The IDE may only be used to create (.ma) Medli application files.");
                 }
             }
-            else if (command == "cview")
+            else if (cmd == "cview")
             {
                 Console.WriteLine("cview Usage: cview <file>");
             }
-            else if (command.StartsWith("cview "))
+            else if (cmd.StartsWith("cview "))
             {
                 Cpview.ViewFile(cmd_args[1]);
             }
-            else if (command.StartsWith("launch "))
+            else if (cmd.StartsWith("launch "))
             {
                 Console.Clear();
                 AppLauncher.PreExecute(cmd_args[1]);
             }
-            else if (command.StartsWith("run "))
+            else if (cmd.StartsWith("run "))
             {
                 if (!File.Exists(Paths.CurrentDirectory + @"\" + cmd_args[1]))
                 {
-                    InvalidCommand(command.Remove(0, 4), 2);
+                    InvalidCommand(cmd.Remove(0, 4), 2);
                 }
                 else
                 {
-                        Mdscript.Execute(Paths.CurrentDirectory + @"\" + cmd_args[1]);
+                    Mdscript.Execute(Paths.CurrentDirectory + @"\" + cmd_args[1]);
                 }
             }
-            else if (command.StartsWith("miv "))
+            else if (cmd.StartsWith("miv "))
             {
                 MIV.StartMIV(cmd_args[1]);
             }
-            else if (command == "miv")
+            else if (cmd == "miv")
             {
                 MIV.StartMIV();
             }
-            else if (command == "")
-            {
+            #endregion
 
-            }
             else
             {
                 InvalidCommand(cmdCI, 1);
             }
+
         }
 
         public static void InvalidCommand(string args, int errorlvl)
@@ -301,22 +343,6 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			{
 				Internals.UserManagementConsole.Run();
 			}
-			else if (command.StartsWith("$"))
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI_args[1]);
-			}
-			else if (command.StartsWith("run "))
-			{
-				if (!File.Exists(KernelVariables.currentdir + cmdCI_args[1]))
-				{
-					Console.WriteLine("File doesn't exist!");
-				}
-				else
-				{
-					Apps.ApolloScript.Run(KernelVariables.currentdir + cmdCI_args[1]);
-				}
-			}
 			else if (command.StartsWith("edit "))
 			{
 				Apps.TextEditor.Run(cmdCI_args[1]);
@@ -331,35 +357,15 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 			{
 				Apps.TextViewer.Run(cmdCI_args[1]);
 			}
-			else if (command == "miv")
-			{
-				Apps.MIV.Run();
-			}
-			else if (command.StartsWith("miv "))
-			{
-				Apps.MIV.Run(cmdCI.Remove(0, 4));
-			}
 			else if (command == "help")
 			{
 				Apps.Help.Run();
 			}
-			else if (command == "savevars")
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				usr_vars.SaveVars();
-			}
-			else if (command == "loadvars")
-			{
-				//Console.WriteLine("Dictionaries not yet implemented!");
-				usr_vars.ReadVars();
-			}
+			
 			else if (command.StartsWith("help "))
 			{
 				Apps.Help.Specific(cmd_args[1]);
 			}
-			else if (command == "pause")
-			{
-				Environment_variables.PressAnyKey();
-			}
+
 
 			*/

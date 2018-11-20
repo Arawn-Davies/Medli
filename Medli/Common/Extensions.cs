@@ -22,13 +22,20 @@ namespace Medli.Common
 			return num1;
 		}
 
-		public static void PAKTC()
-		{
-			Console.WriteLine("Press any key to continue...");
-			Console.ReadKey(true);
-		}
+        /// <summary>
+        /// Small and simple method saves typing this method out over and over again - only has to be called once
+        /// </summary>
+        public static void PressAnyKey()
+        {
+            PressAnyKey("Press any key to continue...");
+        }
+        public static void PressAnyKey(string text)
+        {
+            Console.WriteLine(text);
+            Console.ReadKey(true);
+        }
 
-		public static byte[] AddToArray (byte[] bArray, byte NewByte)
+        public static byte[] AddToArray (byte[] bArray, byte NewByte)
 		{
 			byte[] newArray = new byte[bArray.Length + 1];
 			bArray.CopyTo(newArray, 1);

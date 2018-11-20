@@ -65,7 +65,7 @@ namespace Medli.Applications
             Console.WriteLine("$SAVE - Saves the current file");
             Console.WriteLine("$RESET - Resets the IDE and file to start again from fresh");
             Console.WriteLine("$RUN - Saves the file and executes it in the Medli Application Launcher");
-            MEnvironment.PressAnyKey("Press any key to begin!");
+            Extensions.PressAnyKey("Press any key to begin!");
             DrawScreen();
             text = "";
             AppInfo();
@@ -107,7 +107,7 @@ namespace Medli.Applications
                     }
                     File.WriteAllText(Paths.CurrentDirectory + @"\" + file, text);
                     running = false;
-                    MEnvironment.PressAnyKey();
+                    Extensions.PressAnyKey();
                 }
                 if (line == "$RUN")
                 {
@@ -119,7 +119,7 @@ namespace Medli.Applications
                     running = false;
                     Console.Clear();
                     AppLauncher.PreExecute(file);
-                    MEnvironment.PressAnyKey(); 
+                    Extensions.PressAnyKey(); 
                 }
                 text += (Environment.NewLine + line);
                 if (Console.CursorTop == 24)
