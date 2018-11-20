@@ -6,7 +6,7 @@ using Sys = Cosmos.System;
 using Cosmos.System.FileSystem.VFS;
 using Medli.Common;
 using Medli.System;
-using Medli.Apps;
+using Medli.Applications;
 
 namespace Medli
 {
@@ -168,13 +168,118 @@ namespace Medli
             {
                 FS.Makedir(Directory.GetCurrentDirectory() + cmdCI_args[1]);
             }
+            else if (command == "cowsay")
+            {
+                Cowsay.Cow("Say something using 'Cowsay <message>'");
+                Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
+sodomized-sheep for, you guessed it, a sodomized-sheep");
+            }
+            else if (command.StartsWith("cowsay"))
+            {
+                if (cmd_args[1] == "-f")
+                {
+                    if (cmd_args[2] == "cow")
+                    {
+                        Cowsay.Cow(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                    }
+                    else if (cmd_args[2] == "tux")
+                    {
+                        Cowsay.Tux(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                    }
+                    else if (cmd_args[2] == "sodomized-sheep")
+                    {
+                        Cowsay.SodomizedSheep(command.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
+                    }
+                }
+                else
+                {
+                    Cowsay.Cow(command.Substring(7));
+                }
+            }
+            else if (command.StartsWith("cedit "))
+            {
+                Cpedit.Run(cmd_args[1]);
+            }
+            else if (command.StartsWith("devenv "))
+            {
+                if (command.EndsWith(".ma"))
+                {
+                    MIDE.Run(cmd_args[1]);
+                }
+                else
+                {
+                    Console.WriteLine("The IDE may only be used to create (.ma) Medli application files.");
+                }
+            }
+            else if (command == "cview")
+            {
+                Console.WriteLine("cview Usage: cview <file>");
+            }
+            else if (command.StartsWith("cview "))
+            {
+                Cpview.ViewFile(cmd_args[1]);
+            }
+            else if (command.StartsWith("launch "))
+            {
+                Console.Clear();
+                AppLauncher.PreExecute(cmd_args[1]);
+            }
+            else if (command.StartsWith("run "))
+            {
+                if (!File.Exists(Paths.CurrentDirectory + @"\" + cmd_args[1]))
+                {
+                    InvalidCommand(command.Remove(0, 4), 2);
+                }
+                else
+                {
+                        Mdscript.Execute(Paths.CurrentDirectory + @"\" + cmd_args[1]);
+                }
+            }
+            else if (command.StartsWith("miv "))
+            {
+                MIV.StartMIV(cmd_args[1]);
+            }
+            else if (command == "miv")
+            {
+                MIV.StartMIV();
+            }
             else if (command == "")
             {
 
             }
             else
             {
-                Console.WriteLine("Invalid command: " + cmdCI);
+                InvalidCommand(cmdCI, 1);
+            }
+        }
+
+        public static void InvalidCommand(string args, int errorlvl)
+        {
+            if (errorlvl == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(args);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(" is not a valid command, see 'help' for a list of commands");
+            }
+            else if (errorlvl == 2)
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("The file ");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write(args);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(" could not be found!");
+
+            }
+            else if (errorlvl == 3)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else if (errorlvl == 4)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
             }
         }
     }
@@ -187,16 +292,7 @@ namespace Medli
 				Console.WriteLine("TUI Session closed. Press any key to continue...");
 				Console.ReadKey(true);
 			}
-			else if (command == "cowsay")
-			{
-				Apps.Cowsay.Cow("Say something using 'Cowsay <message>'");
-				Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
-sodomized-sheep for, you guessed it, a sodomized-sheep");
-			}
-			else if (command.StartsWith("cowsay"))
-			{
-				Apps.Cowsay.Run(cmdCI_args);
-			}
+			
 			else if (command == "print vars")
 			{
 
