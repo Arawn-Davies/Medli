@@ -97,13 +97,8 @@ namespace Medli.System
 				IsLiveSystem();
 				if (File.Exists(src))
 				{
-					//Small little hack
 					File.Copy(src, dest);
 					File.Delete(src);
-
-					//Do nowt for now - File.Move isn't plugged
-					//Console.WriteLine("File.Move needs plugging!");
-					//File.Move(src, dest);
 				}
 				else
 				{

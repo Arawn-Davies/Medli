@@ -8,13 +8,23 @@ namespace Medli
 {
     public class usr_vars
     {
-        public static string varsfile = Paths.System + @"\" + "vars.sys";
+        public static string varsfile = Paths.System + @"\vars.txt";
         public static Dictionary<string, string> usr_var = new Dictionary<string, string>();
-        public static void Store(string variable, string contents)
+        public static void Store(string variable, string contents, bool force)
         {
             if (usr_var.ContainsKey(variable))
             {
-                Console.WriteLine("Key already exists!");
+                if (force == true)
+                {
+                    usr_var.Remove(variable);
+
+                    contents = contents.Replace(" -u", "");
+                    usr_var.Add(variable, contents);
+                }
+                else
+                {
+                    Console.WriteLine("Key already exists!");
+                }
             }
             else
             {
@@ -38,26 +48,34 @@ namespace Medli
         {
             foreach (var key in usr_vars.usr_var)
             {
-                Console.Write("Key:" + key.Key);
-                Console.WriteLine(" - Value: " + key.Value);
+                Console.Write("| Key:" + key.Key);
+                Console.WriteLine(" | Value: " + key.Value + "|");
             }
         }
         public static void ReadVars()
         {
             try
             {
-                string[] vars = File.ReadAllLines(varsfile);
-                foreach (string variable in vars)
+                if (File.Exists(varsfile))
                 {
-                    string[] varcontent = variable.Split(' ');
-                    if (!usr_var.ContainsKey(variable))
+                    string[] vars = File.ReadAllLines(varsfile);
+                    for (int i = 1; i < vars.Length; i++)
                     {
-                        usr_var.Add(variable, varcontent[1]);
+                        string[] varcontent = vars[i].Split('=');
+                        if (!usr_var.ContainsKey(varcontent[0]))
+                        {
+                            Console.WriteLine(varcontent[0] + ":" + varcontent[1]);
+                            usr_var.Add(varcontent[0], varcontent[1]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Variable already loaded: " + varcontent[0]);
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Variable already loaded: " + varcontent[0]);
-                    }
+                }
+                else
+                {
+                    Console.WriteLine("File does not exist! The user probably hasn't made any variables");
                 }
             }
             catch (Exception ex)
@@ -67,35 +85,37 @@ namespace Medli
             }
 
         }
+
+        public static void Clear()
+        {
+            usr_var.Clear();
+        }
+
         public static void SaveVars()
         {
             try
             {
+
                 if (File.Exists(varsfile))
                 {
-                    StreamWriter file = new StreamWriter(File.OpenWrite(varsfile));
                     foreach (var entry in usr_var)
                     {
-                        file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
+                        File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
                     }
-                    file.Close();
                 }
                 else
                 {
                     Console.WriteLine("Cannot find the file that stores the variable file.");
                     Console.WriteLine("The system will now save the variables to the default file.");
-                    StreamWriter file = new StreamWriter(File.OpenWrite(varsfile));
                     foreach (var entry in usr_var)
                     {
-                        file.WriteLine("\n{0} {1}", entry.Key, entry.Value);
+                        File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
                     }
-                    file.Close();
-
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
 
 

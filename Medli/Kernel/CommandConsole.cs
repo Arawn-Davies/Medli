@@ -36,7 +36,10 @@ namespace Medli
 			_commands.Add(new Script());
 			//_commands.Add(new Cosmos.Shell.Console.Commands.TypeCommand());
 			_commands.Add(new Apps.Version());
-			_commands.Add(new LSPCI());
+			_commands.Add(new Get());
+			_commands.Add(new Reboot());
+			_commands.Add(new Shutdown());
+			_commands.Add(new mkdir());
 			_commands.Add(new Multiscreen());
 			_commands.Add(new Copy());
 			_commands.Add(new Move());

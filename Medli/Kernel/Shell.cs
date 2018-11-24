@@ -7,6 +7,7 @@ using Cosmos.System.FileSystem.VFS;
 using Medli.Common;
 using Medli.System;
 using Medli.Applications;
+using Medli.Apps;
 
 namespace Medli
 {
@@ -45,65 +46,35 @@ namespace Medli
             {
                 FS.cd(cmdCI.Remove(0, 3));
             }
-            else if (cmd == "dir")
-            {
-                FS.Dir();
-            }
-            else if (cmd.StartsWith("dir "))
-            {
-                FS.Dir(cmdCI_args[1]);
-            }
-            else if (cmd.StartsWith("copy "))
-            {
-                if (File.Exists(cmdCI_args[1]))
-                {
-                    File.Copy(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
-                }
-                else
-                {
-                    Console.WriteLine("File does not exist");
-                }
-            }
-            else if (cmd.StartsWith("mv"))
-            {
-                FS.mv(Paths.CurrentDirectory + cmdCI_args[1], cmdCI_args[2]);
-            }
-            else if (cmd.StartsWith("rm "))
-            {
-                if (cmd_args[1] == "-r")
-                {
-                    FS.del(cmdCI.Remove(0, 6), true);
-                }
-                else
-                {
-                    FS.del(cmdCI.Remove(0, 3), false);
-                }
-            }
-            else if (cmd.StartsWith("mkdir"))
-            {
-                FS.Makedir(Directory.GetCurrentDirectory() + cmdCI_args[1]);
-            }
             #endregion
 
             #region User Variables
             else if (cmd.StartsWith("echo $"))
             {
-                Console.WriteLine(usr_vars.Retrieve(cmdCI.Remove(0, 6)));
+                Console.WriteLine(usr_vars.Retrieve(cmd_args[1].Substring(1)));
             }
-            else if (cmd == "savevars")
+            else if (cmd == "save$")
             {
-                //Console.WriteLine("Dictionaries not yet implemented!");
                 usr_vars.SaveVars();
             }
-            else if (cmd == "loadvars")
+            else if (cmd == "load$")
             {
-                //Console.WriteLine("Dictionaries not yet implemented!");
                 usr_vars.ReadVars();
+            }
+            else if (cmd == "print$")
+            {
+                usr_vars.PrintVars();
             }
             else if (cmd.StartsWith("$"))
             {
-                //Console.WriteLine("Dictionaries not yet implemented!");
-                usr_vars.Store(cmdCI_args[0].Remove(0, 1), cmdCI.Remove(cmdCI_args[0].Length + 1));
+                if (cmd.EndsWith(" -u"))
+                {
+                    usr_vars.Store(cmd_args[0].Substring(1), cmd.Substring(cmd_args[0].Length + 1), true);
+                }
+                else
+                {
+                    usr_vars.Store(cmd_args[0].Substring(1), cmd.Substring(cmd_args[0].Length + 1), false);
+                }
             }
 
             #endregion
@@ -122,28 +93,6 @@ namespace Medli
 
                 new Medli.Apps.Panic().Execute("");
             }
-            else if (cmd == "shutdown")
-            {
-                usr_vars.SaveVars();
-                Sys.Power.Shutdown();
-            }
-            else if (cmd == "cpu_flags")
-            {
-                //CPUInfo.ListFlags();
-            }
-            else if (cmd == "cpu_info")
-            {
-                //CPUInfo.LSCPU();
-            }
-            else if (cmd == "reboot")
-            {
-                usr_vars.SaveVars();
-                Sys.Power.Reboot();
-            }
-            else if (cmd == "meminfo")
-            {
-                SystemFunctions.PrintTotalRAM();
-            }
             else if (cmd == "licence")
             {
                 Console.WriteLine("");
@@ -156,37 +105,10 @@ namespace Medli
             {
                 Time.printDate();
             }
-            else if (cmd == "host")
-            {
-                Console.WriteLine(Kernel.Host);
-            }
-            else if (cmd == "lspci")
-            {
-                SystemFunctions.lspci();
-            }
-            else if (cmd == "ram_info")
-            {
-                SystemFunctions.PrintInfo();
-            }
-            else if (cmd == "ram_used")
-            {
-                SystemFunctions.PrintUsedRAM();
-            }
-            else if (cmd == "ram_free")
-            {
-                SystemFunctions.PrintFreeRAM();
-            }
-            else if (cmd == "ram_total")
-            {
-                SystemFunctions.PrintTotalRAM();
-            }
+
             #endregion
 
             #region User Utilities
-            else if (cmd == "help help")
-            {
-                //Applications.help.RunHelp();
-            }
             else if (cmd == "cowsay")
             {
                 Cowsay.Cow("Say something using 'Cowsay <message>'");
@@ -273,7 +195,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             {
                 Extensions.PressAnyKey();
             }
-            else if (cmd.StartsWith("pause"))
+            else if (cmd.StartsWith("pause  "))
             {
                 Extensions.PressAnyKey(cmdCI_args[1]);
             }
@@ -287,9 +209,37 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                 CommandConsole newConsole = new CommandConsole();
                 newConsole.Initialize();
             }
-            #endregion
+			else if (cmd == "help")
+			{
+				Help.Full();
+			}
+			else if (cmd.StartsWith("help "))
+			{
+				if (cmd_args[1] == "1" || cmd_args[1] == "app")
+				{
+					Help.Pages(1);
+				}
+				else if (cmd_args[1] == "2" || cmd_args[1] == "fs")
+				{
+					Help.Pages(2);
+				}
+				else if (cmd_args[1] == "3" || cmd_args[1] == "sys")
+				{
+					Help.Pages(3);
+				}
+				else if (cmd_args[1] == "specific")
+				{
+					Help.Specific(cmd_args[2]);
+				}
+				else
+				{
+					Help.Full();
+				}
+			}
 
-            else
+			#endregion
+
+			else
             {
                 InvalidCommand(cmdCI, 1);
             }
@@ -336,10 +286,7 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 				Console.ReadKey(true);
 			}
 			
-			else if (command == "print vars")
-			{
-
-			}
+			
 			else if (command == "umc")
 			{
 				Internals.UserManagementConsole.Run();

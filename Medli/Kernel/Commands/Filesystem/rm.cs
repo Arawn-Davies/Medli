@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MSys = Medli.System;
+using MedliSystem = Medli.System;
 using System.IO;
-using Medli.Common;
+using Medli.System;
 
 namespace Medli.Apps
 {
-	public class Copy : Command
+	public class rm : Command
 	{
 		public override string Name
 		{
 			get
 			{
-				return "copy";
+				return "rm";
 			}
 		}
 
@@ -21,20 +21,22 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "Copies the specified file to the specified destination";
+				return @"Removes the specified file/directory
+Directory: rm -r [arg]
+File:      rm [arg]";
 			}
 		}
 
 		public override void Execute(string param)
 		{
 			string[] args = param.Split(' ');
-			if (File.Exists(args[0]))
+			if (args[0] == "-r")
 			{
-				MSys.FS.Copy(Paths.CurrentDirectory + args[0], args[1]);
+				FS.del(args[1], true);
 			}
 			else
 			{
-				Console.WriteLine("File does not exist");
+				FS.del(args[0], false);
 			}
 		}
 

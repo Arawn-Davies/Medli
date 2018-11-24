@@ -22,7 +22,14 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			FS.Dir();
+			if (param != null)
+			{
+				FS.Dir(param);
+			}
+			else
+			{
+				FS.Dir();
+			}
 		}
 
 	}

@@ -6,11 +6,30 @@ using System.Threading.Tasks;
 using System.IO;
 using Medli.Common;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
-    class MIV
+    class MIV : Command
     {
-        public static void printMIVStartScreen()
+		public override string Name
+		{
+			get
+			{
+				return "";
+			}
+		}
+		public override string Summary
+		{
+			get
+			{
+				return "";
+			}
+		}
+		public override void Execute(string param)
+		{
+			
+		}
+
+		public static void printMIVStartScreen()
         {
             Console.Clear();
             Console.WriteLine("~");
