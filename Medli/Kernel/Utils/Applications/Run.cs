@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Medli.Common;
 
 namespace Medli.Apps
 {
     /// <summary>
     /// Class for Medliscript (mdscript),
-    /// a simple scripting language for the Medli command line shell
+    /// a simple scripting interface for the Medli command line shell
     /// </summary>
     class Mdscript : Command
     {
@@ -41,12 +42,19 @@ namespace Medli.Apps
             {
                 if (param != "" && param != null && param.Length < 5 && param.EndsWith(".mds"))
                 {
-                    string[] lines = File.ReadAllLines(param);
-                    foreach (string line in lines)
-                    {
-						CommandConsole.Parse(line);
-                        //Console.WriteLine("");
-                    }
+					if (File.Exists(Paths.CurrentDirectory + Paths.Separator + param))
+					{
+						string[] lines = File.ReadAllLines(param);
+						foreach (string line in lines)
+						{
+							CommandConsole.Parse(line);
+							//Console.WriteLine("");
+						}
+					}
+					else
+					{
+						Shell.InvalidCommand(param, 2);
+					}
                 }
                 else
                 {

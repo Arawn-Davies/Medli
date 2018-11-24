@@ -20,41 +20,10 @@ namespace Medli
             var cmdCI = cmdline;
             // String arrays from the splitting of the shell loop parameter:
             string[] cmd_args = cmd.Split(' ');
-            string[] cmdCI_args = cmdCI.Split(' ');      
+            string[] cmdCI_args = cmdCI.Split(' ');
 
-            #region Filesystem
-            if (cmd == "list_vols")
-            {
-                FS.ListVols();
-            }
-            else if (cmd == "list_vol")
-            {
-                FS.ListVol();
-            }
-            #endregion
-
-            #region User Variables
-            else if (cmd == "save$")
-            {
-                usr_vars.SaveVars();
-            }
-            else if (cmd == "load$")
-            {
-                usr_vars.ReadVars();
-            }
-            else if (cmd == "print$")
-            {
-                usr_vars.PrintVars();
-            }
-
-            #endregion
-
-            #region System Utilities
-            else if (cmd == "fdisk")
-            {
-                FS.MFSU();
-            }
-            else if (cmd == "test_serial")
+			#region System Utilities
+            if (cmd == "test_serial")
             {
                 //Hardware.HAL.COM2.WriteLine("Hello, World!");
             }
@@ -65,20 +34,7 @@ namespace Medli
 
             #endregion
 
-            #region User Utilities
-            else if (cmd.StartsWith("run "))
-            {
-                if (!File.Exists(Paths.CurrentDirectory + @"\" + cmd_args[1]))
-                {
-                    InvalidCommand(cmd.Remove(0, 4), 2);
-                }
-                else
-                {
-                    Mdscript.Execute(Paths.CurrentDirectory + @"\" + cmd_args[1]);
-                }
-            }
-            
-            #endregion
+           
 
 			else
             {

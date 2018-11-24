@@ -18,12 +18,13 @@ namespace Medli.Apps
 		{
 			get { return @"Retrieves system information.
 get [arg]
-ram_info  - RAM information
-ram_used  - Total amount of used RAM
-ram_free  - Total amount of free RAM
-ram_total - Total amount of installed RAM
-host      - System host
-lspci     - Lists PCI devices"; }
+ram_info    - RAM information
+ram_used    - Total amount of used RAM
+ram_free    - Total amount of free RAM
+ram_total   - Total amount of installed RAM
+host        - System host
+lspci       - Lists PCI devices
+list_vol(s) - Lists the filesystem volumes"; }
 		}
 
 		public override void Execute(string param)
@@ -51,6 +52,14 @@ lspci     - Lists PCI devices"; }
 			else if (param == "lspci")
 			{
 				SystemFunctions.lspci();
+			}
+			if (param == "list_vols")
+			{
+				FS.ListVols();
+			}
+			else if (param == "list_vol")
+			{
+				FS.ListVol();
 			}
 		}
 	}
