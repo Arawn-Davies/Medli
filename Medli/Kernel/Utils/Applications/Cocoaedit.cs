@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AIC_Framework;
 using System.IO;
 using Medli.Common;
+using Medli.System;
 
 namespace Medli.Apps
 {
@@ -33,7 +34,9 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
+			Screen.SaveBuffer();
 			Run(param);
+			Screen.RestoreBuffer();
 		}
 
 		/// <summary>

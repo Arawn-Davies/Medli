@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AIC_Framework;
 using System.IO;
 using Medli.Common;
+using Medli.System;
 
 namespace Medli.Apps
 {
@@ -27,7 +28,7 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "";
+				return "Launches the development environment";
 			}
 		}
 
@@ -35,8 +36,10 @@ namespace Medli.Apps
 		{
 			if (param != "" && param.Length < 5 && param.EndsWith(".ma"))
 			{
+				Screen.SaveBuffer();
 				Console.Clear();
 				IDE.Run(param);
+				Screen.RestoreBuffer();
 			}
 			else
 			{

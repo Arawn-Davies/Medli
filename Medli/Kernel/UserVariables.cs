@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Medli.Common;
+using Medli.System;
 
 namespace Medli
 {
@@ -95,13 +96,19 @@ namespace Medli
         {
             try
             {
-
                 if (File.Exists(varsfile))
                 {
-                    foreach (var entry in usr_var)
-                    {
-                        File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
-                    }
+					foreach (var entry in usr_var)
+					{
+						if (Common.Services.FSService.Active == true)
+						{
+							File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
+						}
+						else
+						{
+							Console.WriteLine("Medli is currently running in live mode!\nFilesystem IO is disabled.");
+						}
+					}
                 }
                 else
                 {
@@ -109,7 +116,15 @@ namespace Medli
                     Console.WriteLine("The system will now save the variables to the default file.");
                     foreach (var entry in usr_var)
                     {
-                        File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
+						if (Common.Services.FSService.Active == true)
+						{
+							File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
+						}
+						else
+						{
+							Console.WriteLine("Medli is currently running in live mode!\nFilesystem IO is disabled.");
+						}
+                        
                     }
                 }
             }

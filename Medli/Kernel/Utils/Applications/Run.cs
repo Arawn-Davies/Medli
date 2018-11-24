@@ -53,7 +53,10 @@ namespace Medli.Apps
 					}
 					else
 					{
-						Shell.InvalidCommand(param, 2);
+
+					}
+					{
+						CommandConsole.InvalidCommand(param, 2);
 					}
                 }
                 else

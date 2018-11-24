@@ -10,34 +10,6 @@ namespace Medli.System
 	public class SystemFunctions
 	{
 		public static IDE[] IDEs = IDE.Devices.ToArray();
-		public static int CurrentScreen = 1;
-		public static void ChangeScreen(int screen)
-		{
-			//MultiScreen.PushContents();
-			Console.Clear();
-			//Console.WriteLine("Test, this is a test...");
-			//Common.Extensions.PAKTC();
-			//Console.Clear();
-			//MultiScreen.PopContents();
-			if (MultiScreen.SetContent(CurrentScreen) == true)
-			{
-				if (MultiScreen.RetContent(screen) == true)
-				{
-					Console.WriteLine("successfully restored screen");
-					CurrentScreen = screen;
-				}
-				else
-				{
-					Console.WriteLine("Saved screen, failed to restore specified screen");
-				}
-			}
-			else
-			{
-				Console.WriteLine("Failed to save screen!");
-			}
-			//Console.Clear();
-			//new Kernel.CommandConsole();
-		}
 
 		public static void PrintUsedRAM()
 		{

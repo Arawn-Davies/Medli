@@ -56,7 +56,7 @@ namespace Medli.Apps
                 }
                 else if (!File.Exists(Paths.CurrentDirectory + @"\" + file))
                 {
-                    Shell.InvalidCommand(file, 2);
+                    CommandConsole.InvalidCommand(file, 2);
                 }
             }
             catch (Exception ex)

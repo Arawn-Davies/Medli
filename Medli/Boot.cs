@@ -31,7 +31,7 @@ namespace Medli
                 Console.WriteLine(Kernel.welcome);
 				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
-				Time.printDate();
+				Date.printDate();
 				Time.printTime();
 				SystemFunctions.PrintInfo();
 			}

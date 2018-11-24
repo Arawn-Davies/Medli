@@ -19,7 +19,7 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "";
+				return "Launches an .ma Medli Application";
 			}
 		}
 

@@ -22,7 +22,15 @@ namespace Medli.Apps
 		}
 		public override void Execute(string param)
 		{
-			
+			string[] args = param.Split(' ');
+			if (args[0] == "bg")
+			{
+				ChangeBGC(args[1]);
+			}
+			else if (args[0] == "fg")
+			{
+				ChangeFGC(args[1]);
+			}
 		}
 		enum ConsoleColors
         {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Medli.Common;
+using Medli.System;
 
 namespace Medli.Apps
 {
@@ -28,6 +29,8 @@ Optional: miv [arg]";
 		}
 		public override void Execute(string param)
 		{
+			Screen.SaveBuffer();
+			Console.Clear();
 			if (param != null)
 			{
 				StartMIV(param);
@@ -35,7 +38,8 @@ Optional: miv [arg]";
 			else
 			{
 				StartMIV();
-			}				
+			}
+			Screen.RestoreBuffer();
 		}
 
 		public static void printMIVStartScreen()

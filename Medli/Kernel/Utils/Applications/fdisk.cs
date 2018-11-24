@@ -22,7 +22,9 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
+			Screen.SaveBuffer();
 			FS.MFSU();
+			Screen.RestoreBuffer();
 		}
 	}
 }
