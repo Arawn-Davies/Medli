@@ -125,18 +125,6 @@ namespace Medli.Apps
 				Console.WriteLine("panic\tStarts a harmless kernel panic");
 				Console.WriteLine("panic critical\tStarts a critical yet harmless kernel panic");
 			}
-			else if (topic == "cv")
-			{
-				Console.WriteLine("cv <file>\t");
-			}
-			else if (topic == "cp")
-			{
-				Console.WriteLine("cp <file>\t");
-			}
-			else if (topic == "getram")
-			{
-				Console.WriteLine("getram           Gets the amount of system RAM in megabytes");
-			}
 			else if (topic == "")
 			{
 				Full();

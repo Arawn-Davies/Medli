@@ -34,10 +34,6 @@ namespace Medli
             #endregion
 
             #region User Variables
-            else if (cmd.StartsWith("echo $"))
-            {
-                Console.WriteLine(usr_vars.Retrieve(cmd_args[1].Substring(1)));
-            }
             else if (cmd == "save$")
             {
                 usr_vars.SaveVars();
@@ -70,22 +66,6 @@ namespace Medli
             #endregion
 
             #region User Utilities
-            else if (cmd.StartsWith("cedit "))
-            {
-                
-            }
-            else if (cmd.StartsWith("devenv "))
-            {
-                
-            }
-            else if (cmd == "cview")
-            {
-                Console.WriteLine("cview Usage: cview <file>");
-            }
-            else if (cmd.StartsWith("cview "))
-            {
-                
-            }
             else if (cmd.StartsWith("run "))
             {
                 if (!File.Exists(Paths.CurrentDirectory + @"\" + cmd_args[1]))
@@ -152,29 +132,4 @@ namespace Medli
 			{
 				Internals.UserManagementConsole.Run();
 			}
-			else if (command.StartsWith("edit "))
-			{
-				Apps.TextEditor.Run(cmdCI_args[1]);
-			}
-			else if (command == "edit")
-			{
-				Console.WriteLine("Usage: edit <filename>");
-				Console.WriteLine("Launches the text editor using the filename specified");
-			}
-			
-			else if (command.StartsWith("cv "))
-			{
-				Apps.TextViewer.Run(cmdCI_args[1]);
-			}
-			else if (command == "help")
-			{
-				Apps.Help.Run();
-			}
-			
-			else if (command.StartsWith("help "))
-			{
-				Apps.Help.Specific(cmd_args[1]);
-			}
-
-
 			*/

@@ -49,6 +49,9 @@ namespace Medli
 			_commands.Add(new Set());
 			_commands.Add(new Cowsay());
 			_commands.Add(new Cpedit());
+			_commands.Add(new Cpview());
+			_commands.Add(new Mdscript());
+			_commands.Add(new ColorChanger());
 
 			Console.Clear();
 			Console.WriteLine("");

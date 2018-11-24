@@ -16,7 +16,7 @@ namespace Medli.Apps
 			get
 			{
 				return @"Duplicates text you enter to the console.
-cd $[arg] : Returns the contents of the speciied variable";
+echo $[arg] : Returns the contents of the speciied variable";
 			}
 		}
 
@@ -31,13 +31,5 @@ cd $[arg] : Returns the contents of the speciied variable";
 				Console.WriteLine(param);
 			}
 		}
-
-		public override void Help()
-		{
-			Console.WriteLine("echo [text]");
-			Console.WriteLine("  Duplicates text you enter to the console.");
-			Console.WriteLine("  [text]: The text to duplicate.");
-		}
-
 	}
 }

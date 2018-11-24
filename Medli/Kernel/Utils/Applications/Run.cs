@@ -5,30 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
     /// <summary>
     /// Class for Medliscript (mdscript),
     /// a simple scripting language for the Medli command line shell
     /// </summary>
-    class Mdscript
+    class Mdscript : Command
     {
-        /// <summary>
-        /// Executes a script passed to the application,
-        /// parsing the commands listed in a valid text file
-        /// that has the extension '.mds'
-        /// </summary>
-        /// <param name="scriptname"></param>
-        public static void Execute(string scriptname)
+		public override string Name
+		{
+			get
+			{
+				return "run";
+			}
+		}
+
+		public override string Summary
+		{
+			get
+			{
+				return "Executes the specified script";
+			}
+		}
+
+		/// <summary>
+		/// Executes a script passed to the application,
+		/// parsing the commands listed in a valid text file
+		/// that has the extension '.mds'
+		/// </summary>
+		/// <param name="scriptname"></param>
+		public override void Execute(string param)
         {
             try
             {
-                if (scriptname.EndsWith(".mds"))
+                if (param != "" && param != null && param.Length < 5 && param.EndsWith(".mds"))
                 {
-                    string[] lines = File.ReadAllLines(scriptname);
+                    string[] lines = File.ReadAllLines(param);
                     foreach (string line in lines)
                     {
-                        Shell.Prompt(line);
+						CommandConsole.Parse(line);
                         //Console.WriteLine("");
                     }
                 }

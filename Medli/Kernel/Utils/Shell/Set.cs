@@ -23,15 +23,34 @@ $ [arg] [arg] (-u)
 
 		public override void Execute(string param)
 		{
-			string[] args = param.Split(' ');
-			if (param.EndsWith(" -u"))
+			if (param != "" && param != null)
 			{
-				usr_vars.Store(args[0], param.Substring(args[0].Length + 1), true);
+				if (param == "save")
+				{
+					usr_vars.SaveVars();
+				}
+				else if (param == "load")
+				{
+					usr_vars.ReadVars();
+				}
+				else if (param == "print")
+				{
+					usr_vars.PrintVars();
+				}
+				else
+				{
+					string[] args = param.Split(' ');
+					if (param.EndsWith(" -u"))
+					{
+						usr_vars.Store(args[0], param.Substring(args[0].Length + 1), true);
+					}
+					else
+					{
+						usr_vars.Store(args[0], param.Substring(args[0].Length + 1), false);
+					}
+				}
 			}
-			else
-			{
-				usr_vars.Store(args[0], param.Substring(args[0].Length + 1), false);
-			}
+			
 			
 		}
 	}

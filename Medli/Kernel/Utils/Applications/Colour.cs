@@ -2,11 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
-    class ColorChanger
+    class ColorChanger : Command
     {
-        enum ConsoleColors
+		public override string Name
+		{
+			get
+			{
+				return "colour";
+			}
+		}
+		public override string Summary
+		{
+			get
+			{
+				return "Changes the back/foreground colour of the terminal";
+			}
+		}
+		public override void Execute(string param)
+		{
+			
+		}
+		enum ConsoleColors
         {
             black = ConsoleColor.Black,
             white = ConsoleColor.White,
@@ -66,7 +84,7 @@ namespace Medli.Applications
             #endregion
             else
             {
-                Console.WriteLine("Invalid color, valid options are 0 - 15");
+                Console.WriteLine("Invalid colour, valid options are 0 - 15");
 
             }
         }
@@ -108,7 +126,7 @@ namespace Medli.Applications
             #endregion
             else
             {
-                Console.WriteLine("Invalid color, valid options are a - p");
+                Console.WriteLine("Invalid colour, valid options are a - p");
 
             }
         }
