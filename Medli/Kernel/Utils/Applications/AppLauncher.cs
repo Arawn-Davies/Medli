@@ -11,7 +11,7 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "";
+				return "launch";
 			}
 		}
 

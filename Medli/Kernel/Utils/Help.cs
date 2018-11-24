@@ -127,7 +127,7 @@ namespace Medli.Apps
 			}
 			else if (topic == "cv")
 			{
-				Console.WriteLine("cv <file>\tPrints the contents of a file onto the screen.");
+				Console.WriteLine("cv <file>\t");
 			}
 			else if (topic == "cp")
 			{

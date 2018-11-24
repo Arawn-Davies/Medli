@@ -76,14 +76,7 @@ namespace Medli
             }
             else if (cmd.StartsWith("devenv "))
             {
-                if (cmd.EndsWith(".ma"))
-                {
-                    MIDE.Run(cmd_args[1]);
-                }
-                else
-                {
-                    Console.WriteLine("The IDE may only be used to create (.ma) Medli application files.");
-                }
+                
             }
             else if (cmd == "cview")
             {
@@ -91,7 +84,7 @@ namespace Medli
             }
             else if (cmd.StartsWith("cview "))
             {
-                Cpview.ViewFile(cmd_args[1]);
+                
             }
             else if (cmd.StartsWith("run "))
             {

@@ -7,11 +7,32 @@ using System.IO;
 using AIC_Framework;
 using Medli.Common;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
-    class Cpview
+    class Cpview : Command
     {
-        private static void DrawScreen()
+		public override void Execute(string param)
+		{
+			if (param != "" && param != null)
+			{
+				ViewFile(param);
+			}
+		}
+		public override string Name
+		{
+			get
+			{
+				return "cpview";
+			}
+		}
+		public override string Summary
+		{
+			get
+			{
+				return "Prints the contents of a file onto the screen.";
+			}
+		}
+		private static void DrawScreen()
         {
             AConsole.Fill(ConsoleColor.Blue);
             Console.CursorTop = 0;

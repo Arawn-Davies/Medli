@@ -43,11 +43,12 @@ namespace Medli
 			_commands.Add(new Move());
 			_commands.Add(new MIV());
 			_commands.Add(new AppLauncher());
-			_commands.Add(new MIDE());
+			_commands.Add(new IDE());
 			_commands.Add(new cd());
 			_commands.Add(new Pause());
 			_commands.Add(new Set());
 			_commands.Add(new Cowsay());
+			_commands.Add(new Cpedit());
 
 			Console.Clear();
 			Console.WriteLine("");
