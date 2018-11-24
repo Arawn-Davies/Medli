@@ -14,19 +14,28 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "";
+				return "miv";
 			}
 		}
 		public override string Summary
 		{
 			get
 			{
-				return "";
+				return @"Launches the MIV text editor
+No file : miv
+Optional: miv [arg]";
 			}
 		}
 		public override void Execute(string param)
 		{
-			
+			if (param != null)
+			{
+				StartMIV(param);
+			}
+			else
+			{
+				StartMIV();
+			}				
 		}
 
 		public static void printMIVStartScreen()

@@ -7,15 +7,36 @@ using AIC_Framework;
 using System.IO;
 using Medli.Common;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
     /// <summary>
     /// Cocoapad Editor class
     /// contains methods needed for the editor to function
     /// </summary>
-    class MIDE
+    class MIDE : Command
     {
-        public static string AppTitle;
+		public override string Name
+		{
+			get
+			{
+				return "devenv";
+			}
+		}
+
+		public override string Summary
+		{
+			get
+			{
+				return "";
+			}
+		}
+
+		public override void Execute(string param)
+		{
+			throw new NotImplementedException();
+		}
+
+		public static string AppTitle;
         public static string AppDesc;
         public static string AppAuthor;
         /// <summary>
@@ -26,7 +47,8 @@ namespace Medli.Applications
         /// Boolean to see whether CocoaEdit is running or not
         /// </summary>
         public static bool running = true;
-        private static void DrawScreen()
+
+		private static void DrawScreen()
         {
             AConsole.Fill(ConsoleColor.Blue);
             Console.CursorTop = 0;
@@ -129,5 +151,7 @@ namespace Medli.Applications
             }
             AConsole.Fill(ConsoleColor.Black);
         }
-    }
+
+		
+	}
 }

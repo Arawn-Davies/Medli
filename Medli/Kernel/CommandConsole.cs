@@ -24,17 +24,15 @@ namespace Medli
 
 		public void Initialize()
 		{
-			//_commands.Add(new Command.BreakCommand());
 			_commands.Add(new Clear());
 			_commands.Add(new Dir());
-			_commands.Add(new EchoCommand());
+			_commands.Add(new Echo());
 			_commands.Add(new Exit(Stop));
 			_commands.Add(new Panic());
 			_commands.Add(new HelpCommand(_commands));
 			_commands.Add(new Apps.Time());
 			_commands.Add(new Date());
 			_commands.Add(new Script());
-			//_commands.Add(new Cosmos.Shell.Console.Commands.TypeCommand());
 			_commands.Add(new Apps.Version());
 			_commands.Add(new Get());
 			_commands.Add(new Reboot());
@@ -43,6 +41,13 @@ namespace Medli
 			_commands.Add(new Multiscreen());
 			_commands.Add(new Copy());
 			_commands.Add(new Move());
+			_commands.Add(new MIV());
+			_commands.Add(new AppLauncher());
+			_commands.Add(new MIDE());
+			_commands.Add(new cd());
+			_commands.Add(new Pause());
+			_commands.Add(new Set());
+			_commands.Add(new Cowsay());
 
 			Console.Clear();
 			Console.WriteLine("");

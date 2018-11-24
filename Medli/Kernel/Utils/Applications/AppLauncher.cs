@@ -3,11 +3,33 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
-    class AppLauncher
+    class AppLauncher : Command
     {
-        public static string AppTitle;
+		public override string Name
+		{
+			get
+			{
+				return "";
+			}
+		}
+
+		public override string Summary
+		{
+			get
+			{
+				return "";
+			}
+		}
+
+		public override void Execute(string param)
+		{
+			Console.Clear();
+			PreExecute(param);
+		}
+
+		public static string AppTitle;
         public static string AppDesc;
         public static string AppAuthor;
         public static void AppInfo(string file)
@@ -62,7 +84,7 @@ namespace Medli.Applications
                     {
                         if (readlines[readlines.Count - 1].StartsWith("EOF"))
                         {
-                            Execute(file);
+                            ExecuteApp(file);
                         }
                         else
                         {
@@ -94,7 +116,7 @@ namespace Medli.Applications
             Console.BackgroundColor = ConsoleColor.Black;
             Console.CursorTop = 3;
         }
-        private static void Execute(string file)
+        private static void ExecuteApp(string file)
         {
             string[] readlines = File.ReadAllLines(file);
             AppTitle = readlines[0].Substring(6);

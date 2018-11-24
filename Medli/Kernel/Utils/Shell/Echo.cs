@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Medli.Apps
 {
-	public class EchoCommand : Command
+	public class Echo : Command
 	{
 		public override string Name
 		{
@@ -13,13 +13,23 @@ namespace Medli.Apps
 
 		public override string Summary
 		{
-			get { return "Duplicates text you enter to the console."; }
+			get
+			{
+				return @"Duplicates text you enter to the console.
+cd $[arg] : Returns the contents of the speciied variable";
+			}
 		}
 
 		public override void Execute(string param)
 		{
-			Console.WriteLine(param);
-			Console.WriteLine();
+			if (param.StartsWith("$"))
+			{
+				Console.WriteLine(usr_vars.Retrieve(param.Substring(1)));
+			}
+			else
+			{
+				Console.WriteLine(param);
+			}
 		}
 
 		public override void Help()

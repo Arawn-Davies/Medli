@@ -7,23 +7,45 @@ using AIC_Framework;
 using System.IO;
 using Medli.Common;
 
-namespace Medli.Applications
+namespace Medli.Apps
 {
     /// <summary>
     /// Cocoapad Editor class
     /// contains methods needed for the editor to function
     /// </summary>
-    class Cpedit
+    class Cpedit : Command
     {
-        /// <summary>
-        /// The current text inside the editor is stored in a string
-        /// </summary>
-        public static string text = "";
+		public override string Name
+		{
+			get
+			{
+				return "cpedit";
+			}
+		}
+
+		public override string Summary
+		{
+			get
+			{
+				return "Launches the CocoaPad text editor";
+			}
+		}
+
+		public override void Execute(string param)
+		{
+			Run(param);
+		}
+
+		/// <summary>
+		/// The current text inside the editor is stored in a string
+		/// </summary>
+		public static string text = "";
         /// <summary>
         /// Boolean to see whether Cocoapad is running or not
         /// </summary>
         public static bool running = true;
-        private static void DrawScreen()
+
+		private static void DrawScreen()
         {
             AConsole.Fill(ConsoleColor.Blue);
             Console.CursorTop = 0;
@@ -90,5 +112,5 @@ namespace Medli.Applications
             }
             AConsole.Fill(ConsoleColor.Black);
         }
-    }
+	}
 }

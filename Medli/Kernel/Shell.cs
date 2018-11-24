@@ -20,31 +20,16 @@ namespace Medli
             var cmdCI = cmdline;
             // String arrays from the splitting of the shell loop parameter:
             string[] cmd_args = cmd.Split(' ');
-            string[] cmdCI_args = cmdCI.Split(' ');
-
-            if (cmd == "")
-            {
-
-            }
-
-            
+            string[] cmdCI_args = cmdCI.Split(' ');      
 
             #region Filesystem
-            else if (cmd == "cd ..")
-            {
-                FS.CDP();
-            }
-            else if (cmd == "list_vols")
+            if (cmd == "list_vols")
             {
                 FS.ListVols();
             }
             else if (cmd == "list_vol")
             {
                 FS.ListVol();
-            }
-            else if (cmd.StartsWith("cd "))
-            {
-                FS.cd(cmdCI.Remove(0, 3));
             }
             #endregion
 
@@ -65,17 +50,6 @@ namespace Medli
             {
                 usr_vars.PrintVars();
             }
-            else if (cmd.StartsWith("$"))
-            {
-                if (cmd.EndsWith(" -u"))
-                {
-                    usr_vars.Store(cmd_args[0].Substring(1), cmd.Substring(cmd_args[0].Length + 1), true);
-                }
-                else
-                {
-                    usr_vars.Store(cmd_args[0].Substring(1), cmd.Substring(cmd_args[0].Length + 1), false);
-                }
-            }
 
             #endregion
 
@@ -88,58 +62,17 @@ namespace Medli
             {
                 //Hardware.HAL.COM2.WriteLine("Hello, World!");
             }
-            else if (cmd == "panic")
-            {
-
-                new Medli.Apps.Panic().Execute("");
-            }
             else if (cmd == "licence")
             {
                 Console.WriteLine("");
-            }
-            else if (cmd == "time")
-            {
-                Time.printTime();
-            }
-            else if (cmd == "date")
-            {
-                Time.printDate();
             }
 
             #endregion
 
             #region User Utilities
-            else if (cmd == "cowsay")
-            {
-                Cowsay.Cow("Say something using 'Cowsay <message>'");
-                Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
-sodomized-sheep for, you guessed it, a sodomized-sheep");
-            }
-            else if (cmd.StartsWith("cowsay"))
-            {
-                if (cmd_args[1] == "-f")
-                {
-                    if (cmd_args[2] == "cow")
-                    {
-                        Cowsay.Cow(cmd.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
-                    }
-                    else if (cmd_args[2] == "tux")
-                    {
-                        Cowsay.Tux(cmd.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
-                    }
-                    else if (cmd_args[2] == "sodomized-sheep")
-                    {
-                        Cowsay.SodomizedSheep(cmd.Remove(0, cmd_args[0].Length + cmd_args[1].Length + cmd_args[2].Length + 3));
-                    }
-                }
-                else
-                {
-                    Cowsay.Cow(cmd.Substring(7));
-                }
-            }
             else if (cmd.StartsWith("cedit "))
             {
-                Cpedit.Run(cmd_args[1]);
+                
             }
             else if (cmd.StartsWith("devenv "))
             {
@@ -160,11 +93,6 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
             {
                 Cpview.ViewFile(cmd_args[1]);
             }
-            else if (cmd.StartsWith("launch "))
-            {
-                Console.Clear();
-                AppLauncher.PreExecute(cmd_args[1]);
-            }
             else if (cmd.StartsWith("run "))
             {
                 if (!File.Exists(Paths.CurrentDirectory + @"\" + cmd_args[1]))
@@ -176,68 +104,8 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                     Mdscript.Execute(Paths.CurrentDirectory + @"\" + cmd_args[1]);
                 }
             }
-            else if (cmd.StartsWith("miv "))
-            {
-                MIV.StartMIV(cmd_args[1]);
-            }
-            else if (cmd == "miv")
-            {
-                MIV.StartMIV();
-            }
+            
             #endregion
-
-            #region Shell Specifics
-            else if (cmd.StartsWith("echo "))
-            {
-                Console.WriteLine(cmdCI.Remove(0, 5));
-            }
-            else if (cmd == "pause")
-            {
-                Extensions.PressAnyKey();
-            }
-            else if (cmd.StartsWith("pause  "))
-            {
-                Extensions.PressAnyKey(cmdCI_args[1]);
-            }
-            else if (cmd == "cls")
-            {
-                Console.Clear();
-            }
-            else if (cmd == "newshell")
-            {
-                Console.Clear();
-                CommandConsole newConsole = new CommandConsole();
-                newConsole.Initialize();
-            }
-			else if (cmd == "help")
-			{
-				Help.Full();
-			}
-			else if (cmd.StartsWith("help "))
-			{
-				if (cmd_args[1] == "1" || cmd_args[1] == "app")
-				{
-					Help.Pages(1);
-				}
-				else if (cmd_args[1] == "2" || cmd_args[1] == "fs")
-				{
-					Help.Pages(2);
-				}
-				else if (cmd_args[1] == "3" || cmd_args[1] == "sys")
-				{
-					Help.Pages(3);
-				}
-				else if (cmd_args[1] == "specific")
-				{
-					Help.Specific(cmd_args[2]);
-				}
-				else
-				{
-					Help.Full();
-				}
-			}
-
-			#endregion
 
 			else
             {
