@@ -12,7 +12,6 @@ namespace Medli
     {
 		protected override void BeforeRun()
 		{
-			Sys.Graphics.VGAScreen.SetTextMode(Sys.Graphics.VGAScreen.TextSize.Size80x50);
 			try
 			{
                 SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
