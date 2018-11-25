@@ -31,7 +31,7 @@ Optional: miv [arg]";
 		{
 			Screen.SaveBuffer();
 			Console.Clear();
-			if (param != null)
+			if (param != "" && param.Length < 5)
 			{
 				StartMIV(param);
 			}

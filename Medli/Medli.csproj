@@ -104,26 +104,36 @@
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Cosmos.Build" Version="*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.Core" Version="*" />
-        <PackageReference Include="Cosmos.Debug.Kernel" Version="*" NoWarn="NU1604" />
-        <PackageReference Include="Cosmos.HAL2" Version="*" />
-        <PackageReference Include="Cosmos.System2" Version="*" NoWarn="NU1604" />
-    </ItemGroup>
-	
+
+	<ItemGroup>
+		<PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="Cosmos.HAL2" Version="0-*" />
+		<PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
+		<PackageReference Include="Cosmos.Core" Version="0-*" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="IL2CPU.API">
+			<HintPath>$(AppData)\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
+		</Reference>
+		<Reference Include="XSharp">
+			<HintPath>$(AppData)\Cosmos User Kit\Build\IL2CPU\XSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="IL2CPU">
+			<HintPath>$(AppData)\Cosmos User Kit\Build\IL2CPU\IL2CPU.dll</HintPath>
+		</Reference>
+		<Reference Include="XSharp.Assembler">
+			<HintPath>$(AppData)\Cosmos User Kit\Build\IL2CPU\XSharp.Assembler.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+  
 	<ItemGroup>
 		<PlugsReference Include="$(MSBuildProjectDirectory)\..\MedliPlugs\bin\Debug\netcoreapp2.0\MedliPlugs.dll" />
 	</ItemGroup>
-	
+  
 	<ItemGroup>
 	  <ProjectReference Include="..\AIC-Framework\AIC Framework\AIC Framework.csproj" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Reference Include="XSharp.Assembler">
-	    <HintPath>..\..\..\..\..\Developer Stuff\Siaranite-Solutions\XSharp\source\XSharp\bin\Debug\netstandard2.0\XSharp.Assembler.dll</HintPath>
-	  </Reference>
 	</ItemGroup>
 
 </Project>
