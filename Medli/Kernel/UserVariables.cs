@@ -7,9 +7,9 @@ using Medli.System;
 
 namespace Medli
 {
-    public class usr_vars
+    public class EnvironmentVariables
     {
-        public static string varsfile = Paths.System + @"\vars.txt";
+        
         public static Dictionary<string, string> usr_var = new Dictionary<string, string>();
         public static void Store(string variable, string contents, bool force)
         {
@@ -47,7 +47,7 @@ namespace Medli
         }
         public static void PrintVars()
         {
-            foreach (var key in usr_vars.usr_var)
+            foreach (var key in EnvironmentVariables.usr_var)
             {
                 Console.Write("| Key:" + key.Key);
                 Console.WriteLine(" | Value: " + key.Value + "|");
@@ -57,9 +57,9 @@ namespace Medli
         {
             try
             {
-                if (File.Exists(varsfile))
+                if (File.Exists(SysFiles.EnvironmentVariables))
                 {
-                    string[] vars = File.ReadAllLines(varsfile);
+                    string[] vars = File.ReadAllLines(SysFiles.EnvironmentVariables);
                     for (int i = 1; i < vars.Length; i++)
                     {
                         string[] varcontent = vars[i].Split('=');
@@ -96,18 +96,11 @@ namespace Medli
         {
             try
             {
-                if (File.Exists(varsfile))
+                if (File.Exists(SysFiles.EnvironmentVariables))
                 {
 					foreach (var entry in usr_var)
 					{
-						if (Common.Services.FSService.Active == true)
-						{
-							File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
-						}
-						else
-						{
-							Console.WriteLine("Medli is currently running in live mode!\nFilesystem IO is disabled.");
-						}
+						FS.WriteContents(SysFiles.EnvironmentVariables, ("\n" + entry.Key + "=" + entry.Value));
 					}
                 }
                 else
@@ -116,15 +109,7 @@ namespace Medli
                     Console.WriteLine("The system will now save the variables to the default file.");
                     foreach (var entry in usr_var)
                     {
-						if (Common.Services.FSService.Active == true)
-						{
-							File.WriteAllText(varsfile, ("\n" + entry.Key + "=" + entry.Value));
-						}
-						else
-						{
-							Console.WriteLine("Medli is currently running in live mode!\nFilesystem IO is disabled.");
-						}
-                        
+						FS.WriteContents(SysFiles.EnvironmentVariables, ("\n" + entry.Key + "=" + entry.Value));                        
                     }
                 }
             }

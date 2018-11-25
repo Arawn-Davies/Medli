@@ -20,7 +20,7 @@ namespace Medli
                     new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
                 }
                 //KernelVariables.IsLive = true;
-                SystemBootEnvironment.Init();
+                Runtime.Level3Init();
                 Kernel.Hostname = "M_INIT";
 				Console.ForegroundColor = ConsoleColor.White;
 				Console.BackgroundColor = ConsoleColor.Blue;

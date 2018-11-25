@@ -7,14 +7,14 @@ using MDFS;
 
 namespace Medli.System
 {
-	public class SystemBootEnvironment
+	public class Runtime
 	{
 		/// <summary>
 		/// System ring init method - ran once at boot
 		/// </summary>
-		public static void Init()
+		public static void Level3Init()
 		{
-			HALPBE.Init();
+			Hardware.Runtime.Level2Init();
 			//Thread.Sleep(500);
 			Console.WriteLine("FileSystem service...");
 			FSService.Init();
@@ -36,8 +36,8 @@ namespace Medli.System
 		{
 			try
 			{
-				if (File.Exists(SysFiles.HostnameFile))
-                    Kernel.Hostname = File.ReadAllText(SysFiles.HostnameFile);
+				if (File.Exists(SysFiles.Hostname))
+                    Kernel.Hostname = File.ReadAllText(SysFiles.Hostname);
 			}
 			catch (Exception ex)
 			{
@@ -47,8 +47,8 @@ namespace Medli.System
 				Console.Write("Hostname:");
 				string hostname = Console.ReadLine();
                 Kernel.Hostname = hostname;
-				FS.del(SysFiles.HostnameFile, false);
-				File.WriteAllText(SysFiles.HostnameFile, hostname);
+				FS.del(SysFiles.Hostname, false);
+				File.WriteAllText(SysFiles.Hostname, hostname);
 			}
 		}
 	}

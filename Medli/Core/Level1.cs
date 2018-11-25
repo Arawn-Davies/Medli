@@ -4,11 +4,11 @@ using Medli.Common;
 
 namespace Medli.Core
 { 
-    public class PrebootEnvironment
+    public class Runtime
     {
 		public static PIC pic;
 		public static readonly CPU cpu = new CPU();
-		public static void Init()
+		public static void Level1Init()
 		{
 			Console.Clear();
 			//Cosmos.Core.INTs.Dummy();

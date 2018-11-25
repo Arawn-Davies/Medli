@@ -168,6 +168,20 @@ namespace Medli.System
 			}
             
         }
+
+		public static void WriteContents(string path, string contents)
+		{
+			try
+			{
+				IsLiveSystem();
+				File.WriteAllText(path, contents);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+		}
+
         public static void del(string filename, bool recursive)
         {
 			try

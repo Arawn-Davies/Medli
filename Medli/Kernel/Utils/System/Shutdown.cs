@@ -21,7 +21,7 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			usr_vars.SaveVars();
+			EnvironmentVariables.SaveVars();
 			Sys.Power.Shutdown();
 		}
 	}

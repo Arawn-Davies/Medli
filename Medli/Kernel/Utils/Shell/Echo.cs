@@ -24,7 +24,7 @@ echo $[arg] : Returns the contents of the speciied variable";
 		{
 			if (param.StartsWith("$"))
 			{
-				Console.WriteLine(usr_vars.Retrieve(param.Substring(1)));
+				Console.WriteLine(EnvironmentVariables.Retrieve(param.Substring(1)));
 			}
 			else
 			{

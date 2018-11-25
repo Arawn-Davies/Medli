@@ -27,26 +27,26 @@ $ [arg] [arg] (-u)
 			{
 				if (param == "save")
 				{
-					usr_vars.SaveVars();
+					EnvironmentVariables.SaveVars();
 				}
 				else if (param == "load")
 				{
-					usr_vars.ReadVars();
+					EnvironmentVariables.ReadVars();
 				}
 				else if (param == "print")
 				{
-					usr_vars.PrintVars();
+					EnvironmentVariables.PrintVars();
 				}
 				else
 				{
 					string[] args = param.Split(' ');
 					if (param.EndsWith(" -u"))
 					{
-						usr_vars.Store(args[0], param.Substring(args[0].Length + 1), true);
+						EnvironmentVariables.Store(args[0], param.Substring(args[0].Length + 1), true);
 					}
 					else
 					{
-						usr_vars.Store(args[0], param.Substring(args[0].Length + 1), false);
+						EnvironmentVariables.Store(args[0], param.Substring(args[0].Length + 1), false);
 					}
 				}
 			}
