@@ -10,11 +10,11 @@ using System.Threading;
 namespace Medli.Hardware
 {
 
-	public class HALPBE
+	public class Runtime
 	{
-		public static void Init()
+		public static void Level2Init()
 		{
-			PrebootEnvironment.Init();
+			Core.Runtime.Level1Init();
 			AreaInfo.HALinfo.WriteAreaPrefix("Hardware setup under way...");
 			PCISetup();
 			DetectHyperVisor();

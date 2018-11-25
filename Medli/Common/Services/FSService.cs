@@ -67,7 +67,7 @@ namespace Medli.Common.Services
                     ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
 					ServiceLogger.Record("FS Service logger initialized.");
 					Kernel.IsLive = false;
-					System.SystemBootEnvironment.ReadHostname();
+					System.Runtime.ReadHostname();
                     Directory.SetCurrentDirectory(Paths.Root);
 					Active = true;
 					return true;

@@ -7,8 +7,9 @@ namespace Medli.Common
 {
     class SysFiles
     {
-		public static string HostnameFile = Paths.SystemData + Path.DirectorySeparatorChar + "host.sys";
-		public static string DefaultLogFile = Paths.SystemLogs + Path.DirectorySeparatorChar + "sys.log";
+		public static string Hostname = Paths.SystemData + Path.DirectorySeparatorChar + "host.sys";
+		public static string DefaultLog = Paths.SystemLogs + Path.DirectorySeparatorChar + "sys.log";
+		public static string EnvironmentVariables = Paths.System + Path.DirectorySeparatorChar + "vars.txt";
 
 	}
 }

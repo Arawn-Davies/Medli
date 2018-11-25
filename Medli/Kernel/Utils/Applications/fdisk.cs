@@ -2,13 +2,13 @@
 
 namespace Medli.Apps
 {
-	public class Dir : Command
+	class fdisk : Command
 	{
 		public override string Name
 		{
 			get
 			{
-				return "dir";
+				return "fdisk";
 			}
 		}
 
@@ -16,14 +16,15 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "Lists the files in the current directory.";
+				return "Launches the disk utility";
 			}
 		}
 
 		public override void Execute(string param)
 		{
-			FS.Dir();
+			Screen.SaveBuffer();
+			FS.MFSU();
+			Screen.RestoreBuffer();
 		}
-
 	}
 }

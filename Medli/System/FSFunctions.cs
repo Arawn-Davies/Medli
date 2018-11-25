@@ -11,7 +11,7 @@ namespace Medli.System
 {
     public class FS
     {
-		private static void IsLiveSystem()
+		public static void IsLiveSystem()
 		{
 			if (FSService.Active == false)
 			{
@@ -97,13 +97,8 @@ namespace Medli.System
 				IsLiveSystem();
 				if (File.Exists(src))
 				{
-					//Small little hack
 					File.Copy(src, dest);
 					File.Delete(src);
-
-					//Do nowt for now - File.Move isn't plugged
-					//Console.WriteLine("File.Move needs plugging!");
-					//File.Move(src, dest);
 				}
 				else
 				{
@@ -157,13 +152,10 @@ namespace Medli.System
 				if (Directory.Exists(Paths.CurrentDirectory + path))
 				{
 					Paths.CurrentDirectory = Paths.CurrentDirectory + @"\" + path;
-					string cd = Directory.GetCurrentDirectory();
-					Directory.SetCurrentDirectory(cd + path);
 				}
 				else if (Directory.Exists(path))
 				{
 					Paths.CurrentDirectory = path;
-					Directory.SetCurrentDirectory(path);
 				}
 				else
 				{
@@ -176,6 +168,20 @@ namespace Medli.System
 			}
             
         }
+
+		public static void WriteContents(string path, string contents)
+		{
+			try
+			{
+				IsLiveSystem();
+				File.WriteAllText(path, contents);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+		}
+
         public static void del(string filename, bool recursive)
         {
 			try

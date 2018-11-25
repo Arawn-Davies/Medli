@@ -25,9 +25,9 @@ namespace Medli.Apps
 
 		public void Switch(int screen)
 		{
-			if (screen != SystemFunctions.CurrentScreen)
+			if (screen != Screen.CurrentScreen)
 			{
-				SystemFunctions.ChangeScreen(screen);
+				Screen.ChangeScreen(screen);
 			}
 			else
 			{
@@ -39,14 +39,40 @@ namespace Medli.Apps
 		{
 			if (param == "get")
 			{
-				Console.WriteLine(SystemFunctions.CurrentScreen);
+				Console.WriteLine(Screen.CurrentScreen);
+			}
+			else if (param == "new")
+			{
+				try
+				{
+					Screen.ChangeScreen(Screen.CurrentScreen);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+			}
+			else if (param == "save")
+			{
+				Screen.SaveBuffer();
+			}
+			else if (param == "restore")
+			{
+				Screen.RestoreBuffer();
 			}
 			else
 			{
 				try
 				{
 					int screen = Int32.Parse(param);
-					Switch(screen);
+					if (screen != Screen.CurrentScreen)
+					{
+						Switch(screen);
+					}
+					else
+					{
+
+					}
 				}
 				catch (Exception ex)
 				{

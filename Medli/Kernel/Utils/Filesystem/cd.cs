@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 using MedliSystem = Medli.System;
+using System.IO;
+using Medli.System;
 
 namespace Medli.Apps
 {
-	public class Copy : Command
+	public class cd : Command
 	{
 		public override string Name
 		{
 			get
 			{
-				return "copy";
+				return "cd";
 			}
 		}
 
@@ -19,14 +21,20 @@ namespace Medli.Apps
 		{
 			get
 			{
-				return "Copies the specified file to the specified destination";
+				return @"Changes to the specified directoy";
 			}
 		}
 
 		public override void Execute(string param)
 		{
-			string[] args = param.Split(' ');
-			MedliSystem.FS.Copy(args[0], args[1]);
+			if (param == "..")
+			{
+				FS.CDP();
+			}
+			else
+			{
+				FS.cd(param);
+			}
 		}
 
 	}

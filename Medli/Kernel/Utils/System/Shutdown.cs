@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Text;
 using Medli.Common;
 using Medli.System;
+using Sys = Cosmos.System;
 
 namespace Medli.Apps
 {
-	public class LSPCI : Command
+	public class Shutdown : Command
 	{
 		public override string Name
 		{
-			get { return "lspci"; }
+			get { return "shutdown"; }
 		}
 
 		public override string Summary
 		{
-			get { return "Lists pci devices."; }
+			get { return "Closes applications and powers down the system."; }
 		}
 
 		public override void Execute(string param)
 		{
-			SystemFunctions.lspci();
+			EnvironmentVariables.SaveVars();
+			Sys.Power.Shutdown();
 		}
 	}
 }

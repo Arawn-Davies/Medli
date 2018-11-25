@@ -33,6 +33,7 @@ namespace Medli.Hardware
 			vb.Y = Console.CursorTop;
 			vbufferStack.Push(vb);
 		}
+
 		/// <summary>
 		/// Pops the content of the stack into Video RAM
 		/// </summary>
@@ -49,12 +50,15 @@ namespace Medli.Hardware
 			Console.CursorLeft = vb.X;
 			Console.CursorTop = vb.Y;
 		}
+
+
+
 		/// <summary>
 		/// Saves the Console content
 		/// </summary>
 		/// <param name="num"></param>
 		/// <returns></returns>
-		public static bool SetContent(int id)
+		public static bool SaveContent(int id)
 		{
 			bool found = false;
 			for (int i = 0; i < vbufferList.Count; i++)
@@ -94,6 +98,7 @@ namespace Medli.Hardware
 			}
 			return false;
 		}
+
 		/// <summary>
 		/// Restores the Console content
 		/// </summary>
@@ -117,6 +122,24 @@ namespace Medli.Hardware
 				}
 			}
 			return false;
+		}
+
+		public static bool Switch(int cs, int id)
+		{
+			SaveContent(cs);
+			foreach (VideoBuffer vb in vbufferList)
+			{
+				if (id == vb.id)
+				{
+					return RetContent(id);
+				}
+				else
+				{
+					return SaveContent(id);
+				}
+			}
+			return false;
+			
 		}
 	}
 }
