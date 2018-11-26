@@ -10,6 +10,9 @@ namespace Medli
 {
     public class Boot : Sys.Kernel
     {
+        /// <summary>
+        /// Initialise filesystem and system services
+        /// </summary>
 		protected override void BeforeRun()
 		{
 			try
