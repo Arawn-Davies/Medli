@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Medli\Medli.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="HAL\" />
+  </ItemGroup>
+
 </Project>
