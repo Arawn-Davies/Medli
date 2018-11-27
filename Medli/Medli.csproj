@@ -136,4 +136,10 @@
 	  <ProjectReference Include="..\AIC-Framework\AIC Framework\AIC Framework.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+      <None Remove="Logo.bmp" />
+	</ItemGroup>
+	<ItemGroup>
+      <EmbeddedResource Include="Logo.bmp" />
+	</ItemGroup>
 </Project>
