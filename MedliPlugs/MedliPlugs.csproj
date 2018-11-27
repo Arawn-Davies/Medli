@@ -5,15 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cosmos.Core" Version="0-*" NoWarn="NU1604" />
-    <PackageReference Include="Cosmos.HAL2" Version="0-*" NoWarn="NU1604" />
-    <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
-    <PackageReference Include="IL2CPU.API" Version="0-*" NoWarn="NU1604" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AIC-Framework\AIC Framework\AIC Framework.csproj" />
     <ProjectReference Include="..\Medli\Medli.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+	<Reference Include="IL2CPU">
+		<HintPath>..\..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.dll</HintPath>
+    </Reference>
+    <Reference Include="IL2CPU.API">
+		<HintPath>..\..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\IL2CPU.API.dll</HintPath>
+    </Reference>
+    <Reference Include="XSharp.Assembler">
+		<HintPath>..\..\..\..\..\AppData\Roaming\Cosmos User Kit\Build\IL2CPU\XSharp.Assembler.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

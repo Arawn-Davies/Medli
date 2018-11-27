@@ -1,142 +1,119 @@
-﻿//#define COSMOSDEBUG
+﻿/*
+* PROJECT:          Aura Operating System Development
+* CONTENT:          VBE VESA Driver
+* PROGRAMMERS:      Valentin Charbonnier <valentinbreiz@gmail.com>
+*/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Global = Cosmos.Core.Global;
 using Cosmos.Core;
-using Cosmos.HAL;
-using Medli.Hardware;
 
-namespace Medli.Hardware.Drivers.Graphics
+namespace Medli.Hardware.Drivers.Video
 {
-    public class VBEDriver
+
+    class ManagedVBE
     {
+        public static MemoryBlock LinearFrameBuffer;
 
-        private Cosmos.Core.IOGroup.VBE IO = Global.BaseIOGroups.VBE;
+        int width;
+        int height;
+        public static int len;
 
-        private enum VBERegisterIndex {
-            VBEDisplayID = 0x00,
-            VBEDisplayXResolution,
-            VBEDisplayYResolution,
-            VBEDisplayBPP,
-            VBEDisplayEnable,
-            VBEDisplayBankMode,
-            VBEDisplayVirtualWidth,
-            VBEDisplayVirtualHeight,
-            VBEDisplayXOffset,
-            VBEDisplayYOffset
-        };
+        uint mScrollSize;
+        uint mRow2Addr;
 
-        [Flags]
-        private enum VBEEnableValues
+        public static uint OffScreenSize;
+
+        public ManagedVBE(int xres, int yres, uint pointer, bool lfb)
         {
-            VBEDisabled = 0x00,
-            VBEEnabled,
-            VBEUseLinearFrameBuffer = 0x40,
-            VBENoClearMemory = 0x80,
-        };
+            width = xres;
+            height = yres;
+            len = width * height;
 
-        /* We never want that the default empty constructor is used to create a VBEDriver */
-        private VBEDriver()
-        {
+            xBytePerPixel = 32 / 8;
+            stride = 32 / 8;
 
-        }
-
-        public VBEDriver(ushort xres, ushort yres, ushort bpp)
-        {
-            /*
-             * XXX Why this simple test is killing the CPU? It is not working in Bochs too... probably it was neither
-             * tested... bah! Removing it for now.
-             */
-#if false
-            if (HAL.PCI.GetDevice(1234, 1111) == null)
+            if (lfb)
             {
-                throw new NotSupportedException("No BGA adapter found..");
+                mScrollSize = (uint)(len * 4);
+                mRow2Addr = (uint)(width * 4 * 16);
+                pitch = (uint)(width * xBytePerPixel);
+                LinearFrameBuffer = new MemoryBlock(pointer, (uint)(width * height * 4));
             }
-#endif
+            else
+            {
+                OffScreenSize = (uint)((System.Graphics.VBE.Graphics.ModeInfo.pitch / 4) - System.Graphics.VBE.Graphics.ModeInfo.width);
+                mScrollSize = (uint)(len * 4 + (OffScreenSize * 4));
+                mRow2Addr = (uint)((width + OffScreenSize) * 4 * 16);
+                pitch = (uint)((width + OffScreenSize) * xBytePerPixel);
+                LinearFrameBuffer = new MemoryBlock(pointer, (uint)((width * height * 4) + (OffScreenSize * height * 4)));
+            }
 
-            Global.mDebugger.SendInternal($"Creating VBEDriver with Mode {xres}*{yres}@{bpp}");
-            VBESet(xres, yres, bpp);
-        }
-
-        private void VBEWrite(VBERegisterIndex index, ushort value)
-        {
-            IO.VbeIndex.Word = (ushort) index;
-            IO.VbeData.Word = value;
-        }
-
-        private void VBEDisableDisplay()
-        {
-            Global.mDebugger.SendInternal($"Disabling VBE display");
-            VBEWrite(VBERegisterIndex.VBEDisplayEnable, (ushort)VBEEnableValues.VBEDisabled);
-        }
-
-        private void VBESetXResolution(ushort xres)
-        {
-            Global.mDebugger.SendInternal($"VBE Setting X resolution to {xres}");
-            VBEWrite(VBERegisterIndex.VBEDisplayXResolution, xres);
-        }
-
-        private void VBESetYResolution(ushort yres)
-        {
-            Global.mDebugger.SendInternal($"VBE Setting Y resolution to {yres}");
-            VBEWrite(VBERegisterIndex.VBEDisplayYResolution, yres);
-        }
-
-        private void VBESetDisplayBPP(ushort bpp)
-        {
-            Global.mDebugger.SendInternal($"VBE Setting BPP to {bpp}");
-            VBEWrite(VBERegisterIndex.VBEDisplayBPP, bpp);
-        }
-
-        private void VBEEnableDisplay(VBEEnableValues EnableFlags)
-        {
-            //Global.mDebugger.SendInternal($"VBE Enabling display with EnableFlags (ushort){EnableFlags}");
-            VBEWrite(VBERegisterIndex.VBEDisplayEnable, (ushort)EnableFlags);
-        }
-
-        public void VBESet(ushort xres, ushort yres, ushort bpp)
-        {
-            VBEDisableDisplay();
-            VBESetXResolution(xres);
-            VBESetYResolution(yres);
-            VBESetDisplayBPP(bpp);
-            /*
-             * Re-enable the Display with LinearFrameBuffer and without clearing video memory of previous value 
-             * (this permits to change Mode without losing the previous datas)
-             */ 
-            VBEEnableDisplay(VBEEnableValues.VBEEnabled | VBEEnableValues.VBEUseLinearFrameBuffer | VBEEnableValues.VBENoClearMemory);
         }
 
         public void SetVRAM(uint index, byte value)
         {
-            Global.mDebugger.SendInternal($"Writing to driver memory in position {index} value {value} (as byte)");
-            IO.LinearFrameBuffer.Bytes[index] = value;
+            LinearFrameBuffer.Bytes[index] = value;
         }
 
         public void SetVRAM(uint index, ushort value)
         {
-            Global.mDebugger.SendInternal($"Writing to driver memory in position {index} value {value} (as ushort)");
-            IO.LinearFrameBuffer.Words[index] = value;
+            LinearFrameBuffer.Words[index] = value;
         }
 
         public void SetVRAM(uint index, uint value)
         {
-            //Global.mDebugger.SendInternal($"Writing to driver memory in position {index} value {value} (as uint)");
-            IO.LinearFrameBuffer.DWords[index] = value;
+            LinearFrameBuffer.DWords[index] = value;
         }
 
         public byte GetVRAM(uint index)
         {
-            return IO.LinearFrameBuffer.Bytes[index];
+            return LinearFrameBuffer.Bytes[index];
         }
 
         public void ClearVRAM(uint value)
         {
-            IO.LinearFrameBuffer.Fill(value);
+            LinearFrameBuffer.Fill(value);
         }
+
+        public void ClearVRAM(int aStart, int aCount, int value)
+        {
+            LinearFrameBuffer.Fill(aStart, aCount, value);
+        }
+
+        public void CopyVRAM(int aStart, int[] aData, int aIndex, int aCount)
+        {
+            LinearFrameBuffer.Copy(aStart, aData, aIndex, aCount);
+        }
+
+        public void SetPixel(int x, int y, uint c, bool background)
+        {
+            if (background)
+            {
+                if (c != 0x00)
+                {
+                    SetVRAM(GetPointOffset(x, y), c);
+                }
+            }
+            else
+            {
+                SetVRAM(GetPointOffset(x, y), c);
+            }
+        }
+
+        uint xBytePerPixel;
+        uint stride;
+        uint pitch;
+
+        private uint GetPointOffset(int x, int y)
+        {
+            return (uint)((x * stride) + (y * pitch));
+        }
+
+        public void ScrollUp()
+        {
+            LinearFrameBuffer.MoveDown(0, mRow2Addr, mScrollSize);
+            LinearFrameBuffer.Fill(mScrollSize, mRow2Addr, 0x00);
+        }
+
     }
+
 }

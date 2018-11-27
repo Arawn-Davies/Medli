@@ -4,7 +4,7 @@ using Cosmos.HAL;
 using Medli.Common;
 using Medli.Hardware;
 
-namespace Medli.Hardware.Drivers.Graphics
+namespace Medli.Hardware.Drivers.Video
 {
     public class SVGAIIDriver
     {

@@ -17,16 +17,15 @@ namespace Medli
 		{
 			try
 			{
+                Console.Clear();
                 SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
                 for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
                 {
                     new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
                 }
-                //KernelVariables.IsLive = true;
+                Kernel.IsLive = true;
                 Runtime.Level3Init();
-                Kernel.Hostname = "M_INIT";
-				Console.ForegroundColor = ConsoleColor.White;
-				Console.BackgroundColor = ConsoleColor.Blue;
+                Kernel.Hostname = "MedliLive";
                 Kernel.Running = true;
 				Console.Clear();
                 Hardware.AddDisks.Detect();
@@ -40,6 +39,7 @@ namespace Medli
 			}
 			catch (Exception ex)
 			{
+                Console.ReadKey();
 				FatalError.Crash(ex);
 			}
 		}
@@ -58,13 +58,3 @@ namespace Medli
 		}
 	}
 }
-
-
-////Apps.Applications.Init();
-//while (Kernel.Running == true)
-//{
-//                Console.Write(Directory.GetCurrentDirectory() + " >");
-//	//KernelVariables.Hostname
-//	string cmd = Console.ReadLine();
-//                Shell.Prompt(cmd);
-//}
