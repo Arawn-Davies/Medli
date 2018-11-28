@@ -340,6 +340,7 @@ namespace MDFS
             uint[] BlockNum = new uint[] { 0, 0, 0, 0 };
             for (int i = 0; i < PartitionNumber; i++)
             {
+                // Filesystem type 0xFA (250 DEC)
                 type[i] = 0xFA;
                 String nums = MDUtils.ReadLine("How many blocks for Partition N. " + (i + 1) + "? (Max: " + ((uint)(DisplayCount - (uint)(PartitionNumber - (i + 1)))).ToString() + "): ");
                 uint num = (uint)int.Parse(nums);
@@ -357,6 +358,8 @@ namespace MDFS
                     i--;
                 }
             }
+
+
             Byte[] data = SelectedDisk.Disk.NewBlockArray(1);
             SelectedDisk.Disk.ReadBlock(0, 1, data);
             for (int i = 0; i < 4; i++)

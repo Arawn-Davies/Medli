@@ -18,7 +18,7 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			Medli.Time.printTime();
+			DateTime.printTime();
 		}
 	}
 }

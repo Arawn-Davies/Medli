@@ -110,10 +110,20 @@ namespace MDFS
 			WriteLine(s);
 		}
 
-		/// <summary>
-		/// Reads a single key from the input
+        /// <summary>
+		/// Writes a string on the last line of the screeen without creating a new one
 		/// </summary>
-		public static ConsoleKeyInfo ReadAKey()
+		/// <param name="str">The string to write</param>
+		public static void WriteOnLastLine(Char chr)
+        {
+            String str = chr + "";
+            WriteOnLastLine(str);
+        }
+
+        /// <summary>
+        /// Reads a single key from the input
+        /// </summary>
+        public static ConsoleKeyInfo ReadAKey()
 		{
 			ConsoleKeyInfo k = Console.ReadKey(true);
 			if (k.Modifiers == ConsoleModifiers.Alt || k.Modifiers == ConsoleModifiers.Control)

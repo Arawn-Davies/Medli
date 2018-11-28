@@ -84,11 +84,11 @@ namespace Medli
             }
             else if (command == "time")
             {
-                Time.printTime();
+                DateTime.printTime();
             }
             else if (command == "date")
             {
-                Time.printDate();
+                DateTime.printDate();
             }
             else if (command == "host")
             {

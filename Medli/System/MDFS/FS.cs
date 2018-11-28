@@ -145,7 +145,7 @@ namespace Medli.System.MDFS
                 if (!GenerateFS())
                 {
                     // Error - unable to create a new filesystem on specified partition
-                    throw new Exception("Unable to create a new filesystem on the specified partition");
+                    MDUtils.Error("Unable to create a new filesystem on the specified partition");
                 }
             }
         }
@@ -157,15 +157,29 @@ namespace Medli.System.MDFS
         /// <returns></returns>
         private bool GenerateFS(Partition part)
         {
-            Refresh(10000);
-            Byte[] data = part.NewBlockArray(1);
-            fSignature.CopyTo(data, 0);
-            for (int i = fSignature.Length; i < fSignature.Length; i++)
+            MDUtils.NoError("Generating filesystem on partition with size " + (((part.BlockCount * part.BlockSize) / 1024) /1024) + "MBs");
+            MDUtils.WriteLine("Doing this will delete all data presently on the partition - do you want to continue?");
+            if (MDUtils.Continue() == true)
             {
-                data[i] = fSignature[i];
+                Refresh(10000);
+                Byte[] data = part.NewBlockArray(1);
+                fSignature.CopyTo(data, 0);
+                int original = Console.CursorTop;
+                Console.CursorTop = 25;
+                for (int i = fSignature.Length; i < fSignature.Length; i++)
+                {
+                    MDUtils.WriteOnLastLine((char) fSignature[i]);
+                    data[i] = fSignature[i];
+                }
+                Console.CursorTop = original;
+                part.WriteBlock(0, 1, data);
+                return true;
             }
-            part.WriteBlock(0, 1, data);
-            return true;
+            else
+            {
+                MDUtils.Error("Aborted!");
+                return false;
+            }
         }
 
         /// <summary>
