@@ -23,13 +23,22 @@ namespace Medli.System
 		{
 			MemoryMonitoring.PrintFree();
 		}
+        public static void PrintRAMInfo()
+        {
+            MemoryMonitoring.PrintInfo();
+        }
 		public static void PrintInfo()
 		{
-			MemoryMonitoring.PrintInfo();
+			PrintRAMInfo();
+            lscpu();
 		}
 		public static void lspci()
 		{
 			HAL.ListPCIDevices();
 		}
-	}
+        public static void lscpu()
+        {
+            CPUInfo.LSCPU();
+        }
+    }
 }

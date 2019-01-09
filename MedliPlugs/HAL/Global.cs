@@ -30,9 +30,6 @@ namespace MedliPlugs.HAL
             AreaInfo.HALDevInfo.WriteDevicePrefix("PS/2", "Initialising input drivers...");
             Cosmos.HAL.Global.PS2Controller.Initialize();
 
-            //Cosmos.Core.Processing.ProcessorScheduler.Initialize();
-            //Aura_OS.System.CustomConsole.WriteLineOK("Processor Scheduler Initialization");
-
             AreaInfo.HALInfo.WriteAreaPrefix("Medli Drivers + Services successfully initialised!");
 
         }

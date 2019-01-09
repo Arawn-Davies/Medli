@@ -23,16 +23,21 @@ ram_used    - Total amount of used RAM
 ram_free    - Total amount of free RAM
 ram_total   - Total amount of installed RAM
 host        - System host
+lscpu       - Lists installed CPU(s)
 lspci       - Lists PCI devices
 list_vol(s) - Lists the filesystem volumes"; }
 		}
 
 		public override void Execute(string param)
 		{
-			if (param == "ram_info")
+			if (param == "sysinfo")
 			{
 				SystemFunctions.PrintInfo();
 			}
+            else if (param == "ram_info")
+            {
+                SystemFunctions.PrintRAMInfo();
+            }
 			else if (param == "ram_used")
 			{
 				SystemFunctions.PrintUsedRAM();
@@ -53,7 +58,11 @@ list_vol(s) - Lists the filesystem volumes"; }
 			{
 				SystemFunctions.lspci();
 			}
-			if (param == "list_vols")
+            else if (param == "lscpu")
+            {
+                SystemFunctions.lscpu();
+            }
+            else if (param == "list_vols")
 			{
 				FS.ListVols();
 			}
