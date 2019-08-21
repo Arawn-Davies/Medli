@@ -69,7 +69,7 @@ namespace MDFS.Physical
 			get
 			{
 				Byte[] data = blockDevice.NewBlockArray(1);
-				this.blockDevice.ReadBlock(0, 1, data);
+				this.blockDevice.ReadBlock(0, 1, ref data);
 				MBR m = new MBR(data, blockDevice);
 				return m;
 			}
@@ -118,7 +118,7 @@ namespace MDFS.Physical
 		/// <param name="aData">Buffer to write to</param>
 		public void ReadBlock(ulong aBlockNo, uint aBlockCount, byte[] aData)
 		{
-			blockDevice.ReadBlock(aBlockNo, aBlockCount, aData);
+			blockDevice.ReadBlock(aBlockNo, aBlockCount, ref aData);
 		}
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace MDFS.Physical
 		/// <param name="aData">Buffer to write to</param>
 		public void WriteBlock(ulong aBlockNo, uint aBlockCount, byte[] aData)
 		{
-			blockDevice.WriteBlock(aBlockNo, aBlockCount, aData);
+			blockDevice.WriteBlock(aBlockNo, aBlockCount, ref aData);
 		}
 	}
 }

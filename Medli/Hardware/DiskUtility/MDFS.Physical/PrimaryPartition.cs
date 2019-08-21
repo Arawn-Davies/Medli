@@ -57,11 +57,11 @@ namespace MDFS.Physical
 		/// <param name="aBlockNo">Starting block number</param>
 		/// <param name="aBlockCount">Number of blocks to read</param>
 		/// <param name="aData">byte[] array to read to</param>
-		public override void ReadBlock(ulong aBlockNo, ulong aBlockCount, byte[] aData)
+		public override void ReadBlock(ulong aBlockNo, ulong aBlockCount, ref byte[] aData)
 		{
 			UInt64 HostBlockNumber = StartingSector + aBlockNo;
 			CheckBlockNo(HostBlockNumber, aBlockCount);
-			HostDevice.ReadBlock(HostBlockNumber, aBlockCount, aData);
+			HostDevice.ReadBlock(HostBlockNumber, aBlockCount, ref aData);
 		}
 
 		/// <summary>
@@ -70,11 +70,11 @@ namespace MDFS.Physical
 		/// <param name="aBlockNo">Starting block number</param>
 		/// <param name="aBlockCount">Number of blocks to write to</param>
 		/// <param name="aData">Byte[] array containing data to be written</param>
-		public override void WriteBlock(ulong aBlockNo, ulong aBlockCount, byte[] aData)
+		public override void WriteBlock(ulong aBlockNo, ulong aBlockCount, ref byte[] aData)
 		{
 			UInt64 HostBlockNumber = StartingSector + aBlockNo;
 			CheckBlockNo(HostBlockNumber, aBlockCount);
-			HostDevice.WriteBlock(HostBlockNumber, aBlockCount, aData);
+			HostDevice.WriteBlock(HostBlockNumber, aBlockCount, ref aData);
 		}
 	}
 }

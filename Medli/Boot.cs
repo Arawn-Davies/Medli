@@ -23,7 +23,7 @@ namespace Medli
                 {
                     new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
                 }
-                Kernel.IsLive = true;
+                Kernel.IsLive = false;
                 Runtime.Level3Init();
                 Kernel.Hostname = "MedliLive";
                 Kernel.Running = true;

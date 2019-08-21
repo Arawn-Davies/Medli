@@ -21,7 +21,7 @@ namespace Medli.Hardware
 					AtaPio device = (AtaPio)BlockDevice.Devices[index];
                     if (device.DriveType == AtaPio.SpecLevel.ATA)
                     {
-                        device.ReadBlock(0UL, 2U, a.Data);
+                        device.ReadBlock(0UL, 2U, ref a.Data);
                         Devices.dev.Add(new Devices.device()
                         {
                             name = "/dev/sd" + b.ToString(),

@@ -38,7 +38,7 @@ namespace Medli.System
 		}
         public static void lscpu()
         {
-            CPUInfo.LSCPU();
+            //CPUInfo.LSCPU();
         }
     }
 }
