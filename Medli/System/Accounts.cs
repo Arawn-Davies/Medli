@@ -5,9 +5,8 @@ using System.IO;
 
 namespace Medli.System
 {
-    // Gradually uncomment and port from Medli-Classic to current source model
+    // Gradually port from Medli-Classic to current source model
 
-    /*
     class Accounts
     {
         public static void NewUser()
@@ -42,7 +41,7 @@ namespace Medli.System
 
         public static void PermCheck()
         {
-            if (KernelVariables.username != MEnvironment.current_usr_dir)
+            if (Kernel.username != MEnvironment.current_usr_dir)
             {
                 Console.WriteLine("You are not logged in as this user! Access Denied.");
             }
@@ -65,7 +64,7 @@ namespace Medli.System
             ResetConsoleColor();
             Console.WriteLine("Enter the new user password");
             string usrpass = Console.ReadLine();
-            File.WriteAllText(KernelVariables.homedir + KernelVariables.username + @"\pass.sys", AIC_Framework.Crypto.MD5.hash(usrpass));
+            File.WriteAllText(Common.Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC_Framework.Crypto.MD5.hash(usrpass));
         }
         public static void UserLogin()
         {
@@ -88,7 +87,7 @@ namespace Medli.System
                 MEnvironment.rootpass_md5 = File.ReadAllLines(MEnvironment.rpf)[0];
                 if (pass == MEnvironment.rootpass)
                 {
-                    KernelVariables.username = "root";
+                    Kernel.username = "root";
                     MEnvironment.PressAnyKey();
                 }
                 else
@@ -98,7 +97,7 @@ namespace Medli.System
                     UserLogin();
                 }
             }
-            else if (Directory.Exists(KernelVariables.homedir + usrlogon))
+            else if (Directory.Exists(Common.Paths.Users + MEnvironment.dir_ext + usrlogon))
             {
                 Console.Write("Password >");
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -107,7 +106,7 @@ namespace Medli.System
                 MEnvironment.usrpass_md5 = File.ReadAllLines(MEnvironment.upf)[0];
                 if (pass == MEnvironment.usrpass)
                 {
-                    KernelVariables.username = usrlogon;
+                    Kernel.username = usrlogon;
                 }
                 else
                 {
@@ -146,12 +145,12 @@ namespace Medli.System
             Name = nm;
             Password = pass;
             Type = type;
-            Userhomedir = KernelVariables.homedir + Name + MEnvironment.dir_ext;
+            Userhomedir = Common.Paths.Users + MEnvironment.dir_ext + Name + MEnvironment.dir_ext;
             Usrpass_md5 = AIC_Framework.Crypto.MD5.hash(Password);
             Directory.CreateDirectory(Userhomedir);
             //Console.WriteLine("Created new user directory: " + userhomedir);
             File.WriteAllText(Userhomedir + upf, Usrpass_md5);
-            File.AppendAllText(KernelVariables.usrinfo, Name + Environment.NewLine);
+            File.AppendAllText(Kernel.usrinfo, Name + Environment.NewLine);
         }
     }
     public enum UserType
@@ -160,5 +159,5 @@ namespace Medli.System
         Normal = 1,
         Root = 2,
     }
-    */
+    
 }
