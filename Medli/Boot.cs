@@ -15,9 +15,12 @@ namespace Medli
         /// </summary>
 		protected override void BeforeRun()
 		{
-			try
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            try
 			{
-                Console.Clear();
+                
                 SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
                 for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
                 {

@@ -1,4 +1,5 @@
 ﻿using Medli.System;
+using System;
 
 namespace Medli.Apps
 {
@@ -20,11 +21,25 @@ namespace Medli.Apps
 			}
 		}
 
-		public override void Execute(string param)
-		{
-			Screen.SaveBuffer();
-			FS.MFSU();
-			Screen.RestoreBuffer();
-		}
+        public override void Execute(string param)
+        {
+            if (param == "quick")
+            {
+                try
+                {
+                    Common.Services.FSService.Format();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                Screen.SaveBuffer();
+                FS.MFSU();
+                Screen.RestoreBuffer();
+            }
+        }
 	}
 }

@@ -39,16 +39,23 @@ namespace Medli.Hardware
 		/// </summary>
 		public static void PopContents()
 		{
-			VideoBuffer vb = vbufferStack.Pop();
-			byte* VideoRam = (byte*)0xB8000;
+            if (vbufferStack.Count > 0)
+            {
+                VideoBuffer vb = vbufferStack.Pop();
+                byte* VideoRam = (byte*)0xB8000;
 
-			for (int i = 0; i < 4250; i++)
-			{
-				VideoRam[i] = vb.data[i];
+                for (int i = 0; i < 4250; i++)
+                {
+                    VideoRam[i] = vb.data[i];
 
-			}
-			Console.CursorLeft = vb.X;
-			Console.CursorTop = vb.Y;
+                }
+                Console.CursorLeft = vb.X;
+                Console.CursorTop = vb.Y;
+            }
+			else
+            {
+                Console.WriteLine("MultiScreen stack empty - nothing to restore from!");
+            }
 		}
 
 

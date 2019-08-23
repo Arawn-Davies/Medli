@@ -25,12 +25,12 @@ namespace Medli.Hardware.Drivers.Networking
 		}
 		public static void Init()
 		{
-			Cosmos.Core.INTs.SetIrqHandler(0x07, HandleIRQ2);
+			INTs.SetIrqHandler(0x07, HandleIRQ2);
 			SoftReset();
 			InitRxBuffer();
 		}
 
-		public static void HandleIRQ2(ref Cosmos.Core.INTs.IRQContext aContext)
+		public static void HandleIRQ2(ref INTs.IRQContext aContext)
 		{
 			Console.WriteLine("IRQ2");
 		}

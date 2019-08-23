@@ -19,6 +19,11 @@ namespace Medli.System
 			}
 		}
 
+        public static void Format()
+        {
+            FSService.Format();
+        }
+
         public static void MFSU()
         {
             try

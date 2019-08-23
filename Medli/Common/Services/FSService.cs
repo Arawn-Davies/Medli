@@ -30,7 +30,16 @@ namespace Medli.Common.Services
 
 		public static LoggingService ServiceLogger;
 
-		public static bool Init()
+        public static void Format()
+        {
+            if (Active == true)
+            {
+                string driveID = @"0:\";
+                var mydrive = new DiskManager(driveID);
+                mydrive.Format("FAT32", true);
+            }
+        }
+        public static bool Init()
 		{
             vFS = new CosmosVFS();
 			Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(vFS);
