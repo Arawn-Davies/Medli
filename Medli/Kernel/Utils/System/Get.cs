@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Medli.Common;
+using MCS = Medli.Common.Services;
 using Medli.System;
 using Sys = Cosmos.System;
 
@@ -25,7 +25,8 @@ ram_total   - Total amount of installed RAM
 host        - System host
 lscpu       - Lists installed CPU(s)
 lspci       - Lists PCI devices
-list_vol(s) - Lists the filesystem volumes"; }
+list_vol(s) - Lists the filesystem volumes
+fs_log      - Prints the log of the FileSystem service"; }
 		}
 
 		public override void Execute(string param)
@@ -70,6 +71,11 @@ list_vol(s) - Lists the filesystem volumes"; }
 			{
 				FS.ListVol();
 			}
+            else if (param == "fs_log")
+            {
+                Console.WriteLine("FS Log:");
+                Console.WriteLine(ServiceLogging.PrintLog(MCS.FSService.ServiceLogger));
+            }
 		}
 	}
 }

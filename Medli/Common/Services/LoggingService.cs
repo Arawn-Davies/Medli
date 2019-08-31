@@ -9,7 +9,7 @@ namespace Medli.Common
     public class LoggingService
     {
 		public string LogFile;
-		public readonly TextLog log = new TextLog();
+		public readonly TextLog Log = new TextLog();
 
 		public bool Init()
 		{
@@ -23,12 +23,12 @@ namespace Medli.Common
 		public void Record(string logtext)
 		{
 			string datetime = SysClock.Month() + ":" + SysClock.DayOfTheMonth() + ":" + SysClock.Hour() + ":" + SysClock.Minute() + ":" + SysClock.Second();
-			log.Write(datetime + "\t" + logtext);
+			Log.Write(datetime + "\t" + logtext);
 		}
 
 		public void Save()
 		{
-			File.WriteAllText(LogFile, log.stream);
+			File.WriteAllText(LogFile, Log.stream);
 		}
 
 		public LoggingService(string logpath)
