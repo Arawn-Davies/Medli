@@ -20,6 +20,7 @@ namespace Medli
             Console.Clear();
             try
 			{
+                /*
                 
                 SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
                 for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
@@ -27,7 +28,11 @@ namespace Medli
                     new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
                 }
                 Kernel.IsLive = false;
+                
+                */
                 Runtime.Level3Init();
+                Installer.MInit();
+
                 Kernel.Hostname = "MedliLive";
                 Kernel.Running = true;
 				Console.Clear();

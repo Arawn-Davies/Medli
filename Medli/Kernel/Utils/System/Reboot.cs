@@ -21,8 +21,13 @@ namespace Medli.Apps
 
 		public override void Execute(string param)
 		{
-			EnvironmentVariables.SaveVars();
-			Sys.Power.Reboot();
+            RebootSystem();
 		}
+
+        public static void RebootSystem()
+        {
+            EnvironmentVariables.SaveVars();
+            Sys.Power.Reboot();
+        }
 	}
 }

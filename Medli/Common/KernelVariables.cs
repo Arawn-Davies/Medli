@@ -54,12 +54,30 @@ INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, B
 LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
 
+
+        /// <summary>
+        /// See 'Installer.username' - same string and value
+        /// - Redefined for global usage in Medli
+        /// </summary>
         public static string username;
+
+        /// <summary>
+        /// Defines where the PC information is stored as a file
+        /// with it's location stored as a string
+        /// </summary>
+        public static string pcinfo = Common.Paths.System + MEnvironment.dir_ext + "pcinfo.sys";
 
         /// <summary>
         /// Defines where the user information is stored as a file,
         /// with it's location stored as a string
         /// </summary>
         public static string usrinfo = Common.Paths.System + MEnvironment.dir_ext + "usrinfo.sys";
+
+        /// <summary>
+        /// See 'Installer.MInit' for first declaration, shares the same value
+        /// - Redefined for global usage in Medli
+        /// </summary>
+        public static string pcname;
+
     }
 }

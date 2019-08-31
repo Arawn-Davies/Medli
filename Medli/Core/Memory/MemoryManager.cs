@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Cosmos.Core;
+using AIC.Core;
 
 namespace Medli.Core
 {
@@ -12,7 +13,7 @@ namespace Medli.Core
 			uint UsedRAM = CPU.GetEndOfKernel() + 1024;
 			return UsedRAM / div;
 		}
-		public static uint TotalMemory = CPU.GetAmountOfRAM();
+		public static uint TotalMemory = GetRAM.GetAmountOfRAM;
 		public uint FreePercentage;
 		public uint UsedPercentage = (GetUsedMemory() * 100) / TotalMemory;
 		public uint FreeMemory = TotalMemory - GetUsedMemory();
@@ -20,7 +21,7 @@ namespace Medli.Core
 
 		public static void GetTotalMemory()
 		{
-			TotalMemory = CPU.GetAmountOfRAM() + 1;
+			TotalMemory = GetRAM.GetAmountOfRAM + 1;
 		}
 		public void Monitor()
 		{

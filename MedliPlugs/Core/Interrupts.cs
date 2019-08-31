@@ -6,7 +6,7 @@ namespace MedliPlugs
 {
     [Plug(Target = typeof(Cosmos.Core.INTs))]
     public class INTs
-	{
+    {
         /// <summary>
         /// Handles kernel exceptions (DIVIDE BY ZERO etc.)
         /// </summary>

@@ -12,8 +12,8 @@ namespace MedliPlugs.System
     {
         public static void Init(TextScreenBase textScreen)
         {
-            //Kernel.AConsole = new Medli.System.AConsole.VGA.VGAConsole(textScreen);
-            Kernel.AConsole = new Medli.System.AConsole.VESAVBE.VESAVBEConsole();
+            Kernel.AConsole = new Medli.System.AConsole.VGA.VGAConsole(textScreen);
+            //Kernel.AConsole = new Medli.System.AConsole.VESAVBE.VESAVBEConsole();
             Cosmos.HAL.Global.Init(textScreen);
             Cosmos.System.Global.NumLock = false;
             Cosmos.System.Global.CapsLock = false;

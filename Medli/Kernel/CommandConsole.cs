@@ -60,7 +60,7 @@ namespace Medli
 			while (running)
 			{
 
-				Console.Write(Screen.CurrentScreen + " " + Paths.CurrentDirectory + "/> ");
+				Console.Write(Screen.CurrentScreen + " " + Kernel.username + @"@" + Paths.CurrentDirectory + "/> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }
 				Parse(line);

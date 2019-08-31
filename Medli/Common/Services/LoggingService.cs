@@ -9,7 +9,7 @@ namespace Medli.Common
     public class LoggingService
     {
 		public string LogFile;
-		private TextLog log = new TextLog();
+		public readonly TextLog log = new TextLog();
 
 		public bool Init()
 		{
