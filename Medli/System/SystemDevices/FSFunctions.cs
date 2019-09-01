@@ -157,10 +157,12 @@ namespace Medli.System
 				if (Directory.Exists(Paths.CurrentDirectory + path))
 				{
 					Paths.CurrentDirectory = Paths.CurrentDirectory + @"\" + path;
+                    Directory.SetCurrentDirectory(Paths.CurrentDirectory);
 				}
 				else if (Directory.Exists(path))
 				{
 					Paths.CurrentDirectory = path;
+                    Directory.SetCurrentDirectory(Paths.CurrentDirectory);
 				}
 				else
 				{

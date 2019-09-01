@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Medli.Hardware;
+using AR = AIC_Framework.AConsole.VideoRAM;
 
 namespace Medli.System
 {
@@ -9,19 +10,19 @@ namespace Medli.System
 	{
 		public static void SaveBuffer()
 		{
-			MultiScreen.PushContents();
+			AR.PushContents();
 		}
 
 		public static void RestoreBuffer()
 		{
-			MultiScreen.PopContents();
+			AR.PopContents();
 		}
 
 		public static int CurrentScreen = 1;
 
 		public static void ChangeScreen(int screen)
 		{
-			MultiScreen.Switch(CurrentScreen, screen);
+			AR.Switch(CurrentScreen, screen);
 			CurrentScreen = screen;
 		}
 	}

@@ -78,6 +78,7 @@ namespace Medli.Common.Services
 					Kernel.IsLive = false;
 					System.Runtime.ReadHostname();
                     Directory.SetCurrentDirectory(Paths.Root);
+                    Paths.CurrentDirectory = Paths.Root;
 					Active = true;
 					return true;
 				}
