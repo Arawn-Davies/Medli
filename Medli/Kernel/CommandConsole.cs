@@ -55,6 +55,7 @@ namespace Medli
 			_commands.Add(new ColorChanger());
 			_commands.Add(new rm());
 			_commands.Add(new fdisk());
+            _commands.Add(new ExperimentalMode());
 			Console.WriteLine("");
 
 			while (running)

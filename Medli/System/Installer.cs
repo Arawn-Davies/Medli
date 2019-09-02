@@ -52,13 +52,7 @@ namespace Medli
         /// <summary>
         /// Defines the ConsoleColor color so it can be changed as a variable
         /// </summary>
-        /// <summary>
-        /// Defines the username string but leaves it as NULL 
-        /// until set by the user in the installer
-        /// </summary>
-        public static string username;
-        public static string userpass;
-        public static string rootpass;
+ 
         /// <summary>
         /// Initializes the installer and allows the user to choose a machine name
         /// Sets the machine name as a variable and writes it to the disk
@@ -91,7 +85,7 @@ namespace Medli
                     try
                     {
                         Accounts.UserLogin();
-                        AConsole.Fill(ConsoleColor.Black);
+                        AConsole.Fill(ConsoleColor.Blue);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Welcome back, " + Kernel.username + @"!");
                         MEnvironment.PressAnyKey();
@@ -153,7 +147,7 @@ namespace Medli
             InstallerWriteLine("Welcome to the Medli installer.");
             PAKTC();
             InitScreen();
-            Medli.Common.Paths.CreateDirectories();
+            Paths.CreateDirectories();
             InitScreen();
 
             InstallerWrite("Enter new account name: ");
@@ -161,6 +155,7 @@ namespace Medli
             Kernel.username = usrname;
             InstallerWrite("Enter the new account password: ");
             string pass = Console.ReadLine();
+            MEnvironment.usrpass = pass;
             InstallerWrite("Enter the new account type (guest, normal, root): ");
             string user_type = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White; InstallerWriteLine("Creating user account...");
@@ -169,10 +164,11 @@ namespace Medli
                 Accounts.CreateUser(usrname, pass, user_type);
                 Console.ForegroundColor = ConsoleColor.Green; Console.Write("\t\tDone!"); Console.ForegroundColor = ConsoleColor.White;
                 InstallerWrite("Enter the root password: ");
+
                 MEnvironment.rootpass = Console.ReadLine();
                 Console.ForegroundColor = ConsoleColor.White; InstallerWriteLine("Writing root password...");
-                File.WriteAllText(MEnvironment.rpf, AIC_Framework.Crypto.MD5.hash(MEnvironment.rootpass));
-                //MEnvironment.WriteRootPass();
+                //File.WriteAllText(MEnvironment.rpf, AIC_Framework.Crypto.MD5.hash(MEnvironment.rootpass));
+                MEnvironment.WriteRootPass();
                 Console.ForegroundColor = ConsoleColor.Green; Console.Write("\t\tDone!"); Console.ForegroundColor = ConsoleColor.White;
             }
             catch (Exception ex)
@@ -186,7 +182,7 @@ namespace Medli
             Console.CursorLeft = 0;
             Console.CursorTop = 24;
             Console.ReadKey();
-            Kernel.username = username;
+            Kernel.username = usrname;
             Console.Clear();
             InitScreen();
             InstallerWriteLine("Please enter a machine name:");

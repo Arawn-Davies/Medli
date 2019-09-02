@@ -6,6 +6,7 @@ using Medli.Common;
 using Medli.Common.Services;
 using MDFS;
 using Medli.System;
+using AIC_Framework;
 
 namespace Medli.System
 {
@@ -188,6 +189,20 @@ namespace Medli.System
 				Console.WriteLine(ex.Message);
 			}
 		}
+
+        public static byte[] ReadContents(string path)
+        {
+            try
+            {
+                IsLiveSystem();
+                return File.ReadAllBytes(path);
+            }
+            catch (Exception ex)
+            {
+                AIC_Framework.AConsole.Error.WriteLine(ex.Message);
+            }
+            return new byte[]{ 0, 0};
+        }
 
         public static void del(string filename, bool recursive)
         {

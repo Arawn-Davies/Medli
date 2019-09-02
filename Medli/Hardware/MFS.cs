@@ -84,7 +84,7 @@ namespace Medli.Hardware
 
 		public string[] ListDirs(string RootDir)
 		{
-			string[] temp0;
+			//string[] temp0;
 			return new string[2];
 		}
 		public string[] ListFiles(string RootDir)

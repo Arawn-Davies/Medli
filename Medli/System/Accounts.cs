@@ -62,6 +62,7 @@ namespace Medli.System
             Console.WriteLine("Change password:");
             Console.CursorTop = 5;
             ResetConsoleColor();
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter the new user password");
             string usrpass = Console.ReadLine();
             File.WriteAllText(Common.Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC_Framework.Crypto.MD5.hash(usrpass));
@@ -74,6 +75,7 @@ namespace Medli.System
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("User Login:");
             ResetConsoleColor();
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.CursorTop = 5;
             Console.WriteLine("You can either log in as an existing user or create a new one.\n");
             Console.Write("Username >");
@@ -81,7 +83,7 @@ namespace Medli.System
             if (usrlogon == "root")
             {
                 Console.Write("Password >");
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 string pass = Console.ReadLine();
                 Console.ForegroundColor = ConsoleColor.White;
                 MEnvironment.rootpass_md5 = File.ReadAllLines(MEnvironment.rpf)[0];
@@ -100,7 +102,7 @@ namespace Medli.System
             else if (Directory.Exists(Common.Paths.Users + MEnvironment.dir_ext + usrlogon))
             {
                 Console.Write("Password >");
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 string pass = Console.ReadLine();
                 Console.ForegroundColor = ConsoleColor.White;
                 MEnvironment.usrpass_md5 = File.ReadAllLines(MEnvironment.upf)[0];

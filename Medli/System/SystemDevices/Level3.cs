@@ -4,6 +4,7 @@ using Medli.Common;
 using System.IO;
 using Medli.Common.Services;
 using MDFS;
+using Medli.Common.Drivers;
 
 namespace Medli.System
 {
@@ -26,7 +27,21 @@ namespace Medli.System
                     new DiskListing(i, SystemFunctions.IDEs[i]);
                 }
             }
-		}
+
+            SystemCalls MEFAPI = new SystemCalls();
+            for (int i = 0; i < Kernel.Drivers.Count; i++)
+            {
+                if (Kernel.Drivers[i].Init())
+                {
+                    Console.WriteLine(Kernel.Drivers[i].Name + "' loaded sucessfully");
+                }
+                else
+                {
+                    Console.WriteLine("Failure loading module '" + Kernel.Drivers[i].Name + "'");
+                    Console.ReadKey();
+                }
+            }
+        }
 		/// <summary>
 		/// Checks the Virtual File System to see if there are any usable disks
 		/// </summary>
