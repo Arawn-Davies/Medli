@@ -16,48 +16,66 @@ namespace Medli
     /// </summary>
     class Installer
     {
-        public static AConsole.ProgressBar installerProgress = new AConsole.ProgressBar(0, true);
-        public static Cosmos.Debug.Kernel.Debugger mDebugger;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static Cosmos.Debug.Kernel.Debugger mDebugger;
+
+        /// <summary>
+        /// Initializes the Medli installer console screen by 
+        /// setting the default colour, the title and cursor position
+        /// </summary>
+        /// <param name="color"></param>
+        private static void ScreenSetup()
+        {
+            Console.BackgroundColor = defaultcol;
+            Console.Clear();
+            //TODO
+            Console.CursorTop = 0;
+            Console.CursorLeft = 0;
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Medli Installer ");
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.CursorTop = 7;
+            Console.CursorLeft = 7;
+        }
+
         /// <summary>
         /// Custom Write method for the installer console, sets the cursor position
         /// </summary>
         /// <param name="text"></param>
-        public static void InstallerWrite(string text)
+        private static void Write(string text)
         {
             Console.CursorLeft = 7;
             Console.Write(text);
+            Console.CursorLeft = 0;
         }
+
         /// <summary>
         /// Custom WriteLine method for the installer console, sets the cursor position
         /// </summary>
         /// <param name="text"></param>
-        public static void InstallerWriteLine(string text)
+        private static void WriteLine(string text)
         {
             Console.CursorLeft = 7;
             Console.WriteLine(text);
+            Console.CursorLeft = 0;
         }
+
+
         /// <summary>
-        /// Simple Press Any Key To Continue method.
+        /// The default colour for the installation console
         /// </summary>
-        public static void PAKTC()
-        {
-            Console.CursorTop = 23;
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(true);
-        }
-        /// <summary>
-        /// The default colour for the console
-        /// </summary>
-        public static ConsoleColor defaultcol = ConsoleColor.Blue;
-        /// <summary>
-        /// Defines the ConsoleColor color so it can be changed as a variable
-        /// </summary>
- 
+        private static ConsoleColor defaultcol = ConsoleColor.Blue;
+
         /// <summary>
         /// Initializes the installer and allows the user to choose a machine name
         /// Sets the machine name as a variable and writes it to the disk
         /// </summary>
-        public static void MInit()
+        public static void Setup()
         {
             if (Kernel.IsLive == true)
             {
@@ -92,107 +110,82 @@ namespace Medli
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
+                        AConsole.Error.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
                     }
                 }
                 else
                 {
-                    InitScreen();
-                    InstallerWriteLine("Medli was unable to find any info regarding your PC.");
-                    InstallerWriteLine("The Medli installer will now run.");
-                    PAKTC();
                     Console.Clear();
-                    InitScreen();
-                    Run();
+                    ScreenSetup();
+                    WriteLine("Medli was unable to find any info regarding your PC.");
+                    WriteLine("The Medli installer will now run.");
+                    Console.CursorLeft = 7;
+                    MEnvironment.PressAnyKey();
+                    Console.CursorLeft = 0;
+                    Console.Clear();
+                    Main();
                 }
             }           
         }
-        /// <summary>
-        /// Initializes the Medli installer console screen by 
-        /// setting the default colour, the title and cursor position
-        /// </summary>
-        /// <param name="color"></param>
-        public static void InitScreen()
-        {
-
-            Console.BackgroundColor = defaultcol;
-            Console.Clear();
-            //TODO
-            installerProgress.Draw();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            installerProgress.Increment();
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Medli Installer ");
-            Console.BackgroundColor = defaultcol;
-            Console.ForegroundColor = ConsoleColor.White;
-
-            Console.CursorLeft = 7;
-            Console.CursorTop = 7;
-        }
+        
         /// <summary>
         /// Main installer method, choose colour of installer, choose desired username and reports if a FAT error occurs
         /// </summary>
-        public static void Run()
+        private static void Main()
         {
-            InitScreen();
-            InstallerWriteLine("Welcome to the Medli installer.");
-            PAKTC();
-            InitScreen();
-            Paths.CreateDirectories();
-            InitScreen();
+            ScreenSetup();
+            WriteLine("Welcome to the Medli installer.");
+            Console.CursorLeft = 7;
+            MEnvironment.PressAnyKey();
+            Console.CursorLeft = 0;
 
-            InstallerWrite("Enter new account name: ");
+            Write("Enter new account name: ");
             string usrname = Console.ReadLine();
             Kernel.username = usrname;
-            InstallerWrite("Enter the new account password: ");
+
+            Write("Enter the new account password: ");
             string pass = Console.ReadLine();
             MEnvironment.usrpass = pass;
-            InstallerWrite("Enter the new account type (guest, normal, root): ");
+
+            Write("Enter the new account type (guest, normal, root): ");
             string user_type = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White; InstallerWriteLine("Creating user account...");
+            Console.ForegroundColor = ConsoleColor.White; WriteLine("Creating user account...");
+
             try
             {
                 Accounts.CreateUser(usrname, pass, user_type);
                 Console.ForegroundColor = ConsoleColor.Green; Console.Write("\t\tDone!"); Console.ForegroundColor = ConsoleColor.White;
-                InstallerWrite("Enter the root password: ");
-
+                
+                Write("Enter the root password: ");
                 MEnvironment.rootpass = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.White; InstallerWriteLine("Writing root password...");
-                //File.WriteAllText(MEnvironment.rpf, AIC_Framework.Crypto.MD5.hash(MEnvironment.rootpass));
+                Console.ForegroundColor = ConsoleColor.White;
+
+                WriteLine("Writing root password...");
                 MEnvironment.WriteRootPass();
                 Console.ForegroundColor = ConsoleColor.Green; Console.Write("\t\tDone!"); Console.ForegroundColor = ConsoleColor.White;
+
+                //File.WriteAllText(MEnvironment.rpf, AIC_Framework.Crypto.MD5.hash(MEnvironment.rootpass));
             }
             catch (Exception ex)
             {
                 Bluescreen.Init(ex, true);
                 Console.ReadKey(true);
             }
-            Console.CursorTop = 10;
-            Console.ForegroundColor = ConsoleColor.White;
-            InstallerWriteLine("All set! Press any key to continue...");
+            Console.CursorLeft = 7;
+            MEnvironment.PressAnyKey("All set! Press any key to continue...");
             Console.CursorLeft = 0;
-            Console.CursorTop = 24;
-            Console.ReadKey();
+
             Kernel.username = usrname;
             Console.Clear();
-            InitScreen();
-            InstallerWriteLine("Please enter a machine name:");
-            Console.CursorTop = 24;
+
+            ScreenSetup();
+            WriteLine("Please enter a machine name:");
             Kernel.pcname = Console.ReadLine();
-            InitScreen();
+
             try
             {
-                Console.ForegroundColor = ConsoleColor.White; InstallerWrite("Creating machineinfo file...  "); File.Create(Kernel.pcinfo).Dispose(); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("\t\tDone!");
-                Console.ForegroundColor = ConsoleColor.White; InstallerWrite("Writing machineinfo to file..."); File.WriteAllText(Kernel.pcinfo, Kernel.pcname); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("\t\tDone!");
+                Console.ForegroundColor = ConsoleColor.White; Write("Creating machineinfo file...  "); File.Create(Kernel.pcinfo).Dispose(); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("\t\tDone!");
+                Console.ForegroundColor = ConsoleColor.White; Write("Writing machineinfo to file..."); File.WriteAllText(Kernel.pcinfo, Kernel.pcname); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("\t\tDone!");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             catch
@@ -207,16 +200,10 @@ This may be due to an unformatted hard drive or some other error", "FAT Error");
             //File.Create(Kernel.current_dir + "reginfo.sys");
             //File.WriteAllText(Kernel.current_dir + "reginfo.sys", KernelVariables.regname);
 
-            Console.Clear();
-            InitScreen();
-            InstallerWriteLine("Awesome - you're all set!");
-            InstallerWriteLine("Press any key to start Medli!");
-            Console.CursorTop = 24;
-            Console.ReadKey(true);
-            Console.CursorTop = 0;
+            WriteLine("Awesome - you're all set!");
+            Console.CursorLeft = 7;
+            MEnvironment.PressAnyKey("Press any key to start Medli!");
             Console.CursorLeft = 0;
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
         }
     }

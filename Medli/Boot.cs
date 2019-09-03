@@ -32,7 +32,7 @@ namespace Medli
                 
                 
                 Runtime.Level3Init();
-                Installer.MInit();
+                Installer.Setup();
 
                 //Kernel.Hostname = "MedliLive";
                 Kernel.Running = true;
