@@ -5,6 +5,7 @@ using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
 using System.IO;
+using AIC_Framework;
 
 namespace Medli
 {
@@ -15,6 +16,7 @@ namespace Medli
         /// </summary>
 		protected override void BeforeRun()
 		{
+            Console.Clear();
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();
@@ -31,8 +33,7 @@ namespace Medli
                 Kernel.IsLive = false;
                 
                 
-                Runtime.Level3Init();
-                Installer.Setup();
+                Level3.Init();
 
                 //Kernel.Hostname = "MedliLive";
                 Kernel.Running = true;

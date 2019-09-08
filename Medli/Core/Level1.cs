@@ -4,11 +4,11 @@ using Medli.Common;
 
 namespace Medli.Core
 { 
-    public class Runtime
+    public class Level1
     {
 		public static PIC pic;
 		public static readonly CPU cpu = new CPU();
-		public static void Level1Init()
+		public static void Init()
 		{
 			AreaInfo.CoreDevInfo.WriteDevicePrefix("RAM", "Initializing Memory Monitor...");
 			CoreDevices.MemMon = new MemoryManager();

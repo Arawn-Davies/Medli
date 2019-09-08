@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using Cosmos.System.FileSystem;
 using System.IO;
+using Medli.System;
 
 namespace Medli.Common.Services
 {
 	public class FSService
 	{
-		public static CosmosVFS vFS;
+        private static string driveID = @"0:\";
+
+        public static CosmosVFS vFS;
 
 		public static string ServiceName = "FSSRV";
 
@@ -34,13 +37,31 @@ namespace Medli.Common.Services
         {
             if (Active == true)
             {
-                string driveID = @"0:\";
                 var mydrive = new DiskManager(driveID);
-                mydrive.Format("FAT32", true);
+                mydrive.Format("FAT32", false);
             }
         }
+
+        public static void ChangeDriveLabel()
+        {
+            if (Active == true)
+            {
+                var mydrive = new DiskManager(driveID);
+                mydrive.ChangeDriveLetter(@"1:\");
+            }
+        }
+
+        /// <summary>
+        /// Initialise the filesystem service
+        /// </summary>
+        /// <returns></returns>
         public static bool Init()
 		{
+            if (Kernel.IsLive == true)
+            {
+                Active = false;
+                return false;
+            }
             vFS = new CosmosVFS();
 			Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(vFS);
 			if (CheckVolumes() == false) {
@@ -75,8 +96,10 @@ namespace Medli.Common.Services
 					Paths.CreateDirectories();
                     ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
 					ServiceLogger.Record("FS Service logger initialized.");
+                    var mydrive = new DiskManager(driveID);
+                    ServiceLogger.Record("Filesystem service running on " + mydrive.Name);
 					Kernel.IsLive = false;
-					System.Runtime.ReadHostname();
+					Level3.ReadHostname();
                     Directory.SetCurrentDirectory(Paths.Root);
                     Paths.CurrentDirectory = Paths.Root;
 					Active = true;

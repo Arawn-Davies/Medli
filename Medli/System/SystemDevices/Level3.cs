@@ -8,14 +8,14 @@ using Medli.Common.Drivers;
 
 namespace Medli.System
 {
-	public class Runtime
+	public class Level3
 	{
 		/// <summary>
 		/// System ring init method - ran once at boot
 		/// </summary>
-		public static void Level3Init()
+		public static void Init()
 		{
-			Hardware.Runtime.Level2Init();
+			HW.Init();
 			//Thread.Sleep(500);
 			Console.WriteLine("FileSystem service...");
 			FSService.Init();
@@ -26,6 +26,7 @@ namespace Medli.System
                 {
                     new DiskListing(i, SystemFunctions.IDEs[i]);
                 }
+                InstallService.Init();
             }
 
             SystemCalls MEFAPI = new SystemCalls();

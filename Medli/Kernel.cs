@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Medli.System;
 using System.Collections.Generic;
 using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.Common.Drivers;
-using Medli.System;
 using IL2CPU.API.Attribs;
 
 namespace Medli
@@ -38,12 +37,12 @@ namespace Medli
         /// <summary>
         /// 
         /// </summary>
-        public static Cosmos.HAL.PCSpeaker speaker = new Cosmos.HAL.PCSpeaker();
+        public static Cosmos.HAL.PCSpeaker Speaker = new Cosmos.HAL.PCSpeaker();
 
         /// <summary>
         /// 
         /// </summary>
-        public static Cosmos.System.Graphics.Bitmap Logo;
+        public static Sys.Graphics.Bitmap Logo;
 
         /// <summary>
         /// 

@@ -19,7 +19,7 @@ namespace Medli.System
             string user_type = Console.ReadLine();
             CreateUser(usrname, pass, user_type);
         }
-        public static void CreateUser(string usrname, string pass, string user_type)
+        public static string CreateUser(string usrname, string pass, string user_type)
         {
             if (user_type.ToLower() == "guest")
             {
@@ -35,8 +35,9 @@ namespace Medli.System
             }
             else
             {
-                Console.WriteLine("Invalid user type:" + user_type);
+                return "Invalid user type: " + user_type;
             }
+            return "Created user (" + usrname + " " + pass + " " + user_type + ")";
         }
 
         public static void PermCheck()

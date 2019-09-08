@@ -12,7 +12,7 @@
         <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
         <VMware_Deployment>ISO</VMware_Deployment>
         <VMware_Launch>VMware</VMware_Launch>
-        <VMware_DebugEnabled>False</VMware_DebugEnabled>
+        <VMware_DebugEnabled>True</VMware_DebugEnabled>
         <VMware_DebugMode>Source</VMware_DebugMode>
         <VMware_IgnoreDebugStubAttribute>False</VMware_IgnoreDebugStubAttribute>
         <VMware_CosmosDebugPort>Serial: COM1</VMware_CosmosDebugPort>
@@ -20,6 +20,62 @@
         <VMware_PxeInterface>192.168.0.8</VMware_PxeInterface>
         <VMware_EnableGDB>False</VMware_EnableGDB>
         <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
+        <Bochs_StackCorruptionDetectionEnabled>True</Bochs_StackCorruptionDetectionEnabled>
+        <Bochs_StackCorruptionDetectionLevel>MethodFooters</Bochs_StackCorruptionDetectionLevel>
+        <Bochs_Description>Use Bochs emulator to deploy and debug.</Bochs_Description>
+        <Bochs_Deployment>ISO</Bochs_Deployment>
+        <Bochs_Launch>Bochs</Bochs_Launch>
+        <Bochs_DebugEnabled>True</Bochs_DebugEnabled>
+        <Bochs_DebugMode>Source</Bochs_DebugMode>
+        <Bochs_IgnoreDebugStubAttribute>False</Bochs_IgnoreDebugStubAttribute>
+        <Bochs_CosmosDebugPort>Serial: COM1</Bochs_CosmosDebugPort>
+        <Bochs_VisualStudioDebugPort>Pipe: Cosmos\Serial</Bochs_VisualStudioDebugPort>
+        <Bochs_PxeInterface>192.168.0.8</Bochs_PxeInterface>
+        <Bochs_EnableGDB>False</Bochs_EnableGDB>
+        <Bochs_StartCosmosGDB>False</Bochs_StartCosmosGDB>
+        <IntelEdison_StackCorruptionDetectionEnabled>True</IntelEdison_StackCorruptionDetectionEnabled>
+        <IntelEdison_StackCorruptionDetectionLevel>MethodFooters</IntelEdison_StackCorruptionDetectionLevel>
+        <IntelEdison_Description>Connect to Intel Edison device to deploy and debug.</IntelEdison_Description>
+        <IntelEdison_Deployment>BinaryImage</IntelEdison_Deployment>
+        <IntelEdison_Launch>IntelEdison</IntelEdison_Launch>
+        <IntelEdison_DebugEnabled>True</IntelEdison_DebugEnabled>
+        <IntelEdison_DebugMode>Source</IntelEdison_DebugMode>
+        <IntelEdison_IgnoreDebugStubAttribute>False</IntelEdison_IgnoreDebugStubAttribute>
+        <IntelEdison_CosmosDebugPort>Serial: COM1</IntelEdison_CosmosDebugPort>
+        <IntelEdison_VisualStudioDebugPort>Pipe: Cosmos\Serial</IntelEdison_VisualStudioDebugPort>
+        <IntelEdison_PxeInterface>192.168.0.8</IntelEdison_PxeInterface>
+        <IntelEdison_EnableGDB>False</IntelEdison_EnableGDB>
+        <IntelEdison_StartCosmosGDB>False</IntelEdison_StartCosmosGDB>
+        <HyperV_StackCorruptionDetectionEnabled>True</HyperV_StackCorruptionDetectionEnabled>
+        <HyperV_StackCorruptionDetectionLevel>MethodFooters</HyperV_StackCorruptionDetectionLevel>
+        <HyperV_Description>Use Hyper-V to deploy and debug.</HyperV_Description>
+        <HyperV_Deployment>ISO</HyperV_Deployment>
+        <HyperV_Launch>HyperV</HyperV_Launch>
+        <HyperV_DebugEnabled>True</HyperV_DebugEnabled>
+        <HyperV_DebugMode>Source</HyperV_DebugMode>
+        <HyperV_IgnoreDebugStubAttribute>False</HyperV_IgnoreDebugStubAttribute>
+        <HyperV_CosmosDebugPort>Serial: COM1</HyperV_CosmosDebugPort>
+        <HyperV_VisualStudioDebugPort>Pipe: CosmosSerial</HyperV_VisualStudioDebugPort>
+        <HyperV_PxeInterface>192.168.0.8</HyperV_PxeInterface>
+        <HyperV_EnableGDB>False</HyperV_EnableGDB>
+        <HyperV_StartCosmosGDB>False</HyperV_StartCosmosGDB>
+        <ISO_StackCorruptionDetectionEnabled>True</ISO_StackCorruptionDetectionEnabled>
+        <ISO_StackCorruptionDetectionLevel>MethodFooters</ISO_StackCorruptionDetectionLevel>
+        <ISO_Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</ISO_Description>
+        <ISO_Deployment>ISO</ISO_Deployment>
+        <ISO_Launch>None</ISO_Launch>
+        <ISO_DebugEnabled>True</ISO_DebugEnabled>
+        <ISO_DebugMode>Source</ISO_DebugMode>
+        <ISO_IgnoreDebugStubAttribute>False</ISO_IgnoreDebugStubAttribute>
+        <ISO_CosmosDebugPort>Serial: COM1</ISO_CosmosDebugPort>
+        <ISO_VisualStudioDebugPort>Pipe: Cosmos\Serial</ISO_VisualStudioDebugPort>
+        <ISO_PxeInterface>192.168.0.8</ISO_PxeInterface>
+        <ISO_EnableGDB>False</ISO_EnableGDB>
+        <ISO_StartCosmosGDB>False</ISO_StartCosmosGDB>
+        <EnableBochsDebug>False</EnableBochsDebug>
+        <StartBochsDebugGui>False</StartBochsDebugGui>
+        <Bochs_EnableBochsDebug>False</Bochs_EnableBochsDebug>
+        <Bochs_StartBochsDebugGui>False</Bochs_StartBochsDebugGui>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -34,7 +90,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DebugEnabled>False</DebugEnabled>
+      <DebugEnabled>True</DebugEnabled>
       <DebugMode>Source</DebugMode>
       <Optimize>false</Optimize>
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
