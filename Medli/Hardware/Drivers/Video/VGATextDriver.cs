@@ -144,7 +144,7 @@ namespace Medli.Hardware.Drivers.Graphics
 		}
 
 		//int offset = 0xb8000;
-		private MemoryBlock08 GetFramebufferSegment()
+		private MemoryBlock GetFramebufferSegment()
 		{
 			mIO.GraphicsController_Index.Byte = 6;
 			int seg = mIO.GraphicsController_Data.Byte;
