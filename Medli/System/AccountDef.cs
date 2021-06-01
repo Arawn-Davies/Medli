@@ -9,7 +9,7 @@ namespace Medli.System
 {
     public class AccountDef
     {
-        public static List<AccountDef> Accounts;
+        public static List<AccountDef> Accounts = new List<AccountDef>();
         public string Name { get; set; }
         public string Password { get; set; }
         public string Userhomedir { get; set; }
