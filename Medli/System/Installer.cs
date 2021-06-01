@@ -7,7 +7,7 @@ using System.IO;
 using Cosmos.Debug;
 using Medli.System;
 using Medli.Common;
-using AIC_Framework;
+using AIC.Main;
 
 namespace Medli.System
 {
@@ -25,22 +25,9 @@ namespace Medli.System
             WriteLine("Welcome to the Medli installer.");
             PressAnyKey();
 
-            Write("Enter new account name: ");
-            string usrname = ReadLine();
-            Kernel.username = usrname;
-
-            Write("Enter the new account password: ");
-            string pass = ReadLine();
-            MEnvironment.usrpass = pass;
-
-            Write("Enter the new account type (guest, normal, root): ");
-            string user_type = ReadLine();
-            Console.ForegroundColor = ConsoleColor.White; WriteLine("Creating user account...");
-
             try
             {
-
-                WriteLine(Accounts.CreateUser(usrname, pass, user_type));
+                Accounts.InitNewUser();
                 Console.ForegroundColor = ConsoleColor.Green; WriteLine("\nDone!"); Console.ForegroundColor = ConsoleColor.White;
                 
                 Write("Enter the root password: ");
@@ -51,7 +38,7 @@ namespace Medli.System
                 MEnvironment.WriteRootPass();
                 Console.ForegroundColor = ConsoleColor.Green; WriteLine("\nDone!"); Console.ForegroundColor = ConsoleColor.White;
 
-                //File.WriteAllText(MEnvironment.rpf, AIC_Framework.Crypto.MD5.hash(MEnvironment.rootpass));
+                //File.WriteAllText(MEnvironment.rpf, AIC.Main.Crypto.MD5.hash(MEnvironment.rootpass));
             }
             catch (Exception ex)
             {
@@ -60,8 +47,6 @@ namespace Medli.System
             }
 
             PressAnyKey("All set! Press any key to continue...");
-
-            Kernel.username = usrname;
             Console.Clear();
 
             ScreenSetup();

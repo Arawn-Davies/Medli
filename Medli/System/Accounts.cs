@@ -2,42 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Medli.Common;
+using AIC.Main.Extensions;
 
 namespace Medli.System
 {
-    // Gradually port from Medli-Classic to current source model
+    // ~~Gradually port from Medli-Classic to current source model~~
+    // yeah nah mate lowe dat utter nonsense
 
     class Accounts
     {
+
+        private static string usrname;
+        private static string pass;
+        private static string user_type;
+
+        public static void InitNewUser()
+        {
+            NewUser();
+            Kernel.username = usrname;
+            MEnvironment.usrpass = pass;
+        }
+
         public static void NewUser()
         {
             Console.WriteLine("Enter new account name:");
-            string usrname = Console.ReadLine();
+            usrname = Console.ReadLine();
             Console.WriteLine("Enter the new account password:");
-            string pass = Console.ReadLine();
-            Console.WriteLine("Enter the new account type (guest, normal, root) :");
-            string user_type = Console.ReadLine();
-            CreateUser(usrname, pass, user_type);
+            pass = Console.ReadLine();
+            CreateUser(usrname, pass);
         }
-        public static string CreateUser(string usrname, string pass, string user_type)
+
+        public static string CreUsr_Output = "";
+
+        public static void CreateUser(string usrname, string pass)
         {
-            if (user_type.ToLower() == "guest")
-            {
-                Account.Accounts.Add(new Account(usrname, pass, UserType.Guest));
-            }
-            else if (user_type.ToLower() == "normal")
-            {
-                Account.Accounts.Add(new Account(usrname, pass, UserType.Normal));
-            }
-            else if (user_type.ToLower() == "root")
-            {
-                Account.Accounts.Add(new Account(usrname, pass, UserType.Root));
-            }
-            else
-            {
-                return "Invalid user type: " + user_type;
-            }
-            return "Created user (" + usrname + " " + pass + " " + user_type + ")";
+            Extensions.PressAnyKey();
+            Console.WriteLine("Adding user - " + usrname + ":" + pass);
+            new AccountDef(usrname, pass);
         }
 
         public static void PermCheck()
@@ -66,7 +68,7 @@ namespace Medli.System
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter the new user password");
             string usrpass = Console.ReadLine();
-            File.WriteAllText(Common.Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC_Framework.Crypto.MD5.hash(usrpass));
+            File.WriteAllText(Common.Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC.Main.Crypto.MD5.Hash(usrpass));
         }
         public static void UserLogin()
         {
@@ -91,12 +93,12 @@ namespace Medli.System
                 if (pass == MEnvironment.rootpass)
                 {
                     Kernel.username = "root";
-                    MEnvironment.PressAnyKey();
+                    KernelExtensions.PressAnyKey();
                 }
                 else
                 {
                     Console.WriteLine("Incorrect root password. ");
-                    MEnvironment.PressAnyKey();
+                    KernelExtensions.PressAnyKey();
                     UserLogin();
                 }
             }
@@ -114,53 +116,16 @@ namespace Medli.System
                 else
                 {
                     Console.WriteLine("Incorrect password.");
-                    MEnvironment.PressAnyKey();
+                    KernelExtensions.PressAnyKey("Press any key to retry...");
                     UserLogin();
                 }
             }
             else
             {
                 Console.WriteLine("User does not exist!");
-                Console.WriteLine("Press any key to retry...");
-                Console.ReadKey(true);
+                KernelExtensions.PressAnyKey("Press any key to retry...");
                 UserLogin();
             }
         }
     }
-    public class Account
-    {
-        public static List<Account> Accounts;
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string Userhomedir { get; set; }
-
-        public string Usrpass_md5 { get; set; }
-        public string upf = "pass.sys";
-        public UserType Type { get; set; }
-
-        /// <summary>
-        /// Create an account.
-        /// </summary>
-        /// <param name="nm">The user name.</param>
-        /// <param name="pass">The user password.</param>
-        public Account(string nm, string pass, UserType type = UserType.Normal)
-        {
-            Name = nm;
-            Password = pass;
-            Type = type;
-            Userhomedir = Common.Paths.Users + MEnvironment.dir_ext + Name + MEnvironment.dir_ext;
-            Usrpass_md5 = AIC_Framework.Crypto.MD5.hash(Password);
-            Directory.CreateDirectory(Userhomedir);
-            //Console.WriteLine("Created new user directory: " + userhomedir);
-            File.WriteAllText(Userhomedir + upf, Usrpass_md5);
-            File.AppendAllText(Kernel.usrinfo, Name + Environment.NewLine);
-        }
-    }
-    public enum UserType
-    {
-        Guest = 0,
-        Normal = 1,
-        Root = 2,
-    }
-    
 }

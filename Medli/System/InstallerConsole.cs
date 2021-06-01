@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AConsole = AIC_Framework.AConsole;
+using AConsole = AIC.Main.AConsole;
+using AIC.Main.Extensions;
 
 namespace Medli.System
 {
@@ -68,7 +69,7 @@ namespace Medli.System
         private static void PressAnyKey(string text)
         {
             Console.CursorLeft = 7;
-            MEnvironment.PressAnyKey(text);
+            KernelExtensions.PressAnyKey(text);
             Console.CursorLeft = 7;
         }
 
@@ -78,7 +79,7 @@ namespace Medli.System
         public static void PressAnyKey()
         {
             Console.CursorLeft = 7;
-            MEnvironment.PressAnyKey();
+            KernelExtensions.PressAnyKey();
             Console.CursorLeft = 7;
         }
 

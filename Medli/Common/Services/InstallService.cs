@@ -4,7 +4,8 @@ using System.Text;
 using Cosmos.System.FileSystem;
 using System.IO;
 using Medli.System;
-using AIC_Framework;
+using AIC.Main;
+using AIC.Main.Extensions;
 
 namespace Medli.Common.Services
 {
@@ -72,7 +73,7 @@ namespace Medli.Common.Services
                         AConsole.Fill(ConsoleColor.Blue);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Welcome back, " + Kernel.username + @"!");
-                        MEnvironment.PressAnyKey();
+                        KernelExtensions.PressAnyKey();
                     }
                     catch (Exception ex)
                     {

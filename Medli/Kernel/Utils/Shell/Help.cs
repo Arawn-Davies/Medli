@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AIC.Main.Extensions;
 
 namespace Medli.Apps
 {
@@ -22,6 +23,10 @@ namespace Medli.Apps
 		{
 			if (param.CompareTo("") == 0)
 				DisplayCommands();
+			else if (param == "pause")
+            {
+				DisplayPage_Pause();
+            }
 			else
 				CommandHelp(param);
 		}
@@ -68,7 +73,28 @@ namespace Medli.Apps
 
 		}
 
-		public override void Help()
+        private void DisplayPage_Pause()
+        {
+			int lines = 0;
+            for (int i = 0; i < _commands.Count; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("  ");
+                Console.Write(_commands[i].Name);
+                Console.Write(":  ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(_commands[i].Summary);
+				lines++;
+				if (lines == 15)
+                {
+					KernelExtensions.PressAnyKey();
+					lines = 0;
+					Console.Clear();
+                }
+            }
+        }
+
+        public override void Help()
 		{
 			Console.WriteLine("help [command]");
 			Console.WriteLine("  Gets help on a specific command.");

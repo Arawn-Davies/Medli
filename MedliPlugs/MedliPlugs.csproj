@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AIC-Framework\AIC Framework\AIC Framework.csproj" />
+    <ProjectReference Include="..\AIC-Framework\AIC.Main\AIC.Main.csproj" />
     <ProjectReference Include="..\Medli\Medli.csproj" />
   </ItemGroup>
 

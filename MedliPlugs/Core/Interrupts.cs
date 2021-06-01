@@ -1,6 +1,7 @@
 ﻿using IL2CPU.API.Attribs;
 using System;
 using static Cosmos.Core.INTs;
+using AIC.Main.Extensions;
 
 namespace MedliPlugs
 {
@@ -36,7 +37,7 @@ namespace MedliPlugs
                 LastKnownAddress = LastKnownAddress + xHex[(int)((LastKnownAddressValue >> 4) & 0xF)];
                 LastKnownAddress = LastKnownAddress + xHex[(int)(LastKnownAddressValue & 0xF)];
             }
-            AIC_Framework.Bluescreen.Panic(aName, aDescription, LastKnownAddress, ref ctx);
+            AIC.Main.Bluescreen.Panic(aName, aDescription, LastKnownAddress, ref ctx);
         }
     }
     class FatalError
@@ -66,8 +67,7 @@ Error information can be found below:";
                 Console.WriteLine("Last known address: " + lastknownaddress);
             }
             Console.CursorTop = 24;
-            Console.WriteLine("Press any key to restart...");
-            Console.ReadKey(true);
+            KernelExtensions.PressAnyKey("Press any key to restart...");
             Cosmos.System.Power.Reboot();
         }
     }
