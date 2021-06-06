@@ -14,7 +14,7 @@ namespace Medli.System
         public string Password { get; set; }
         public string Userhomedir { get; set; }
 
-        public string Usrpass_md5 { get; set; }
+        public string Usrpass_sha { get; set; }
         public string upf = "pass.sys";
         public UserType Type { get; set; }
 
@@ -29,9 +29,9 @@ namespace Medli.System
             Password = pass;
             //Type = type;
             Userhomedir = Paths.Users + MEnvironment.dir_ext + Name + MEnvironment.dir_ext;
-            Usrpass_md5 = StringExtensions.SHA256(Password);
+            Usrpass_sha = StringExtensions.SHA256(Password);
             Directory.CreateDirectory(Userhomedir);
-            File.WriteAllText(Userhomedir + upf, Usrpass_md5);
+            File.WriteAllText(Userhomedir + upf, Usrpass_sha);
             //Console.WriteLine("Created new user directory: " + userhomedir);
             File.AppendAllText(Kernel.usrinfo, Name + Environment.NewLine);
             Accounts.Add(this);

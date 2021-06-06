@@ -50,11 +50,11 @@ namespace MDFS.Physical
 				List<IDE> devs = new List<IDE>();
 				for (int i = 0; i < BlockDevice.Devices.Count; i++)
 				{
-					if (BlockDevice.Devices[i] is AtaPio)
+					if (BlockDevice.Devices[i] is ATA_PIO)
 					{
-						IDE device = new IDE((AtaPio)BlockDevice.Devices[i]);
+						IDE device = new IDE((ATA_PIO)BlockDevice.Devices[i]);
 						devs.Add(device);
-						//DiskListing.DiskListings.Add(new DiskListing(i, device));
+						DiskListing.DiskListings.Add(new DiskListing(i, device));
 					}
 				}
 				return devs;
@@ -105,7 +105,7 @@ namespace MDFS.Physical
 		/// Constructor for the class instance, used for IO
 		/// </summary>
 		/// <param name="Device"></param>
-		public IDE (AtaPio Device)
+		public IDE (ATA_PIO Device)
 		{
 			this.blockDevice = Device;
 		}

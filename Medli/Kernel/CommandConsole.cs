@@ -61,7 +61,7 @@ namespace Medli
 			while (running)
 			{
 
-				Console.Write(Screen.CurrentScreen + " " + Kernel.username + @"@" + Paths.CurrentDirectory + " /> ");
+				Console.Write(Screen.CurrentScreen + " " + Kernel.username + @"@" + Kernel.pcname + " " + Paths.CurrentDirectory + "~> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }
 				Parse(line);

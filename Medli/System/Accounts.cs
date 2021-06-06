@@ -68,7 +68,7 @@ namespace Medli.System
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter the new user password");
             string usrpass = Console.ReadLine();
-            File.WriteAllText(Common.Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC.Main.Crypto.MD5.Hash(usrpass));
+            File.WriteAllText(Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC.Main.Crypto.SHA256.Hash(usrpass));
         }
         public static void UserLogin()
         {
@@ -89,7 +89,7 @@ namespace Medli.System
                 Console.ForegroundColor = ConsoleColor.Blue;
                 string pass = Console.ReadLine();
                 Console.ForegroundColor = ConsoleColor.White;
-                MEnvironment.rootpass_md5 = File.ReadAllLines(MEnvironment.rpf)[0];
+                MEnvironment.rootpass_sha = File.ReadAllLines(MEnvironment.rpf)[0];
                 if (pass == MEnvironment.rootpass)
                 {
                     Kernel.username = "root";
@@ -102,14 +102,15 @@ namespace Medli.System
                     UserLogin();
                 }
             }
-            else if (Directory.Exists(Common.Paths.Users + MEnvironment.dir_ext + usrlogon))
+            else if (Directory.Exists(Paths.Users + MEnvironment.dir_ext + usrlogon))
             {
                 Console.Write("Password >");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 string pass = Console.ReadLine();
                 Console.ForegroundColor = ConsoleColor.White;
-                MEnvironment.usrpass_md5 = File.ReadAllLines(MEnvironment.upf)[0];
-                if (pass == MEnvironment.usrpass)
+                //MEnvironment.usrpass_sha = File.ReadAllLines(MEnvironment.upf)[0];
+                MEnvironment.usrpass_sha = File.ReadAllLines((Paths.Users + MEnvironment.dir_ext + usrlogon + MEnvironment.dir_ext + "pass.sys"))[0];
+                if (AIC.Main.Crypto.SHA256.Hash(pass) == MEnvironment.usrpass_sha)
                 {
                     Kernel.username = usrlogon;
                 }

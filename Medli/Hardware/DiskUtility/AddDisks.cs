@@ -16,10 +16,10 @@ namespace Medli.Hardware
 			int num = 1;
 			for (int index = 0; index < BlockDevice.Devices.Count; ++index)
 			{
-				if (BlockDevice.Devices[index] is AtaPio)
+				if (BlockDevice.Devices[index] is ATA_PIO)
 				{
-					AtaPio device = (AtaPio)BlockDevice.Devices[index];
-                    if (device.DriveType == AtaPio.SpecLevel.ATA)
+					ATA_PIO device = (ATA_PIO)BlockDevice.Devices[index];
+                    if (device.DriveType == ATA_PIO.SpecLevel.ATA)
                     {
                         device.ReadBlock(0UL, 2U, ref a.Data);
                         Devices.dev.Add(new Devices.device()

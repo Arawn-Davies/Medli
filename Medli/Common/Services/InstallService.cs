@@ -64,6 +64,9 @@ namespace Medli.Common.Services
                     }
 
                 }
+                Console.WriteLine("Does usrinfo exist?");
+                Console.WriteLine(File.Exists(Kernel.usrinfo));
+                KernelExtensions.PressAnyKey();
                 if (File.Exists(Kernel.usrinfo))
                 {
                     Console.Clear();
@@ -78,6 +81,7 @@ namespace Medli.Common.Services
                     catch (Exception ex)
                     {
                         AConsole.Error.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
+                        KernelExtensions.PressAnyKey();
                     }
                 }
                 else

@@ -34,12 +34,12 @@ namespace Medli
         /// <summary>
         /// String storing the user password with MD5 hash
         /// </summary>
-        public static string usrpass_md5; //= AIC.Main.Crypto.MD5.hash(usrpass);
+        public static string usrpass_sha; //= AIC.Main.Crypto.MD5.hash(usrpass);
 
         /// <summary>
         /// File path of the user password
         /// </summary>
-        public static string upf = Common.Paths.Users + Kernel.username + dir_ext + "pass.sys";
+        public static string upf = Common.Paths.Users + MEnvironment.dir_ext + Kernel.username + dir_ext + "pass.sys";
 
         /// <summary>
         /// File path of the root password
@@ -54,15 +54,15 @@ namespace Medli
         /// <summary>
         /// String storing the root password with MD5 hash
         /// </summary>
-        public static string rootpass_md5; //= AIC.Main.Crypto.MD5.hash(rootpass);
+        public static string rootpass_sha; //= AIC.Main.Crypto.MD5.hash(rootpass);
 
         /// <summary>
         /// Stores the encrypted user password as a file
         /// </summary>
         public static void WriteUserPass()
         {
-            usrpass_md5 = AIC.Main.Extensions.StringExtensions.SHA256(usrpass);
-            File.WriteAllText(upf, usrpass_md5);
+            usrpass_sha = AIC.Main.Extensions.StringExtensions.SHA256(usrpass);
+            File.WriteAllText(upf, usrpass_sha);
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace Medli
         /// </summary>
         public static void WriteRootPass()
         {
-            usrpass_md5 = AIC.Main.Extensions.StringExtensions.SHA256(rootpass);
-            File.WriteAllText(rpf, rootpass_md5);
+            usrpass_sha = AIC.Main.Extensions.StringExtensions.SHA256(rootpass);
+            File.WriteAllText(rpf, rootpass_sha);
         }
 
         /// <summary>
