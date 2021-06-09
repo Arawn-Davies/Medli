@@ -49,7 +49,8 @@ namespace Medli
         /// </summary>
         public static void DrawLogo()
         {
-            AConsole.DrawImage(0, 0, 90, 37, System.Graphics.Imaging.Image.Load(logoImage));
+            Sys.Graphics.Bitmap bitmap = new Sys.Graphics.Bitmap(logoImage);
+            //DrawImage(0, 0, 90, 37, bitmap);
         }
     }
 }
