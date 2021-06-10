@@ -23,15 +23,15 @@ The C# free and open source Operating System
 ";
 		public static string welcome = $@"
 Welcome to Medli version: { KernelVersion }
-Developed by Siaranite Solutions
-Copyright (C) Siaranite Solutions 2018, All Rights Reserved
+Developed by Siaranite Solutions & Arawn Davies
+Copyright (C) Siaranite Solutions, Arawn Davies 2021, All Rights Reserved
 Released under the BSD-3 Clause Clear licence
 ";
 
 		public static string licence = @"
 The Clear BSD License
 
-Copyright (C) 2018 Siaranite Solutions 
+Copyright (C) 2021 Siaranite Solutions, Arawn Davies
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

@@ -27,18 +27,15 @@ namespace Medli.System
 
             try
             {
-                Accounts.InitNewUser();
-                Console.ForegroundColor = ConsoleColor.Green; WriteLine("\nDone!"); Console.ForegroundColor = ConsoleColor.White;
                 
-                Write("Enter the root password: ");
+                Accounts.InitNewUser(); Done();
+                
+                WriteLine("Enter the root password: "); 
                 MEnvironment.rootpass = ReadLine();
-                Console.ForegroundColor = ConsoleColor.White;
 
-                WriteLine("Writing root password...");
-                MEnvironment.WriteRootPass();
-                Console.ForegroundColor = ConsoleColor.Green; WriteLine("\nDone!"); Console.ForegroundColor = ConsoleColor.White;
+                WritePrefix("Writing root password...");
+                MEnvironment.WriteRootPass(); Done();
 
-                //File.WriteAllText(MEnvironment.rpf, AIC.Main.Crypto.MD5.hash(MEnvironment.rootpass));
             }
             catch (Exception ex)
             {
@@ -46,29 +43,32 @@ namespace Medli.System
                 Console.ReadKey(true);
             }
 
-            PressAnyKey("All set! Press any key to continue...");
-            Console.Clear();
-
-            ScreenSetup();
             WriteLine("Please enter a machine name:");
             Kernel.pcname = ReadLine();
 
             try
             {
-                Console.ForegroundColor = ConsoleColor.White; Write("Creating machineinfo file...  "); File.Create(Kernel.pcinfo).Dispose(); Console.ForegroundColor = ConsoleColor.Green; WriteLine("Done!");
-                Console.ForegroundColor = ConsoleColor.White; Write("Writing machineinfo to file..."); File.WriteAllText(Kernel.pcinfo, Kernel.pcname); Console.ForegroundColor = ConsoleColor.Green; WriteLine("Done!");
-                Console.ForegroundColor = ConsoleColor.White;
+                WritePrefix("Creating machineinfo file...    "); File.Create(Kernel.pcinfo).Dispose(); Done();
+                WritePrefix("Writing machineinfo to file...  "); File.WriteAllText(Kernel.pcinfo, Kernel.pcname); Done();
             }
             catch
             {
-                Console.ReadKey(true);
+                WriteLine("OOOPS!");
+                PressAnyKey("Press any key to view the stop error: ");
                 ErrorHandler.BlueScreen.Init(5, @"The Installer was unable to create the user directory and other files. 
-This may be due to an unformatted hard drive or some other error", "FAT Error");
+This may be due to a failing hard drive or other internal error", "FAT Error");
             }
 
             WriteLine("Awesome - you're all set!");
             PressAnyKey("Press any key to start Medli!");
             Console.Clear();
+        }
+
+        private static void Done()
+        {
+            Console.ForegroundColor = ConsoleColor.Green; 
+            WriteSuffix("\tDone!");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

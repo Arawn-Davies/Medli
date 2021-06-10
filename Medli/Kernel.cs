@@ -23,9 +23,9 @@ namespace Medli
         public static List<Driver> Drivers = new List<Driver>();
 
         /// <summary>
-        /// 
+        /// Custom console implementation object
         /// </summary>
-        public static System.AConsole.Console AConsole;
+        //public static System.AConsole.Console AConsole;
 
         public static bool ExperimentalMode = false;
 

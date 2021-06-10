@@ -15,19 +15,20 @@ namespace Medli.System
         public string Userhomedir { get; set; }
 
         public string Usrpass_sha { get; set; }
+
         public string upf = "pass.sys";
-        public UserType Type { get; set; }
+        public byte UType { get; set; }
 
         /// <summary>
         /// Create an account.
         /// </summary>
         /// <param name="nm">The user name.</param>
         /// <param name="pass">The user password.</param>
-        public AccountDef(string nm, string pass) //, UserType type = UserType.Normal)
+        public AccountDef(string nm, string pass, byte type) //, UserType type = UserType.Normal)
         {
             Name = nm;
             Password = pass;
-            //Type = type;
+            UType = type;
             Userhomedir = Paths.Users + MEnvironment.dir_ext + Name + MEnvironment.dir_ext;
             Usrpass_sha = StringExtensions.SHA256(Password);
             Directory.CreateDirectory(Userhomedir);
@@ -37,11 +38,11 @@ namespace Medli.System
             Accounts.Add(this);
         }
     }
-    public enum UserType
+    public class UserType
     {
-        Guest = 0,
-        Normal = 1,
-        Root = 2,
+        public static byte Guest = 2;
+        public static byte Normal = 1;
+        public static byte Root = 0;
     }
 
 }

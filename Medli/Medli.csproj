@@ -76,6 +76,7 @@
         <StartBochsDebugGui>False</StartBochsDebugGui>
         <Bochs_EnableBochsDebug>False</Bochs_EnableBochsDebug>
         <Bochs_StartBochsDebugGui>False</Bochs_StartBochsDebugGui>
+        <ISOFile>bin\Debug\netcoreapp2.0\Medli.iso</ISOFile>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -92,7 +93,7 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DebugEnabled>True</DebugEnabled>
       <DebugMode>Source</DebugMode>
-      <Optimize>false</Optimize>
+      <Optimize>true</Optimize>
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 

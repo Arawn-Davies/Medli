@@ -12,34 +12,85 @@ namespace Medli.System
 
     class Accounts
     {
+        // 0 = Root
+        // 1 = Normal
+        // 2 = Guest
+        // 3 = Uninitialised
+        private static byte mType = UserType.Root;
 
         private static string usrname;
         private static string pass;
-        private static string user_type;
 
         public static void InitNewUser()
         {
             NewUser();
             Kernel.username = usrname;
             MEnvironment.usrpass = pass;
+            MEnvironment.currentUserType = mType;
         }
 
-        public static void NewUser()
+        public static void NewUser(bool is_installer = true)
         {
-            Console.WriteLine("Enter new account name:");
-            usrname = Console.ReadLine();
-            Console.WriteLine("Enter the new account password:");
-            pass = Console.ReadLine();
-            CreateUser(usrname, pass);
+            string utype;
+            if (is_installer == true)
+            {
+                Installer.WriteLine("Enter new account name:");
+                usrname = Installer.ReadLine();
+                Installer.WriteLine("Enter the new account password:");
+                pass = Installer.ReadLine();
+                Installer.WriteLine("Enter the new account type:");
+                utype = Installer.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Enter new account name:");
+                usrname = Console.ReadLine();
+                Console.WriteLine("Enter the new account password:");
+                pass = Console.ReadLine();
+                Console.WriteLine("Enter the new account type:");
+                utype = Console.ReadLine();
+            }
+            
+           
+            if (utype == "guest")
+            {
+                mType = UserType.Guest;
+            }
+            else if (utype == "normal")
+            {
+                mType = UserType.Normal;
+            }
+            else if (utype == "root")
+            {
+                mType = UserType.Root;
+            }
+            if (is_installer == true)
+            {
+                CreateUser(usrname, pass, mType, true);
+            }
+            else
+            {
+                CreateUser(usrname, pass, mType, false);
+            }
+            
         }
 
         public static string CreUsr_Output = "";
 
-        public static void CreateUser(string usrname, string pass)
+        public static void CreateUser(string usrname, string pass, byte type, bool is_installer = true)
         {
-            Extensions.PressAnyKey();
-            Console.WriteLine("Adding user - " + usrname + ":" + pass);
-            new AccountDef(usrname, pass);
+            if (is_installer == true)
+            {
+                Installer.ScreenSetup();
+                Installer.WritePrefix("Adding user - " + usrname + ":" + pass);
+            }
+            else
+            {
+                KernelExtensions.PressAnyKey();
+                Console.Write("\nAdding user - " + usrname + ":" + pass);
+            }
+
+            new AccountDef(usrname, pass, type);
         }
 
         public static void PermCheck()
@@ -72,15 +123,13 @@ namespace Medli.System
         }
         public static void UserLogin()
         {
-
-            Console.Clear();
+            Installer.ScreenSetup(true);
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("User Login:");
+            Console.WriteLine("User Login:\n\n");
             ResetConsoleColor();
             Console.BackgroundColor = ConsoleColor.Blue;
-            Console.CursorTop = 5;
-            Console.WriteLine("You can either log in as an existing user or create a new one.\n");
+            Console.WriteLine("You can either log in as an existing user or create a new one.");
             Console.Write("Username >");
             string usrlogon = Console.ReadLine();
             if (usrlogon == "root")

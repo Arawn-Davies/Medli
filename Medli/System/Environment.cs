@@ -78,5 +78,7 @@ namespace Medli
         /// Current user's home directory
         /// </summary>
         public static string current_usr_dir = Common.Paths.Users + dir_ext + Kernel.username;
+
+        public static byte currentUserType = System.UserType.Root;
     }
 }
