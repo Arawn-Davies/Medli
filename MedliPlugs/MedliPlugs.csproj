@@ -1,8 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <RootNamespace>Cosmos.System_Plugs</RootNamespace>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Configurations>Debug;Release;TEST</Configurations>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="System\**" />
+      <EmbeddedResource Remove="System\**" />
+      <None Remove="System\**" />
+    </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\AIC-Framework\AIC.Main\AIC.Main.csproj" />
@@ -12,10 +23,6 @@
   <ItemGroup>
     <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     <PackageReference Include="Cosmos.HAL2" Version="0-*" NoWarn="NU1604" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="System\" />
   </ItemGroup>
 
 </Project>

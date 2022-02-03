@@ -37,18 +37,20 @@ namespace Medli.Common.Services
         {
             if (Active == true)
             {
-                var mydrive = new DiskManager(driveID);
-                mydrive.Format("FAT32", false);
-            }
-        }
+#warning WIP Restore Functionality
+				//var mydrive = new DiskManager(driveID);
+				//mydrive.Format("FAT32", false);
+			}
+		}
 
         public static void ChangeDriveLabel()
         {
             if (Active == true)
             {
-                var mydrive = new DiskManager(driveID);
-                mydrive.ChangeDriveLetter(@"1:\");
-            }
+#warning WIP Restore Functionality
+				//var mydrive = new DiskManager(driveID);
+				//mydrive.ChangeDriveLetter(@"1:\");
+			}
         }
 
         /// <summary>
@@ -96,8 +98,10 @@ namespace Medli.Common.Services
 					Paths.CreateDirectories();
                     ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
 					ServiceLogger.Record("FS Service logger initialized.");
-                    var mydrive = new DiskManager(driveID);
-                    ServiceLogger.Record("Filesystem service running on " + mydrive.Name);
+#warning WIP Restore Functionality
+					//var mydrive = new DiskManager(driveID);
+					//ServiceLogger.Record("Filesystem service running on " + mydrive.Name);
+					ServiceLogger.Record("Filesystem service running on " + vFS.GetFileSystemLabel(driveID));
 					Kernel.IsLive = false;
 					Level3.ReadHostname();
                     Directory.SetCurrentDirectory(Paths.Root);

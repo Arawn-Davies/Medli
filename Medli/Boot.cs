@@ -30,7 +30,7 @@ namespace Medli
                     new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
                 }
                 */
-                Kernel.IsLive = false;
+                Kernel.IsLive = true;
                 
                 
                 Level3.Init();

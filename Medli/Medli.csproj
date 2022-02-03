@@ -1,7 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
+        <Platform>cosmos</Platform>
+        <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
+        <SelfContained>True</SelfContained>
+    </PropertyGroup>
 
     <PropertyGroup>
-		<TargetFramework>netcoreapp2.0</TargetFramework>
         <BinFormat>Elf</BinFormat>
         <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
         <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
@@ -76,7 +83,7 @@
         <StartBochsDebugGui>False</StartBochsDebugGui>
         <Bochs_EnableBochsDebug>False</Bochs_EnableBochsDebug>
         <Bochs_StartBochsDebugGui>False</Bochs_StartBochsDebugGui>
-        <ISOFile>bin\Debug\netcoreapp2.0\Medli.iso</ISOFile>
+        <ISOFile>bin\Debug\net5.0\Medli.iso</ISOFile>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -116,17 +123,20 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
     <PlugsReference Include="$(MSBuildProjectDirectory)\..\MedliPlugs\bin\Debug\netcoreapp2.0\MedliPlugs.dll" />
-  </ItemGroup>
-
+  </ItemGroup> -->
+  
 	<ItemGroup>
       <None Remove="Logo.bmp" />
 	</ItemGroup>
 	<ItemGroup>
       <EmbeddedResource Include="Logo.bmp" />
 	</ItemGroup>
+	
+	
 	<ItemGroup>
 	  <ProjectReference Include="..\AIC-Framework\AIC.Main\AIC.Main.csproj" />
 	</ItemGroup>
+	
 </Project>
