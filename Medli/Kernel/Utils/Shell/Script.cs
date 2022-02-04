@@ -5,19 +5,36 @@ using System.IO;
 
 namespace Medli.Apps
 {
-	public class Script : Command
+    /// <summary>
+    /// Class definition for the 'script' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Script : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "run"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Runs the specified script file. (ending in .mds)"; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			try
 			{

@@ -3,19 +3,36 @@ using Medli.Common;
 
 namespace Medli.Apps
 {
-	public class Pause : Command
+    /// <summary>
+    /// Class definition for the 'pause' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Pause : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "pause"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Prompts the user to press any key."; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param != null)
 			{

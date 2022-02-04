@@ -7,24 +7,44 @@ using Sys = Cosmos.System;
 
 namespace Medli.Apps
 {
-	public class Reboot : Command
+    /// <summary>
+    /// Class definition for the 'reboot' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Reboot : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "reboot"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Closes applications and reboots the system."; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
             RebootSystem();
 		}
 
-        public static void RebootSystem()
+        /// <summary>
+        /// Reboots the system.
+        /// </summary>
+        private static void RebootSystem()
         {
             EnvironmentVariables.SaveVars();
             Sys.Power.Reboot();

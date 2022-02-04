@@ -8,19 +8,36 @@ using AC = AIC.Main.AConsole;
 
 namespace Medli.Apps
 {
-	public class ExperimentalMode : Command
+    /// <summary>
+    /// Class definition for the experimental mode
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class ExperimentalMode : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "expmode"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Switches the kernel's experimental features on/off"; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param.ToLower().Contains("on"))
             {

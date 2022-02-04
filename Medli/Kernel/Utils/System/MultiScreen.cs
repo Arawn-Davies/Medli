@@ -5,9 +5,19 @@ using Medli.System;
 
 namespace Medli.Apps
 {
-	class Multiscreen : Command
+    /// <summary>
+    /// Class definition for Multiscreen
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    class Multiscreen : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
@@ -15,7 +25,10 @@ namespace Medli.Apps
 			}
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -23,7 +36,11 @@ namespace Medli.Apps
 			}
 		}
 
-		public void Switch(int screen)
+        /// <summary>
+        /// Switches the specified screen.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        private void Switch(int screen)
 		{
 			if (screen != Screen.CurrentScreen)
 			{

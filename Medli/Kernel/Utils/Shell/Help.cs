@@ -5,21 +5,42 @@ using AIC.Main.Extensions;
 
 namespace Medli.Apps
 {
-	public class HelpCommand : Command
+    /// <summary>
+    /// Class definition for the 'help' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class HelpCommand : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "help"; }
 		}
 
-		public HelpCommand(List<Command> commands)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HelpCommand"/> class.
+        /// </summary>
+        /// <param name="commands">The commands.</param>
+        public HelpCommand(List<Command> commands)
 		{
 			_commands = commands;
 		}
 
-		private List<Command> _commands;
+        /// <summary>
+        /// The commands
+        /// </summary>
+        private List<Command> _commands;
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param.CompareTo("") == 0)
 				DisplayCommands();
@@ -31,7 +52,11 @@ namespace Medli.Apps
 				CommandHelp(param);
 		}
 
-		private void CommandHelp(string command)
+        /// <summary>
+        /// Returns help about the specified command
+        /// </summary>
+        /// <param name="command">The command.</param>
+        private void CommandHelp(string command)
 		{
 			bool found = false;
 			for (int i = 0; i < _commands.Count; i++)
@@ -56,7 +81,10 @@ namespace Medli.Apps
 			}
 		}
 
-		private void DisplayCommands()
+        /// <summary>
+        /// Displays the commands.
+        /// </summary>
+        private void DisplayCommands()
 		{
 			Console.WriteLine("Supported Commands:");
 			for (int i = 0; i < _commands.Count; i++)
@@ -73,6 +101,9 @@ namespace Medli.Apps
 
 		}
 
+        /// <summary>
+        /// Pauses output of the command to allow the user to catch all of the information, useful if not piping output to another file.
+        /// </summary>
         private void DisplayPage_Pause()
         {
 			int lines = 0;
@@ -93,7 +124,9 @@ namespace Medli.Apps
                 }
             }
         }
-
+        /// <summary>
+        /// Prints help for the 'help' command.
+        /// </summary>
         public override void Help()
 		{
 			Console.WriteLine("help [command]");
@@ -101,7 +134,10 @@ namespace Medli.Apps
 			Console.WriteLine("  [command]:The command to look up.");
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Gets help on a specific command."; }
 		}

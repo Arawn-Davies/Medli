@@ -5,19 +5,36 @@ using Medli.Common;
 
 namespace Medli.Apps
 {
-	public class Version : Command
+    /// <summary>
+    /// Class definition of command 'version'
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Version : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "version"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Displays version information about Medli."; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param.CompareTo("") == 0 || param.CompareTo("ver") == 0)
 			{
@@ -28,11 +45,13 @@ namespace Medli.Apps
 				Help();
 			}
 		}
-
-		private void DisplayVersion()
+        /// <summary>
+        /// Displays the version.
+        /// </summary>
+        private void DisplayVersion()
 		{
 			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("Medli Copyright 2018 Siaranite Solutions");
+			Console.WriteLine("Medli Copyright 2022 Siaranite Solutions");
 			Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.Write("Medli v");
@@ -40,7 +59,10 @@ namespace Medli.Apps
 			Console.WriteLine();
 		}
 
-		public override void Help()
+        /// <summary>
+        /// Prints help information about this command.
+        /// </summary>
+        public override void Help()
 		{
 			Console.WriteLine("version [ver|dev]");
 			Console.Write("  "); Console.WriteLine(Summary);

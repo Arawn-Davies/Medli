@@ -4,19 +4,36 @@ using System.Text;
 
 namespace Medli.Apps
 {
-	public class Panic : Command
+    /// <summary>
+    /// Class definition for the 'panic' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Panic : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "panic"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Causes a kernel panic."; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
             // Manually initiates a kernel panic
             var xCtx = new Cosmos.Core.INTs.IRQContext();

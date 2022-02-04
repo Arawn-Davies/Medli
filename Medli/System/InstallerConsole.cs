@@ -16,7 +16,7 @@ namespace Medli.System
         ///         ////////////////////////////////////////////////////////////////////////////////
         ///         ---Menu bar---
         /// </summary>
-        /// <param name="color"></param>
+        /// <param name="is_login">if set to <c>true</c> [is login].</param>
         public static void ScreenSetup(bool is_login = false)
         {
             Console.BackgroundColor = DefaultColour;
@@ -51,12 +51,20 @@ namespace Medli.System
             Console.CursorLeft = 7;
         }
 
+        /// <summary>
+        /// Prints the suffix.
+        /// </summary>
+        /// <param name="text">The text.</param>
         public static void WriteSuffix(string text)
         {
             Console.Write(text + "\n");
             Console.CursorLeft = 7;
         }
 
+        /// <summary>
+        /// Prints the prefix.
+        /// </summary>
+        /// <param name="text">The text.</param>
         public static void WritePrefix(string text)
         {
             Console.CursorLeft = 7;

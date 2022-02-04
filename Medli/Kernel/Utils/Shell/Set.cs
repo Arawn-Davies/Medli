@@ -4,14 +4,27 @@ using System.Text;
 
 namespace Medli.Apps
 {
-	public class Set : Command
+    /// <summary>
+    /// Class definition of the 'set' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Set : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "$"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -21,7 +34,11 @@ $ [arg] [arg] (-u)
 			}
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param != "" && param != null)
 			{
@@ -49,9 +66,7 @@ $ [arg] [arg] (-u)
 						EnvironmentVariables.Store(args[0], param.Substring(args[0].Length + 1), false);
 					}
 				}
-			}
-			
-			
+			}			
 		}
 	}
 }

@@ -7,14 +7,27 @@ using Sys = Cosmos.System;
 
 namespace Medli.Apps
 {
-	public class Get : Command
+    /// <summary>
+    /// Class definition for the 'get' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Get : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "get"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return @"Retrieves system information.
 get [arg]
@@ -29,7 +42,11 @@ list_vol(s) - Lists the filesystem volumes
 fs_log      - Prints the log of the FileSystem service"; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param == "sysinfo")
 			{

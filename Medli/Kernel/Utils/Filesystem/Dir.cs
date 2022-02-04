@@ -2,9 +2,19 @@
 
 namespace Medli.Apps
 {
-	public class Dir : Command
+    /// <summary>
+    /// Class definition for the 'dir' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Dir : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
@@ -12,7 +22,10 @@ namespace Medli.Apps
 			}
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -20,7 +33,11 @@ namespace Medli.Apps
 			}
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param != "")
 			{

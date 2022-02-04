@@ -9,12 +9,18 @@ using Medli.Common;
 namespace Medli.Apps
 {
     /// <summary>
-    /// Class for Medliscript (mdscript),
+    /// Class definition for Medliscript (mdscript),
     /// a simple scripting interface for the Medli command line shell
     /// </summary>
     class Mdscript : Command
     {
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
@@ -22,7 +28,10 @@ namespace Medli.Apps
 			}
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -30,13 +39,13 @@ namespace Medli.Apps
 			}
 		}
 
-		/// <summary>
-		/// Executes a script passed to the application,
-		/// parsing the commands listed in a valid text file
-		/// that has the extension '.mds'
-		/// </summary>
-		/// <param name="scriptname"></param>
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes a script passed to the application,
+        /// parsing the commands listed in a valid text file
+        /// that has the extension '.mds'
+        /// </summary>
+        /// <param name="param"></param>
+        public override void Execute(string param)
         {
             try
             {

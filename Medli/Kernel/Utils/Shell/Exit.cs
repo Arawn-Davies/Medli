@@ -4,33 +4,63 @@ using System.Text;
 
 namespace Medli.Apps
 {
-	public class Exit : Command
+    /// <summary>
+    /// Class definition for the 'exit' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Exit : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "exit"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Closes the console."; }
 		}
 
-		public delegate void SimpleDelegate();
+        /// <summary>
+        /// A delegate void method that exits an opened terminal
+        /// </summary>
+        public delegate void Delegate();
 
-		private SimpleDelegate _exit;
+        /// <summary>
+        /// The exit void method
+        /// </summary>
+        private Delegate _exit;
 
-		public Exit(SimpleDelegate exit)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Exit"/> class.
+        /// </summary>
+        /// <param name="exit">The exit.</param>
+        public Exit(Delegate exit)
 		{
 			_exit = exit;
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			_exit();
 		}
 
-		public override void Help()
+        /// <summary>
+        /// Returns help information about this command.
+        /// </summary>
+        public override void Help()
 		{
 			Console.WriteLine("exit");
 			Console.WriteLine(" Closes the console.");

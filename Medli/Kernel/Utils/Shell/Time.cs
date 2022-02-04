@@ -4,19 +4,36 @@ using System.Text;
 
 namespace Medli.Apps
 {
-	public class Time : Command
+    /// <summary>
+    /// Class definition for the 'time' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Time : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "time"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Displays the current time."; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			Medli.Time.printTime();
 		}
