@@ -4,14 +4,27 @@ using System.Text;
 
 namespace Medli.Apps
 {
-	public class Echo : Command
+    /// <summary>
+    /// Class definition for the 'echo' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Echo : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "echo"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -20,7 +33,11 @@ echo $[arg] : Returns the contents of the speciied variable";
 			}
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param.StartsWith("$"))
 			{

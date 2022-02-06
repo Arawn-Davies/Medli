@@ -5,37 +5,72 @@ using Cosmos.HAL;
 
 namespace Medli.Hardware
 {
-	public class Clock
+    /// <summary>
+    /// Class definition for Medli-Hardware Clock
+    /// </summary>
+    public class Clock
 	{
-		public static int Second()
+        /// <summary>
+        /// Second
+        /// </summary>
+        /// <returns></returns>
+        public static int Second()
 		{
 			return RTC.Second;
 		}
-		public static int Minute()
+        /// <summary>
+        /// Minute
+        /// </summary>
+        /// <returns></returns>
+        public static int Minute()
 		{
 			return RTC.Minute;
 		}
-		public static int Hour()
+        /// <summary>
+        /// Hour
+        /// </summary>
+        /// <returns></returns>
+        public static int Hour()
 		{
 			return RTC.Hour;
 		}
-		public static int DayOfTheWeek()
+        /// <summary>
+        /// Day the of the week
+        /// </summary>
+        /// <returns></returns>
+        public static int DayOfTheWeek()
 		{
 			return RTC.DayOfTheWeek;
 		}
-		public static int Month()
+        /// <summary>
+        /// Month
+        /// </summary>
+        /// <returns></returns>
+        public static int Month()
 		{
 			return RTC.Month;
 		}
-		public static int Year()
+        /// <summary>
+        /// Year
+        /// </summary>
+        /// <returns></returns>
+        public static int Year()
 		{
 			return RTC.Year;
 		}
-		public static int DayOfTheMonth()
+        /// <summary>
+        /// Day the of the month
+        /// </summary>
+        /// <returns></returns>
+        public static int DayOfTheMonth()
 		{
 			return RTC.DayOfTheMonth;
 		}
-		public static int Century()
+        /// <summary>
+        /// Century
+        /// </summary>
+        /// <returns></returns>
+        public static int Century()
 		{
 			return RTC.Century;
 		}

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Medli.Hardware{
-    public abstract class Device {
-    }
+    /// <summary>
+    /// Abstract class definition for Medli-Hardware device
+    /// This class is a stub with no child properties
+    /// </summary>
+    public abstract class Device { }
 }

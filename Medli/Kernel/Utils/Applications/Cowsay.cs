@@ -5,33 +5,47 @@ using System.Linq;
 namespace Medli.Apps
 {
     /// <summary>
+    /// Class definition for Cowsay
+    /// 
     /// A must-have for any command line operating system
-    /// Doesn't have the other characters from the actual cowsay,
-    /// but it'll do for now :P
     /// </summary>
     public class Cowsay : Command
     {
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
 				return "cowsay";
 			}
 		}
-		public override string Summary
+
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
 				return "A little *nix easter egg";
 			}
 		}
-		public override void Execute(string param)
+
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			if (param == null)
 			{
 				Cowsay.Cow("Say something using 'Cowsay <message>'");
-				Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow for cow and 
-sodomized-sheep for, you guessed it, a sodomized-sheep");
+				Console.WriteLine(@"You can also use 'cowsay -f' tux for penguin, cow, sheep and robot");
 			}
 			else
 			{
@@ -40,17 +54,25 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
 				{
 					if (args[1] == "cow")
 					{
-						Cowsay.Cow(param.Remove(0, args[0].Length + args[1].Length + 3));
+						Cowsay.Cow(param.Remove(0, args[0].Length + args[1].Length + 2));
 					}
 					else if (args[1] == "tux")
 					{
-						Cowsay.Tux(param.Remove(0, args[0].Length + args[1].Length + 3));
+						Cowsay.Tux(param.Remove(0, args[0].Length + args[1].Length + 2));
 					}
-					else if (args[1] == "sodomized-sheep")
+					else if (args[1] == "sheep")
 					{
-						Cowsay.SodomizedSheep(param.Remove(0, args[0].Length + args[1].Length + 3));
+						Cowsay.Sheep(param.Remove(0, args[0].Length + args[1].Length + 2));
 					}
-				}
+                    else if (args[1] == "confused_sheep")
+                    {
+                        Cowsay.ConfusedSheep(param.Remove(0, args[0].Length + args[1].Length + 2));
+                    }
+                    else if (args[1] == "medli")
+                    {
+                        Cowsay.Medli(param.Remove(0, args[0].Length + args[1].Length + 2));
+                    }
+                }
 				else
 				{
 					Cowsay.Cow(param);
@@ -70,6 +92,28 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                 Console.Write("-");
             }
         }
+
+        /// <summary>
+        /// Medli cowsay
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        public static void Medli(string args)
+        {
+            Console.Write("/--"); print(args); Console.WriteLine(@"--\");
+            Console.WriteLine("|- " + args + @" -|");
+            Console.Write("/--"); print(args); Console.WriteLine(@"--\");
+            Console.WriteLine(@"
+       \
+        \   
+         \    /\
+          \  /  \ 
+            /____\
+           /\    /\
+          /  \  /  \
+         /____\/____\
+");
+        }
+
         /// <summary>
         /// Main method for Medli cowsay, standard feature :P
         /// This basically prints the cow onto the screen, 
@@ -90,6 +134,11 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
                 ||----w |
                 ||     ||");
         }
+
+        /// <summary>
+        /// Tux cowsay.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Tux(string args)
         {
             Console.Write("/--"); print(args); Console.WriteLine(@"--\");
@@ -107,10 +156,38 @@ sodomized-sheep for, you guessed it, a sodomized-sheep");
            \___)=(___/
 ");
         }
-        public static void SodomizedSheep (string args)
+
+        /// <summary>
+        /// Sheep cowsay.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        public static void Sheep(string args)
         {
             Console.Write("/--"); print(args); Console.WriteLine(@"--\");
             Console.WriteLine("|- " + args + @" -|");
+            Console.Write(@"\--"); print(args); Console.Write(@"--/");
+            Console.WriteLine(@"
+  \                
+   \               
+    \              
+     \             
+       __         
+      UooU\./@@@@@@\,
+      \__/(@@@@@@@@@@)
+           (@@@@@@@@)
+           `YY~~~~YY' 
+            ||    ||   
+");
+        }
+
+        /// <summary>
+        /// Confused sheep cowsay.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        public static void ConfusedSheep (string args)
+        {
+            Console.Write("/--"); print(args); Console.WriteLine(@"--\");
+            Console.WriteLine("|- " + args.ToUpper() + @" -|");
             Console.Write(@"\--"); print(args); Console.Write(@"--/");
             Console.WriteLine(@"
   \                 __

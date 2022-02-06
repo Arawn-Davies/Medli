@@ -9,6 +9,10 @@ using AIC.Main;
 
 namespace Medli
 {
+    /// <summary>
+    /// Initial boot class definition including init methods
+    /// </summary>
+    /// <seealso cref="Cosmos.System.Kernel" />
     public class Boot : Sys.Kernel
     {
         /// <summary>
@@ -54,7 +58,10 @@ namespace Medli
 			}
 		}
 
-		protected override void Run()
+        /// <summary>
+        /// Main kernel loop
+        /// </summary>
+        protected override void Run()
 		{
 			try
 			{

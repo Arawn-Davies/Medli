@@ -6,7 +6,7 @@ using Medli.System;
 
 namespace Medli.Common.Services
 {
-	public class MMService : Service
+	public class MMService : Daemon
 	{
 		public MMService()
 		{

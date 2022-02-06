@@ -11,12 +11,18 @@ using Medli.System;
 namespace Medli.Apps
 {
 	/// <summary>
-	/// Cocoapad Editor class
+	/// Cocoapad Development Environment class
 	/// contains methods needed for the editor to function
 	/// </summary>
 	class IDE : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
@@ -24,7 +30,10 @@ namespace Medli.Apps
 			}
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -32,7 +41,11 @@ namespace Medli.Apps
 			}
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified file in 'param'.
+        /// </summary>
+        /// <param name="param">The file path of the application file.</param>
+        public override void Execute(string param)
 		{
 			if (param != "" && param.Length < 5 && param.EndsWith(".ma"))
 			{
@@ -47,8 +60,14 @@ namespace Medli.Apps
 			}
 		}
 
-		public static string AppTitle;
-		public static string AppDesc;
+        /// <summary>
+        /// The application title
+        /// </summary>
+        public static string AppTitle;
+        /// <summary>
+        /// The application description
+        /// </summary>
+        public static string AppDesc;
 		public static string AppAuthor;
 		/// <summary>
 		/// The current text inside the editor is stored in a string
@@ -59,7 +78,10 @@ namespace Medli.Apps
 		/// </summary>
 		public static bool running = true;
 
-		private static void DrawScreen()
+        /// <summary>
+        /// Draws the screen.
+        /// </summary>
+        private static void DrawScreen()
 		{
 			AConsole.Fill(ConsoleColor.Blue);
 			Console.CursorTop = 0;
@@ -68,7 +90,10 @@ namespace Medli.Apps
 			Console.BackgroundColor = ConsoleColor.Blue;
 			Console.CursorTop = 3;
 		}
-		private static void AppInfo()
+        /// <summary>
+        /// the application info.
+        /// </summary>
+        private static void AppInfo()
 		{
 			DrawScreen();
 			Console.WriteLine("Enter the application title:");
@@ -81,9 +106,10 @@ namespace Medli.Apps
 			Console.WriteLine(AppTitle + "\n" + AppDesc + "\n" + AppAuthor);
 			text = AppTitle + Environment.NewLine + AppDesc + Environment.NewLine + AppAuthor + Environment.NewLine;
 		}
+
 		/// <summary>
-		/// Main method for the Cocoapad edit
-		/// Originally from Chocolate OS (pre-Medli) but won't rename this application
+		/// Main method for the Cocoapad Development Environment
+		/// Originally from Chocolate OS (proto-Medli)
 		/// </summary>
 		/// <param name="file"></param>
 		public static void Run(string file)

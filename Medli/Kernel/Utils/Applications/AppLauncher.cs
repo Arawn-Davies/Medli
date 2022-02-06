@@ -5,9 +5,19 @@ using System.IO;
 
 namespace Medli.Apps
 {
+    /// <summary>
+    /// Class definition for AppLauncher
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
     class AppLauncher : Command
     {
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
@@ -15,7 +25,10 @@ namespace Medli.Apps
 			}
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -23,42 +36,80 @@ namespace Medli.Apps
 			}
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			Console.Clear();
 			PreExecute(param);
 		}
 
-		public static string AppTitle;
+        /// <summary>
+        /// The application title
+        /// </summary>
+        public static string AppTitle;
+
+        /// <summary>
+        /// The application description
+        /// </summary>
         public static string AppDesc;
+
+        /// <summary>
+        /// The application author
+        /// </summary>
         public static string AppAuthor;
+
+        /// <summary>
+        /// the application information.
+        /// </summary>
+        /// <param name="file">The file.</param>
         public static void AppInfo(string file)
         {
-            App_title(file);
-            App_desc(file);
-            App_author(file);
+            title(file);
+            desc(file);
+            author(file);
         }
-        private static void App_author(string file)
+
+        /// <summary>
+        /// the author of the application.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        private static void author(string file)
         {
             string[] readlines = File.ReadAllLines(file);
             Console.WriteLine("Application Author:");
             AppAuthor = readlines[2].Substring(7);
             Console.WriteLine(AppAuthor);
         }
-        private static void App_desc(string file)
+
+        /// <summary>
+        /// the description of the application.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        private static void desc(string file)
         {
             string[] readlines = File.ReadAllLines(file);
             Console.WriteLine("Application Description:");
             AppDesc = readlines[1].Substring(5);
             Console.WriteLine(AppDesc);
         }
-        private static void App_title(string file)
+        /// <summary>
+        /// the application title.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        private static void title(string file)
         {
             string[] readlines = File.ReadAllLines(file);
             Console.WriteLine("Application Title:");
             AppTitle = readlines[0].Substring(6);
             Console.WriteLine(AppTitle);
         }
+        /// <summary>
+        /// CHecks that the file is a valid Medli Application .ma file
+        /// </summary>
+        /// <param name="file">The file.</param>
         public static void PreExecute(string file)
         {
             if (file.EndsWith(".ma"))
@@ -71,6 +122,11 @@ namespace Medli.Apps
                 Console.WriteLine("Medli Application filenames end in .ma");
             }
         }
+
+        /// <summary>
+        /// Verifies the specified file.
+        /// </summary>
+        /// <param name="file">The file.</param>
         private static void Verify(string file)
         {
             List<string> readlines = new List<string>();
@@ -106,7 +162,10 @@ namespace Medli.Apps
                 Console.WriteLine("Title expected: No application title on line 1");
             }
         }
-        
+
+        /// <summary>
+        /// Draws a clear window
+        /// </summary>
         private static void ClearDraw()
         {
             Console.CursorTop = 1;
@@ -116,6 +175,10 @@ namespace Medli.Apps
             Console.BackgroundColor = ConsoleColor.Black;
             Console.CursorTop = 3;
         }
+        /// <summary>
+        /// Executes the application.
+        /// </summary>
+        /// <param name="file">The file.</param>
         private static void ExecuteApp(string file)
         {
             string[] readlines = File.ReadAllLines(file);

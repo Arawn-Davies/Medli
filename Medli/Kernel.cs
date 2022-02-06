@@ -15,7 +15,7 @@ namespace Medli
         /// <summary>
         /// List of kernel services (filesystem, logging etc.)
         /// </summary>
-		public static List<Service> Services = new List<Service>();
+		public static List<Daemon> Services = new List<Daemon>();
 
         /// <summary>
         /// 

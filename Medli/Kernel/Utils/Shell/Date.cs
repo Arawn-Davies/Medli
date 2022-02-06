@@ -5,19 +5,36 @@ using Medli;
 
 namespace Medli.Apps
 {
-	public class Date : Command
+    /// <summary>
+    /// Class definition for the 'date' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class Date : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get { return "date"; }
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get { return "Displays the current date."; }
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			Medli.Date.printDate();
 		}

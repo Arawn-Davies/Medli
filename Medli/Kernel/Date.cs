@@ -6,12 +6,23 @@ using Medli.Hardware;
 
 namespace Medli
 {
-	public class Date
+    /// <summary>
+    /// Class definition for Medli Date formatting
+    /// </summary>
+    public class Date
 	{
-		public static void printDate()
+        /// <summary>
+        /// Prints today's date.
+        /// </summary>
+        public static void printDate()
 		{
 			Console.WriteLine("The current date is " + Date.GetDay() + " " + SysClock.DayOfTheMonth().ToString() + " of " + Date.GetMonth() + ", " + SysClock.Century().ToString() + SysClock.Year().ToString());
 		}
+
+		/// <summary>
+		/// Gets the current day of the week in string form.
+		/// </summary>
+		/// <returns></returns>
 		public static string GetDay()
 		{
 			if (SysClock.DayOfTheWeek() == 1)
@@ -49,7 +60,11 @@ namespace Medli
 			}
 		}
 
-		public static string GetMonth()
+        /// <summary>
+        /// Gets the current month in string form.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetMonth()
 		{
 			if (SysClock.Month() == 1)
 			{

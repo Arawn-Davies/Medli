@@ -8,7 +8,13 @@ namespace Medli.Hardware
 {
     class AddDisks
     {
-		private static Core.MemoryStream a = new Core.MemoryStream(1024);
+        private static Core.MemoryStream a = new(1024);
+		//private static Core.MemoryStream a = new Core.MemoryStream(1024);
+		/*
+		 * instead of fully naming type as RandomClass.RandomMethod example = new SpecificClass.CustomObject(1337);
+		 *						 we now do RandomClass.RandomMethod example = new(1337);
+		 *
+		 */
 		private static char b = 'a';
 
 		public static void Detect()

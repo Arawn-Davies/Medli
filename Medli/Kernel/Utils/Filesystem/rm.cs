@@ -7,9 +7,19 @@ using Medli.System;
 
 namespace Medli.Apps
 {
-	public class rm : Command
+    /// <summary>
+    /// Class definition for the 'rm' command
+    /// </summary>
+    /// <seealso cref="Medli.Apps.Command" />
+    public class rm : Command
 	{
-		public override string Name
+        /// <summary>
+        /// Gets the name of the command.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public override string Name
 		{
 			get
 			{
@@ -17,7 +27,10 @@ namespace Medli.Apps
 			}
 		}
 
-		public override string Summary
+        /// <summary>
+        /// Gets the summary for the command.
+        /// </summary>
+        public override string Summary
 		{
 			get
 			{
@@ -27,7 +40,11 @@ File:      rm [arg]";
 			}
 		}
 
-		public override void Execute(string param)
+        /// <summary>
+        /// Executes the specified parameter.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public override void Execute(string param)
 		{
 			string[] args = param.Split(' ');
 			if (args[0] == "-r")
