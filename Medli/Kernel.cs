@@ -40,9 +40,9 @@ namespace Medli
         public static Cosmos.HAL.PCSpeaker Speaker = new Cosmos.HAL.PCSpeaker();
 
         /// <summary>
-        /// 
+        /// Bitmap Logo
         /// </summary>
-        public static Sys.Graphics.Bitmap Logo;
+        public static Sys.Graphics.Bitmap BitmapLogo;
 
         /// <summary>
         /// 

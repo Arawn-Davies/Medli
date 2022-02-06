@@ -43,8 +43,8 @@ namespace Medli
                 Kernel.Running = true;
 				Console.Clear();
                 //Hardware.AddDisks.Detect();
-                Console.Write(Kernel.logo);
-                Console.WriteLine(Kernel.welcome);
+                Console.Write(Kernel.Logo);
+                Console.WriteLine(Kernel.Welcome);
 				Console.WriteLine("");
 				Console.WriteLine("Current system date and time:");
 				Date.printDate();

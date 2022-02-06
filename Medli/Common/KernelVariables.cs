@@ -7,12 +7,30 @@ namespace Medli
 {
     public partial class Kernel
     {
-		public static string KernelVersion = "0.3.5";
-		public static bool IsLive;
-		public static bool Running;
-		public static string Hostname;
+        /// <summary>
+        /// The kernel version
+        /// </summary>
+        public static string KernelVersion = "0.3.5";
 
-		public static string logo = $@"
+        /// <summary>
+        /// Boolean if the system is running live or not
+        /// </summary>
+        public static bool IsLive;
+
+        /// <summary>
+        /// Boolean if the system is in normal execution mode
+        /// </summary>
+        public static bool Running;
+
+        /// <summary>
+        /// The system hostname
+        /// </summary>
+        public static string Hostname;
+
+        /// <summary>
+        /// ASCII logo
+        /// </summary>
+        public static string Logo = $@"
    __    _                             
    /|   / |            |  |  o       //\\
   / |  /  |  ___    ___|  |  |      //__\\
@@ -21,14 +39,20 @@ namespace Medli
                                   ~~~~~~~~~~          
 The C# free and open source Operating System
 ";
-		public static string welcome = $@"
-Welcome to Medli version: { KernelVersion }
+        /// <summary>
+        /// The Welcome message
+        /// </summary>
+        public static string Welcome = $@"
+Welcome to Medli version: { KernelVersion }, build: { BuildNumber }
 Developed by Siaranite Solutions & Arawn Davies
 Copyright (C) Siaranite Solutions, Arawn Davies 2022, All Rights Reserved
-Released under the BSD-3 Clause Clear licence
+Released under the BSD-3 Clause Clear license
 ";
 
-		public static string licence = @"
+        /// <summary>
+        /// The license
+        /// </summary>
+        public static string License = @"
 The Clear BSD License
 
 Copyright (C) 2022 Siaranite Solutions, Arawn Davies

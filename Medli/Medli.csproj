@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project InitialTargets="GetVersion" Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
@@ -105,6 +105,34 @@
       <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+
+	<PropertyGroup>
+		<Year>$([System.DateTime]::Now.ToString("yyyy"))</Year>
+		<Month>$([System.DateTime]::Now.ToString("MM"))</Month>
+		<Date>$([System.DateTime]::Now.ToString("dd"))</Date>
+		<Time>$([System.DateTime]::Now.ToString("HHmm"))</Time>
+		<GenVerCS>
+			<![CDATA[
+namespace Medli
+{
+///<summary>
+///Partial class definition for main Medli kernel
+///</summary>
+    public partial class Kernel
+    {
+		///<summary>
+		///The kernel build number, generated upon a new build
+		///</summary>
+        public static string BuildNumber = "$(Date)$(Month)$(Year)$(Time)"%3b
+    }
+}
+
+       ]]>
+		</GenVerCS>
+	</PropertyGroup>
+	<Target Name="GetVersion">
+		<WriteLinesToFile File="Common\VersionInfo.cs" Lines="$(GenVerCS)" Overwrite="true"></WriteLinesToFile>
+	</Target>
 
 	<ItemGroup>
 		<PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
