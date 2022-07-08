@@ -1,7 +1,7 @@
 ﻿<Project InitialTargets="GetVersion" Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <!--<RuntimeIdentifier>cosmos</RuntimeIdentifier>-->
         <Platform>cosmos</Platform>
         <SupportsX86Intrinsics>false</SupportsX86Intrinsics>
@@ -83,7 +83,7 @@
         <StartBochsDebugGui>False</StartBochsDebugGui>
         <Bochs_EnableBochsDebug>False</Bochs_EnableBochsDebug>
         <Bochs_StartBochsDebugGui>False</Bochs_StartBochsDebugGui>
-        <ISOFile>bin\Debug\net5.0\Medli.iso</ISOFile>
+        <ISOFile>bin\Debug\net6.0\Medli.iso</ISOFile>
     </PropertyGroup>
 
     <PropertyGroup>

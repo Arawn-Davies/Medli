@@ -10,7 +10,7 @@ namespace Medli.Core.Executables
 
         public static void LoadProgram(byte[] code)
         {
-            byte* data = (byte*)Cosmos.Core.Memory.Old.Heap.MemAlloc((uint)code.Length);
+            byte* data = (byte*)Cosmos.Core.Memory.Heap.Alloc((uint)code.Length);
             ProgramAddress = (uint)&data[0];
             for (int i = 0; i < code.Length; i++)
             {
