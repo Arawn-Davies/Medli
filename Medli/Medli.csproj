@@ -101,8 +101,8 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DebugEnabled>True</DebugEnabled>
       <DebugMode>Source</DebugMode>
-      <Optimize>true</Optimize>
-      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <Optimize>True</Optimize>
+      <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     </PropertyGroup>
 
 
@@ -129,6 +129,12 @@ namespace Medli
 
        ]]>
 		</GenVerCS>
+		<VMWareEdition>Workstation</VMWareEdition>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <Optimize>True</Optimize>
 	</PropertyGroup>
 	<Target Name="GetVersion">
 		<WriteLinesToFile File="Common\VersionInfo.cs" Lines="$(GenVerCS)" Overwrite="true"></WriteLinesToFile>
