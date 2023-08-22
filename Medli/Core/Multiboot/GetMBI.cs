@@ -1,7 +1,7 @@
 ﻿/*
 * PROJECT:          Aura Operating System Development
 * CONTENT:          Get multiboot info structure
-* PROGRAMMERS:      Valentin Charbonnier <valentinbreiz@gmail.com>
+* PROGRAMMERS:      Valentin Charbonnier <valentInBreiz@gmail.com>
 */
 
 using IL2CPU.API.Attribs;

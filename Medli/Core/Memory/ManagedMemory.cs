@@ -1,7 +1,7 @@
 ﻿/*
 * PROJECT:          Aura Operating System Development
 * CONTENT:          Managed Memory Block
-* PROGRAMMERS:      Valentin Charbonnier<valentinbreiz@gmail.com>
+* PROGRAMMERS:      Valentin Charbonnier<valentInBreiz@gmail.com>
 *                   Port of Cosmos Code.
 */
 

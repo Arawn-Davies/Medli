@@ -168,8 +168,6 @@ namespace Medli
 	<ItemGroup>
       <EmbeddedResource Include="Logo.bmp" />
 	</ItemGroup>
-	
-	
 	<ItemGroup>
 	  <ProjectReference Include="..\AIC-Framework\AIC.Main\AIC.Main.csproj" />
 	</ItemGroup>

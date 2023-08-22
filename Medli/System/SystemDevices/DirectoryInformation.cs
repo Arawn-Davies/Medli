@@ -8,7 +8,7 @@ namespace Medli.System
 	/*
 	
 	Directory Information class
-	Methods created by Alexy DA CRUZ <dacruzalexy@gmail.com & Valentin Charbonnier <valentinbreiz@gmail.com>
+	Methods created by Alexy DA CRUZ <dacruzalexy@gmail.com & Valentin Charbonnier <valentInBreiz@gmail.com>
 	This code is released under the BSD-3 Clause Licence as part of the Aura Operating System project
 	https://github.com/aura-systems/Aura-Operating-System/
 

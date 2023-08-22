@@ -11,27 +11,27 @@ namespace Medli.Core
 	{
 		protected static void Write8(UInt16 aPort, byte aData)
 		{
-            PortIO.outb(aPort, aData);
+            PortIO.OutB(aPort, aData);
 		}
 		static protected void Write16(UInt16 aPort, UInt16 aData)
 		{
-            PortIO.outw(aPort, aData);
+            PortIO.OutW(aPort, aData);
         }
 		protected static void Write32(UInt16 aPort, UInt32 aData)
 		{
-            PortIO.outl(aPort, aData);
+            PortIO.OutL(aPort, aData);
         }
 		protected static byte Read8(UInt16 aPort)
 		{
-            return PortIO.inb(aPort);
+            return PortIO.InB(aPort);
 		}
 		protected static UInt16 Read16(UInt16 aPort)
 		{
-            return PortIO.inw(aPort);
+            return PortIO.InW(aPort);
 		}
 		protected static UInt32 Read32(UInt16 aPort)
 		{
-            return PortIO.inl(aPort);
+            return PortIO.InL(aPort);
 		}
 	}
 }

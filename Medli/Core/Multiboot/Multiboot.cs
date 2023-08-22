@@ -1,7 +1,7 @@
 ﻿/*
 * PROJECT:          Aura Operating System Development
 * CONTENT:          Multiboot struct
-* PROGRAMMERS:      Valentin Charbonnier <valentinbreiz@gmail.com>
+* PROGRAMMERS:      Valentin Charbonnier <valentInBreiz@gmail.com>
 *                   https://www.gnu.org/software/grub/manual/multiboot/multiboot.html
 */
 
