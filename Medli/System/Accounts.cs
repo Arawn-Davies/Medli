@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Medli.Common;
-using AIC.Main.Extensions;
+using Medli.System.Framework;
+using Medli.System.Framework.Crypto;
 
 namespace Medli.System
 {
@@ -119,7 +120,7 @@ namespace Medli.System
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("Enter the new user password");
             string usrpass = Console.ReadLine();
-            File.WriteAllText(Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", AIC.Main.Crypto.SHA256.Hash(usrpass));
+            File.WriteAllText(Paths.Users + MEnvironment.dir_ext + Kernel.username + @"\pass.sys", SHA256.Hash(usrpass));
         }
         public static void UserLogin()
         {
@@ -159,7 +160,7 @@ namespace Medli.System
                 Console.ForegroundColor = ConsoleColor.White;
                 //MEnvironment.usrpass_sha = File.ReadAllLines(MEnvironment.upf)[0];
                 MEnvironment.usrpass_sha = File.ReadAllLines((Paths.Users + MEnvironment.dir_ext + usrlogon + MEnvironment.dir_ext + "pass.sys"))[0];
-                if (AIC.Main.Crypto.SHA256.Hash(pass) == MEnvironment.usrpass_sha)
+                if (SHA256.Hash(pass) == MEnvironment.usrpass_sha)
                 {
                     Kernel.username = usrlogon;
                 }

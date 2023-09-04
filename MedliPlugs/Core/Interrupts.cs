@@ -37,7 +37,8 @@ namespace MedliPlugs
                 LastKnownAddress = LastKnownAddress + xHex[(int)((LastKnownAddressValue >> 4) & 0xF)];
                 LastKnownAddress = LastKnownAddress + xHex[(int)(LastKnownAddressValue & 0xF)];
             }
-            AIC.Main.Bluescreen.Panic(aName, aDescription, LastKnownAddress, ref ctx);
+            //AIC.Main.Bluescreen.Panic(aName, aDescription, LastKnownAddress, ref ctx);
+            FatalError.Crash(aName, aDescription, LastKnownAddress, ctx.ToString());
         }
     }
     class FatalError

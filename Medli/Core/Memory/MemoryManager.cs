@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Cosmos.Core;
-using AIC.Core;
+using Medli.Core.Framework;
 
 namespace Medli.Core
 {

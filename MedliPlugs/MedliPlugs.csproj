@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AIC-Framework\AIC.Main\AIC.Main.csproj" />
-    <ProjectReference Include="..\Medli\Medli.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using Medli.System.Framework;
 
 namespace Medli
 {
@@ -61,7 +62,7 @@ namespace Medli
         /// </summary>
         public static void WriteUserPass()
         {
-            usrpass_sha = AIC.Main.Extensions.StringExtensions.SHA256(usrpass);
+            usrpass_sha = StringExtensions.SHA256(usrpass);
             File.WriteAllText(upf, usrpass_sha);
         }
 
@@ -70,7 +71,7 @@ namespace Medli
         /// </summary>
         public static void WriteRootPass()
         {
-            usrpass_sha = AIC.Main.Extensions.StringExtensions.SHA256(rootpass);
+            usrpass_sha = StringExtensions.SHA256(rootpass);
             File.WriteAllText(rpf, rootpass_sha);
         }
 

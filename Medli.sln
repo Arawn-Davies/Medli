@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31313.79
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medli", "Medli\Medli.csproj", "{853CBEB7-ABBB-4E62-A29C-034AD53DD817}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC.Core", "AIC-Framework\AIC.Core\AIC.Core.csproj", "{1C206F41-A435-44D7-8794-8754BF3E2FB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIC.Main", "AIC-Framework\AIC.Main\AIC.Main.csproj", "{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxolotOS", "AxolotOS\AxolotOS.csproj", "{19496236-486B-4031-B7F6-CCDD4729F48B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBAE884B-71BB-419A-A3ED-6EAFA8E0F440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19496236-486B-4031-B7F6-CCDD4729F48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19496236-486B-4031-B7F6-CCDD4729F48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19496236-486B-4031-B7F6-CCDD4729F48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19496236-486B-4031-B7F6-CCDD4729F48B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
