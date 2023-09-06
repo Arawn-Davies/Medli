@@ -9,7 +9,7 @@ See in the /Licenses folder for the licenses for each respected project.
 */
 
 using System;
-using AIC;
+using Medli;
 using IO = Medli.Core.Framework.IO;
 
 namespace Medli.Core.Framework

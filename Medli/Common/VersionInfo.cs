@@ -1,4 +1,3 @@
-<![CDATA[
 namespace Medli
 {
 ///<summary>
@@ -9,8 +8,6 @@ namespace Medli
 		///<summary>
 		///The kernel build number, generated upon a new build
 		///</summary>
-        public static string BuildNumber = "040920230259";
+        public static string BuildNumber = "060920230328";
     }
 }
-
-       ]]>

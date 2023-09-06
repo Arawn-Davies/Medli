@@ -29,7 +29,7 @@ using System.Text;
 using Medli.Core.Framework.IO;
 // Splitty was here
 /*
-namespace AIC.Main.IO
+namespace Medli.Main.IO
 {
     public class MemoryStream
     {

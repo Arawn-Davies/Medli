@@ -1,5 +1,5 @@
 ﻿/*
-* PROJECT:          AIC Framework
+* PROJECT:          Medli Framework
 * CONTENT:          Crypto.SHA256
 * PROGRAMMER(S):    Arawn Davies <arawn.davies@gmail.com>
 * LICENSE:          LICENSES\SHA256

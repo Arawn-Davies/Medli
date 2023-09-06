@@ -32,8 +32,9 @@ namespace Medli.Apps
 			get { return "Closes applications and reboots the system."; }
 		}
 
+
         /// <summary>
-        /// Executes the specified parameter.
+        /// Reboots the Medli oeprating system, accepting optional flags (none implemented)
         /// </summary>
         /// <param name="param">The parameter.</param>
         public override void Execute(string param)

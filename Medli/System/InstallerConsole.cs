@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AConsole = AIC.Main.AConsole;
-using AIC.Main.Extensions;
+using Medli.System.Framework;
 
 namespace Medli.System
 {

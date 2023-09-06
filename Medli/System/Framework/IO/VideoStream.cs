@@ -27,7 +27,7 @@ using System.Collections.Generic;
 // Have to optimize that..
 // Grunt: Probally want to make this inherit Stream???? 
 // Splitty: I will try it later =)
-namespace AIC.Main.IO
+namespace Medli.Main.IO
 {
     public class VideoStream
     {

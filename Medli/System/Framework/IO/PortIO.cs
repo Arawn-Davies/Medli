@@ -33,7 +33,7 @@ namespace Medli.System.Framework.IO
         /// <returns></returns>
         public static byte inb(ushort port)
         {
-            return Core.IO.PortIO.InB(port);
+            return Cosmos.Core.IOPort.Read8(port);
         }
         /// <summary>
         /// Reads a 16 bit word
@@ -42,16 +42,16 @@ namespace Medli.System.Framework.IO
         /// <returns></returns>
         public static ushort inw(ushort port)
         {
-            return Core.IO.PortIO.InW(port);
+            return Cosmos.Core.IOPort.Read16(port);
         }
         /// <summary>
         /// Reads a 32 bit word
         /// </summary>
         /// <param name="port"></param>
         /// <returns></returns>
-        public static uint inl(ushort port)
+        public static uint InL(ushort port)
         {
-            return Core.IO.PortIO.InL(port);
+            return Cosmos.Core.IOPort.Read16(port);
         }
         /// <summary>
         /// Writes a byte
@@ -60,25 +60,25 @@ namespace Medli.System.Framework.IO
         /// <param name="data"></param>
         public static void OutB(ushort port, byte data)
         {
-            Core.IO.PortIO.OutB(port, data);
+            Cosmos.Core.IOPort.Write8(port, data);
         }
         /// <summary>
         /// Writes a 16 bit word
         /// </summary>
         /// <param name="port"></param>
         /// <param name="data"></param>
-        public static void outw(ushort port, ushort data)
+        public static void OutW(ushort port, ushort data)
         {
-            Core.IO.PortIO.OutW(port, data);
+            Cosmos.Core.IOPort.Write16(port, data);
         }
         /// <summary>
         /// Writes a 32 bit word
         /// </summary>
         /// <param name="port"></param>
         /// <param name="data"></param>
-        public static void outl(ushort port, uint data)
+        public static void OutL(ushort port, uint data)
         {
-            Core.IO.PortIO.OutL(port, data);
+            Cosmos.Core.IOPort.Write32(port, data);
         }
     }
 }

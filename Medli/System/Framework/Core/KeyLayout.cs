@@ -23,7 +23,7 @@ namespace Medli.System.Framework.Core
         private static uint KeyCount;
         private static void ChangeKeyMap()
         {
-            AIC.Hardware.KeyLayout.ChangeKeyMap("QWERTY");
+            Medli.Hardware.KeyLayout.ChangeKeyMap("QWERTY");
         }
         public static void SwitchKeyLayout(KeyLayouts layout)
         {
@@ -58,7 +58,7 @@ namespace Medli.System.Framework.Core
         }
         public static void QWERTY()
         {
-            AIC.Hardware.KeyLayout.QWERTY();
+            Medli.Hardware.KeyLayout.QWERTY();
             ChangeKeyMap();
         }
 
@@ -68,13 +68,13 @@ namespace Medli.System.Framework.Core
         /// </summary>
         public static void QWERTZ()
         {
-            AIC.Hardware.KeyLayout.QWERTZ();
+            Medli.Hardware.KeyLayout.QWERTZ();
             ChangeKeyMap();
         }
 
         public static void AZERTY()
         {
-            AIC.Hardware.KeyLayout.AZERTY();
+            Medli.Hardware.KeyLayout.AZERTY();
             ChangeKeyMap();
         }
     }

@@ -33,13 +33,12 @@ namespace Medli.Apps
   		}
 
         /// <summary>
-        /// Executes the specified parameter.
+        /// Shuts down the operating system, optional flags could be added (emergency shutdown etc.)
         /// </summary>
-        /// <param name="param">The parameter.</param>
         public override void Execute(string param)
-		{
-			EnvironmentVariables.SaveVars();
-			Sys.Power.Shutdown();
-		}
-	}
+        {
+            EnvironmentVariables.SaveVars();
+            Sys.Power.Shutdown();
+        }
+    }
 }

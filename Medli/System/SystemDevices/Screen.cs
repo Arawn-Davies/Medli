@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Medli.Hardware;
-using AR = AIC.Main.AConsole.VideoRAM;
+using AR = Medli.System.Framework.AConsole.VideoRAM;
 
 namespace Medli.System
 {

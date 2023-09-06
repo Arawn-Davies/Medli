@@ -10,8 +10,8 @@ See in the /Licenses folder for the licenses for each respected project.
 
 using System;
 using System.Collections.Generic;
-using AIC.Main;
-using AB = AIC.Main.AConsole.VideoRAM;
+using Medli.System.Framework;
+using AB = Medli.System.Framework.AConsole.VideoRAM;
 
 namespace Medli.System.Framework.dev
 {

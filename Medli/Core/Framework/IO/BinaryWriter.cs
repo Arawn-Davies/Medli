@@ -29,37 +29,37 @@ namespace Medli.Core.Framework.IO
         }
         public static void Write(short dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }
         public static void Write(int dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }
         public static void Write(long dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }
         public static void Write(ushort dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }
         public static void Write(uint dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }
         public static void Write(ulong dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }

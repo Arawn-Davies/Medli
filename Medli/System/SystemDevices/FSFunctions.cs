@@ -6,7 +6,7 @@ using Medli.Common;
 using Medli.Common.Services;
 using MDFS;
 using Medli.System;
-using AIC.Main;
+using Medli.Main;
 
 namespace Medli.System
 {
@@ -199,7 +199,7 @@ namespace Medli.System
             }
             catch (Exception ex)
             {
-                AIC.Main.AConsole.Error.WriteLine(ex.Message);
+                Framework.AConsole.Error.WriteLine(ex.Message);
             }
             return new byte[]{ 0, 0};
         }

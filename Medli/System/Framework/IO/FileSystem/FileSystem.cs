@@ -28,7 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AIC.Main.IO.FileSystem
+namespace Medli.Main.IO.FileSystem
 {
     public class FileSystem
     {

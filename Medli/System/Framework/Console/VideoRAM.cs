@@ -8,10 +8,10 @@ All rights reserved.
 See in the /Licenses folder for the licenses for each respected project.
 */
 
-using System;
+using System = System;
 using System.Collections.Generic;
 
-namespace AIC.Main
+namespace Medli.System.Framework
 {
     public unsafe static partial class AConsole
     {
@@ -44,8 +44,8 @@ namespace AIC.Main
                     byte b = vram[i];
                     vb.data[i] = b;
                 }
-                vb.X = Console.CursorLeft;
-                vb.Y = Console.CursorTop;
+                vb.X = AConsole.CursorLeft;
+                vb.Y = AConsole.CursorTop;
                 vbufferStack.Push(vb);
             }
 
@@ -65,8 +65,8 @@ namespace AIC.Main
                         vram[i] = vb.data[i];
 
                     }
-                    Console.CursorLeft = vb.X;
-                    Console.CursorTop = vb.Y;
+                    AConsole.CursorLeft = vb.X;
+                    AConsole.CursorTop = vb.Y;
                 }
                 else
                 {
@@ -96,8 +96,8 @@ namespace AIC.Main
                             byte b = vram[j];
                             vbufferList[i].data[j] = b;
                         }
-                        vbufferList[i].X = Console.CursorLeft;
-                        vbufferList[i].Y = Console.CursorTop;
+                        vbufferList[i].X = AConsole.CursorLeft;
+                        vbufferList[i].Y = AConsole.CursorTop;
                         return true;
                     }
                 }
@@ -112,8 +112,8 @@ namespace AIC.Main
                         byte b = vram[i];
                         vb.data[i] = b;
                     }
-                    vb.X = Console.CursorLeft;
-                    vb.Y = Console.CursorTop;
+                    vb.X = AConsole.CursorLeft;
+                    vb.Y = AConsole.CursorTop;
                     vbufferList.Add(vb);
                     return true;
                 }
@@ -137,8 +137,8 @@ namespace AIC.Main
                         {
                             vram[j] = vbufferList[i].data[j];
                         }
-                        Console.CursorLeft = vbufferList[i].X;
-                        Console.CursorTop = vbufferList[i].Y;
+                        AConsole.CursorLeft = vbufferList[i].X;
+                        AConsole.CursorTop = vbufferList[i].Y;
                         return true;
                     }
                 }

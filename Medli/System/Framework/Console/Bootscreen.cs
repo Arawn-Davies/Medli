@@ -11,11 +11,9 @@ See in the /Licenses folder for the licenses for each respected project.
 using System;
 using Medli.Core.Framework;
 using Cosmos.Debug.Kernel;
-using AIC.Main.Extensions;
-using Medli.System.Framework;
-using AIC.Main;
+using Medli.Main;
 
-namespace Medli.System.Framework.Console
+namespace Medli.System.Framework
 {
     public static class Bootscreen
     {
@@ -101,9 +99,9 @@ namespace Medli.System.Framework.Console
 
                 case Effect.Matrix:
                     debugger.Send("matrix");
-                    int sec1 = AIC.Hardware.RTC.Now.Second;
+                    int sec1 = Hardware.RTC.Now.Second;
                     int sec2 = sec1;
-                    do { sec2 = AIC.Hardware.RTC.Now.Second; } while (sec1 == sec2);
+                    do { sec2 = Hardware.RTC.Now.Second; } while (sec1 == sec2);
                     int sec3;
                     if (sec2 <= 56) sec3 = sec2 + 3;
                     else if (sec2 == 57) sec3 = 1;

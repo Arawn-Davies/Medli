@@ -42,7 +42,7 @@ namespace Medli.Apps
         /// Executes the specified parameter.
         /// </summary>
         /// <param name="param">The parameter.</param>
-        public override void Execute(string param)
+        public override void Execute(string param = "")
 		{
 			if (param == "..")
 			{

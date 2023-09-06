@@ -10,7 +10,7 @@ See in the /Licenses folder for the licenses for each respected project.
 
 using System;
 
-namespace AIC.Main
+namespace Medli.System.Framework
 {
     public static partial class AConsole
     {

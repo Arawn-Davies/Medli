@@ -4,7 +4,7 @@ using System.Text;
 using Medli.Common;
 using Medli.System;
 using Sys = Cosmos.System;
-using AC = AIC.Main.AConsole;
+using AC = Medli.System.Framework.AConsole;
 
 namespace Medli.Apps
 {

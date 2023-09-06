@@ -11,12 +11,12 @@ See in the /Licenses folder for the licenses for each respected project.
 using System;
 using System.Collections.Generic;
 
-namespace AIC.Main
+namespace Medli.System.Framework
 {
     // For use instead of using System.Console directly, but still calls System.Console
 
     /// <summary>
-    /// AIC Framework Console class
+    /// Medli Framework Console class
     /// </summary>
     public static partial class AConsole
     {
@@ -24,31 +24,31 @@ namespace AIC.Main
         /// <summary>
         /// ForegroundColor Property
         /// </summary>
-        public static ConsoleColor ForegroundColor { get { return System.Console.ForegroundColor; } set { System.Console.ForegroundColor = value; } }
+        public static ConsoleColor ForegroundColor { get { return AConsole.ForegroundColor; } set { AConsole.ForegroundColor = value; } }
         /// <summary>
         /// BackgroundColor Property
         /// </summary>
-        public static ConsoleColor BackgroundColor { get { return System.Console.BackgroundColor; } set { System.Console.BackgroundColor = value; } }
+        public static ConsoleColor BackgroundColor { get { return AConsole.BackgroundColor; } set { AConsole.BackgroundColor = value; } }
         /// <summary>
         /// CursorTop Property
         /// </summary>
-        public static int CursorTop { get { return System.Console.CursorTop; } set { System.Console.CursorTop = value; } }
+        public static int CursorTop { get { return Console.CursorTop; } set { AConsole.CursorTop = value; } }
         /// <summary>
         /// CursorLeft Property
         /// </summary>
-        public static int CursorLeft { get { return System.Console.CursorLeft; } set { System.Console.CursorLeft = value; } }
+        public static int CursorLeft { get { return Console.CursorLeft; } set { AConsole.CursorLeft = value; } }
         /// <summary>
         /// WindowWidth Property
         /// </summary>
-        public static int WindowWidth { get { return System.Console.WindowWidth; } set { System.Console.WindowWidth = value; } }
+        public static int WindowWidth { get { return Console.WindowWidth; } set { AConsole.WindowWidth = value; } }
         /// <summary>
         /// WindowHeight Property
         /// </summary>
-        public static int WindowHeight { get { return System.Console.WindowHeight; } set { System.Console.WindowHeight = value; } }
+        public static int WindowHeight { get { return AConsole.WindowHeight; } set { AConsole.WindowHeight = value; } }
         /// <summary>
         /// KeyAvailable Property
         /// </summary>
-        public static bool KeyAvailable { get { return System.Console.KeyAvailable; } }
+        public static bool KeyAvailable { get { return AConsole.KeyAvailable; } }
         /// <summary>
         /// Write Method
         /// </summary>
@@ -86,7 +86,7 @@ namespace AIC.Main
             if (xcenter) CursorLeft = ((WindowWidth / 2) - (text.Length / 2));
             int Y = CursorTop;
             if (ycenter) CursorTop = ((WindowHeight / 2) - 1);
-            System.Console.Write(text);
+            AConsole.Write(text);
             if (xcenter) CursorLeft = X;
             if (ycenter) CursorTop = Y;
             ForegroundColor = originalColor;
@@ -109,7 +109,7 @@ namespace AIC.Main
             if (xcenter) CursorLeft = ((WindowWidth / 2) - (text.Length / 2));
             int Y = CursorTop;
             if (ycenter) CursorTop = ((WindowHeight / 2) - 1);
-            System.Console.Write(text);
+            AConsole.Write(text);
             if (xcenter) CursorLeft = X;
             if (ycenter) CursorTop = Y;
             ForegroundColor = originalColor;
@@ -130,7 +130,7 @@ namespace AIC.Main
             if (xcenter) CursorLeft = ((WindowWidth / 2) - (text.Length / 2));
             int Y = CursorTop;
             if (ycenter) CursorTop = ((WindowHeight / 2) - 1);
-            System.Console.WriteLine(text);
+            AConsole.WriteLine(text);
             if (xcenter) CursorLeft = X;
             if (ycenter) CursorTop = Y;
             ForegroundColor = originalColor;
@@ -153,7 +153,7 @@ namespace AIC.Main
             if (xcenter) CursorLeft = ((WindowWidth / 2) - (text.Length / 2));
             int Y = CursorTop;
             if (ycenter) CursorTop = ((WindowHeight / 2) - 1);
-            System.Console.WriteLine(text);
+            AConsole.WriteLine(text);
             if (xcenter) CursorLeft = X;
             if (ycenter) CursorTop = Y;
             ForegroundColor = originalColor;
@@ -165,17 +165,17 @@ namespace AIC.Main
         /// <param name="color"></param>
         public static void Fill(ConsoleColor color)
         {
-            ConsoleColor backup = AConsole.BackgroundColor;
-            AConsole.BackgroundColor = color;
-            Console.BackgroundColor = AConsole.BackgroundColor;
+            ConsoleColor backup = Console.BackgroundColor;
+            Console.BackgroundColor = color;
+            Console.BackgroundColor = Console.BackgroundColor;
             Console.Clear();
-            AConsole.BackgroundColor = backup;
-            AConsole.CursorTop = 0;
+            Console.BackgroundColor = backup;
+            Console.CursorTop = 0;
         }
         /// <summary>
         /// Clear Method
         /// </summary>
-        public static void Clear() { System.Console.Clear(); }
+        public static void Clear() { AConsole.Clear(); }
         /// <summary>
         /// Wipes the first two lines and writes a text (e.g. "YourOSName")
         /// at the horizontal center of the first line
@@ -205,18 +205,18 @@ namespace AIC.Main
         /// System.Console.Read()-Implementation
         /// </summary>
         /// <returns></returns>
-        public static int Read() { return System.Console.Read(); }
+        public static int Read() { return Console.Read(); }
         /// <summary>
         /// System.Console.ReadKey()-Implementation
         /// </summary>
         /// <returns></returns>
-        public static ConsoleKeyInfo ReadKey() { return System.Console.ReadKey(); }
-        public static ConsoleKeyInfo ReadKey(bool print) { return System.Console.ReadKey(print); }
+        public static ConsoleKeyInfo ReadKey() { return Console.ReadKey(); }
+        public static ConsoleKeyInfo ReadKey(bool print) { return Console.ReadKey(print); }
         /// <summary>
         /// System.Console.ReadLine()-Implementation
         /// </summary>
         /// <returns></returns>
-        public static string ReadLine() { return System.Console.ReadLine(); }
+        public static string ReadLine() { return Console.ReadLine(); }
         /// <summary>
         /// Sets a custom indent
         /// </summary>

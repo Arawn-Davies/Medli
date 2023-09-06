@@ -14,7 +14,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Medli.Core.Framework;
-using Medli.System.Framework.Console;
 
 namespace Medli.System.Framework
 {
@@ -61,7 +60,7 @@ namespace Medli.System.Framework
             Console.ReadKey(true);
         }
         /// <summary>
-        /// Reboots AIC operating system
+        /// Reboots Medli operating system
         /// </summary>
         public static void Reboot()
         {

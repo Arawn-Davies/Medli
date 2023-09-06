@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using Medli.System.Framework;
 
-namespace AIC.Main
+namespace Medli.System.Framework
 {
     public static partial class AConsole
     {

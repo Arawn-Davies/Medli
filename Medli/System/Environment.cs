@@ -35,7 +35,7 @@ namespace Medli
         /// <summary>
         /// String storing the user password with MD5 hash
         /// </summary>
-        public static string usrpass_sha; //= AIC.Main.Crypto.MD5.hash(usrpass);
+        public static string usrpass_sha; //= Medli.Main.Crypto.MD5.hash(usrpass);
 
         /// <summary>
         /// File path of the user password
@@ -55,7 +55,7 @@ namespace Medli
         /// <summary>
         /// String storing the root password with MD5 hash
         /// </summary>
-        public static string rootpass_sha; //= AIC.Main.Crypto.MD5.hash(rootpass);
+        public static string rootpass_sha; //= Medli.Main.Crypto.MD5.hash(rootpass);
 
         /// <summary>
         /// Stores the encrypted user password as a file

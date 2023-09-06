@@ -10,7 +10,7 @@ See in the /Licenses folder for the licenses for each respected project.
 
 using System;
 using System.Collections.Generic;
-using AIC.Main;
+using Medli.Main;
 using Medli.Core.Framework;
 
 namespace Medli.System.Framework
@@ -29,9 +29,9 @@ namespace Medli.System.Framework
             bool critical = false)
         {
             DrawOOPS();
-            if (description.Length + 33 < System.Console.WindowHeight)
+            if (description.Length + 33 < AConsole.WindowHeight)
             {
-                System.Console.CursorTop = 2; System.Console.CursorLeft = 33;
+                AConsole.CursorTop = 2; AConsole.CursorLeft = 33;
                 ConsoleColor errcolor = ConsoleColor.White;
                 if (critical) errcolor = ConsoleColor.Red;
                 AConsole.WriteLineEx(error, errcolor, ConsoleColor.Blue);

@@ -63,7 +63,7 @@ namespace Medli.System.Framework.IO
         }
         public void Write(ulong dat)
         {
-            byte[] data = System.BitConverter.GetBytes(dat);
+            byte[] data = BitConverter.GetBytes(dat);
             for (int i = 0; i < data.Length; i++)
                 Write(data[i]);
         }

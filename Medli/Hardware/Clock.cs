@@ -16,7 +16,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int Second()
 		{
-			return RTC.Second;
+			return RTC.Now.Second;
 		}
         /// <summary>
         /// Minute
@@ -24,7 +24,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int Minute()
 		{
-			return RTC.Minute;
+			return RTC.Now.Minute;
 		}
         /// <summary>
         /// Hour
@@ -32,7 +32,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int Hour()
 		{
-			return RTC.Hour;
+			return RTC.Now.Hour;
 		}
         /// <summary>
         /// Day the of the week
@@ -40,7 +40,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int DayOfTheWeek()
 		{
-			return RTC.DayOfTheWeek;
+			return RTC.Now.DayOfTheWeek;
 		}
         /// <summary>
         /// Month
@@ -48,7 +48,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int Month()
 		{
-			return RTC.Month;
+			return RTC.Now.Month;
 		}
         /// <summary>
         /// Year
@@ -56,7 +56,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int Year()
 		{
-			return RTC.Year;
+			return RTC.Now.Year;
 		}
         /// <summary>
         /// Day the of the month
@@ -64,7 +64,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int DayOfTheMonth()
 		{
-			return RTC.DayOfTheMonth;
+			return RTC.Now.DayOfTheMonth;
 		}
         /// <summary>
         /// Century
@@ -72,7 +72,7 @@ namespace Medli.Hardware
         /// <returns></returns>
         public static int Century()
 		{
-			return RTC.Century;
+			return RTC.Now.Century;
 		}
 	}
 }

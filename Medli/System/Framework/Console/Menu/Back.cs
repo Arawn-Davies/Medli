@@ -9,17 +9,21 @@ See in the /Licenses folder for the licenses for each respected project.
 */
 
 using System;
+using System.Collections.Generic;
 
-namespace AIC.Main
+namespace Medli.System.Framework
 {
     public static partial class AConsole
     {
         public partial class Menu
         {
-            public abstract class Entry
+            internal class Back : Entry
             {
-                public string text;
-                public abstract void Execute();
+                public Back() { this.text = "Back to Main Menu"; }
+                public override void Execute()
+                {
+                    Menu.menu = 3;
+                }
             }
         }
     }

@@ -15,7 +15,7 @@ using System.Text;
 using Medli.Core.Framework.dev;
 using CIO = Medli.Core.Framework.IO.PortIO;
 
-namespace AIC.Main.dev
+namespace Medli.Main.dev
 {
     public partial class TextScreen
     {

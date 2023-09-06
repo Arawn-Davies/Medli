@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AIC.Main;
-using AIC.Main.Extensions;
-using Console = AIC.Main.AConsole;
-using menu = AIC.Main.AConsole.Menu;
+using Medli.Main;
+using Console = Medli.System.Framework.Console;
+using menu = Medli.System.Framework.AConsole.Menu;
 
-namespace AICTest
+namespace MedliTest
 {
     public class ShutdownEntry : menu.Entry
     {
         public ShutdownEntry() { this.text = "Shutdown"; }
         public override void Execute()
         {
-            userACPI.Shutdown();
+            new Medli.Apps.Shutdown().Execute();
         }
     }
     public class RebootEntry : menu.Entry
@@ -21,7 +20,7 @@ namespace AICTest
         public RebootEntry() { this.text = "Reboot"; }
         public override void Execute()
         {
-            userACPI.Reboot();
+            new Medli.Apps.Reboot.Execute();
         }
     }
     public class Entry1 : menu.Entry
@@ -86,7 +85,7 @@ namespace AICTest
 
         public override void Execute()
         {
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.SlideFromTop, ConsoleColor.Green, 1);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.SlideFromTop, ConsoleColor.Green, 1);
             Console.Clear();
         }
     }
@@ -97,7 +96,7 @@ namespace AICTest
 
         public override void Execute()
         {
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.SlideFromRight, ConsoleColor.Green, 1);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.SlideFromRight, ConsoleColor.Green, 1);
             Console.Clear();
         }
     }
@@ -108,7 +107,7 @@ namespace AICTest
 
         public override void Execute()
         {
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.SlideFromBottom, ConsoleColor.Green, 1);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.SlideFromBottom, ConsoleColor.Green, 1);
             Console.Clear();
         }
     }
@@ -119,7 +118,7 @@ namespace AICTest
 
         public override void Execute()
         {
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.SlideFromLeft, ConsoleColor.Green, 1);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.SlideFromLeft, ConsoleColor.Green, 1);
             Console.Clear();
         }
     }
@@ -132,7 +131,7 @@ namespace AICTest
 
         public override void Execute()
         {
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.Typewriter, ConsoleColor.Green, 2);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.Typewriter, ConsoleColor.Green, 2);
             Console.Clear();
         }
     }
@@ -143,7 +142,7 @@ namespace AICTest
 
         public override void Execute()
         {
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.Matrix, ConsoleColor.Green, 2);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.Matrix, ConsoleColor.Green, 2);
             Console.Clear();
         }
     }

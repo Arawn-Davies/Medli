@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
-using AIC.Main;
-using AIC.Main.Extensions;
-using Console = AIC.Main.AConsole;
-using menu = AIC.Main.AConsole.Menu;
+using Medli.Main;
+using Medli.Main.Extensions;
+using Console = Medli.Main.AConsole;
+using menu = Medli.Main.AConsole.Menu;
 
-namespace AICTest
+namespace MedliTest
 {
     
     public class Kernel: Sys.Kernel
@@ -15,7 +15,7 @@ namespace AICTest
         protected override void BeforeRun()
         {
             Console.Clear();
-            Bootscreen.Show("AIC Demo!", Bootscreen.Effect.Matrix, ConsoleColor.Green, 3);
+            Bootscreen.Show("Medli Demo!", Bootscreen.Effect.Matrix, ConsoleColor.Green, 3);
             Console.Clear();
             menu.Reset();
         }
@@ -27,12 +27,12 @@ namespace AICTest
             menu.Category catTest = new menu.Category("Category 1");
             catTest.AddEntry(new Entry1());
             catTest.AddEntry(new Entry2());
-            // Create a new category: catAICTests
-            // Contains methods for testing the AIC Framework.
-            menu.Category catAICTests = new menu.Category("Tests menu");
-            catAICTests.AddEntry(new ShutdownEntry());
-            catAICTests.AddEntry(new RebootEntry());
-            catAICTests.AddEntry(new Bluescreen());
+            // Create a new category: catMedliTests
+            // Contains methods for testing the Medli Framework.
+            menu.Category catMedliTests = new menu.Category("Tests menu");
+            catMedliTests.AddEntry(new ShutdownEntry());
+            catMedliTests.AddEntry(new RebootEntry());
+            catMedliTests.AddEntry(new Bluescreen());
 
             menu.Category BootScreens = new menu.Category("BootScreen demos");
             BootScreens.AddEntry(new Boot_SFT());
@@ -44,7 +44,7 @@ namespace AICTest
 
             // Add the categories to the menu
             menu.AddCategory(catTest);
-            menu.AddCategory(catAICTests);
+            menu.AddCategory(catMedliTests);
             menu.AddCategory(BootScreens);
 
             // Show the menu

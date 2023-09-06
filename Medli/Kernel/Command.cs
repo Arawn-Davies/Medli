@@ -47,9 +47,9 @@ namespace Medli.Apps
 			get;
 		}
 
-		public abstract void Execute(string param);
+		public abstract void Execute(string? param);
 
-		public virtual void Help()
+        public virtual void Help()
 		{
 			Console.WriteLine(Name);
 			Console.WriteLine("\t" + Summary);

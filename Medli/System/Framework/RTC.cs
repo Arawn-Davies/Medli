@@ -9,8 +9,7 @@ See in the /Licenses folder for the licenses for each respected project.
 */
 
 using System;
-using AIC.Main.Extensions;
-using AIC.Hardware;
+using Medli.Hardware;
 
 namespace Medli.System.Framework
 {
@@ -35,7 +34,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.Hour;
+                    return Medli.Hardware.RTC.Now.Hour;
                 }
             }
             /// <summary>
@@ -56,7 +55,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.Minute;
+                    return Medli.Hardware.RTC.Now.Minute;
                 }
             }
             /// <summary>
@@ -77,7 +76,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.Second;
+                    return Medli.Hardware.RTC.Now.Second;
                 }
             }
             /// /// <summary>
@@ -98,7 +97,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.Century;
+                    return Medli.Hardware.RTC.Now.Century;
                 }
             }
             /// <summary>
@@ -119,13 +118,13 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return int.Parse(Century.ToString() + AIC.Hardware.RTC.Now.Year.ToString());
+                    return int.Parse(Century.ToString() + Medli.Hardware.RTC.Now.Year.ToString());
                 }
             }
             /// <summary>
             /// Returns the year as string in format xxxx ( x = any number )
             /// </summary>
-            public static string YearString = AIC.Hardware.RTC.Now.YearString;
+            public static string YearString = Medli.Hardware.RTC.Now.YearString;
             /// <summary>
             /// Returns the day of the month
             /// </summary>
@@ -133,7 +132,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.DayOfTheMonth;
+                    return Medli.Hardware.RTC.Now.DayOfTheMonth;
                 }
             }
             /// <summary>
@@ -175,7 +174,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.DayOfTheWeek;
+                    return Medli.Hardware.RTC.Now.DayOfTheWeek;
                 }
             }
             /// <summary>
@@ -196,7 +195,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return AIC.Hardware.RTC.Now.Month;
+                    return Medli.Hardware.RTC.Now.Month;
                 }
             }
             /// <summary>
@@ -225,13 +224,13 @@ namespace Medli.System.Framework
             public static string GetDate(DateFormat format, char separator = '.')
             {
                 if (format == DateFormat.DD_MM_YYYY)
-                    return DayOfTheMonthString + separator + MonthString + separator + AIC.Hardware.RTC.Now.YearString;
+                    return DayOfTheMonthString + separator + MonthString + separator + Medli.Hardware.RTC.Now.YearString;
                 else if (format == DateFormat.YYYY_MM_DD)
-                    return AIC.Hardware.RTC.Now.YearString + separator + MonthString + separator + DayOfTheMonthString;
+                    return Medli.Hardware.RTC.Now.YearString + separator + MonthString + separator + DayOfTheMonthString;
                 else if (format == DateFormat.YYYY_DD_MM)
-                    return AIC.Hardware.RTC.Now.YearString + "." + DayOfTheMonthString + separator + MonthString;
+                    return Medli.Hardware.RTC.Now.YearString + "." + DayOfTheMonthString + separator + MonthString;
                 else if (format == DateFormat.MM_DD_YYYY)
-                    return MonthString + "." + DayOfTheMonthString + separator + AIC.Hardware.RTC.Now.YearString;
+                    return MonthString + "." + DayOfTheMonthString + separator + Medli.Hardware.RTC.Now.YearString;
                 else
                     return "ERROR";
             }

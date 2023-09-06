@@ -14,11 +14,6 @@
       <None Remove="System\**" />
     </ItemGroup>
 
-
-  <ItemGroup>
-    <ProjectReference Include="..\AIC-Framework\AIC.Main\AIC.Main.csproj" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     <PackageReference Include="Cosmos.HAL2" Version="0-*" NoWarn="NU1604" />
