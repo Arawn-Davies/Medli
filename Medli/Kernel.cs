@@ -9,8 +9,9 @@ namespace Medli
 {
     public static partial class Kernel
     {
-        [ManifestResourceStream(ResourceName = "Medli.Logo.bmp")]
-        public static byte[] logoImage;
+
+        //[ManifestResourceStream(ResourceName = "Medli.Logo.bmp")]
+        //public static byte[] logoImage;
 
         /// <summary>
         /// List of kernel services (filesystem, logging etc.)
@@ -49,7 +50,7 @@ namespace Medli
         /// </summary>
         public static void DrawLogo()
         {
-            Sys.Graphics.Bitmap bitmap = new Sys.Graphics.Bitmap(logoImage);
+            //Sys.Graphics.Bitmap bitmap = new Sys.Graphics.Bitmap(logoImage);
             //DrawImage(0, 0, 90, 37, bitmap);
         }
     }

@@ -34,7 +34,7 @@ namespace Medli
                     new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
                 }
                 */
-                Kernel.IsLive = true;
+                Kernel.IsLive = false;
                 
                 
                 Level3.Init();
@@ -42,7 +42,7 @@ namespace Medli
                 //Kernel.Hostname = "MedliLive";
                 Kernel.Running = true;
 				Console.Clear();
-                //Hardware.AddDisks.Detect();
+                Hardware.AddDisks.Detect();
                 Console.Write(Kernel.Logo);
                 Console.WriteLine(Kernel.Welcome);
 				Console.WriteLine("");

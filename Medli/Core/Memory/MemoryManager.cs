@@ -8,7 +8,7 @@ namespace Medli.Core
 {
 	public class MemoryManager
 	{
-		public static uint GetUsedMemory()
+        public static uint GetUsedMemory()
 		{
 			uint UsedRAM = CPU.GetEndOfKernel() + 1024;
 			return UsedRAM / div;

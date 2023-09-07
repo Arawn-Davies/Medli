@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Medli.Main;
-using Console = Medli.System.Framework.Console;
+using Console = Medli.System.Framework.AConsole;
 using menu = Medli.System.Framework.AConsole.Menu;
 
-namespace MedliTest
+namespace Midora
 {
     public class ShutdownEntry : menu.Entry
     {
