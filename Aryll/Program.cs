@@ -18,7 +18,7 @@
                 }
                 else if (!char.IsControl(keyInfo.KeyChar))
                 {
-                    Console.Write("*");
+                    Console.Write("");
                     pass += keyInfo.KeyChar;
                 }
             } while (key != ConsoleKey.Enter);
