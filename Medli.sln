@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makar", "Makar\Makar.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medli.Test", "Medli.Test\Medli.Test.csproj", "{7E297B2F-3713-4E0A-B7CB-9C5ABDE9B5CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aryll", "Aryll\Aryll.csproj", "{F1C01D47-D597-48E9-90E1-E2AEC808C9D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7E297B2F-3713-4E0A-B7CB-9C5ABDE9B5CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E297B2F-3713-4E0A-B7CB-9C5ABDE9B5CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E297B2F-3713-4E0A-B7CB-9C5ABDE9B5CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C01D47-D597-48E9-90E1-E2AEC808C9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C01D47-D597-48E9-90E1-E2AEC808C9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C01D47-D597-48E9-90E1-E2AEC808C9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C01D47-D597-48E9-90E1-E2AEC808C9D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
