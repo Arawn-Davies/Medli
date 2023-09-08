@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medli", "Medli\Medli.csproj", "{853CBEB7-ABBB-4E62-A29C-034AD53DD817}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedliPlugs", "MedliPlugs\MedliPlugs.csproj", "{7F604BA1-BCB5-4212-A13C-071E25EF1C06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medli.Plugs", "Medli.Plugs\Medli.Plugs.csproj", "{7F604BA1-BCB5-4212-A13C-071E25EF1C06}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Makar", "Makar\Makar.csproj", "{BF5F6C80-0658-4FFC-9DEB-714081B4236F}"
 EndProject

@@ -17,6 +17,9 @@
         <Profile>VMware</Profile>
         <Description>Use VMware Player or Workstation to deploy and debug.</Description>
         <PxeInterface>192.168.0.8</PxeInterface>
+        <RemoveBootDebugOutput>False</RemoveBootDebugOutput>
+        <DebugEnabled>True</DebugEnabled>
+        <OptimizationLevel>0</OptimizationLevel>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,5 +27,9 @@
         <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
         <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
     </ItemGroup>
+
+	<ItemGroup>
+		<PlugsReference Include="$(MSBuildProjectDirectory)\..\Medli.Plugs\bin\Debug\net6.0\Medli.Plugs.dll" />
+	</ItemGroup>
 
 </Project>

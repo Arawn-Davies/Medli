@@ -78,10 +78,10 @@ namespace Medli
 		</Reference>
 	</ItemGroup>
 
-	<!--
+	
 	
 		<ItemGroup>
-			<PlugsReference Include="$(MSBuildProjectDirectory)\..\MedliPlugs\bin\Debug\net6.0\MedliPlugs.dll" />
+			<PlugsReference Include="$(MSBuildProjectDirectory)\..\Medli.Plugs\bin\Debug\net6.0\Medli.Plugs.dll" />
 		</ItemGroup>
 
 	
@@ -91,5 +91,5 @@ namespace Medli
 		<ItemGroup>
 			<EmbeddedResource Include="Logo.bmp" />
 		</ItemGroup>
-	!-->
+	
 </Project>
