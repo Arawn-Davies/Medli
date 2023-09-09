@@ -37,7 +37,11 @@ namespace Medli.Apps
 		{
             // Manually initiates a kernel panic
             var xCtx = new Cosmos.Core.INTs.IRQContext();
-            Cosmos.Core.INTs.HandleInterrupt_00(ref xCtx);
+			xCtx.EAX = 0x50;
+			xCtx.EBX = 0x40;
+			xCtx.ECX = 0x30;
+			xCtx.EDX = 0x20;
+			Cosmos.Core.INTs.HandleInterrupt_00(ref xCtx);
 			//Console.WriteLine("This shouldn't print!");
 		}
 	}

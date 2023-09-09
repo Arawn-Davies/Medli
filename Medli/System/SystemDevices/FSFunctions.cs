@@ -7,11 +7,18 @@ using Medli.Common.Services;
 using MDFS;
 using Medli.System;
 using Medli.Main;
+using Cosmos.System.FileSystem;
 
 namespace Medli.System
 {
     public class FS
     {
+		/// <summary>
+		/// Checks if the system is running in live mode
+		/// Should optionally be called before any filesystem IO
+		/// Create an interrupt for this?
+		/// </summary>
+		/// <exception cref="Exception"></exception>
 		public static void IsLiveSystem()
 		{
 			if (FSService.Active == false)
@@ -20,12 +27,18 @@ namespace Medli.System
 			}
 		}
 
-        public static void Format()
+		/// <summary>
+		/// Get rmation for the available filesystems
+		/// </summary>
+        public static void ListDisk()
         {
-            FSService.Format();
-        }
+            FSService.ListDisk();
+		}
 
-        public static void MFSU()
+		/// <summary>
+		/// Run the disk formatting utility
+		/// </summary>
+		public static void MFSU()
         {
             try
             {
@@ -96,6 +109,12 @@ namespace Medli.System
                 Console.WriteLine("mkdir: failed to create directory");
             }
         }
+
+		/// <summary>
+		/// Move the specified file from the source to the destination
+		/// </summary>
+		/// <param name="src"></param>
+		/// <param name="dest"></param>
         public static void mv(string src, string dest)
         {
 			try
@@ -116,7 +135,11 @@ namespace Medli.System
 				Console.WriteLine(ex.Message);
 			}
         }
-        public static void CDP()
+
+		/// <summary>
+		/// Change to the parent directory
+		/// </summary>
+        public static void cdp()
         {
             try
             {
@@ -149,6 +172,11 @@ namespace Medli.System
                 //ErrorHandler.Init(0, ex.Message, false, "");
             }
         }
+
+		/// <summary>
+		/// Changes to the specified directory
+		/// </summary>
+		/// <param name="input"></param>
         public static void cd(string input)
         {
 			try
@@ -177,6 +205,11 @@ namespace Medli.System
             
         }
 
+		/// <summary>
+		/// Writes the specified contents to the specified file
+		/// </summary>
+		/// <param name="path"></param>
+		/// <param name="contents"></param>
 		public static void WriteContents(string path, string contents)
 		{
 			try
@@ -190,6 +223,11 @@ namespace Medli.System
 			}
 		}
 
+		/// <summary>
+		/// Reads the contents of the specified file and returns it in a byte array format
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
         public static byte[] ReadContents(string path)
         {
             try
@@ -204,6 +242,11 @@ namespace Medli.System
             return new byte[]{ 0, 0};
         }
 
+		/// <summary>
+		/// Deletes the specified file or directory
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <param name="recursive"></param>
         public static void del(string filename, bool recursive)
         {
 			try
@@ -252,10 +295,19 @@ namespace Medli.System
 				Console.WriteLine(ex.Message);
 			}
         }
+
+		/// <summary>
+		/// Lists the contents of the current directory
+		/// </summary>
         public static void Dir()
         {
             Dir(Paths.CurrentDirectory);
         }
+
+		/// <summary>
+		/// Lists the contents of the specified directory
+		/// </summary>
+		/// <param name="path"></param>
         public static void Dir(string path)
         {
 			try
@@ -274,14 +326,25 @@ namespace Medli.System
 				Console.WriteLine("Failed to retrieve files/directories");
 			}
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <exception cref="NotImplementedException"></exception>
 		public static void ListVol()
 		{
+#warning ListVol() Implement this
 			throw new NotImplementedException();
 			//Console.WriteLine("Name: " + Paths.vol.mName + ", Size: " + Paths.vol.mSize);
 		}
 
+		/// <summary>
+		/// Lists the volumes available to the operating systems
+		/// </summary>
+		/// <exception cref="NotImplementedException"></exception>
 		public static void ListVols()
 		{
+#warning ListVols() Implement this
 			throw new NotImplementedException();
 			/*
 			var volumes = KernelVariables.vFS.GetVolumes();

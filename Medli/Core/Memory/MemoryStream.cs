@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Medli.Core
 {
-	public class MemoryStream : ioStream
+	public class MemoryStream : IOStream
 	{
 		private unsafe byte* a = (byte*)null;
 

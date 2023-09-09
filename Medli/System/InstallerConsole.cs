@@ -96,6 +96,34 @@ namespace Medli.System
             return text;
         }
 
+		public static string ReadPasswd()
+		{
+			Console.CursorLeft = 7;
+			Console.CursorTop += 1;
+			var pass = string.Empty;
+			ConsoleKey key;
+			do
+			{
+				var keyInfo = Console.ReadKey(intercept: true);
+				key = keyInfo.Key;
+
+				if (key == ConsoleKey.Backspace && pass.Length > 0)
+				{
+					pass = pass[0..^1];
+				}
+				else if (!char.IsControl(keyInfo.KeyChar))
+				{
+					Console.Write("");
+					pass += keyInfo.KeyChar;
+				}
+			} while (key != ConsoleKey.Enter);
+
+			Console.CursorLeft = 7;
+			pass = pass + "";
+			return pass;
+
+		}
+
         /// <summary>
         /// Redirect method of PressAnyKey, indented by 7
         /// </summary>

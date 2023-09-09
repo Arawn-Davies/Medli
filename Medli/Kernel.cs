@@ -10,8 +10,8 @@ namespace Medli
     public static partial class Kernel
     {
 
-        //[ManifestResourceStream(ResourceName = "Medli.Logo.bmp")]
-        //public static byte[] logoImage;
+        [ManifestResourceStream(ResourceName = "Medli.Logo.bmp")]
+        public static byte[] logoImage;
 
         /// <summary>
         /// List of kernel services (filesystem, logging etc.)
@@ -27,6 +27,7 @@ namespace Medli
         /// Custom console implementation object
         /// </summary>
         //public static System.AConsole.Console AConsole;
+
 
         public static bool ExperimentalMode = false;
 

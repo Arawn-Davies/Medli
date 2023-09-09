@@ -27,7 +27,7 @@ namespace Medli.Apps
             {
                 try
                 {
-                    Common.Services.FSService.Format();
+                    Common.Services.FSService.ListDisk();
                 }
                 catch (Exception ex)
                 {

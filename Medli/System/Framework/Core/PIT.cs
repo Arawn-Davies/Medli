@@ -28,7 +28,7 @@ namespace Medli.System.Framework.Core
         {
             Medli.Core.Framework.PIT.Beep(frequency);
         }
-        internal static bool called = false;
+
         public static void SleepSeconds(uint seconds)
         {
             SleepMilliseconds(seconds * 1000);

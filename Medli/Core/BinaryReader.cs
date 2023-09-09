@@ -6,9 +6,9 @@ namespace Medli.Core
 {
 	public class BinaryReader
 	{
-		public ioStream BaseStream;
+		public IOStream BaseStream;
 
-		public BinaryReader(ioStream stream)
+		public BinaryReader(IOStream stream)
 		{
 			stream.Position = 0;
 			this.BaseStream = stream;

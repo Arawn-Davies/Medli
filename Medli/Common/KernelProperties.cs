@@ -21,7 +21,7 @@ namespace Medli
 			Bochs,
 			QEMU,
 			VirtualPC,
-			RealShit
+			BareMetal
 		}
 		public static Hypervisor VM;
 

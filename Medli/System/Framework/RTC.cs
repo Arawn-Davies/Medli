@@ -9,22 +9,11 @@ See in the /Licenses folder for the licenses for each respected project.
 */
 
 using System;
-using Medli.Hardware;
 
 namespace Medli.System.Framework
 {
     public static class RTC
     {
-        /// <summary>
-        /// NOT RECOMMENDED! Waits for a given amount of ticks. It depends on the CPU speed.
-        /// </summary>
-        /// <param name="ticks">Amount</param>
-        public static void SleepTicks(int ticks)
-        {
-            for (int i = 0; i < ticks; i++) {; }
-            return;
-        }
-
         public static class Now
         {
             /// <summary>
@@ -34,7 +23,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.Hour;
+                    return Hardware.RTC.Now.Hour;
                 }
             }
             /// <summary>
@@ -55,7 +44,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.Minute;
+                    return Hardware.RTC.Now.Minute;
                 }
             }
             /// <summary>
@@ -76,7 +65,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.Second;
+                    return Hardware.RTC.Now.Second;
                 }
             }
             /// /// <summary>
@@ -97,7 +86,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.Century;
+                    return Hardware.RTC.Now.Century;
                 }
             }
             /// <summary>
@@ -118,13 +107,13 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return int.Parse(Century.ToString() + Medli.Hardware.RTC.Now.Year.ToString());
+                    return int.Parse(Century.ToString() + Hardware.RTC.Now.Year.ToString());
                 }
             }
             /// <summary>
             /// Returns the year as string in format xxxx ( x = any number )
             /// </summary>
-            public static string YearString = Medli.Hardware.RTC.Now.YearString;
+            public static string YearString = Hardware.RTC.Now.YearString;
             /// <summary>
             /// Returns the day of the month
             /// </summary>
@@ -132,7 +121,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.DayOfTheMonth;
+                    return Hardware.RTC.Now.DayOfTheMonth;
                 }
             }
             /// <summary>
@@ -174,7 +163,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.DayOfTheWeek;
+                    return Hardware.RTC.Now.DayOfTheWeek;
                 }
             }
             /// <summary>
@@ -195,7 +184,7 @@ namespace Medli.System.Framework
             {
                 get
                 {
-                    return Medli.Hardware.RTC.Now.Month;
+                    return Hardware.RTC.Now.Month;
                 }
             }
             /// <summary>
@@ -224,13 +213,13 @@ namespace Medli.System.Framework
             public static string GetDate(DateFormat format, char separator = '.')
             {
                 if (format == DateFormat.DD_MM_YYYY)
-                    return DayOfTheMonthString + separator + MonthString + separator + Medli.Hardware.RTC.Now.YearString;
+                    return DayOfTheMonthString + separator + MonthString + separator + Hardware.RTC.Now.YearString;
                 else if (format == DateFormat.YYYY_MM_DD)
-                    return Medli.Hardware.RTC.Now.YearString + separator + MonthString + separator + DayOfTheMonthString;
+                    return Hardware.RTC.Now.YearString + separator + MonthString + separator + DayOfTheMonthString;
                 else if (format == DateFormat.YYYY_DD_MM)
-                    return Medli.Hardware.RTC.Now.YearString + "." + DayOfTheMonthString + separator + MonthString;
+                    return Hardware.RTC.Now.YearString + "." + DayOfTheMonthString + separator + MonthString;
                 else if (format == DateFormat.MM_DD_YYYY)
-                    return MonthString + "." + DayOfTheMonthString + separator + Medli.Hardware.RTC.Now.YearString;
+                    return MonthString + "." + DayOfTheMonthString + separator + Hardware.RTC.Now.YearString;
                 else
                     return "ERROR";
             }

@@ -12,13 +12,13 @@ using System;
 using System.Text;
 using Medli.Core.Framework;
 
-namespace Medli.System.Framework.Core
+namespace Medli.System.Framework
 {
-    public class userACPI
+    public class Power
     {
         public static void Shutdown()
         {
-            Cosmos.System.Power.Shutdown();
+			Cosmos.System.Power.Shutdown();
         }
         public static void Reboot()
         {

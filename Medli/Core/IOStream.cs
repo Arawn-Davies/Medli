@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Medli.Core
 {
-	public abstract class ioStream
+	public abstract class IOStream
 	{
 		private bool a = true;
 		public int Position;

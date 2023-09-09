@@ -130,6 +130,8 @@ namespace MDFS
         /// </summary>
         public static DiskListing SelectedDisk = null;
 
+		public static int SelectedDiskNumber = 0;
+
         /// <summary>
         /// Main Disk Utility method, with the list of IDE devices passed as the parameter
         /// TODO - Remove the requirement for the IDE array to be passed as array - or move detection to INIT1
@@ -175,7 +177,6 @@ namespace MDFS
                     Console.WriteLine(option + ": Invalid option!");
                 }
             }
-            Console.Clear();
         }
         /// <summary>
         /// Selects a DiskListing from the list
@@ -192,9 +193,10 @@ namespace MDFS
                 if (num >= 0 && num < DiskListing.DiskListings.Count)
                 {
                     SelectedDisk = DiskListing.DiskListings[num];
-                }
+					SelectedDiskNumber = num;
+				}
             }
-            while (SelectedDisk == null);
+            while (SelectedDisk == null || SelectedDiskNumber == 0);
         }
 
         /// <summary>
@@ -202,15 +204,16 @@ namespace MDFS
         /// </summary>
         public static void ListDisks()
         {
-            foreach (DiskListing disklist in DiskListing.DiskListings)
+			int i = 0;
+            for (i = 0; i < DiskListing.DiskListings.Count; i++)
             {
-                if (disklist == SelectedDisk)
+                if (i == SelectedDiskNumber)
                 {
-                    Console.WriteLine("* " + disklist.Info);
+                    Console.WriteLine("* " + DiskListing.DiskListings[i].Info);
                 }
                 else
                 {
-                    disklist.PrintInfo();
+					DiskListing.DiskListings[i].PrintInfo();
                 }
             }
         }

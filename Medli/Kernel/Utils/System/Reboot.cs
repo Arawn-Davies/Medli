@@ -39,16 +39,8 @@ namespace Medli.Apps
         /// <param name="param">The parameter.</param>
         public override void Execute(string param)
 		{
-            RebootSystem();
+			EnvironmentVariables.SaveVars();
+            System.Framework.Power.Reboot();
 		}
-
-        /// <summary>
-        /// Reboots the system.
-        /// </summary>
-        private static void RebootSystem()
-        {
-            EnvironmentVariables.SaveVars();
-            Sys.Power.Reboot();
-        }
 	}
 }

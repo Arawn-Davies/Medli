@@ -37,8 +37,17 @@ namespace Medli.System
             {
                 Installer.WriteLine("Enter new account name:");
                 usrname = Installer.ReadLine();
-                Installer.WriteLine("Enter the new account password:");
-                pass = Installer.ReadLine();
+				pass = "example";
+				string pass2 = "";
+				while (pass != pass2)
+				{
+					Installer.WriteLine("Enter the new account password:");
+					pass = Installer.ReadPasswd();
+					Installer.WriteLine("Confirm password: ");
+					pass2 = Installer.ReadPasswd();
+				}
+				
+				
                 Installer.WriteLine("Enter the new account type:");
                 utype = Installer.ReadLine();
             }
@@ -47,7 +56,7 @@ namespace Medli.System
                 Console.WriteLine("Enter new account name:");
                 usrname = Console.ReadLine();
                 Console.WriteLine("Enter the new account password:");
-                pass = Console.ReadLine();
+                pass = Installer.ReadPasswd();
                 Console.WriteLine("Enter the new account type:");
                 utype = Console.ReadLine();
             }

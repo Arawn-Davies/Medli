@@ -15,8 +15,15 @@ namespace Medli.System.Framework.Core
 {
     public class Random
     {
-#warning TODO: Implement Random.Next
-        public void Next(uint min, uint max)
+
+#warning Next() need to implement this
+		/// <summary>
+		/// Generates the next random number.
+		/// </summary>
+		/// <param name="min"></param>
+		/// <param name="max"></param>
+		/// <exception cref="NotImplementedException"></exception>
+		public void Next(uint min, uint max)
         {
             throw new NotImplementedException();
         }

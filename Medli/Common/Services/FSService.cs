@@ -9,9 +9,9 @@ namespace Medli.Common.Services
 {
 	public class FSService
 	{
-        private static string driveID = @"0:\";
+		private static string driveID = @"0:\";
 
-        public static CosmosVFS vFS;
+		public static CosmosVFS vFS;
 
 		public static string ServiceName = "FSSRV";
 
@@ -33,40 +33,86 @@ namespace Medli.Common.Services
 
 		public static LoggingService ServiceLogger;
 
-        public static void Format()
-        {
-            if (Active == true)
-            {
+		public static void ListDisk()
+		{
+			if (Active == true)
+			{
 #warning WIP Restore Functionality
-				//var mydrive = new DiskManager(driveID);
-				//mydrive.Format("FAT32", false);
+				
+
+				List<Disk> Disks = Cosmos.System.FileSystem.VFS.VFSManager.GetDisks();
+				int i = 1;
+				foreach (Disk disk in Disks)
+				{
+					Console.WriteLine("Disk: " + i);
+					Console.WriteLine("MBR: " + disk.IsMBR);
+					Console.WriteLine("Partitions: " + disk.Partitions.Count);
+					Console.WriteLine("Disk size: " + ((disk.Size / 1024) / 1024));
+
+					if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.Removable)
+					{
+						Console.WriteLine("Type: Removable");
+					}
+					else if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.HardDrive)
+					{
+						Console.WriteLine("Type: Hard drive");
+					}
+					else if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.RemovableCD)
+					{
+						Console.WriteLine("Type: Optical drive");
+					}
+					i++;
+				}
 			}
 		}
 
-        public static void ChangeDriveLabel()
-        {
-            if (Active == true)
-            {
-#warning WIP Restore Functionality
+#warning CreateVols() Implement this
+		/// <summary>
+		/// Creates a new volume on the specified disk
+		/// </summary>
+		public static void CreateVols()
+		{
+			//var mydrive = new DiskManager(driveID);
+			//mydrive.Format("FAT32", false);
+
+			/*if (disk. == driveID)
+					{
+
+						disk.InitializePartitionTable();
+						disk.CreatePrimaryPartition(0, disk.Size);
+						disk.CreateFileSystem(0, "FAT32");
+					}*/
+		}
+
+
+#warning ChangeDriveLabel() Implement this
+		/// <summary>
+		/// 
+		/// </summary>
+		public static void ChangeDriveLabel()
+		{
+			if (Active == true)
+			{
 				//var mydrive = new DiskManager(driveID);
 				//mydrive.ChangeDriveLetter(@"1:\");
 			}
-        }
+		}
 
-        /// <summary>
-        /// Initialise the filesystem service
-        /// </summary>
-        /// <returns></returns>
-        public static bool Init()
+		/// <summary>
+		/// Initialise the filesystem service
+		/// </summary>
+		/// <returns></returns>
+		public static bool Init()
 		{
-            if (Kernel.IsLive == true)
-            {
-                Active = false;
-                return false;
-            }
-            vFS = new CosmosVFS();
+			if (Kernel.IsLive == true)
+			{
+				Active = false;
+				return false;
+			}
+			vFS = new CosmosVFS();
 			Cosmos.System.FileSystem.VFS.VFSManager.RegisterVFS(vFS);
-			if (CheckVolumes() == false) {
+			if (CheckVolumes() == false)
+			{
 				Console.WriteLine("Running Medli in Live User mode.");
 				Console.WriteLine("FS operations are disabled!");
 				Kernel.IsLive = true;
@@ -76,7 +122,7 @@ namespace Medli.Common.Services
 			else
 			{
 				if ((File.Exists(Paths.System + @"live.user")) || Kernel.IsLive == true)
-                {
+				{
 					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
 					Kernel.IsLive = true;
 					Paths.CurrentDirectory = "LIVE";
@@ -96,7 +142,7 @@ namespace Medli.Common.Services
 						}
 					}*/
 					Paths.CreateDirectories();
-                    ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
+					ServiceLogger = new LoggingService(Paths.SystemLogs + @"\fs.log");
 					ServiceLogger.Record("FS Service logger initialized.");
 #warning WIP Restore Functionality
 					//var mydrive = new DiskManager(driveID);
@@ -104,8 +150,8 @@ namespace Medli.Common.Services
 					ServiceLogger.Record("Filesystem service running on " + vFS.GetFileSystemLabel(driveID));
 					Kernel.IsLive = false;
 					Level3.ReadHostname();
-                    Directory.SetCurrentDirectory(Paths.Root);
-                    Paths.CurrentDirectory = Paths.Root;
+					Directory.SetCurrentDirectory(Paths.Root);
+					Paths.CurrentDirectory = Paths.Root;
 					Active = true;
 					return true;
 				}

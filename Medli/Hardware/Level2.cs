@@ -74,7 +74,7 @@ namespace Medli.Hardware
 				if (Virtualizor == null)
 				{
 					Kernel.IsVirtualised = false;
-					Kernel.VM = Kernel.Hypervisor.RealShit;
+					Kernel.VM = Kernel.Hypervisor.BareMetal;
 					Kernel.Host = "Non-virtualised hardware or unrecognised host";
 				}
 			}

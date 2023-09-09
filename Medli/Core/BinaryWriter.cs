@@ -6,7 +6,7 @@ namespace Medli.Core
 {
 	public class BinaryWriter
 	{
-		public ioStream BaseStream;
+		public IOStream BaseStream;
 
 		public void Write(byte data)
 		{
@@ -61,7 +61,7 @@ namespace Medli.Core
 				this.BaseStream.Write(i);
 		}
 
-		public BinaryWriter(ioStream file)
+		public BinaryWriter(IOStream file)
 		{
 			this.BaseStream = file;
 		}

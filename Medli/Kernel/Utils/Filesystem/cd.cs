@@ -46,7 +46,7 @@ namespace Medli.Apps
 		{
 			if (param == "..")
 			{
-				FS.CDP();
+				FS.cdp();
 			}
 			else
 			{

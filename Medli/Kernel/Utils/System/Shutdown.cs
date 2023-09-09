@@ -38,7 +38,7 @@ namespace Medli.Apps
         public override void Execute(string param)
         {
             EnvironmentVariables.SaveVars();
-            Sys.Power.Shutdown();
+            System.Framework.Power.Shutdown();
         }
     }
 }

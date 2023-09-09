@@ -36,28 +36,6 @@ namespace Makar
             } while (key != ConsoleKey.Enter);
 
             Console.WriteLine(pass);
-
-
-			Console.WriteLine("Divide by zero test");
-			Console.ReadKey(true);
-			int a = 100;
-			int b = 0;
-			/*
-			int c = a / b;
-			Console.WriteLine(a / b);
-			Console.WriteLine(c);
-			Console.WriteLine(100 / 4);
-			*/
-			try
-			{
-				System.IO.File.WriteAllText("blah", "blah");
-			}
-			catch
-			{
-				throw new Exception();
-			}
-			
-
 		}
     }
 }

@@ -15,7 +15,7 @@ using Cosmos.HAL;
 namespace Medli.System.Framework.Core
 {
     // INFO: We recommend to set the keylayout in the BeforeRun() method to make sure that
-    //       the arrow keys does not appear as a pretty fuckedup random unicode char..
+    //       the arrow keys does not appear as a pretty messed-up random unicode char..
     public static class KeyLayout
     {
         internal static List<Cosmos.System.KeyMapping> keys;

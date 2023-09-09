@@ -15,7 +15,7 @@ namespace Medli.Common.Services
         /// <summary>
         /// Installation debugger
         /// </summary>
-        private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Installer");
+        private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Boot", "Installer");
 
         public static string ServiceName = "INSRV";
 
@@ -64,9 +64,9 @@ namespace Medli.Common.Services
                     }
 
                 }
-                Console.WriteLine("Does usrinfo exist?");
-                Console.WriteLine(File.Exists(Kernel.usrinfo));
-                KernelExtensions.PressAnyKey();
+                //Console.WriteLine("Does usrinfo exist?");
+                //Console.WriteLine(File.Exists(Kernel.usrinfo));
+                //KernelExtensions.PressAnyKey();
                 if (File.Exists(Kernel.usrinfo))
                 {
                     Console.Clear();

@@ -54,7 +54,8 @@ namespace Medli
 			_commands.Add(new Mdscript());
 			_commands.Add(new ColorChanger());
 			_commands.Add(new rm());
-			// Disabled due to API change _commands.Add(new fdisk());
+			// Disabled due to API change
+			_commands.Add(new fdisk());
             _commands.Add(new ExperimentalMode());
 			Console.WriteLine("");
 
