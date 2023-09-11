@@ -45,7 +45,7 @@ The C# free and open source Operating System
         public static string Welcome = $@"
 Welcome to Medli version: { KernelVersion }, build: { BuildNumber }
 Developed by Siaranite Solutions & Arawn Davies
-Copyright (C) Siaranite Solutions, Arawn Davies 2022, All Rights Reserved
+Copyright (C) 2023 Arawn Davies, Siaranite Solutions, All Rights Reserved
 Released under the BSD-3 Clause Clear license
 ";
 
@@ -55,7 +55,7 @@ Released under the BSD-3 Clause Clear license
         public static string License = @"
 The Clear BSD License
 
-Copyright (C) 2022 Siaranite Solutions, Arawn Davies
+Copyright (C) 2023 Arawn Davies, Siaranite Solutions
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

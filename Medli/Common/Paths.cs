@@ -9,30 +9,66 @@ namespace Medli.Common
 		//public Cosmos.System.FileSystem.Listing.DirectoryEntry vol = FS.FSService.vFS.GetVolume(CurrentDirectory);
 		public static void CreateDirectories()
 		{
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Users + "...");
-			FS.Makedir(Users, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + RootUser + "...");
-			FS.Makedir(Root, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Guest + "...");
-			FS.Makedir(Guest, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Apps + "...");
-			FS.Makedir(Apps, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + x86Apps + "...");
-			FS.Makedir(x86Apps, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + AppTemp + "...");
-			FS.Makedir(AppTemp, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + System + "...");
-			FS.Makedir(System, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemData + "...");
-			FS.Makedir(SystemData, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemLogs + "...");
-			FS.Makedir(SystemLogs, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Libraries + "...");
-			FS.Makedir(Libraries, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Modules + "...");
-			FS.Makedir(Modules, true);
-			AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Temp + "...");
-			FS.Makedir(Temp, true);
+			if (!Directory.Exists(Users))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Users + "...");
+				FS.Makedir(Users, true);
+			}
+			if (!Directory.Exists(RootUser))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + RootUser + "...");
+				FS.Makedir(Root, true);
+			}
+			if (!Directory.Exists(Guest))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Guest + "...");
+				FS.Makedir(Guest, true);
+			}
+			if (!Directory.Exists(Apps))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Apps + "...");
+				FS.Makedir(Apps, true);
+			}
+			if (!Directory.Exists(x86Apps))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + x86Apps + "...");
+				FS.Makedir(x86Apps, true);
+			}
+			if (!Directory.Exists(AppTemp))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + AppTemp + "...");
+				FS.Makedir(AppTemp, true);
+			}
+			if (!Directory.Exists(System))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + System + "...");
+				FS.Makedir(System, true);
+			}
+			if (!Directory.Exists(SystemData))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemData + "...");
+				FS.Makedir(SystemData, true);
+			}
+			if (!Directory.Exists(SystemLogs))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + SystemLogs + "...");
+				FS.Makedir(SystemLogs, true);
+			}
+			if (!Directory.Exists(Libraries))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Libraries + "...");
+				FS.Makedir(Libraries, true);
+			}
+			if (!Directory.Exists(Modules))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Modules + "...");
+				FS.Makedir(Modules, true);
+			}
+			if (!Directory.Exists(Temp))
+			{
+				AreaInfo.SystemDevInfo.WriteDevicePrefix("FS", "Creating directory " + Temp + "...");
+				FS.Makedir(Temp, true);
+			}
 		}
 
 

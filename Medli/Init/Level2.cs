@@ -10,11 +10,10 @@ using System.Threading;
 namespace Medli.Hardware
 {
 
-	public class HW
+	public class Level2
 	{
 		public static void Init()
 		{
-			Level1.Init();
 			AreaInfo.HALinfo.WriteAreaPrefix("Hardware setup under way...");
 			PCISetup();
 			DetectHyperVisor();
@@ -32,10 +31,15 @@ namespace Medli.Hardware
             //ATAPI_Test();
 			
 			
-			//AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
+
+			AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
+			//COM1 is usually the debug port for OS Development, so we don't want to use it for now.
+
 			//HAL.COM1 = new Drivers.SerialPort1();
-			//HAL.COM2 = new Drivers.SerialPort2();
-			//HAL.COM2.Initialize();
+			// COM2 is default serial comms port
+			HAL.COM2 = new Drivers.SerialPort2();
+			HAL.COM2.Initialize();
+			
 			//AreaInfo.HALDevInfo.WriteDevicePrefix("IDE", "Initializing IDE driver...");
 			//AreaInfo.HALDevInfo.WriteDevicePrefix("AHCI", "Initializing AHCI driver...");
 			//AreaInfo.HALDevInfo.WriteDevicePrefix("PS2", "Initializing PS2 controller...");

@@ -13,9 +13,10 @@ namespace Medli.System
 			AR.PushContents();
 		}
 
+#warning Fix RestoreBuffer()
 		public static void RestoreBuffer()
 		{
-			AR.PopContents();
+			//AR.PopContents();
 		}
 
 		public static int CurrentScreen = 1;

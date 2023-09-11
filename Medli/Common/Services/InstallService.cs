@@ -76,12 +76,12 @@ namespace Medli.Common.Services
                         AConsole.Fill(ConsoleColor.Blue);
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine("Welcome back, " + Kernel.username + @"!");
-                        KernelExtensions.PressAnyKey();
+						KernelExtensions.PressAnyKey();
                     }
                     catch (Exception ex)
                     {
                         AConsole.Error.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
-                        KernelExtensions.PressAnyKey();
+						KernelExtensions.PressAnyKey();
                     }
                 }
                 else

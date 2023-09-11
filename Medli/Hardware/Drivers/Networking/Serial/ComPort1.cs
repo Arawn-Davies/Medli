@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Medli.Core;
+using Medli.System.Framework;
 
 namespace Medli.Hardware.Drivers
 {
@@ -31,7 +32,7 @@ namespace Medli.Hardware.Drivers
 			byte[] serialbytes = new byte[] { 0x00 };
 			while (SerialReceived() == 0)
 			{
-				serialbytes = Common.Extensions.AddToArray(serialbytes, Received());
+				serialbytes = StringExtensions.AddToArray(serialbytes, Received());
 			}
 			return serialbytes;
 		}

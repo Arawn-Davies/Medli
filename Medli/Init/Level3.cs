@@ -5,6 +5,7 @@ using System.IO;
 using Medli.Common.Services;
 using MDFS;
 using Medli.Common.Drivers;
+using Medli.System.Framework;
 
 namespace Medli.System
 {
@@ -15,7 +16,6 @@ namespace Medli.System
 		/// </summary>
 		public static void Init()
 		{
-			HW.Init();
 			//Thread.Sleep(500);
 			Console.WriteLine("FileSystem service...");
 			FSService.Init();
@@ -24,22 +24,24 @@ namespace Medli.System
             {
                 for (int i = 1; i < SystemFunctions.IDEs.Length; i++)
                 {
-                    new DiskListing(i, SystemFunctions.IDEs[i]);
+					Console.WriteLine("Disk " + i + " found! Size: " + (SystemFunctions.IDEs[i].Size / 1024 / 1024));
+                    //new DiskListing(i, SystemFunctions.IDEs[i]);
+					//Extensions.PressAnyKey(); 
                 }
                 InstallService.Init();
             }
 
             SystemCalls MEFAPI = new SystemCalls();
-            for (int i = 0; i < Kernel.Drivers.Count; i++)
+			Console.WriteLine("Services found:" + Kernel.Drivers.Count);
+			//Extensions.PressAnyKey();.
+			for (int i = 0; i < Kernel.Drivers.Count; i++)
             {
                 if (Kernel.Drivers[i].Init())
                 {
-                    Console.WriteLine(Kernel.Drivers[i].Name + "' loaded sucessfully");
                 }
                 else
                 {
-                    Console.WriteLine("Failure loading module '" + Kernel.Drivers[i].Name + "'");
-                    Console.ReadKey();
+					KernelExtensions.PressAnyKey("Failure loading module '" + Kernel.Drivers[i].Name + "'");
                 }
             }
         }
@@ -47,7 +49,6 @@ namespace Medli.System
 		/// Checks the Virtual File System to see if there are any usable disks
 		/// </summary>
 		/// <returns>True if any disks are present, false if not</returns>
-		
 		public static void ReadHostname()
 		{
 			try

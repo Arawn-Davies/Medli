@@ -50,16 +50,6 @@ namespace Medli.System.Framework
     public static class KernelExtensions
     {
         /// <summary>
-        /// Press-any-key prompt
-        /// By default, it says 'Press any key to continue, but it can be overriden with parrameter 'text'
-        /// </summary>
-        /// <param name="text"></param>
-        public static void PressAnyKey(string text = "Press any key to continue...")
-        {
-            Console.WriteLine(text);
-            Console.ReadKey(true);
-        }
-        /// <summary>
         /// Reboots Medli operating system
         /// </summary>
         public static void Reboot()
@@ -102,7 +92,27 @@ namespace Medli.System.Framework
         {
             Heap.MemAlloc(aLength);
         }
-    }
+
+		/// <summary>
+		/// Press-any-key prompt with default text
+		/// By default, it says 'Press any key to continue, but it can be overriden with parrameter 'text'
+		/// </summary>
+		/// <param name="text"></param>
+		public static void PressAnyKey()
+		{
+			PressAnyKey("Press any key to continue...");
+		}
+
+		/// <summary>
+		/// Press-any-key prompt with custom text
+		/// </summary>
+		/// <param name="text"></param>
+		public static void PressAnyKey(string text)
+		{
+			Console.WriteLine(text);
+			Console.ReadKey(true);
+		}
+	}
     public static class StringExtensions
     {
         public static string SHA256(this string str)
@@ -200,5 +210,32 @@ namespace Medli.System.Framework
                 return str;
             }
         }
-    }
+
+
+
+		public static int StringToInt(string dat)
+		{
+			string str = "";
+			foreach (byte num in dat)
+				str = ((char)num).ToString() + str;
+			dat = str;
+			int num1 = 0;
+			int num2 = 1;
+			foreach (byte num3 in dat)
+			{
+				int num4 = (int)num3 - 48;
+				num1 += num4 * num2;
+				num2 *= 10;
+			}
+			return num1;
+		}
+
+		public static byte[] AddToArray(byte[] bArray, byte NewByte)
+		{
+			byte[] newArray = new byte[bArray.Length + 1];
+			bArray.CopyTo(newArray, 1);
+			newArray[0] = NewByte;
+			return newArray;
+		}
+	}
 }

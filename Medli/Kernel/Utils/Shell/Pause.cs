@@ -1,5 +1,6 @@
 ﻿using System;
 using Medli.Common;
+using Medli.System.Framework;
 
 namespace Medli.Apps
 {
@@ -36,11 +37,11 @@ namespace Medli.Apps
 		{
 			if (param != null)
 			{
-				Extensions.PressAnyKey(param);
+				KernelExtensions.PressAnyKey(param);
 			}
 			else
 			{
-				Extensions.PressAnyKey();
+				KernelExtensions.PressAnyKey();
 			}
 		}
 

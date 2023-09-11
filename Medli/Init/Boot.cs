@@ -6,6 +6,9 @@ using Medli.Common;
 using Medli.System;
 using System.IO;
 using Medli.Main;
+using System.Linq;
+using Medli.Hardware;
+using Medli.Core;
 
 namespace Medli
 {
@@ -26,23 +29,28 @@ namespace Medli
             Console.Clear();
             try
 			{
-                /*
-                
-                SystemFunctions.IDEs = MDFS.Physical.IDE.Devices.ToArray();
-                for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
-                {
-                    new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
-                }
-                */
-                Kernel.IsLive = false;
-                
-                
-                Level3.Init();
+				Kernel.IsLive = true;
 
-                //Kernel.Hostname = "MedliLive";
-                Kernel.Running = true;
+				Level1.Init();
+				Level2.Init();
+				Level3.Init();
+
+				/*
+				for (int i = 0; i < SystemFunctions.IDEs.Length; i++)
+				{
+					//new MDFS.DiskListing(i, SystemFunctions.IDEs[i]);
+				}
+				Extensions.PressAnyKey();
+				*/
+
+
+
+
+
+				//Kernel.Hostname = "MedliLive";
+				Kernel.Running = true;
 				Console.Clear();
-                Hardware.AddDisks.Detect();
+                //Hardware.AddDisks.Detect();
                 Console.Write(Kernel.Logo);
                 Console.WriteLine(Kernel.Welcome);
 				Console.WriteLine("");

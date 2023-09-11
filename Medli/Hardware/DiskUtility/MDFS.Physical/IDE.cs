@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Cosmos.HAL.BlockDevice;
+using Medli.Common;
 
 namespace MDFS.Physical
 {
@@ -48,13 +49,14 @@ namespace MDFS.Physical
 			get
 			{
 				List<IDE> devs = new List<IDE>();
+				Console.WriteLine(BlockDevice.Devices.Count + " block devices found!");
 				for (int i = 0; i < BlockDevice.Devices.Count; i++)
 				{
 					if (BlockDevice.Devices[i] is ATA_PIO)
 					{
 						IDE device = new IDE((ATA_PIO)BlockDevice.Devices[i]);
 						devs.Add(device);
-						DiskListing.DiskListings.Add(new DiskListing(i, device));
+						new DiskListing(i, device);
 					}
 				}
 				return devs;

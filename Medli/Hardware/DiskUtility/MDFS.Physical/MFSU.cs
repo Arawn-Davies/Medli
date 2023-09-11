@@ -72,7 +72,7 @@ namespace MDFS
         /// </summary>
         public void PrintInfo()
         {
-            Console.WriteLine(Info);
+            Console.WriteLine("\t" + Info);
         }
     }
 
@@ -130,7 +130,10 @@ namespace MDFS
         /// </summary>
         public static DiskListing SelectedDisk = null;
 
-		public static int SelectedDiskNumber = 0;
+		/// <summary>
+		/// Defines the selected disk number. Default is 999 (invalid)
+		/// </summary>
+		public static int SelectedDiskNumber = 999;
 
         /// <summary>
         /// Main Disk Utility method, with the list of IDE devices passed as the parameter
@@ -196,7 +199,7 @@ namespace MDFS
 					SelectedDiskNumber = num;
 				}
             }
-            while (SelectedDisk == null || SelectedDiskNumber == 0);
+            while (SelectedDisk == null || SelectedDiskNumber == 999);
         }
 
         /// <summary>
@@ -204,12 +207,13 @@ namespace MDFS
         /// </summary>
         public static void ListDisks()
         {
+			Console.WriteLine(DiskListing.DiskListings.Count + " disks found!");
 			int i = 0;
             for (i = 0; i < DiskListing.DiskListings.Count; i++)
             {
                 if (i == SelectedDiskNumber)
                 {
-                    Console.WriteLine("* " + DiskListing.DiskListings[i].Info);
+                    Console.WriteLine("*\t" + DiskListing.DiskListings[i].Info);
                 }
                 else
                 {

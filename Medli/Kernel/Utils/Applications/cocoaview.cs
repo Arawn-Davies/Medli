@@ -63,7 +63,7 @@ namespace Medli.Apps
             {
                 Console.WriteLine(ex.Message);
             }
-            Extensions.PressAnyKey();
+			KernelExtensions.PressAnyKey();
         }
     }
 }
