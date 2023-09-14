@@ -42,7 +42,7 @@ namespace Medli
 			_commands.Add(new Multiscreen());
 			_commands.Add(new Copy());
 			_commands.Add(new Move());
-			_commands.Add(new MIV());
+			_commands.Add(new VICS());
 			_commands.Add(new AppLauncher());
 			_commands.Add(new IDE());
 			_commands.Add(new cd());
@@ -61,6 +61,9 @@ namespace Medli
 
 			while (running)
 			{
+
+#warning Application autoboot for dev purposes
+
 
 				Console.Write(Screen.CurrentScreen + " " + Kernel.username + @"@" + Kernel.pcname + " " + Paths.CurrentDirectory + "~> ");
 				string line = Console.ReadLine();

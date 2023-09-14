@@ -44,23 +44,26 @@ namespace Medli.Common.Services
 				int i = 1;
 				foreach (Disk disk in Disks)
 				{
-					Console.WriteLine("Disk: " + i);
-					Console.WriteLine("MBR: " + disk.IsMBR);
-					Console.WriteLine("Partitions: " + disk.Partitions.Count);
-					Console.WriteLine("Disk size: " + ((disk.Size / 1024) / 1024));
 
-					if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.Removable)
+					Console.WriteLine("Disk: " + i);
+
+					if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.RemovableCD)
+					{
+						Console.WriteLine("Type: Optical drive");
+					}
+					else if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.Removable)
 					{
 						Console.WriteLine("Type: Removable");
 					}
 					else if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.HardDrive)
 					{
 						Console.WriteLine("Type: Hard drive");
+						Console.WriteLine("MBR: " + disk.IsMBR);
+						Console.WriteLine("Partitions: " + disk.Partitions.Count);
+						Console.WriteLine("Disk size: " + ((disk.Size / 1024) / 1024));
+
 					}
-					else if (disk.Type == Cosmos.HAL.BlockDevice.BlockDeviceType.RemovableCD)
-					{
-						Console.WriteLine("Type: Optical drive");
-					}
+
 					i++;
 				}
 			}

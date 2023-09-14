@@ -9,6 +9,7 @@ using Medli.Main;
 using System.Linq;
 using Medli.Hardware;
 using Medli.Core;
+using Medli.System.Framework;
 
 namespace Medli
 {
@@ -29,7 +30,7 @@ namespace Medli
             Console.Clear();
             try
 			{
-				Kernel.IsLive = true;
+				Kernel.IsLive = false;
 
 				Level1.Init();
 				Level2.Init();
@@ -58,6 +59,7 @@ namespace Medli
 				Date.printDate();
 				Time.printTime();
 				SystemFunctions.PrintInfo();
+				Console.WriteLine("Welcome back, " + Kernel.username + @"!");
 			}
 			catch (Exception ex)
 			{

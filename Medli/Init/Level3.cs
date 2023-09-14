@@ -33,14 +33,10 @@ namespace Medli.System
 
             SystemCalls MEFAPI = new SystemCalls();
 			Console.WriteLine("Services found:" + Kernel.Drivers.Count);
-			//Extensions.PressAnyKey();.
 			for (int i = 0; i < Kernel.Drivers.Count; i++)
             {
-                if (Kernel.Drivers[i].Init())
-                {
-                }
-                else
-                {
+                if (!Kernel.Drivers[i].Init())
+				{
 					KernelExtensions.PressAnyKey("Failure loading module '" + Kernel.Drivers[i].Name + "'");
                 }
             }

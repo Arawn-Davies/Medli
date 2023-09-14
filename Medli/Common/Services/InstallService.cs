@@ -75,8 +75,6 @@ namespace Medli.Common.Services
                         Accounts.UserLogin();
                         AConsole.Fill(ConsoleColor.Blue);
                         Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine("Welcome back, " + Kernel.username + @"!");
-						KernelExtensions.PressAnyKey();
                     }
                     catch (Exception ex)
                     {

@@ -9,7 +9,7 @@ namespace Medli.Apps
 	//	public List<string> CommandList = new List<string>()
 	//	{
 	//		"help",
-	//		"miv",
+	//		"vics",
 	//		"getram",
 	//		"shutdown",
 	//		"lspci",

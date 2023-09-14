@@ -16,7 +16,8 @@ namespace Medli
         /// </summary>
         public static void printDate()
 		{
-			Console.WriteLine("The current date is " + Date.GetDay() + " " + SysClock.DayOfTheMonth().ToString() + " of " + Date.GetMonth() + ", " + SysClock.Century().ToString() + SysClock.Year().ToString());
+			//Console.WriteLine("The current date is " + Date.GetDay() + " " + SysClock.DayOfTheMonth().ToString() + " of " + Date.GetMonth() + ", " + SysClock.Century().ToString() + SysClock.Year().ToString());
+			Console.WriteLine("The current date is " + Date.GetDay() + " " + SysClock.DayOfTheMonth().ToString() + " of " + Date.GetMonth() + ", " + SysClock.Year().ToString());
 		}
 
 		/// <summary>

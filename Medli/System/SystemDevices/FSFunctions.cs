@@ -28,7 +28,7 @@ namespace Medli.System
 		}
 
 		/// <summary>
-		/// Get rmation for the available filesystems
+		/// Get information for the available filesystems
 		/// </summary>
         public static void ListDisk()
         {

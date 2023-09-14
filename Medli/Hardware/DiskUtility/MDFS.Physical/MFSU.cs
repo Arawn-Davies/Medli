@@ -191,13 +191,17 @@ namespace MDFS
             {
                 Console.WriteLine("Which disk do you wish to use?\n");
                 ListDisks();
-                string nums = Console.ReadLine();
-                int num = int.Parse(nums) - 1;
-                if (num >= 0 && num < DiskListing.DiskListings.Count)
-                {
-                    SelectedDisk = DiskListing.DiskListings[num];
-					SelectedDiskNumber = num;
-				}
+				ConsoleKeyInfo key;
+				key = Console.ReadKey(intercept: true);
+				if (Char.IsNumber(key.KeyChar))
+				{
+					int num = key.KeyChar - 1;
+					if (num != 0 && num < DiskListing.DiskListings.Count + 1)
+					{
+						SelectedDisk = DiskListing.DiskListings[num];
+						SelectedDiskNumber = num;
+					}
+				}              
             }
             while (SelectedDisk == null || SelectedDiskNumber == 999);
         }
