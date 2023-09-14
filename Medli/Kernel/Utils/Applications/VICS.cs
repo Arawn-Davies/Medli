@@ -8,6 +8,7 @@ using Medli.Common;
 using Medli.System;
 using Medli.System.Framework;
 using static System.Net.Mime.MediaTypeNames;
+using Medli.Common.Services;
 
 namespace Medli.Apps
 {
@@ -31,17 +32,25 @@ Optional: vics [arg]";
 		}
 		public override void Execute(string param)
 		{
-			Screen.SaveBuffer();
-			Console.Clear();
-			if (param != "")
+			if (FSService.Active == true)
 			{
-				vics.StartVICS(param);
+				Screen.SaveBuffer();
+				Console.Clear();
+				if (param != "")
+				{
+					vics.StartVICS(param);
+				}
+				else
+				{
+					vics.StartVICS();
+				}
+				Screen.RestoreBuffer();
 			}
 			else
 			{
-				vics.StartVICS();
+				Console.WriteLine("The filesystem service is currently inactive. Please make sure the OS is not in live or recovery mode.");
+				KernelExtensions.PressAnyKey();
 			}
-			Screen.RestoreBuffer();
 		}
 	}
 }

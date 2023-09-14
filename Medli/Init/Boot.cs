@@ -30,7 +30,7 @@ namespace Medli
             Console.Clear();
             try
 			{
-				Kernel.IsLive = false;
+				Kernel.IsLive = true;
 
 				Level1.Init();
 				Level2.Init();
