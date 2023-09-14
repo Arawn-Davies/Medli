@@ -1,4 +1,6 @@
 # Medli  
+![image](https://github.com/Siaranite-Solutions/Medli/assets/19764552/fd6327be-08cd-48b2-b29c-63a7996de139)
+
 Medli is a free and open source operating system written by Arawn Davies and Siaranite Solutions.  
 A project started in 2012, it has undergone several re-evolutions to be in its current excellent form.  
 It does not aim for elegance like most desktop operating systems, but instead aims to provide a custom-tailored framework  
