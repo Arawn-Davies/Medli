@@ -7,5 +7,11 @@ of several customizable daemons that can operate different servers like HTTP, FT
 Medli is written using C#& X# and uses the C# Open Source Managed Operating System (Cosmos) kit for upstream compiler
 
 # Announcements
+
+Now introducing the new VICS text editor, a revamped version of the original Medli text editor MIV, VICS features improved stability and further features.
+![image](https://github.com/Siaranite-Solutions/Medli/assets/19764552/c795ff23-a5cb-4b9c-8a1f-ac574ea5370e)
+
+
 As of 07/09/2023, the AIC Framework has now been merged with this codebase, as they shared a significant amount
 of common code and it was no longer viable to continue maintaining the two simultaneously.
+
