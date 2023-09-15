@@ -107,7 +107,7 @@ namespace Medli.Common.Services
 		/// <returns></returns>
 		public static bool Init()
 		{
-			if (Kernel.IsLive == true)
+			if (Kernel._isLive == true)
 			{
 				Active = false;
 				return false;
@@ -118,16 +118,16 @@ namespace Medli.Common.Services
 			{
 				Console.WriteLine("Running Medli in Live User mode.");
 				Console.WriteLine("FS operations are disabled!");
-				Kernel.IsLive = true;
+				Kernel._isLive = true;
 				Active = false;
 				return false;
 			}
 			else
 			{
-				if ((File.Exists(Paths.System + @"live.user")) || Kernel.IsLive == true)
+				if ((File.Exists(Paths.System + @"live.user")) || Kernel._isLive == true)
 				{
 					Console.WriteLine("OS in recovery mode! Live User mode enabled...");
-					Kernel.IsLive = true;
+					Kernel._isLive = true;
 					Paths.CurrentDirectory = "LIVE";
 					Active = false;
 					return false;
@@ -151,7 +151,7 @@ namespace Medli.Common.Services
 					//var mydrive = new DiskManager(driveID);
 					//ServiceLogger.Record("Filesystem service running on " + mydrive.Name);
 					ServiceLogger.Record("Filesystem service running on " + vFS.GetFileSystemLabel(driveID));
-					Kernel.IsLive = false;
+					Kernel._isLive = false;
 					Level3.ReadHostname();
 					Directory.SetCurrentDirectory(Paths.Root);
 					Paths.CurrentDirectory = Paths.Root;

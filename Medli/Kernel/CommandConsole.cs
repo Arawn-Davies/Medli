@@ -54,9 +54,9 @@ namespace Medli
 			_commands.Add(new Mdscript());
 			_commands.Add(new ColorChanger());
 			_commands.Add(new rm());
+			_commands.Add(new Logout());
 			// Disabled due to API change
 			_commands.Add(new fdisk());
-            _commands.Add(new ExperimentalMode());
 			Console.WriteLine("");
 
 			while (running)
@@ -68,6 +68,12 @@ namespace Medli
 				Console.Write(Screen.CurrentScreen + " " + Kernel.username + @"@" + Kernel.pcname + " " + Paths.CurrentDirectory + "~> ");
 				string line = Console.ReadLine();
 				if (string.IsNullOrEmpty(line)) { continue; }
+				if (line == "logout")
+				{
+					running = false;
+					Kernel._isLoggedIn = false;
+					break;
+				}
 				Parse(line);
 
 			}

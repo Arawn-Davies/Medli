@@ -21,7 +21,7 @@ namespace Medli.System
         /// </summary>
         public static void Main()
         {
-            ScreenSetup();
+            ScreenSetup(is_setup: true);
             WriteLine("Welcome to the Medli installer.");
             PressAnyKey();
 
@@ -61,8 +61,9 @@ This may be due to a failing hard drive or other internal error", "FAT Error");
 
             WriteLine("Awesome - you're all set!");
             PressAnyKey("Press any key to start Medli!");
-            Console.Clear();
-        }
+			Kernel.SetColourScheme();
+			Console.Clear();
+		}
 
         private static void Done()
         {

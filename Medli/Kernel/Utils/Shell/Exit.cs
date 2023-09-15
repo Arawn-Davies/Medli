@@ -54,7 +54,11 @@ namespace Medli.Apps
         /// <param name="param">The parameter.</param>
         public override void Execute(string param)
 		{
-			_exit();
+			if (_exit != null)
+			{
+				_exit();
+			}
+			
 		}
 
         /// <summary>

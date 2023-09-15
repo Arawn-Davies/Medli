@@ -16,7 +16,7 @@ namespace Medli.System
         ///         ---Menu bar---
         /// </summary>
         /// <param name="is_login">if set to <c>true</c> [is login].</param>
-        public static void ScreenSetup(bool is_login = false)
+        public static void ScreenSetup(bool is_setup = false, bool is_login = false, bool is_welcome = false)
         {
             Console.BackgroundColor = DefaultColour;
             Console.Clear();
@@ -25,14 +25,18 @@ namespace Medli.System
             Console.CursorLeft = 0;
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.White;
-            if (is_login == false)
+            if (is_setup == true)
             {
-                Console.WriteLine("                                Medli Installer                                 ");
+                Console.WriteLine("                                   Medli Setup                                  ");
             }
-            if (is_login == true)
+            else if (is_login == true)
             {
-                Console.WriteLine("                                Welcome to Medli                                ");
+                Console.WriteLine("                                   Medli Login                                  ");
             }
+			else if (is_welcome == true)
+			{
+				Console.WriteLine("                                Welcome to Medli                                ");
+			}
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.CursorTop = 7;
@@ -88,18 +92,18 @@ namespace Medli.System
         /// <returns></returns>
         public static string ReadLine()
         {
-            Console.CursorLeft = 7;
-            Console.CursorTop += 1;
+            //Console.CursorLeft = 7;
+            //Console.CursorTop += 1;
             string text = Console.ReadLine();
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
             text = text + "";
             return text;
         }
 
 		public static string ReadPasswd()
 		{
-			Console.CursorLeft = 7;
-			Console.CursorTop += 1;
+			//Console.CursorLeft = 7;
+			//Console.CursorTop += 1;
 			var pass = string.Empty;
 			ConsoleKey key;
 			do
@@ -118,7 +122,7 @@ namespace Medli.System
 				}
 			} while (key != ConsoleKey.Enter);
 
-			Console.CursorLeft = 7;
+			//Console.CursorLeft = 7;
 			pass = pass + "";
 			return pass;
 

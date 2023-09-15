@@ -16,6 +16,8 @@ namespace Medli.Apps
     /// </summary>
     class Cpedit : Command
     {
+		private static ConsoleColor oBG = Console.BackgroundColor;
+		
 		public override string Name
 		{
 			get
@@ -35,7 +37,15 @@ namespace Medli.Apps
 		public override void Execute(string param)
 		{
 			Screen.SaveBuffer();
-			Run(param);
+			if (param != "" || param != null)
+			{
+				Run(param);
+			}
+			else
+			{
+				Console.WriteLine("No filename specified!");
+			}
+			
 			Screen.RestoreBuffer();
 		}
 
@@ -50,11 +60,12 @@ namespace Medli.Apps
 
 		private static void DrawScreen()
         {
-            AConsole.Fill(ConsoleColor.Blue);
+			oBG = Console.BackgroundColor;
+			AConsole.Fill(ConsoleColor.Blue);
             Console.CursorTop = 0;
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.WriteLine(" Cocoapad Editor ");
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = oBG;
             Console.CursorTop = 3;
         }
         /// <summary>
@@ -113,7 +124,7 @@ namespace Medli.Apps
                     DrawScreen();
                 }
             }
-            AConsole.Fill(ConsoleColor.Black);
+            AConsole.Fill(oBG);
         }
 	}
 }

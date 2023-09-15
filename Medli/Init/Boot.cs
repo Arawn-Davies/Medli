@@ -10,6 +10,7 @@ using System.Linq;
 using Medli.Hardware;
 using Medli.Core;
 using Medli.System.Framework;
+using Cosmos.System.Graphics;
 
 namespace Medli
 {
@@ -25,12 +26,20 @@ namespace Medli
 		protected override void BeforeRun()
 		{
             Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Blue;
-            Console.ForegroundColor = ConsoleColor.White;
+			Kernel.backgroundColour = ConsoleColor.Black;
+			Kernel.foregroundColour = ConsoleColor.Green;
+			Kernel.SetColourScheme();
             Console.Clear();
             try
 			{
-				Kernel.IsLive = true;
+				Console.Clear();
+				
+				Kernel._isLive = false;
+
+				if (Kernel._isLive == true )
+				{
+					Kernel.Hostname = "MedliLive";
+				}
 
 				Level1.Init();
 				Level2.Init();
@@ -48,8 +57,8 @@ namespace Medli
 
 
 
-				//Kernel.Hostname = "MedliLive";
-				Kernel.Running = true;
+				
+				Kernel._isRunning = true;
 				Console.Clear();
                 //Hardware.AddDisks.Detect();
                 Console.Write(Kernel.Logo);
@@ -73,10 +82,30 @@ namespace Medli
         /// </summary>
         protected override void Run()
 		{
+
 			try
 			{
-				CommandConsole Shell = new CommandConsole();
-				Shell.Initialize();
+				while (Kernel._isLoggedIn == true)
+				{
+					CommandConsole Shell = new CommandConsole();
+					Shell.Initialize();
+					Console.WriteLine("Logged in: " + Kernel._isLoggedIn);
+					if (Kernel._isLoggedIn == false)
+					{
+						break;
+					}
+				}
+				if (Common.Services.FSService.Active && Kernel._isLive == false)
+				{
+					Console.WriteLine("Logged in: " + Kernel._isLoggedIn);
+					AccountAccess.Logout();
+					AccountAccess.Login();
+				}
+				else
+				{
+					Kernel.username = "recovery";
+					Kernel.pcname = "recovery";
+				}
 			}
 			catch (Exception ex)
 			{

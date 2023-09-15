@@ -4,15 +4,14 @@ using System.Text;
 using Medli.Common;
 using Medli.System;
 using Sys = Cosmos.System;
-using AC = Medli.System.Framework.AConsole;
 
 namespace Medli.Apps
 {
     /// <summary>
-    /// Class definition for the experimental mode
+    /// Class definition for the 'reboot' command
     /// </summary>
     /// <seealso cref="Medli.Apps.Command" />
-    public class ExperimentalMode : Command
+    public class Logout : Command
 	{
         /// <summary>
         /// Gets the name of the command.
@@ -22,7 +21,7 @@ namespace Medli.Apps
         /// </value>
         public override string Name
 		{
-			get { return "expmode"; }
+			get { return "logout"; }
 		}
 
         /// <summary>
@@ -30,27 +29,17 @@ namespace Medli.Apps
         /// </summary>
         public override string Summary
 		{
-			get { return "Switches the kernel's experimental features on/off"; }
+			get { return "Closes applications and logs out of the system."; }
 		}
 
+
         /// <summary>
-        /// Executes the specified parameter.
+        /// Reboots the Medli oeprating system, accepting optional flags (none implemented)
         /// </summary>
         /// <param name="param">The parameter.</param>
         public override void Execute(string param)
 		{
-			if (param.ToLower().Contains("on"))
-            {
-                Kernel.ExperimentalMode = true;
-            }
-            else if (param.ToLower().Contains("off"))
-            {
-                Kernel.ExperimentalMode = false;
-            }
-            else
-            {
-                AC.Error.WriteLine("Use either On/Off. Keeping experimental features disabled.");
-            }
+			Kernel._isLoggedIn = false;
 		}
 	}
 }

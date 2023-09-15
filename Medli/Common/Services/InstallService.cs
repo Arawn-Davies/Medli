@@ -35,21 +35,16 @@ namespace Medli.Common.Services
         /// <returns></returns>
         public static bool Init()
 		{
-            if (FSService.Active == false)
+            if (FSService.Active == false || Kernel._isLive == true)
             {
-                Kernel.username = "test";
-                Kernel.pcname = "testing";
+                Kernel.username = "recovery";
+                Kernel.pcname = "recovery";
                 mDebugger.Send("Installer - Skipping Installer due to live filesystem.");
                 return false;
             }
-            else if (Kernel.IsLive == true)
-            {
-                Kernel.username = "test";
-                Kernel.pcname = "testing";
-                mDebugger.Send("Installer - Skipping Installer due to live filesystem.");
-                return false;
-            }
-            else if (FSService.Active == true && Kernel.IsLive == false)
+			// Check the OS is not in live (read-only) mode.
+			// Check for an active FS service is not applicable because the filesystem service calls the installer service directly.
+            else if (Kernel._isLive == false)
             {
                 if (File.Exists(Kernel.pcinfo))
                 {
@@ -61,31 +56,34 @@ namespace Medli.Common.Services
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
-                    }
+						AConsole.Error.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
+						KernelExtensions.PressAnyKey();
+					}
 
                 }
-                //Console.WriteLine("Does usrinfo exist?");
-                //Console.WriteLine(File.Exists(Kernel.usrinfo));
-                //KernelExtensions.PressAnyKey();
+				// If the user info file exists, read from it.
                 if (File.Exists(Kernel.usrinfo))
                 {
                     Console.Clear();
                     try
                     {
-                        Accounts.UserLogin();
-                        AConsole.Fill(ConsoleColor.Blue);
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
+                        AccountAccess.Login();
+						Kernel.SetColourScheme();
+						Active = false;
+						return true;
+
+					}
                     catch (Exception ex)
                     {
-                        AConsole.Error.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
+						Console.WriteLine(ex.Message);
+						AConsole.Error.WriteLine("Medli encountered an exception during the pre-initialization stage.\nError: " + ex.Message);
 						KernelExtensions.PressAnyKey();
                     }
                 }
                 else
                 {
                     Console.Clear();
-                    Installer.ScreenSetup();
+                    Installer.ScreenSetup(is_setup: true);
                     Installer.WriteLine("Medli was unable to find any info regarding your PC.");
                     Installer.WriteLine("The Medli installer will now run.");
                     ServiceLogger = new LoggingService(Paths.SystemLogs + @"\ins.log");
@@ -98,11 +96,13 @@ namespace Medli.Common.Services
                     Installer.Main();
                 }
                 Active = false;
-                return true;
+				Kernel.SetColourScheme();
+				return true;
             }
             else
             {
-                return false;
+				Kernel.SetColourScheme();
+				return false;
             }
 		}
 	}

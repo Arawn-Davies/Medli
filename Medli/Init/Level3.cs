@@ -11,6 +11,8 @@ namespace Medli.System
 {
 	public class Level3
 	{
+		private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Boot", "Level 3 Init");
+
 		/// <summary>
 		/// System ring init method - ran once at boot
 		/// </summary>
@@ -30,6 +32,12 @@ namespace Medli.System
                 }
                 InstallService.Init();
             }
+			else
+			{
+				Kernel.username = "recovery";
+				Kernel.pcname = "recovery";
+				mDebugger.Send("Installer - Skipping Installer due to live filesystem.");
+			}
 
             SystemCalls MEFAPI = new SystemCalls();
 			Console.WriteLine("Services found:" + Kernel.Drivers.Count);

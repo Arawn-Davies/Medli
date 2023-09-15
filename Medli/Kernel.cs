@@ -4,6 +4,7 @@ using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.Common.Drivers;
 using IL2CPU.API.Attribs;
+using System.Drawing;
 
 namespace Medli
 {
@@ -51,8 +52,8 @@ namespace Medli
         /// </summary>
         public static void DrawLogo()
         {
-            //Sys.Graphics.Bitmap bitmap = new Sys.Graphics.Bitmap(logoImage);
-            //DrawImage(0, 0, 90, 37, bitmap);
+            Sys.Graphics.Bitmap bitmap = new Sys.Graphics.Bitmap(logoImage);
+			//DrawImage(0, 0, 90, 37, bitmap);
         }
     }
 }
