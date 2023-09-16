@@ -37,9 +37,10 @@ namespace Medli.System
 			Console.WriteLine("User Login:\n\n");
 			ResetConsoleColor();
 			Console.BackgroundColor = ConsoleColor.Blue;
-			Console.WriteLine("You can either log in as an existing user or create a new one.");
-			Console.Write("Username >");
-			string usrlogon = Installer.ReadLine();
+
+			Installer.WriteLine("You can either log in as an existing user or create a new one.");
+			Installer.Write("Username >");
+			string usrlogon = Console.ReadLine();
 			if (usrlogon == "root")
 			{
 				Console.Write("Password >");
@@ -54,14 +55,30 @@ namespace Medli.System
 				}
 				else
 				{
-					Console.WriteLine("Incorrect root password. ");
-					Thread.Sleep(TimeSpan.FromSeconds(5));
+					Console.WriteLine("Incorrect password.");
+					Installer.PressAnyKey("Press any key to retry...");
 					Login();
 				}
 			}
+			else if (String.IsNullOrEmpty(usrlogon))
+			{
+				Installer.WriteLine("Invalid user");
+				try
+				{
+					for (int i = 0; i < 10000; i++) ;
+						
+				}
+				catch (Exception ex)
+				{
+					Installer.WriteLine(ex.Message);
+					Installer.PressAnyKey();
+				}
+				Console.Clear();
+				Login();
+			}
 			else if (Directory.Exists(Paths.Users + MEnvironment.dir_ext + usrlogon))
 			{
-				Console.Write("Password >");
+				Installer.Write("Password >");
 				string pass = Installer.ReadPasswd();
 				//MEnvironment.usrpass_sha = File.ReadAllLines(MEnvironment.upf)[0];
 				MEnvironment.usrpass_sha = File.ReadAllLines((Paths.Users + MEnvironment.dir_ext + usrlogon + MEnvironment.dir_ext + "pass.sys"))[0];
@@ -73,14 +90,14 @@ namespace Medli.System
 				else
 				{
 					Console.WriteLine("Incorrect password.");
-					Thread.Sleep(TimeSpan.FromSeconds(5));
+					Installer.PressAnyKey("Press any key to retry...");
 					Login();
 				}
 			}
 			else
 			{
-				Console.WriteLine("User does not exist!");
-				Thread.Sleep(TimeSpan.FromSeconds(5));
+				Console.WriteLine("Incorrect password.");
+				Installer.PressAnyKey("Press any key to retry...");
 				Login();
 			}
 			Console.Clear();

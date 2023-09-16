@@ -26,8 +26,8 @@ namespace Medli
 		protected override void BeforeRun()
 		{
             Console.Clear();
-			Kernel.backgroundColour = ConsoleColor.Black;
-			Kernel.foregroundColour = ConsoleColor.Green;
+			Kernel.backgroundColour = ConsoleColor.Blue;
+			Kernel.foregroundColour = ConsoleColor.White;
 			Kernel.SetColourScheme();
             Console.Clear();
             try

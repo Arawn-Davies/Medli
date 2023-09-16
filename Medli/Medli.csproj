@@ -48,7 +48,7 @@ namespace Medli
 		<CompileVBEMultiboot>True</CompileVBEMultiboot>
 		<VBEResolution>1024x768x32</VBEResolution>
 		-->
-		<DebugEnabled>False</DebugEnabled>
+		<DebugEnabled>True</DebugEnabled>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 

@@ -17,7 +17,7 @@ namespace Medli
         /// <summary>
         /// List of kernel services (filesystem, logging etc.)
         /// </summary>
-		public static List<Daemon> Services = new List<Daemon>();
+		public static List<Daemon> Daemons = new List<Daemon>();
 
         /// <summary>
         /// 
@@ -27,20 +27,12 @@ namespace Medli
         /// <summary>
         /// Custom console implementation object
         /// </summary>
-        //public static System.AConsole.Console AConsole;
-
-
-        public static bool ExperimentalMode = false;
+        //public static System.Framework.AConsole AConsole;
 
         /// <summary>
         /// 
         /// </summary>
         public static string Consolemode = "VGATextmode";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static Cosmos.HAL.PCSpeaker Speaker = new Cosmos.HAL.PCSpeaker();
 
         /// <summary>
         /// Bitmap Logo

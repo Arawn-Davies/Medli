@@ -51,14 +51,23 @@ namespace Medli.System
         {
             Console.CursorLeft = 7;
             Console.Write(text);
-            Console.CursorLeft = 7;
         }
 
-        /// <summary>
-        /// Prints the suffix.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        public static void WriteSuffix(string text)
+		/// <summary>
+		/// Custom Write method for the installer console, sets the cursor position
+		/// </summary>
+		/// <param name="text"></param>
+		public static void Write(char c)
+		{
+			Console.CursorLeft = 7;
+			Console.Write(c);
+		}
+
+		/// <summary>
+		/// Prints the suffix.
+		/// </summary>
+		/// <param name="text">The text.</param>
+		public static void WriteSuffix(string text)
         {
             Console.Write(text + "\n");
             Console.CursorLeft = 7;
@@ -92,17 +101,34 @@ namespace Medli.System
         /// <returns></returns>
         public static string ReadLine()
         {
-            //Console.CursorLeft = 7;
-            //Console.CursorTop += 1;
-            string text = Console.ReadLine();
-            //Console.CursorLeft = 7;
-            text = text + "";
+			Console.CursorLeft = 7;
+			//Console.CursorTop += 1;
+			var text = string.Empty;
+			ConsoleKey key;
+			do
+			{
+				var keyInfo = Console.ReadKey(intercept: true);
+				key = keyInfo.Key;
+
+				if (key == ConsoleKey.Backspace && text.Length > 0)
+				{
+					text = text[0..^1];
+				}
+				else if (!char.IsControl(keyInfo.KeyChar))
+				{
+					Write(keyInfo.KeyChar);
+					text += keyInfo.KeyChar;
+				}
+			} while (key != ConsoleKey.Enter);
+
+			Console.CursorLeft = 7;
+			text = text + "";
             return text;
         }
 
 		public static string ReadPasswd()
 		{
-			//Console.CursorLeft = 7;
+			Console.CursorLeft = 17;
 			//Console.CursorTop += 1;
 			var pass = string.Empty;
 			ConsoleKey key;
@@ -122,7 +148,7 @@ namespace Medli.System
 				}
 			} while (key != ConsoleKey.Enter);
 
-			//Console.CursorLeft = 7;
+			Console.CursorLeft = 7;
 			pass = pass + "";
 			return pass;
 

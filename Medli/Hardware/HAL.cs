@@ -19,6 +19,11 @@ namespace Medli.Hardware
 		public static SerialPort3 COM3;
 		public static SerialPort4 COM4;
 
+		/// <summary>
+		/// PC Speaker object
+		/// </summary>
+		public static PCSpeaker Speaker = new PCSpeaker();
+
 		public static deviceArea dArea;
 		public static List<PCIDevice> PCIDevices;
 		/// <summary>
