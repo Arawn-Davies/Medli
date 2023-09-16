@@ -50,6 +50,9 @@ namespace Medli
 		-->
 		<DebugEnabled>True</DebugEnabled>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<CompileVBEMultiboot>True</CompileVBEMultiboot>
+		<VBEResolution>1024x768x32</VBEResolution>
+		<ExtractMapFile>True</ExtractMapFile>
 	</PropertyGroup>
 
 
@@ -90,6 +93,9 @@ namespace Medli
 		</ItemGroup>
 		<ItemGroup>
 			<EmbeddedResource Include="Logo.bmp" />
+		</ItemGroup>
+		<ItemGroup>
+		  <Folder Include="System\Imaging\" />
 		</ItemGroup>
 	
 </Project>

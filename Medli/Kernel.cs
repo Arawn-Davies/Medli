@@ -39,13 +39,12 @@ namespace Medli
         /// </summary>
         public static Sys.Graphics.Bitmap BitmapLogo;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void DrawLogo()
-        {
-            Sys.Graphics.Bitmap bitmap = new Sys.Graphics.Bitmap(logoImage);
-			//DrawImage(0, 0, 90, 37, bitmap);
-        }
-    }
+		/// <summary>
+		/// Draws the Medli logo onto the console
+		/// </summary>
+		public static void DrawLogo()
+		{
+			xConsole.DrawImage(0, 0, 90, 37, System.Imaging.Image.Load(logoImage));
+		}
+	}
 }

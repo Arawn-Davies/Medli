@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Cosmos.System.Graphics;
+using Medli.System.Imaging;
+using Medli.System.Framework;
 using Sys = Cosmos.System;
 
 namespace Medli
@@ -30,6 +32,8 @@ namespace Medli
 		public static bool IsVirtualised;
 
 		public static Canvas canvas;
+
+		public static System.xConsole.Console xConsole;
 
 		public static ConsoleColor backgroundColour = ConsoleColor.Black;
 		public static ConsoleColor foregroundColour = ConsoleColor.White;

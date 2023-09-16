@@ -8,6 +8,6 @@ namespace Medli
 		///<summary>
 		///The kernel build number, generated upon a new build
 		///</summary>
-        public static string BuildNumber = "160920232312";
+        public static string BuildNumber = "170920230002";
     }
 }
