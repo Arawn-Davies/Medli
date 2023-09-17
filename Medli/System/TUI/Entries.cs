@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Medli.System;
+using Medli.System.Framework;
 using Console = Medli.System.Framework.AConsole;
 using menu = Medli.System.Framework.AConsole.Menu;
 
-namespace Midora
+namespace Medli.System.TUI
 {
     public class ShutdownEntry : menu.Entry
     {
         public ShutdownEntry() { this.text = "Shutdown"; }
         public override void Execute()
         {
-            new Medli.Apps.Shutdown().Execute();
+            new Apps.Shutdown().Execute("");
         }
     }
     public class RebootEntry : menu.Entry
@@ -19,7 +21,7 @@ namespace Midora
         public RebootEntry() { this.text = "Reboot"; }
         public override void Execute()
         {
-            new Medli.Apps.Reboot.Execute();
+            new Apps.Reboot().Execute("");
         }
     }
     public class Entry1 : menu.Entry
