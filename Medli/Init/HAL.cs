@@ -10,8 +10,11 @@ using System.Threading;
 namespace Medli.Hardware
 {
 
-	public class Level2
+	public partial class HAL
 	{
+		/// <summary>
+		/// Initialize the hardware layer
+		/// </summary>
 		public static void Init()
 		{
 			AreaInfo.HALinfo.WriteAreaPrefix("Hardware setup under way...");
@@ -26,12 +29,8 @@ namespace Medli.Hardware
 			//FDD_Test();
 
 			// Tests the CD Drive if a disk is inserted:
-			
-
             //ATAPI_Test();
 			
-			
-
 			AreaInfo.HALDevInfo.WriteDevicePrefix("COM", "Initializing serial communications stack...");
 			//COM1 is usually the debug port for OS Development, so we don't want to use it for now.
 
@@ -64,6 +63,9 @@ namespace Medli.Hardware
 			}
 		}
 
+		/// <summary>
+		/// Detect which hypervisor Medli is running on
+		/// </summary>
 		public static void DetectHyperVisor()
 		{
 			AreaInfo.HALDevInfo.WriteDevicePrefix("VIRT", "Detecting host platform...");
@@ -84,6 +86,9 @@ namespace Medli.Hardware
 			}
 		}
 
+		/// <summary>
+		/// Identify and setup the graphics driver
+		/// </summary>
 		private static void GraphicsHardwareSetup()
 		{
 			HAL.dArea = deviceArea.GFX;

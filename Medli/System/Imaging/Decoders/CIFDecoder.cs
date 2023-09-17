@@ -27,7 +27,7 @@ namespace Medli.System.Imaging.Decoders
 
         public void Load(byte[] raw)
         {
-            BinaryReader str = new BinaryReader(raw);
+            Framework.IO.BinaryReader str = new Framework.IO.BinaryReader(raw);
 
             Width = str.GetInt32();
             Height = str.GetInt32();

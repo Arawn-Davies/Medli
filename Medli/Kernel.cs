@@ -44,7 +44,7 @@ namespace Medli
 		/// </summary>
 		public static void DrawLogo()
 		{
-			xConsole.DrawImage(0, 0, 90, 37, System.Imaging.Image.Load(logoImage));
+			//
 		}
 	}
 }

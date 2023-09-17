@@ -10,7 +10,7 @@ using Cosmos.Core;
 
 namespace Medli.Hardware
 {
-	public class HAL
+	public partial class HAL
 	{
 		public static PIT pit = new PIT();
 
