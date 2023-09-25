@@ -22,6 +22,9 @@ namespace Medli
         /// </summary>
         public static bool _isRunning;
 
+		/// <summary>
+		/// Is a user currently logged in?
+		/// </summary>
 		public static bool _isLoggedIn = false;
 
         /// <summary>

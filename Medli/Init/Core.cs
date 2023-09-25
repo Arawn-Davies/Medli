@@ -4,7 +4,7 @@ using Medli.Common;
 
 namespace Medli.Core
 { 
-    public class Level1
+    public partial class Ring0
     {
 		//public static PIC pic;
 

@@ -4,11 +4,11 @@ using System.Text;
 using Sys = Cosmos.System;
 using Medli.Common;
 using Medli.System;
+using Medli.Core;
 using System.IO;
 using Medli.Main;
 using System.Linq;
 using Medli.Hardware;
-using Medli.Core;
 using Medli.System.Framework;
 using Cosmos.System.Graphics;
 
@@ -18,12 +18,12 @@ namespace Medli
     /// Initial boot class definition including init methods
     /// </summary>
     /// <seealso cref="Cosmos.System.Kernel" />
-    public class Boot : Sys.Kernel
+    public class Boot
     {
         /// <summary>
         /// Initialise filesystem and system services
         /// </summary>
-		protected override void BeforeRun()
+		public static void BeforeRun()
 		{
             Console.Clear();
 			Kernel.backgroundColour = ConsoleColor.Blue;
@@ -41,8 +41,8 @@ namespace Medli
 					Kernel.Hostname = "MedliLive";
 				}
 
-				Level1.Init();
-				Level2.Init();
+				Ring0.Init();
+				HAL.Init();
 				Level3.Init();
 
 				/*
@@ -80,7 +80,7 @@ namespace Medli
         /// <summary>
         /// Main kernel loop
         /// </summary>
-        protected override void Run()
+        public static void Run()
 		{
 
 			try

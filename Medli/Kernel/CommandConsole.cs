@@ -57,6 +57,7 @@ namespace Medli
 			_commands.Add(new Logout());
 			// Disabled due to API change
 			_commands.Add(new fdisk());
+			_commands.Add(new StartGUI());
 			Console.WriteLine("");
 
 			while (running)

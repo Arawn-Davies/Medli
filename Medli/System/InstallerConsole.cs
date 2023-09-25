@@ -40,7 +40,7 @@ namespace Medli.System
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.ForegroundColor = ConsoleColor.White;
             Console.CursorTop = 7;
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Medli.System
         /// <param name="text"></param>
         public static void Write(string text)
         {
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
             Console.Write(text);
         }
 
@@ -59,7 +59,7 @@ namespace Medli.System
 		/// <param name="text"></param>
 		public static void Write(char c)
 		{
-			Console.CursorLeft = 7;
+			//Console.CursorLeft = 7;
 			Console.Write(c);
 		}
 
@@ -70,7 +70,7 @@ namespace Medli.System
 		public static void WriteSuffix(string text)
         {
             Console.Write(text + "\n");
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Medli.System
         /// <param name="text">The text.</param>
         public static void WritePrefix(string text)
         {
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
             Console.Write(text);
         }
 
@@ -90,9 +90,9 @@ namespace Medli.System
         public static void WriteLine(string text)
         {
             Write("\n");
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
             Console.Write(text + "\n");
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
         }
 
         /// <summary>
@@ -101,7 +101,8 @@ namespace Medli.System
         /// <returns></returns>
         public static string ReadLine()
         {
-			Console.CursorLeft = 7;
+			return Console.ReadLine();
+			//Console.CursorLeft = 7;
 			//Console.CursorTop += 1;
 			var text = string.Empty;
 			ConsoleKey key;
@@ -128,8 +129,9 @@ namespace Medli.System
 
 		public static string ReadPasswd()
 		{
-			Console.CursorLeft = 17;
-			//Console.CursorTop += 1;
+			return Console.ReadLine();
+			//Console.CursorLeft = 17;
+			Console.CursorTop += 1;
 			var pass = string.Empty;
 			ConsoleKey key;
 			do
@@ -158,12 +160,12 @@ namespace Medli.System
         /// Redirect method of PressAnyKey, indented by 7
         /// </summary>
         /// <param name="text"></param>
-        public static void PressAnyKey(string text = "Press any key to continue...")
+        public static ConsoleKeyInfo PressAnyKey(string text = "Press any key to continue...")
         {
-            Console.CursorLeft = 7;
+            //Console.CursorLeft = 7;
             WriteLine(text);
-            Console.ReadKey(true);
-            Console.CursorLeft = 7;
+            return Console.ReadKey(true);
+            //Console.CursorLeft = 7;
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace Medli.System.Framework
         /// <summary>
         /// BootScreen debugger, I'm getting a stack overflow somewhere...
         /// </summary>
-        private static Debugger debugger = new Debugger("Boot", "Bootscreen");
+        private static Debugger debugger = new Debugger("Bootscreen");
         public enum Effect : byte
         {
             SlideFromLeft,
