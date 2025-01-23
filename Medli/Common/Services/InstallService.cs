@@ -15,7 +15,7 @@ namespace Medli.Common.Services
         /// <summary>
         /// Installation debugger
         /// </summary>
-        private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Boot", "Installer");
+        private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Installer");
 
         public static string ServiceName = "INSRV";
 

@@ -32,7 +32,7 @@ namespace Medli
         /// <summary>
         /// ASCII logo
         /// </summary>
-        public static string Logo = $@"
+        public static string Logo = @"
    __    _                             
    /|   / |            |  |  o       //\\
   / |  /  |  ___    ___|  |  |      //__\\
@@ -44,8 +44,8 @@ The C# free and open source Operating System
         /// <summary>
         /// The Welcome message
         /// </summary>
-        public static string Welcome = $@"
-Welcome to Medli version: { KernelVersion }, build: { BuildNumber }
+        public static string Welcome = @"
+Welcome to Medli version: " + KernelVersion + ", build: " +  BuildNumber + @"
 Developed by Siaranite Solutions & Arawn Davies
 Copyright (C) 2023 Arawn Davies, Siaranite Solutions, All Rights Reserved
 Released under the BSD-3 Clause Clear license

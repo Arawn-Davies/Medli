@@ -11,7 +11,7 @@ namespace Medli.System
 {
 	public class Level3
 	{
-		private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Boot", "Level 3 Init");
+		private static Cosmos.Debug.Kernel.Debugger mDebugger = new Cosmos.Debug.Kernel.Debugger("Level 3 Init");
 
 		/// <summary>
 		/// System ring init method - ran once at boot
