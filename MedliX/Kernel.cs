@@ -1,11 +1,11 @@
-﻿using Makar.Ring0;
+﻿using MedliX.Ring0;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Sys = Cosmos.System;
 
-namespace Makar
-{
+namespace MedliX;
+
     public class Kernel : Sys.Kernel
     {
 
@@ -36,6 +36,5 @@ namespace Makar
             } while (key != ConsoleKey.Enter);
 
             Console.WriteLine(pass);
-		}
+	}
     }
-}

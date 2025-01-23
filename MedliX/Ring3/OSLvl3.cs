@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makar.Ring2
+namespace MedliX.Ring3
 {
-    internal class OSLvl2
+    internal class OSLvl3
     {
     }
 }

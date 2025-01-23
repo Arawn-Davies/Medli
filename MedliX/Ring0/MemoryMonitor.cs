@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Makar.Ring0
+namespace MedliX.Ring0
 {
     public class MemoryMonitor
     {

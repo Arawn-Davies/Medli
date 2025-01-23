@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Makar.Ring1
+namespace MedliX.Ring1
 {
     internal class OSLvl1
     {
